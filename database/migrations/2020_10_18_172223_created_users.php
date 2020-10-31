@@ -16,10 +16,10 @@ class CreatedUsers extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->int('position');
-            $table->rememberToken();
+            // $table->string('email')->unique();
+            // $table->string('password');
+            $table->integer('position');
+            // $table->rememberToken();
             $table->timestamps();
         });
     }
