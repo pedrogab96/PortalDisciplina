@@ -10,4 +10,14 @@
 
 ### npm install
 
+### npm run dev
+
+## copy .env.example .env
+
+### Logo após esse comando configurar o arquivo .env para o seu banco de dados
+
+## Depois utilizar o comando 
+
+## php artisan key:generate
+
 ### php artisan migrate
