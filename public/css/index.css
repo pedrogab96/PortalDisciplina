@@ -1,13 +1,35 @@
 :root {
     --main-bg-color: #0c3f7c;
+    --main-md-color: #acb2b8;
+    --main-title-bg-color: white;
+    --main-text-color: black;
 }
 
-.content-body{
-    /* background: -webkit-linear-gradient(left, rgba(0,0,0,0) 50%,rgba(0,0,0,0.4) 100%) !important; */
+body {
+    background: -webkit-linear-gradient(left, rgba(0,0,0,0) 50%,rgba(0,0,0,0.4) 100%);
     background-color: var(--main-bg-color);
 }
 
+.container{
+    margin-top : 40px
+}
+
+.title-subject {
+    color: var(--main-title-bg-color);
+}
+
+.response-search{
+    margin-top: 5px;
+    color: var(--main-title-bg-color);
+    font-size: 16px;
+}
+
+.card{
+    border: none;
+}
 
 .card-text{
     height: 70px;
 }
+
+
