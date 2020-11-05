@@ -17,12 +17,12 @@ class UserTableSeeder extends Seeder
     {
         User::create([
             'name'=>'Eugênio Paccelli',
-            'position'=> 1
+            'role'=> 1
         ]);
 
         User::create([
             'name'=>'Bruno Santana',
-            'position'=> 1
+            'role'=> 1
         ]);
 
     }
