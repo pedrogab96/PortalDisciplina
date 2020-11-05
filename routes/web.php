@@ -17,6 +17,6 @@ use App\Http\Controllers\DisciplineController;
 
 Route::get('/', function () {
     return view('layout.index');
-});
+})->name('index');
 
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
