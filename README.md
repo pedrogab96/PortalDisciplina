@@ -21,3 +21,6 @@
 ## php artisan key:generate
 
 ### php artisan migrate
+
+## Carregar uma inserção de dados pré definidas em database -> seeders
+### php artisan db:seed 
