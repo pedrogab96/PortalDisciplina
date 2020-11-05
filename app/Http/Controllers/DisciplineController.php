@@ -90,12 +90,26 @@ class DisciplineController extends Controller
         $search = $request->input('search');
 
 
+        // $disciplines = Discipline::where('disciplines.name','like',"%$search%")
+        //     ->join('users', 'users.id', '=', 'disciplines.user_id')
+        //     ->select('disciplines.*','users.name as nameUser')
+        //     ->orderBy('disciplines.name','asc')
+        //     ->orderBy('nameUser','asc')
+        //     ->get();
+
         $disciplines = Discipline::where('disciplines.name','like',"%$search%")
-            ->join('users', 'users.id', '=', 'disciplines.user_id')
-            ->select('disciplines.*','users.name as nameUser')
-            ->get();
+        ->join('users', 'users.id', '=', 'disciplines.user_id')
+        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        ->select('disciplines.*','users.name as nameUser')
+        ->orderBy('disciplines.name','asc')
+        ->orderBy('nameUser','asc')
+        ->get();
+
         
-        return view('disciplines-seach')->with('disciplines',$disciplines);
+        
+        return view('disciplines-seach')
+                ->with('disciplines',$disciplines)
+                ->with('search',$search);
 
     }
 
