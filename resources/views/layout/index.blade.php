@@ -25,7 +25,6 @@
                 <h1 class="title-subject">Portal das Disciplinas - IMD/UFRN</h1>
             </div>
         </div>
-
         @yield('content')
     </div>
 

@@ -16,7 +16,7 @@ use App\Http\Controllers\DisciplineController;
 */
 
 Route::get('/', function () {
-    return view('layout.index');
+    return view('disciplines-seach');
 })->name('index');
 
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
