@@ -107,7 +107,7 @@ class DisciplineController extends Controller
 
         
         
-        return view('disciplines-seach')
+        return view('disciplines-search')
                 ->with('disciplines',$disciplines)
                 ->with('search',$search);
 
