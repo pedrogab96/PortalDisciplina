@@ -16,9 +16,9 @@ class CreatedRoleUsers extends Migration
         Schema::create('role', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')
-                ->on('users')->onDelete('cascade');
+            // $table->unsignedBigInteger('id_user');
+            // $table->foreign('id_user')->references('id')
+            //     ->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

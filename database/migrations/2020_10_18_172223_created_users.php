@@ -18,7 +18,7 @@ class CreatedUsers extends Migration
             $table->string('name');
             // $table->string('email')->unique();
             // $table->string('password');
-            $table->integer('position');
+            $table->integer('role');
             // $table->rememberToken();
             $table->timestamps();
         });
