@@ -20,3 +20,9 @@ Route::get('/', function () {
 })->name('index');
 
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
+
+
+/* TESTE */
+Route::get('/disciplina', function () {
+    return view('discipline');
+});
