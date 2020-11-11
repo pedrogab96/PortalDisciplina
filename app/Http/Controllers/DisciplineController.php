@@ -27,7 +27,7 @@ class DisciplineController extends Controller
      */
     public function create()
     {
-        //
+        return view('discipline-new');
     }
 
     /**
@@ -38,7 +38,18 @@ class DisciplineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $discipline = new Discipline();
+
+        $discipline->name = $request->input('inputSubject');
+        $discipline->code = $request->input('inputCode');
+        $discipline->description = $request->input('sinopse');
+        $discipline->difficulties = $request->input('obstaculos');
+        $discipline->user_id = 1; // TODO temporario enquanto nao tem usuario logado
+        $discipline->save();
+
+        // return redirect('/');
+        return redirect('/disciplina/novo');
+        // return redirect('/disciplina');
     }
 
     /**

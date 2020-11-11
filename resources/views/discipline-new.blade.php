@@ -7,17 +7,18 @@
         </div>
     </div> --}}
 
-    <form action="#">,
+    <form action="/disciplina" method="post">
+        @csrf
         <div class="form-row justify-content-md-center">
             <div class="form-group col-md-6">
                 {{-- <label for="inputSubject"><span class="text-white">Nome da disciplina</span></label> --}}
                 <h4 class="text-white">Nome da disciplina</h4>
-                <input type="text" class="form-control" id="inputSubject" placeholder="Estrutura de dados básica I">
+                <input type="text" class="form-control" id="inputSubject" name="inputSubject" placeholder="Estrutura de dados básica I">
             </div>
             <div class="form-group col-md-2">
                 {{-- <label for="inputCode"><span class="text-white">Código da disciplina</span></label> --}}
                 <h4 class="text-white">Código</h4>
-                <input type="text" class="form-control" id="inputCode" placeholder="IMD0029">
+                <input type="text" class="form-control" id="inputCode" name="inputCode" placeholder="IMD0029">
             </div>
         </div>
 
@@ -25,7 +26,7 @@
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <h4 class="text-white">Sinopse</h4>
-                    <textarea style="resize:none" class="form-control" id="sinopse" rows="7" placeholder="Explique aqui como funciona a disciplina."></textarea>
+                    <textarea style="resize:none" class="form-control" id="sinopse" name="sinopse" rows="7" placeholder="Explique aqui como funciona a disciplina."></textarea>
                     {{-- <div class="bg-white mt-3 p-2" style="border-radius: 8px">
                         Iremos aprender como funciona a estrutura de dados.
                     </div> --}}
@@ -34,28 +35,34 @@
 
                 <div class="form-group">
                     <h4 class="text-white">Obstáculos</h4>
-                    <textarea style="resize:none" class="form-control" id="sinopse" rows="4" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea>
+                    <textarea style="resize:none" class="form-control" id="obstaculos" name="obstaculos" rows="4" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <h4 class="text-white">Trailer da disciplina</h4>
-                    <div class="teacher-video-container">
+                    {{-- <div class="teacher-video-container">
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cNxNWBrMtig"
                                 allowfullscreen></iframe>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="form-row mt-1 ">
                         <input type="url" class="form-control form-control-sm" placeholder="url do vídeo">
                     </div> --}}
                     <div class="input-group mb-3 mt-1">
+                        {{-- <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon3">youtube.com/embed/...</span>
+                        </div> --}}
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="youtube.com/embed/...">
+                    </div>
+                    {{-- <div class="input-group mb-3 mt-1">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon3">youtube.com/embed/...</span>
                         </div>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -73,5 +80,8 @@
                 </div>
             </div>
         </div> --}}
+
+        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        <button type="cancel" class="btn btn-danger btn-sm">Cancelar</button>
     </form>
 @endsection

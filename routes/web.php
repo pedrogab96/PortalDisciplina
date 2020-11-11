@@ -21,8 +21,11 @@ Route::get('/', function () {
 
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
 
+Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('createDisciplina');
+Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
 
 /* TESTE */
-Route::get('/disciplina', function () {
-    return view('discipline');
-});
+// Route::get('/disciplina/novo', function () {
+//     return view('discipline-new');
+// });
+
