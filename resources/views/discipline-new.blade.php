@@ -13,12 +13,12 @@
             <div class="form-group col-md-6">
                 {{-- <label for="inputSubject"><span class="text-white">Nome da disciplina</span></label> --}}
                 <h4 class="text-white">Nome da disciplina</h4>
-                <input type="text" class="form-control" id="inputSubject" name="inputSubject" placeholder="Estrutura de dados básica I">
+                <input type="text" class="form-control" id="inputSubject" name="inputSubject" placeholder="ex: Estrutura de dados básica I">
             </div>
             <div class="form-group col-md-2">
                 {{-- <label for="inputCode"><span class="text-white">Código da disciplina</span></label> --}}
                 <h4 class="text-white">Código</h4>
-                <input type="text" class="form-control" id="inputCode" name="inputCode" placeholder="IMD0029">
+                <input type="text" class="form-control" id="inputCode" name="inputCode" placeholder="IMD0000">
             </div>
         </div>
 
@@ -81,7 +81,9 @@
             </div>
         </div> --}}
 
-        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-        <button type="cancel" class="btn btn-danger btn-sm">Cancelar</button>
+        <div class="d-flex p-2 mb-5 justify-content-center">
+            <button type="submit" class="btn btn-primary btn-sm mx-2">Salvar</button>
+            <button type="cancel" class="btn btn-danger btn-sm mx-2">Cancelar</button>
+        </div>
     </form>
 @endsection
