@@ -35,3 +35,13 @@ Logo após isso, vamos criar as tabelas do banco. Execute esse comando no prompt
 E aqui iremos carregar uma inserção de dados pré definidas em database -> seeders
 
     php artisan db:seed 
+
+Email para teste no gmail - Fazer login no Mailtrap com esse email!
+
+    Email: c3970951@gmail.com
+    senha: imdufrn123
+
+Configurar as portas stmp no .env dadas no Mailtrap
+
+
+

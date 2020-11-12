@@ -17,8 +17,32 @@
               <a class="nav-link" href="#">FAQ</a>
             </li>
           </ul>
+
+          <ul class="navbar-nav ml-auto">
+            @guest
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item dropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+    
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+            @endguest
+          </ul>
         </div>
+
+
         
-        <a type="button" class="btn btn-outline-primary" href="login.html">Entrar</a>
+        
     </nav>
 </header>

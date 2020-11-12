@@ -20,3 +20,7 @@ Route::get('/', function () {
 })->name('index');
 
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
