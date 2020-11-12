@@ -5,7 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">
+                    <a type="cancel" class="" href="{{ route('index') }}">
+                        {{ __('Home') }}
+                    </a>
+
+                    <div class="text-center">
+                        <h2>{{ __('Login') }}</h2>
+                    </div>
+                    
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -57,9 +66,12 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                <a type="cancel" class="btn btn-primary" href="{{ route('index') }}">
-                                    {{ __('Voltar') }}
+        
+                                <a class="btn btn-primary" href="{{ route('register') }}">
+                                    {{ __('Register') }}
                                 </a>
+
+                                
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
