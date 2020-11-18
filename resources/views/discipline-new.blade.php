@@ -91,8 +91,8 @@
                 <h4 class="text-white">Obstáculos</h4>
                 <div class="form-row">
                     
-                    {{-- <textarea style="resize:none" class="form-control" id="obstaculos" name="obstaculos" rows="4" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea> --}}
-                    <form class="form-inline">
+                    <textarea style="resize:none" class="form-control" id="obstaculos" name="obstaculos" rows="4" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea>
+                    {{-- <form class="form-inline">
                         <div class="col-11" id="obstaculos">
                             <input type="text" class="form-control" name="obstaculos[]" placeholder="Obstáculo">
                         </div>
@@ -101,12 +101,12 @@
                         </div>    
                         
 
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
 
-        <div class="form-row mt-3">
+        {{-- <div class="form-row mt-3">
             <div class="col-12">
                 <h4 class="text-white">Ementa</h4>
                 <div class="form-row">
@@ -120,7 +120,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="d-flex p-2 mb-5 justify-content-center">
             <button type="submit" class="btn btn-primary btn-sm mx-2">Salvar</button>
