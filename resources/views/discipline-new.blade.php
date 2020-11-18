@@ -33,10 +33,16 @@
 
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <h4 class="text-white">Obstáculos</h4>
                     <textarea style="resize:none" class="form-control" id="obstaculos" name="obstaculos" rows="4" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea>
-                </div>
+                    <form action="">
+                        <div id="obstaculos">
+                            <input type="text" name="obstaculos[]" placeholder="Obstáculo">
+                            <button type="button" id="add-campo"> + </button>
+                        </div>
+                    </form>
+                </div> --}}
             </div>
 
             <div class="col-12 col-sm-6">
@@ -63,13 +69,17 @@
                         </div>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                     </div> --}}
+                    <h4 class="text-white">Podcasts</h4>
+                    <div class="input-group mb-3 mt-1">
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="link para podcast em nuvem">
+                    </div>
                 </div>
             </div>
         </div>
 
-        {{-- <div class="row mt-3">
+        <div class="form-row mt-3">
             <div class="col-12">
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <h4 class="text-white">Obstáculos</h4>
                     <div class="bg-white mt-3 p-2 mb-3" style="border-radius: 8px">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis similique minus quisquam sapiente. Aspernatur repudiandae reiciendis, porro vitae officiis esse quaerat pariatur accusamus commodi, deserunt doloremque, quis laboriosam non iste. <br/> <br/>
@@ -77,13 +87,55 @@
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis similique minus quisquam sapiente. Aspernatur repudiandae reiciendis, porro vitae officiis esse quaerat pariatur accusamus commodi, deserunt doloremque, quis laboriosam non iste.
                     </div>
                     <textarea style="resize:none" class="form-control" id="sinopse" rows="3" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea>
+                </div> --}}
+                <h4 class="text-white">Obstáculos</h4>
+                <div class="form-row">
+                    
+                    {{-- <textarea style="resize:none" class="form-control" id="obstaculos" name="obstaculos" rows="4" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea> --}}
+                    <form class="form-inline">
+                        <div class="col-11" id="obstaculos">
+                            <input type="text" class="form-control" name="obstaculos[]" placeholder="Obstáculo">
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-light mx-2" id="add-obstaculo"> + </button>
+                        </div>    
+                        
+
+                    </form>
                 </div>
             </div>
-        </div> --}}
+        </div>
+
+        <div class="form-row mt-3">
+            <div class="col-12">
+                <h4 class="text-white">Ementa</h4>
+                <div class="form-row">
+                    <form class="form-inline">
+                        <div class="col-11" id="ementa">
+                            <input type="text" class="form-control" name="ementa[]" placeholder="Tópico da ementa">
+                        </div>
+                        <div class="col-1">
+                            <button type="button" class="btn btn-light mx-2" id="add-topico"> + </button>
+                        </div>    
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <div class="d-flex p-2 mb-5 justify-content-center">
             <button type="submit" class="btn btn-primary btn-sm mx-2">Salvar</button>
             <button type="cancel" class="btn btn-danger btn-sm mx-2">Cancelar</button>
         </div>
     </form>
+
+    <script>
+        $("#add-obstaculo").click(function() {
+            $("#obstaculos").append('<input type="text" class="form-control mt-2" name="obstaculos[]" placeholder="Obstáculo">');
+        });
+
+        $("#add-topico").click(function() {
+            $("#ementa").append('<input type="text" class="form-control mt-2" name="ementa[]" placeholder="Tópico da ementa">');
+        });
+
+    </script>
 @endsection
