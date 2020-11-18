@@ -50,13 +50,13 @@ class DisciplineController extends Controller
         $discipline->user_id = 1; // TODO temporario enquanto nao tem usuario logado
         $discipline->save();
 
-        $trailer->name = "Trailer de $discipline->name"; // TODO "trailer de $disciplina" ou remover atributo name
+        $trailer->name = "Trailer de $discipline->name";
         $trailer->type = "video";
         $trailer->url = $request->input('trailer');
         $trailer->discipline_id = $discipline->id;
         $trailer->save();
 
-        $podcast->name = "Podcast de $discipline->name"; // TODO "podcast de $disciplina" ou remover atributo name
+        $podcast->name = "Podcast de $discipline->name";
         $podcast->type = "podcast";
         $podcast->url = $request->input('podcast');
         $podcast->discipline_id = $discipline->id;
