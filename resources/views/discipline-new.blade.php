@@ -61,7 +61,7 @@
                         {{-- <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon3">youtube.com/embed/...</span>
                         </div> --}}
-                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="youtube.com/embed/...">
+                        <input type="text" class="form-control" name="trailer" id="basic-url" aria-describedby="basic-addon3" placeholder="youtube.com/embed/...">
                     </div>
                     {{-- <div class="input-group mb-3 mt-1">
                         <div class="input-group-prepend">
@@ -71,7 +71,7 @@
                     </div> --}}
                     <h4 class="text-white">Podcasts</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="link para podcast em nuvem">
+                        <input type="text" class="form-control" name="podcast" id="basic-url" aria-describedby="basic-addon3" placeholder="link para podcast em nuvem">
                     </div>
                 </div>
             </div>
