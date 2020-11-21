@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card card-auth">
                 <div class="card-header">
-                    <a type="cancel" class="" href="{{ route('index') }}">
-                        {{ __('Home') }}
+                    <a type="cancel" class="btn btn-primary" href="{{ route('index') }}">
+                        Inicio
                     </a>
 
                     <div class="text-center">

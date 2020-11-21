@@ -15,15 +15,15 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name'=>'Eugênio Paccelli',
-            'role'=> 1
-        ]);
+        // User::create([
+        //     'name'=>'Eugênio Paccelli',
+        //     'role'=> 1
+        // ]);
 
-        User::create([
-            'name'=>'Bruno Santana',
-            'role'=> 1
-        ]);
+        // User::create([
+        //     'name'=>'Bruno Santana',
+        //     'role'=> 1
+        // ]);
 
     }
 }

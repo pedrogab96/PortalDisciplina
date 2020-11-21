@@ -28,6 +28,10 @@ body {
     border: none;
 }
 
+.card-auth{
+    margin-bottom: 50px;
+}
+
 .card-text{
     height: 70px;
 }
