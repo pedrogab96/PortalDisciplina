@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('createDisciplina');
 Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
 
