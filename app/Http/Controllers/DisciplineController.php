@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use \App\Models\Discipline;
+use \App\Models\Medias;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -27,7 +28,7 @@ class DisciplineController extends Controller
      */
     public function create()
     {
-        //
+        return view('discipline-new');
     }
 
     /**
@@ -38,7 +39,31 @@ class DisciplineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $discipline = new Discipline();
+        $trailer = new Medias();
+        $podcast = new Medias();
+
+        $discipline->name = $request->input('inputSubject');
+        $discipline->code = $request->input('inputCode');
+        $discipline->description = $request->input('sinopse');
+        $discipline->difficulties = $request->input('obstaculos');
+        $discipline->user_id = 1; // TODO temporario enquanto nao tem usuario logado
+        $discipline->save();
+
+        $trailer->name = "Trailer de $discipline->name";
+        $trailer->type = "video";
+        $trailer->url = $request->input('trailer');
+        $trailer->discipline_id = $discipline->id;
+        $trailer->save();
+
+        $podcast->name = "Podcast de $discipline->name";
+        $podcast->type = "podcast";
+        $podcast->url = $request->input('podcast');
+        $podcast->discipline_id = $discipline->id;
+        $podcast->save();
+
+        // return redirect('/');
+        return redirect('/disciplina/novo');
     }
 
     /**
