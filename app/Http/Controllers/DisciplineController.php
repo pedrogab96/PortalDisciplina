@@ -41,16 +41,16 @@ class DisciplineController extends Controller
     {
         /* Validacao */
         $regras = [
-            'inputSubject' => 'required',
-            'inputCode' => 'required',
-            'sinopse' => 'required',
-            'obstaculos' => 'required',
-            'trailer' => 'required',
-            'podcast' => 'required',
+            'inputSubject' => 'required|max:35',
+            'inputCode' => 'required|max:10',
+            'sinopse' => 'required|max:5000',
+            'obstaculos' => 'required|max:5000',
+            'trailer' => 'required|max:250',
+            'podcast' => 'required|max:250'
         ];
 
         $mensagens = [
-            'required' => 'O atributo :attribute não pode estar em branco.'
+            'required' => 'O atributo :attribute não pode estar em branco.',
         ];
 
         $request->validate($regras, $mensagens);
