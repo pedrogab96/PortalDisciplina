@@ -39,6 +39,21 @@ class DisciplineController extends Controller
      */
     public function store(Request $request)
     {
+        /* Validacao */
+        $regras = [
+            'inputSubject' => 'required',
+            'inputCode' => 'required',
+            'sinopse' => 'required',
+            'obstaculos' => 'required'
+        ];
+
+        $mensagens = [
+            'required' => 'O atributo :attribute não pode estar em branco.'
+        ];
+
+        $request->validate($regras, $mensagens);
+        
+        /* Registro no banco */
         $discipline = new Discipline();
         $trailer = new Medias();
         $podcast = new Medias();
