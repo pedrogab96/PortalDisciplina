@@ -18,7 +18,7 @@ class DisciplineController extends Controller
      */
     public function index()
     {
-        return view('discipline');
+        //
     }
 
     /**
@@ -74,7 +74,8 @@ class DisciplineController extends Controller
      */
     public function show($id)
     {
-        //
+        $disc = Discipline::find($id);
+        return view('discipline', compact('disc'));
     }
 
     /**

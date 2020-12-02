@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <h5>Página da disciplina</h5>
+    <h5>{{ $disc->name }}</h5>
 @endsection
