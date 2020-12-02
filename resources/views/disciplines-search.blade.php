@@ -32,10 +32,12 @@
                                         allowfullscreen></iframe>
                                 </div>
                             </div>
+                            <a href="/disciplina/{{ $discipline->id }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $discipline->name }}</h5>
                                 <p class="card-text">{{ Str::limit($discipline->description, 100,' (...)') }}</p>
                             </div>
+                            </a>
                             <div class="card-footer">{{ Str::words( $discipline->nameUser , 2, '' ) }}</div>
                         </div>
                     </div>

@@ -28,3 +28,4 @@ Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('c
 Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
 
 
+Route::get('/disciplina/{id}', [DisciplineController::class, 'index']);
