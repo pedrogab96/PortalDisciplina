@@ -51,6 +51,13 @@ class DisciplineController extends Controller
 
         $mensagens = [
             'required' => 'O atributo :attribute não pode estar em branco.',
+            // 'max' => 'Texto muito grande!',
+            'inputSubject.max' => 'Máximo de 35 caracteres!',
+            'inputCode.max' => 'Máximo de 10 caracteres!',
+            'sinopse.max' => 'Máximo de 5000 caracteres!',
+            'obstaculos.max' => 'Máximo de 5000 caracteres!',
+            'trailer.max' => 'Máximo de 250 caracteres!',
+            'podcast.max' => 'Máximo de 250 caracteres!',
         ];
 
         $request->validate($regras, $mensagens);
