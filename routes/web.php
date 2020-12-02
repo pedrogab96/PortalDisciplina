@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DisciplineController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +15,24 @@ use App\Http\Controllers\DisciplineController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('disciplines-search');
 })->name('index');
 
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('createDisciplina');
 Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
+route::get('/minhasdisciplinas', [DisciplineController::class, 'mydisciplines'])->name('mydisciplines');
+
+
+
+
 
 
