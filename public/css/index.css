@@ -10,6 +10,15 @@ body {
     background-color: var(--main-bg-color);
 }
 
+.label-btn{
+    margin: 0;
+}
+
+#navbar_btn{
+    font-size: 20px;
+    padding: 20px 16px;
+}
+
 .container{
     margin-top : 40px
 }
