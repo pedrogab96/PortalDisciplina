@@ -13,7 +13,7 @@
             <div class="form-group col-md-6">
                 {{-- <label for="inputSubject"><span class="text-white">Nome da disciplina</span></label> --}}
                 <h4 class="text-white">Nome da disciplina</h4>
-                <input type="text" 
+                <input type="text" required
                     class="form-control {{ $errors->has('inputSubject') ? 'is-invalid' : ''}}" 
                     id="inputSubject" 
                     name="inputSubject" 
@@ -28,7 +28,7 @@
             <div class="form-group col-md-2">
                 {{-- <label for="inputCode"><span class="text-white">Código da disciplina</span></label> --}}
                 <h4 class="text-white">Código</h4>
-                <input type="text" 
+                <input type="text" required
                     class="form-control {{ $errors->has('inputCode') ? 'is-invalid' : ''}}" 
                     id="inputCode" 
                     name="inputCode" 
@@ -46,7 +46,7 @@
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <h4 class="text-white">Sinopse</h4>
-                    <textarea style="resize:none" 
+                    <textarea style="resize:none" required
                         class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
                         id="sinopse" 
                         name="sinopse" 
@@ -92,7 +92,18 @@
                         {{-- <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon3">youtube.com/embed/...</span>
                         </div> --}}
-                        <input type="text" class="form-control" name="trailer" id="basic-url" aria-describedby="basic-addon3" placeholder="youtube.com/embed/...">
+                        <input type="text" required
+                            class="form-control {{ $errors->has('trailer') ? 'is-invalid' : ''}}" 
+                            name="trailer" 
+                            id="basic-url" 
+                            aria-describedby="basic-addon3" 
+                            placeholder="youtube.com/embed/...">
+
+                        @if ($errors->has('trailer'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('trailer') }}
+                            </div>
+                        @endif
                     </div>
                     {{-- <div class="input-group mb-3 mt-1">
                         <div class="input-group-prepend">
@@ -102,7 +113,18 @@
                     </div> --}}
                     <h4 class="text-white">Podcasts</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text" class="form-control" name="podcast" id="basic-url" aria-describedby="basic-addon3" placeholder="link para podcast em nuvem">
+                        <input type="text" required
+                            class="form-control {{ $errors->has('podcast') ? 'is-invalid' : ''}}" 
+                            name="podcast" 
+                            id="basic-url" 
+                            aria-describedby="basic-addon3" 
+                            placeholder="link para podcast em nuvem">
+
+                        @if ($errors->has('podcast'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('podcast') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -122,7 +144,7 @@
                 <h4 class="text-white">Obstáculos</h4>
                 <div class="form-row">
                     
-                    <textarea style="resize:none" 
+                    <textarea style="resize:none" required
                         class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
                         id="obstaculos" 
                         name="obstaculos" 

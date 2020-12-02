@@ -44,7 +44,9 @@ class DisciplineController extends Controller
             'inputSubject' => 'required',
             'inputCode' => 'required',
             'sinopse' => 'required',
-            'obstaculos' => 'required'
+            'obstaculos' => 'required',
+            'trailer' => 'required',
+            'podcast' => 'required',
         ];
 
         $mensagens = [
