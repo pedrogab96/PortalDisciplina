@@ -73,25 +73,53 @@ class DisciplineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        /* $disciplines = Discipline::find($id)
-        ->join('users', 'users.id', '=', 'disciplines.user_id')
-        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia');
+    {        
+        //FUNCIONANDO MAS PEGANDO SOMENTE O TRAILER
         
-        dd($disciplines); */
-        
-
-        $discipline = Discipline::where('disciplines.id','=', "$id")
+       /*  $discipline = Discipline::where('disciplines.id','=', "$id")
         ->join('users', 'users.id', '=', 'disciplines.user_id')
         ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
         ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
         ->first();
 
-        //dd($discipline);
+        return view('discipline')
+            ->with('disciplines',$discipline); */
+
+        //OUTRAS OPÇÕES
+
+        $discipline = Discipline::where('disciplines.id','=', "$id")
+        ->join('users', 'users.id', '=', 'disciplines.user_id')
+        ->select('disciplines.*','users.name as nameUser')
+        ->first();
+
+        $trailer = Medias::where('medias.discipline_id','=',"$id")
+        ->where('medias.type','=',"video")
+        ->select('medias.*','medias.url as urlMedia')
+        ->first();
+
+        $podcast= Medias::where('medias.discipline_id','=',"$id")
+        ->where('medias.type','=',"podcast")
+        ->select('medias.*','medias.url as urlMedia')
+        ->first();
+
 
         return view('discipline')
-            ->with('disciplines',$discipline);
+            ->with('disciplines',$discipline)
+            ->with('trailer',$trailer)
+            ->with('podcast',$podcast);
+
+
+
+        //dd($discipline);
+
+        /* $media = Medias::where('medias.discipline_id','=',"$id")
+        ->where()
+        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        ->select('disciplines.*','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
+        ->first(); */
+
+        
+            //->with('medias', $media);
     }
 
     /**
