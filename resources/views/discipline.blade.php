@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="container-fluid text-white text-center">{{ $disciplines->name }}</h2>
+    <h2 class="container-fluid text-white text-center">{{ $disciplines->name }} - {{ $disciplines->code }}</h2>
 
     <div class="row mt-3">
         <h4 class="text-white">Sinopse</h4> <br>

@@ -86,7 +86,7 @@ class DisciplineController extends Controller
         ->join('users', 'users.id', '=', 'disciplines.user_id')
         ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
         ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia')
-        ->get();
+        ->first();
 
         //dd($discipline);
 
