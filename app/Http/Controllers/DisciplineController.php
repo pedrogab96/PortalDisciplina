@@ -85,7 +85,7 @@ class DisciplineController extends Controller
         $discipline = Discipline::where('disciplines.id','=', "$id")
         ->join('users', 'users.id', '=', 'disciplines.user_id')
         ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia')
+        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
         ->first();
 
         //dd($discipline);
@@ -142,7 +142,7 @@ class DisciplineController extends Controller
         $disciplines = Discipline::where('disciplines.name','like',"%$search%")
         ->join('users', 'users.id', '=', 'disciplines.user_id')
         ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia')
+        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
         ->orderBy('disciplines.name','asc')
         ->orderBy('nameUser','asc')
         ->get();

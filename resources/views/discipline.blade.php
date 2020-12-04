@@ -15,6 +15,7 @@
             <iframe class="embed-responsive-item" src="{{ $disciplines->urlMedia }}"
                 allowfullscreen></iframe>
         </div>
+        <p>{{$disciplines->mediaType}}</p>
     </div>
 
 @endsection
