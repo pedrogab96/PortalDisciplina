@@ -74,8 +74,24 @@ class DisciplineController extends Controller
      */
     public function show($id)
     {
-        $disc = Discipline::find($id);
-        return view('discipline', compact('disc'));
+        /* $disciplines = Discipline::find($id)
+        ->join('users', 'users.id', '=', 'disciplines.user_id')
+        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia');
+        
+        dd($disciplines); */
+        
+
+        $discipline = Discipline::where('disciplines.id','=', "$id")
+        ->join('users', 'users.id', '=', 'disciplines.user_id')
+        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia')
+        ->get();
+
+        //dd($discipline);
+
+        return view('discipline')
+            ->with('disciplines',$discipline);
     }
 
     /**
@@ -126,7 +142,7 @@ class DisciplineController extends Controller
         $disciplines = Discipline::where('disciplines.name','like',"%$search%")
         ->join('users', 'users.id', '=', 'disciplines.user_id')
         ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser')
+        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia')
         ->orderBy('disciplines.name','asc')
         ->orderBy('nameUser','asc')
         ->get();
