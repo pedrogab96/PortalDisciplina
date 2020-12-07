@@ -13,12 +13,32 @@
             <div class="form-group col-md-6">
                 {{-- <label for="inputSubject"><span class="text-white">Nome da disciplina</span></label> --}}
                 <h4 class="text-white">Nome da disciplina</h4>
-                <input type="text" class="form-control" id="inputSubject" name="inputSubject" placeholder="ex: Estrutura de dados básica I">
+                <input type="text" required
+                    class="form-control {{ $errors->has('inputSubject') ? 'is-invalid' : ''}}" 
+                    id="inputSubject" 
+                    name="inputSubject" 
+                    placeholder="ex: Estrutura de dados básica I">
+                
+                @if ($errors->has('inputSubject'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('inputSubject') }}
+                    </div>
+                @endif
             </div>
             <div class="form-group col-md-2">
                 {{-- <label for="inputCode"><span class="text-white">Código da disciplina</span></label> --}}
                 <h4 class="text-white">Código</h4>
-                <input type="text" class="form-control" id="inputCode" name="inputCode" placeholder="IMD0000">
+                <input type="text" required
+                    class="form-control {{ $errors->has('inputCode') ? 'is-invalid' : ''}}" 
+                    id="inputCode" 
+                    name="inputCode" 
+                    placeholder="IMD0000">
+
+                @if ($errors->has('inputCode'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('inputCode') }}
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -26,7 +46,18 @@
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <h4 class="text-white">Sinopse</h4>
-                    <textarea style="resize:none" class="form-control" id="sinopse" name="sinopse" rows="7" placeholder="Explique aqui como funciona a disciplina."></textarea>
+                    <textarea style="resize:none" required
+                        class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
+                        id="sinopse" 
+                        name="sinopse" 
+                        rows="7" 
+                        placeholder="Explique aqui como funciona a disciplina."></textarea>
+
+                    @if ($errors->has('sinopse'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('sinopse') }}
+                        </div>
+                    @endif
                     {{-- <div class="bg-white mt-3 p-2" style="border-radius: 8px">
                         Iremos aprender como funciona a estrutura de dados.
                     </div> --}}
@@ -61,7 +92,18 @@
                         {{-- <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon3">youtube.com/embed/...</span>
                         </div> --}}
-                        <input type="text" class="form-control" name="trailer" id="basic-url" aria-describedby="basic-addon3" placeholder="youtube.com/embed/...">
+                        <input type="text" required
+                            class="form-control {{ $errors->has('trailer') ? 'is-invalid' : ''}}" 
+                            name="trailer" 
+                            id="basic-url" 
+                            aria-describedby="basic-addon3" 
+                            placeholder="youtube.com/embed/...">
+
+                        @if ($errors->has('trailer'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('trailer') }}
+                            </div>
+                        @endif
                     </div>
                     {{-- <div class="input-group mb-3 mt-1">
                         <div class="input-group-prepend">
@@ -71,7 +113,18 @@
                     </div> --}}
                     <h4 class="text-white">Podcasts</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text" class="form-control" name="podcast" id="basic-url" aria-describedby="basic-addon3" placeholder="link para podcast em nuvem">
+                        <input type="text" required
+                            class="form-control {{ $errors->has('podcast') ? 'is-invalid' : ''}}" 
+                            name="podcast" 
+                            id="basic-url" 
+                            aria-describedby="basic-addon3" 
+                            placeholder="link para podcast em nuvem">
+
+                        @if ($errors->has('podcast'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('podcast') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -91,7 +144,18 @@
                 <h4 class="text-white">Obstáculos</h4>
                 <div class="form-row">
                     
-                    <textarea style="resize:none" class="form-control" id="obstaculos" name="obstaculos" rows="4" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea>
+                    <textarea style="resize:none" required
+                        class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
+                        id="obstaculos" 
+                        name="obstaculos" 
+                        rows="4" 
+                        placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea>
+
+                    @if ($errors->has('obstaculos'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('obstaculos') }}
+                        </div>
+                    @endif
                     {{-- <form class="form-inline">
                         <div class="col-11" id="obstaculos">
                             <input type="text" class="form-control" name="obstaculos[]" placeholder="Obstáculo">
