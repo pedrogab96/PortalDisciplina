@@ -11,11 +11,14 @@
             
             <h4 class="text-white">Sinopse</h4>
             {{-- <textarea style="resize:none" class="form-control" id="sinopse" name="sinopse" rows="7" readonly> {{ $disciplines->description }}</textarea> --}}
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-body">
                     <p class="card-text">{{ $disciplines->description }}</p>
                 </div>
-            </div>
+            </div> --}}
+
+            {{-- <div class="d-block-flex py-2 px-lg-3 border bg-light">{{ $disciplines->description }}</div> --}}
+            <div class="text">{{ $disciplines->description }}</div>
         </div>
     </div>
 
@@ -29,7 +32,7 @@
         </div>
         <div class="col-4">
             <h4 class="text-white">Classificação</h4>
-            <p class="text-white"> Práticas</p>
+            <p class="text"> Práticas</p>
         </div>
     </div>    
     
@@ -55,34 +58,41 @@
     {{-- @endforeach --}}
 
     <div class="row mt-3">
-        <div class="col-2">
-            <h4 class="text-white">Materiais</h4>
-            <p class="text-white"> imagem - link</p>
+        
+
+        <div class="col-10">
+            <h4 class="text-white">Obstáculos</h4>
+            <div class="text">{{ $disciplines->difficulties }}</div>
         </div>
 
-        <div class="col">
-            <h4 class="text-white">Obstáculos</h4>
-            <textarea style="resize:none" class="form-control" id="sinopse" name="sinopse" rows="5" readonly> {{ $disciplines->difficulties }}</textarea>
+        <div class="col-2">
+            <h4 class="text-white">Materiais</h4>
+            <p class="text"> imagem - link</p>
         </div>
-        
     </div>
 
     <div class="row mt-3">
-        
-        <div class="col">
+       {{--  
+        <div class="col-3">
             <h4 class="text-white">Professor</h4>
             <img src="{{asset('img/user3.png')}}" alt="Imagem do Usuário">
-        </div>
+        </div> --}}
 
         
-        <div class="col-9">
-            <h4 class="text-white">Sobre</h4> 
-            <textarea style="resize:none" class="form-control" id="sinopse" name="sinopse" rows="2" readonly></textarea>
-            <h4 class="text-white">Outras disciplinas do mesmo professor</h4> 
-            <textarea style="resize:none" class="form-control" id="sinopse" name="sinopse" rows="2" readonly></textarea>
-            <h4 class="text-white">Email</h4> 
-            <textarea style="resize:none" class="form-control" id="sinopse" name="sinopse" rows="1" readonly></textarea>
+        <div class="col-6">
+            <h4 class="text-white">Sobre o professor</h4> 
+            <div class="text">Texto para teste</div>
         </div>
+        
+        <div class="col-6">
+            <h4 class="text-white">Email</h4> 
+            <div class="text">Texto para teste</div>
+        </div>
+        
+        {{-- <div class="col-12">
+        <h4 class="text-white">Outras disciplinas do mesmo professor</h4> 
+            <div class="text">Texto para teste</div>
+        </div> --}}
     </div>
 
 @endsection
