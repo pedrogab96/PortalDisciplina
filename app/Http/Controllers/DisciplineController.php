@@ -73,8 +73,53 @@ class DisciplineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {        
+        //FUNCIONANDO MAS PEGANDO SOMENTE O TRAILER
+        
+       /*  $discipline = Discipline::where('disciplines.id','=', "$id")
+        ->join('users', 'users.id', '=', 'disciplines.user_id')
+        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
+        ->first();
+
+        return view('discipline')
+            ->with('disciplines',$discipline); */
+
+        //OUTRAS OPÇÕES
+
+        $discipline = Discipline::where('disciplines.id','=', "$id")
+        ->join('users', 'users.id', '=', 'disciplines.user_id')
+        ->select('disciplines.*','users.name as nameUser')
+        ->first();
+
+        $trailer = Medias::where('medias.discipline_id','=',"$id")
+        ->where('medias.type','=',"video")
+        ->select('medias.*','medias.url as urlMedia')
+        ->first();
+
+        $podcast= Medias::where('medias.discipline_id','=',"$id")
+        ->where('medias.type','=',"podcast")
+        ->select('medias.*','medias.url as urlMedia')
+        ->first();
+
+
+        return view('discipline')
+            ->with('disciplines',$discipline)
+            ->with('trailer',$trailer)
+            ->with('podcast',$podcast);
+
+
+
+        //dd($discipline);
+
+        /* $media = Medias::where('medias.discipline_id','=',"$id")
+        ->where()
+        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        ->select('disciplines.*','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
+        ->first(); */
+
+        
+            //->with('medias', $media);
     }
 
     /**
@@ -125,7 +170,7 @@ class DisciplineController extends Controller
         $disciplines = Discipline::where('disciplines.name','like',"%$search%")
         ->join('users', 'users.id', '=', 'disciplines.user_id')
         ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser')
+        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
         ->orderBy('disciplines.name','asc')
         ->orderBy('nameUser','asc')
         ->get();

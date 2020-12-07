@@ -28,14 +28,16 @@
 
                             <div class="teacher-video-container">
                                 <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cNxNWBrMtig"
+                                    <iframe class="embed-responsive-item" src="{{ $discipline->urlMedia }}"
                                         allowfullscreen></iframe>
                                 </div>
                             </div>
+                            <a href="/disciplina/{{ $discipline->id }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $discipline->name }}</h5>
                                 <p class="card-text">{{ Str::limit($discipline->description, 100,' (...)') }}</p>
                             </div>
+                            </a>
                             <div class="card-footer">{{ Str::words( $discipline->nameUser , 2, '' ) }}</div>
                         </div>
                     </div>
