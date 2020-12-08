@@ -7,7 +7,9 @@
 #sidebar_btn-active{
     /* color: #fff; */
     color: red;
-    margin: 14px 0px 0px 16px;
+    padding: 20px 16px;
+    margin-left: 14px;
+    margin-top: 8px;
     font-size: 20px;
 }
 
@@ -70,6 +72,12 @@
 }
 
 #sidebar .list-links:hover{
+    background: #0d5ab9;;
+    text-decoration: none;
+    color: #fff;
+}
+
+.link-active {
     background: #0d5ab9;;
     text-decoration: none;
     color: #fff;

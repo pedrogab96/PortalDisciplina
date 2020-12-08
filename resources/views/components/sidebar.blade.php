@@ -9,24 +9,27 @@
     <div class="text-center">
         @auth
             <div class="user">
-                <img src="img/img1.jpg" alt="" class="sidebar-image_profile">
+                {{-- <img src="img/img1.jpg" alt="" class="sidebar-image_profile"> --}}
                 <p class="name_user">{{ Str::words( Auth::user()->name, 2, '' ) }}</p>
             </div>
         @endauth
 
         <ul class="sidebar-list">
+
+            <li class="sidebar-item">
+                <a class="list-links" href="{{route("index")}}">Inicio</a>
+            </li>
+
             @auth
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a href="" class="list-links">Meu perfil </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
-                    <a href="" class="list-links">Minhas disciplinas</a>
+                    <a href="{{route("mydisciplines")}}" class="list-links">Minhas disciplinas</a>
                 </li>
             @endauth
             
-            <li class="sidebar-item">
-                <a class="list-links" href="#">Inicio</a>
-            </li>
+            
 
             <li class="sidebar-item">
                 <a class="list-links" href="#">Sobre</a>

@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar  navbar-light bg-light">
-      <label>
-        <i class="fas fa-bars" id='sidebar_btn' onclick="move(true)"></i>
+      <label class="label-btn">
+        <i class="fas fa-bars" id='navbar_btn' onclick="move(true)"></i>
       </label>
       
         <a class="navbar-brand mr-0" href="{{route('index')}}">
