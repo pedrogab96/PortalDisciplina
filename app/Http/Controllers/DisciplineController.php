@@ -8,6 +8,8 @@ use \App\Models\Discipline;
 use \App\Models\Medias;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 
 class DisciplineController extends Controller
 {
@@ -205,6 +207,26 @@ class DisciplineController extends Controller
                 ->with('disciplines',$disciplines)
                 ->with('search',$search);
 
+    }
+
+    public function mydisciplines(){
+
+
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
+
+        $id = Auth::id();
+        $disciplines = Discipline::where('user_id','=',$id)
+        ->join('users', 'users.id', '=', 'disciplines.user_id')
+        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        ->select('disciplines.*','users.name as nameUser')
+        ->orderBy('disciplines.name','asc')
+        ->orderBy('nameUser','asc')
+        ->get();
+        
+        return view('my-disciplines')
+            ->with('disciplines',$disciplines);
     }
 
 }
