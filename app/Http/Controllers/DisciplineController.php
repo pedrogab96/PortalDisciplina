@@ -30,6 +30,9 @@ class DisciplineController extends Controller
      */
     public function create()
     {
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
         return view('discipline-new');
     }
 
@@ -41,11 +44,7 @@ class DisciplineController extends Controller
      */
     public function store(Request $request)
     {
-        /* Checar se usuario esta logado */
-        if(!Auth::check()){
-            return redirect()->route('login');
-        }
-
+        /* Id do usuario logado */
         $userId = Auth::id();
         
         /* Validacao */
