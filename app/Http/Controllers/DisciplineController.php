@@ -48,18 +48,21 @@ class DisciplineController extends Controller
             'sinopse' => 'required|max:5000',
             'obstaculos' => 'required|max:5000',
             'trailer' => 'required|max:250',
-            'podcast' => 'required|max:250'
+            'video' => 'required|max:250',
+            'podcast' => 'required|max:250',
+            'material' => 'required|max:250',
         ];
 
         $mensagens = [
             'required' => 'O atributo :attribute não pode estar em branco.',
-            // 'max' => 'Texto muito grande!',
             'inputSubject.max' => 'Máximo de 40 caracteres!',
             'inputCode.max' => 'Máximo de 10 caracteres!',
             'sinopse.max' => 'Máximo de 5000 caracteres!',
             'obstaculos.max' => 'Máximo de 5000 caracteres!',
             'trailer.max' => 'Máximo de 250 caracteres!',
+            'video.max' => 'Máximo de 250 caracteres!',
             'podcast.max' => 'Máximo de 250 caracteres!',
+            'material.max' => 'Máximo de 250 caracteres!',
         ];
 
         $request->validate($regras, $mensagens);
@@ -67,10 +70,14 @@ class DisciplineController extends Controller
         /* Registro no banco */
         $discipline = new Discipline();
         $trailer = new Medias();
+        $video = new Medias();
         $podcast = new Medias();
+        $material = new Medias();
 
         $discipline->name = $request->input('inputSubject');
         $discipline->code = $request->input('inputCode');
+        $discipline->teacher = $request->input('teacher');
+        $discipline->email = $request->input('teacherEmail');
         $discipline->description = $request->input('sinopse');
         $discipline->difficulties = $request->input('obstaculos');
         $discipline->user_id = 1; // TODO temporario enquanto nao tem usuario logado
@@ -78,6 +85,7 @@ class DisciplineController extends Controller
 
         $trailer->name = "Trailer de $discipline->name";
         $trailer->type = "video";
+        $trailer->is_trailer = true;
         $trailer->url = $request->input('trailer');
         $trailer->discipline_id = $discipline->id;
         $trailer->save();
@@ -85,8 +93,23 @@ class DisciplineController extends Controller
         $podcast->name = "Podcast de $discipline->name";
         $podcast->type = "podcast";
         $podcast->url = $request->input('podcast');
+        $podcast->is_trailer = false;
         $podcast->discipline_id = $discipline->id;
         $podcast->save();
+
+        $video->name = "Video de $discipline->name";
+        $video->type = "video";
+        $video->is_trailer = false;
+        $video->url = $request->input('video');
+        $video->discipline_id = $discipline->id;
+        $video->save();
+        
+        $material->name = "Material de $discipline->name";
+        $material->type = "material";
+        $material->is_trailer = false;
+        $material->url = $request->input('material');
+        $material->discipline_id = $discipline->id;
+        $material->save();
 
         // return redirect('/');
         return redirect('/disciplina/novo');
