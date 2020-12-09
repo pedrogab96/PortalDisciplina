@@ -41,6 +41,13 @@ class DisciplineController extends Controller
      */
     public function store(Request $request)
     {
+        /* Checar se usuario esta logado */
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
+
+        $userId = Auth::id();
+        
         /* Validacao */
         $regras = [
             'inputSubject' => 'required|max:40',
@@ -80,7 +87,7 @@ class DisciplineController extends Controller
         $discipline->email = $request->input('teacherEmail');
         $discipline->description = $request->input('sinopse');
         $discipline->difficulties = $request->input('obstaculos');
-        $discipline->user_id = 1; // TODO temporario enquanto nao tem usuario logado
+        $discipline->user_id = $userId;
         $discipline->save();
 
         $trailer->name = "Trailer de $discipline->name";
