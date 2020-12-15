@@ -75,7 +75,6 @@
                 <div class="form-group">
                     <h4 class="text-white">Sinopse</h4>
                     <textarea style="resize:none" 
-                        {{-- required --}}
                         class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
                         id="sinopse" 
                         name="sinopse" 
@@ -106,7 +105,6 @@
                     <h4 class="text-white">Trailer da disciplina</h4>
                     <div class="input-group mb-3 mt-1">
                         <input type="text" 
-                            {{-- required --}}
                             class="form-control {{ $errors->has('trailer') ? 'is-invalid' : ''}}" 
                             name="trailer" 
                             id="basic-url" 
@@ -123,7 +121,6 @@
                     <h4 class="text-white">Vídeo</h4>
                     <div class="input-group mb-3 mt-1">
                         <input type="text" 
-                            {{-- required --}}
                             class="form-control {{ $errors->has('video') ? 'is-invalid' : ''}}" 
                             name="video" 
                             id="basic-url" 
@@ -140,7 +137,6 @@
                     <h4 class="text-white">Podcast</h4>
                     <div class="input-group mb-3 mt-1">
                         <input type="text" 
-                            {{-- required --}}
                             class="form-control {{ $errors->has('podcast') ? 'is-invalid' : ''}}" 
                             name="podcast" 
                             id="basic-url" 
@@ -157,7 +153,6 @@
                     <h4 class="text-white">Materiais</h4>
                     <div class="input-group mb-3 mt-1">
                         <input type="text" 
-                            {{-- required --}}
                             class="form-control {{ $errors->has('materiais') ? 'is-invalid' : ''}}" 
                             name="materiais" 
                             id="basic-url" 
@@ -180,7 +175,6 @@
                 <div class="form-row">
                     
                     <textarea style="resize:none" 
-                        {{-- required --}}
                         class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
                         id="obstaculos" 
                         name="obstaculos" 

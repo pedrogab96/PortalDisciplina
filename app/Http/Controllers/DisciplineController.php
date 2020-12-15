@@ -96,7 +96,7 @@ class DisciplineController extends Controller
         $discipline->user_id = $userId;
         $discipline->save();
 
-        if($request->filled('name')){
+        if($request->filled('trailer')){
             $trailer = new Medias();
             $trailer->name = "Trailer de $discipline->name";
             $trailer->type = "video";
