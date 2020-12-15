@@ -7,7 +7,8 @@
         <div class="form-row justify-content-md-center">
             <div class="form-group col-md-10">
                 <h4 class="text-white">Nome da disciplina</h4>
-                <input type="text" required
+                <input type="text" 
+                    required
                     class="form-control {{ $errors->has('inputSubject') ? 'is-invalid' : ''}}" 
                     id="inputSubject" 
                     name="inputSubject" 
@@ -22,7 +23,8 @@
 
             <div class="form-group col-md-2">
                 <h4 class="text-white">Código</h4>
-                <input type="text" required
+                <input type="text" 
+                    required
                     class="form-control {{ $errors->has('inputCode') ? 'is-invalid' : ''}}" 
                     id="inputCode" 
                     name="inputCode" 
@@ -37,20 +39,34 @@
 
             <div class="form-group col-md-8">
                 <h4 class="text-white">Professor</h4>
-                <input type="text" required
+                <input type="text" 
+                    required
                     class="form-control {{ $errors->has('teacher') ? 'is-invalid' : ''}}" 
                     id="teacher" 
                     name="teacher" 
                     placeholder="Professor que irá lecionar a disciplina">
+
+                @if ($errors->has('teacher'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('teacher') }}
+                    </div>
+                @endif
             </div>
             
             <div class="form-group col-md-4">
                 <h4 class="text-white">Email</h4>
-                <input type="text" required
+                <input type="text" 
+                    required
                     class="form-control {{ $errors->has('teacherEmail') ? 'is-invalid' : ''}}" 
                     id="teacherEmail" 
                     name="teacherEmail" 
                     placeholder="Email do professor responsável pela disciplina">
+
+                @if ($errors->has('teacherEmail'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('teacherEmail') }}
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -58,7 +74,8 @@
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <h4 class="text-white">Sinopse</h4>
-                    <textarea style="resize:none" required
+                    <textarea style="resize:none" 
+                        {{-- required --}}
                         class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
                         id="sinopse" 
                         name="sinopse" 
@@ -88,7 +105,8 @@
                 <div class="form-group">
                     <h4 class="text-white">Trailer da disciplina</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text" required
+                        <input type="text" 
+                            {{-- required --}}
                             class="form-control {{ $errors->has('trailer') ? 'is-invalid' : ''}}" 
                             name="trailer" 
                             id="basic-url" 
@@ -104,7 +122,8 @@
 
                     <h4 class="text-white">Vídeo</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text" required
+                        <input type="text" 
+                            {{-- required --}}
                             class="form-control {{ $errors->has('video') ? 'is-invalid' : ''}}" 
                             name="video" 
                             id="basic-url" 
@@ -120,7 +139,8 @@
                     
                     <h4 class="text-white">Podcast</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text" required
+                        <input type="text" 
+                            {{-- required --}}
                             class="form-control {{ $errors->has('podcast') ? 'is-invalid' : ''}}" 
                             name="podcast" 
                             id="basic-url" 
@@ -136,16 +156,17 @@
 
                     <h4 class="text-white">Materiais</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text" required
-                            class="form-control {{ $errors->has('material') ? 'is-invalid' : ''}}" 
-                            name="material" 
+                        <input type="text" 
+                            {{-- required --}}
+                            class="form-control {{ $errors->has('materiais') ? 'is-invalid' : ''}}" 
+                            name="materiais" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="link para material em nuvem">
+                            placeholder="link para materiais em nuvem">
 
-                        @if ($errors->has('material'))
+                        @if ($errors->has('materiais'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('material') }}
+                                {{ $errors->first('materiais') }}
                             </div>
                         @endif
                     </div>
@@ -158,7 +179,8 @@
                 <h4 class="text-white">Obstáculos</h4>
                 <div class="form-row">
                     
-                    <textarea style="resize:none" required
+                    <textarea style="resize:none" 
+                        {{-- required --}}
                         class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
                         id="obstaculos" 
                         name="obstaculos" 
