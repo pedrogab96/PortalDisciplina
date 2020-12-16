@@ -215,7 +215,7 @@ class DisciplineController extends Controller
 
         $disciplines = DB::table('disciplines')
             ->select('disciplines.*',
-            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video') AS urlMedia")))
+            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
             ->where('disciplines.name','like',"%$search%")
             ->get();
         
