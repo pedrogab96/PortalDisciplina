@@ -24,24 +24,11 @@ Auth::routes([
 ]);
 
 
-
-
-
-// Route::
-
-
 Route::get('/', [DisciplineController::class,'index'] )->name('index');
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
 Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('createDisciplina');
 Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
 route::get('/minhasdisciplinas', [DisciplineController::class, 'mydisciplines'])->name('mydisciplines');
-
-
-
-
 Route::get('/disciplina/{id}', [DisciplineController::class, 'show'])->name('showDiscipline');
+Route::delete('/remove/{id}',[DisciplineController::class,'destroy'])->name('deleteDiscipline');

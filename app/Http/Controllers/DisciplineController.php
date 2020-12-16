@@ -188,7 +188,10 @@ class DisciplineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $discipline = Discipline::find($id);
+        $discipline->delete();
+        return redirect()->route('index');
+
     }
 
     public function search(Request $request){

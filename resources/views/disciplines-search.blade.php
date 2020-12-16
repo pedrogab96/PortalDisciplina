@@ -44,6 +44,13 @@
                                 <h5 class="card-title">{{ $discipline->name }}</h5>
                                 <p class="card-text">{{ Str::limit($discipline->description, 100,' (...)') }}</p>
                                 <a href="{{ route('showDiscipline', ['id' => $discipline->id]) }}" class="btn btn-primary">Ver mais</a>
+
+                                <form action=" {{route('deleteDiscipline',$discipline->id)}}" class="d-inline" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" value="Apagar">Apagar</button>
+                                </form>
+                                
                             </div>
 
                            
