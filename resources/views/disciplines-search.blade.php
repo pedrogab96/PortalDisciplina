@@ -2,6 +2,15 @@
 
 @section('content')
 
+    {{-- Modificar para apenas o user adm ou professor --}}
+    @auth
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3 mt-5">
+                <a name="createDisciplina" class="btn btn-outline-light btn-block" href="{{ route("createDisciplina") }}" role="button">Cadastrar disciplina</a>
+            </div>
+        </div>
+    @endauth
+
     <div class="row justify-content-md-center mt-5">
         <div class="col">
         <form action="{{route('search')}}" method="POST">
@@ -18,7 +27,7 @@
     
     @isset($disciplines)
         @if ($disciplines->count() == 0)
-            <p class="response-search"> Nenhuma disciplina encontrada </p>
+            <p class="response-search mt-4"> Nenhuma disciplina encontrada </p>
         @else
             <div class="row">
                 @foreach ($disciplines as $discipline)
@@ -45,11 +54,13 @@
                                 <p class="card-text">{{ Str::limit($discipline->description, 100,' (...)') }}</p>
                                 <a href="{{ route('showDiscipline', ['id' => $discipline->id]) }}" class="btn btn-primary">Ver mais</a>
 
-                                <form action=" {{route('deleteDiscipline',$discipline->id)}}" class="d-inline" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" value="Apagar">Apagar</button>
-                                </form>
+                                @auth
+                                    <form action=" {{route('deleteDiscipline',$discipline->id)}}" class="d-inline" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" value="Apagar">Apagar</button>
+                                    </form>
+                                @endauth
                                 
                             </div>
 
