@@ -9,7 +9,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Pesquisar..." aria-label="Caixa de pesquisa" aria-describedby="button-addon2" name='search' value="{{ $search ?? '' }}">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Pesquisar</button>
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Pesquisar</button>
                     </div>
                 </div>
             </form>
@@ -24,21 +24,31 @@
                 @foreach ($disciplines as $discipline)
                     <div class="col-12 col-sm-6 col-lg-3 mt-5">
                         <div class="card shadow">
-                            {{-- <img src="{{asset('img/teste1.jpg')}}" class="card-img-top" alt=".." > --}}
 
-                            <div class="teacher-video-container">
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="{{ $discipline->urlMedia }}"
-                                        allowfullscreen></iframe>
+                            @if ($discipline->urlMedia == NULL)
+                                <img src="{{asset('img/teste1.jpg')}}" class="card-img-top" alt=".." >
+                                
+                            @else
+                                <div class="teacher-video-container">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="{{ $discipline->urlMedia }}"
+                                            allowfullscreen></iframe>
+                                    </div>
                                 </div>
-                            </div>
-                            <a href="/disciplina/{{ $discipline->id }}">
+                            @endif
+
+
+                            {{-- <a href="/disciplina/{{ $discipline->id }}"> </a> --}}
+                            
                             <div class="card-body">
                                 <h5 class="card-title">{{ $discipline->name }}</h5>
                                 <p class="card-text">{{ Str::limit($discipline->description, 100,' (...)') }}</p>
+                                <a href="{{ route('showDiscipline', ['id' => $discipline->id]) }}" class="btn btn-primary">Ver mais</a>
                             </div>
-                            </a>
-                            <div class="card-footer">{{ Str::words( $discipline->nameUser , 2, '' ) }}</div>
+
+                           
+                            {{--  --}}
+                            <div class="card-footer">NOME PROFESSOR</div>
                         </div>
                     </div>
                 @endforeach 

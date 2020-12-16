@@ -15,12 +15,22 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
 
-Route::get('/', function () {
-    return view('disciplines-search');
-})->name('index');
+//Routes auth
+Auth::routes([
+    'register' => false,
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
 
+
+
+
+
+// Route::
+
+
+Route::get('/', [DisciplineController::class,'index'] )->name('index');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -34,6 +44,4 @@ route::get('/minhasdisciplinas', [DisciplineController::class, 'mydisciplines'])
 
 
 
-
-
-Route::get('/disciplina/{id}', [DisciplineController::class, 'show']);
+Route::get('/disciplina/{id}', [DisciplineController::class, 'show'])->name('showDiscipline');
