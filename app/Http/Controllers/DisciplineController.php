@@ -60,6 +60,13 @@ class DisciplineController extends Controller
             'video' => 'max:250',
             'podcast' => 'max:250',
             'material' => 'max:250',
+            
+            // 'sinopse' => 'required|max:5000',
+            // 'obstaculos' => 'required|max:5000',
+            // 'trailer' => 'required|max:250',
+            // 'video' => 'required|max:250',
+            // 'podcast' => 'required|max:250',
+            // 'material' => 'required|max:250',
         ];
 
         $mensagens = [
