@@ -20,7 +20,16 @@ class DisciplineController extends Controller
      */
     public function index()
     {
-        //
+        // $disciplines = Discipline::select('select * from disciplines');
+
+        //Ajustar isso para quando estiver o campo no banco de dados para a verificação de trailer
+        $disciplines = DB::table('disciplines')
+            ->select('disciplines.*',
+            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video') AS urlMedia")))
+            ->get();
+        
+        return view('disciplines-search')
+            ->with('disciplines',$disciplines);
     }
 
     /**
@@ -30,6 +39,9 @@ class DisciplineController extends Controller
      */
     public function create()
     {
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
         return view('discipline-new');
     }
 
@@ -41,52 +53,93 @@ class DisciplineController extends Controller
      */
     public function store(Request $request)
     {
+        /* Id do usuario logado */
+        $userId = Auth::id();
+        
         /* Validacao */
         $regras = [
             'inputSubject' => 'required|max:40',
             'inputCode' => 'required|max:10',
-            'sinopse' => 'required|max:5000',
-            'obstaculos' => 'required|max:5000',
-            'trailer' => 'required|max:250',
-            'podcast' => 'required|max:250'
+            'teacher' => 'required|max:70',
+            'teacherEmail' => 'required|max:70',
+            
+            'sinopse' => 'max:5000',
+            'obstaculos' => 'max:5000',
+            'trailer' => 'max:250',
+            'video' => 'max:250',
+            'podcast' => 'max:250',
+            'material' => 'max:250',
         ];
 
         $mensagens = [
             'required' => 'O atributo :attribute não pode estar em branco.',
-            // 'max' => 'Texto muito grande!',
             'inputSubject.max' => 'Máximo de 40 caracteres!',
+            'teacher.max' => 'Máximo de 70 caracteres!',
+            'teacherEmail.max' => 'Máximo de 70 caracteres!',
             'inputCode.max' => 'Máximo de 10 caracteres!',
             'sinopse.max' => 'Máximo de 5000 caracteres!',
             'obstaculos.max' => 'Máximo de 5000 caracteres!',
             'trailer.max' => 'Máximo de 250 caracteres!',
+            'video.max' => 'Máximo de 250 caracteres!',
             'podcast.max' => 'Máximo de 250 caracteres!',
+            'material.max' => 'Máximo de 250 caracteres!',
         ];
 
         $request->validate($regras, $mensagens);
         
         /* Registro no banco */
         $discipline = new Discipline();
-        $trailer = new Medias();
-        $podcast = new Medias();
-
         $discipline->name = $request->input('inputSubject');
         $discipline->code = $request->input('inputCode');
+        $discipline->teacher = $request->input('teacher');
+        $discipline->email = $request->input('teacherEmail');
         $discipline->description = $request->input('sinopse');
         $discipline->difficulties = $request->input('obstaculos');
-        $discipline->user_id = 1; // TODO temporario enquanto nao tem usuario logado
+        $discipline->user_id = $userId;
         $discipline->save();
 
-        $trailer->name = "Trailer de $discipline->name";
-        $trailer->type = "video";
-        $trailer->url = $request->input('trailer');
-        $trailer->discipline_id = $discipline->id;
-        $trailer->save();
+        if($request->filled('trailer')){
+            $trailer = new Medias();
+            $trailer->name = "Trailer de $discipline->name";
+            $trailer->type = "video";
+            $trailer->is_trailer = true;
+            $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
+            $trailer->url = "https://www.youtube.com/embed/" . $trailerUrl;
+            $trailer->discipline_id = $discipline->id;
+            $trailer->save();
+        }
 
-        $podcast->name = "Podcast de $discipline->name";
-        $podcast->type = "podcast";
-        $podcast->url = $request->input('podcast');
-        $podcast->discipline_id = $discipline->id;
-        $podcast->save();
+        if($request->filled('podcast')){
+            $podcast = new Medias();
+            $podcast->name = "Podcast de $discipline->name";
+            $podcast->type = "podcast";
+            $podcastUrl = $this->getYoutubeIdFromUrl($request->input('podcast'));
+            $podcast->url = "https://www.youtube.com/embed/" . $podcastUrl;
+            $podcast->is_trailer = false;
+            $podcast->discipline_id = $discipline->id;
+            $podcast->save();
+        }
+
+        if($request->filled('video')){
+            $video = new Medias();
+            $video->name = "Video de $discipline->name";
+            $video->type = "video";
+            $video->is_trailer = false;
+            $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
+            $video->url = "https://www.youtube.com/embed/" . $videoUrl;
+            $video->discipline_id = $discipline->id;
+            $video->save();
+        }
+        
+        if($request->filled('materiais')){
+            $materiais = new Medias();
+            $materiais->name = "Materiais de $discipline->name";
+            $materiais->type = "materiais";
+            $materiais->is_trailer = false;
+            $materiais->url = $request->input('materiais');
+            $materiais->discipline_id = $discipline->id;
+            $materiais->save();
+        }
 
         // return redirect('/');
         return redirect('/disciplina/novo');
@@ -179,7 +232,10 @@ class DisciplineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $discipline = Discipline::find($id);
+        $discipline->delete();
+        return redirect()->route('index');
+
     }
 
     public function search(Request $request){
@@ -193,15 +249,19 @@ class DisciplineController extends Controller
         //     ->orderBy('nameUser','asc')
         //     ->get();
 
-        $disciplines = Discipline::where('disciplines.name','like',"%$search%")
-        ->join('users', 'users.id', '=', 'disciplines.user_id')
-        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
-        ->orderBy('disciplines.name','asc')
-        ->orderBy('nameUser','asc')
-        ->get();
+        // $disciplines = Discipline::where('disciplines.name','like',"%$search%")
+        // ->join('users', 'users.id', '=', 'disciplines.user_id')
+        // ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        // ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
+        // ->orderBy('disciplines.name','asc')
+        // ->orderBy('nameUser','asc')
+        // ->get();
 
-        
+        $disciplines = DB::table('disciplines')
+            ->select('disciplines.*',
+            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
+            ->where('disciplines.name','like',"%$search%")
+            ->get();
         
         return view('disciplines-search')
                 ->with('disciplines',$disciplines)
@@ -227,6 +287,27 @@ class DisciplineController extends Controller
         
         return view('my-disciplines')
             ->with('disciplines',$disciplines);
+    }
+
+    /** 
+     * Baseado em 
+     * https://stackoverflow.com/questions/3392993/php-regex-to-get-youtube-video-id/3393008#3393008
+    */
+    public function getYoutubeIdFromUrl($url) {
+        $parts = parse_url($url);
+        if(isset($parts['query'])){
+            parse_str($parts['query'], $qs);
+            if(isset($qs['v'])){
+                return $qs['v'];
+            }else if(isset($qs['vi'])){
+                return $qs['vi'];
+            }
+        }
+        if(isset($parts['path'])){
+            $path = explode('/', trim($parts['path'], '/'));
+            return $path[count($path)-1];
+        }
+        return false;
     }
 
 }
