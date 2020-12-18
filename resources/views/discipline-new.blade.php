@@ -1,19 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <div class="row">
-        <div class="col-12 text-center my-4 title-subject-container">
-            <h3 class="title-subject">IMD0029 - Estrutura de Dados Básicas I</h3>
-        </div>
-    </div> --}}
 
     <form action="/disciplina" method="post">
         @csrf
         <div class="form-row justify-content-md-center">
-            <div class="form-group col-md-6">
-                {{-- <label for="inputSubject"><span class="text-white">Nome da disciplina</span></label> --}}
+            <div class="form-group col-md-10">
                 <h4 class="text-white">Nome da disciplina</h4>
-                <input type="text" required
+                <input type="text" 
+                    required
                     class="form-control {{ $errors->has('inputSubject') ? 'is-invalid' : ''}}" 
                     id="inputSubject" 
                     name="inputSubject" 
@@ -25,10 +20,11 @@
                     </div>
                 @endif
             </div>
+
             <div class="form-group col-md-2">
-                {{-- <label for="inputCode"><span class="text-white">Código da disciplina</span></label> --}}
                 <h4 class="text-white">Código</h4>
-                <input type="text" required
+                <input type="text" 
+                    required
                     class="form-control {{ $errors->has('inputCode') ? 'is-invalid' : ''}}" 
                     id="inputCode" 
                     name="inputCode" 
@@ -40,13 +36,45 @@
                     </div>
                 @endif
             </div>
+
+            <div class="form-group col-md-8">
+                <h4 class="text-white">Professor</h4>
+                <input type="text" 
+                    required
+                    class="form-control {{ $errors->has('teacher') ? 'is-invalid' : ''}}" 
+                    id="teacher" 
+                    name="teacher" 
+                    placeholder="Professor que irá lecionar a disciplina">
+
+                @if ($errors->has('teacher'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('teacher') }}
+                    </div>
+                @endif
+            </div>
+            
+            <div class="form-group col-md-4">
+                <h4 class="text-white">Email</h4>
+                <input type="text" 
+                    required
+                    class="form-control {{ $errors->has('teacherEmail') ? 'is-invalid' : ''}}" 
+                    id="teacherEmail" 
+                    name="teacherEmail" 
+                    placeholder="Email do professor responsável pela disciplina">
+
+                @if ($errors->has('teacherEmail'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('teacherEmail') }}
+                    </div>
+                @endif
+            </div>
         </div>
 
         <div class="row mt-3">
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <h4 class="text-white">Sinopse</h4>
-                    <textarea style="resize:none" required
+                    <textarea style="resize:none" 
                         class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
                         id="sinopse" 
                         name="sinopse" 
@@ -58,10 +86,6 @@
                             {{ $errors->first('sinopse') }}
                         </div>
                     @endif
-                    {{-- <div class="bg-white mt-3 p-2" style="border-radius: 8px">
-                        Iremos aprender como funciona a estrutura de dados.
-                    </div> --}}
-
                 </div>
 
                 {{-- <div class="form-group">
@@ -79,20 +103,8 @@
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <h4 class="text-white">Trailer da disciplina</h4>
-                    {{-- <div class="teacher-video-container">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cNxNWBrMtig"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div> --}}
-                    {{-- <div class="form-row mt-1 ">
-                        <input type="url" class="form-control form-control-sm" placeholder="url do vídeo">
-                    </div> --}}
                     <div class="input-group mb-3 mt-1">
-                        {{-- <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon3">youtube.com/embed/...</span>
-                        </div> --}}
-                        <input type="text" required
+                        <input type="text" 
                             class="form-control {{ $errors->has('trailer') ? 'is-invalid' : ''}}" 
                             name="trailer" 
                             id="basic-url" 
@@ -105,15 +117,26 @@
                             </div>
                         @endif
                     </div>
-                    {{-- <div class="input-group mb-3 mt-1">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon3">youtube.com/embed/...</span>
-                        </div>
-                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                    </div> --}}
-                    <h4 class="text-white">Podcasts</h4>
+
+                    <h4 class="text-white">Vídeo</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text" required
+                        <input type="text" 
+                            class="form-control {{ $errors->has('video') ? 'is-invalid' : ''}}" 
+                            name="video" 
+                            id="basic-url" 
+                            aria-describedby="basic-addon3" 
+                            placeholder="youtube.com/embed/...">
+
+                        @if ($errors->has('video'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('video') }}
+                            </div>
+                        @endif
+                    </div>
+                    
+                    <h4 class="text-white">Podcast</h4>
+                    <div class="input-group mb-3 mt-1">
+                        <input type="text" 
                             class="form-control {{ $errors->has('podcast') ? 'is-invalid' : ''}}" 
                             name="podcast" 
                             id="basic-url" 
@@ -126,25 +149,32 @@
                             </div>
                         @endif
                     </div>
+
+                    <h4 class="text-white">Materiais</h4>
+                    <div class="input-group mb-3 mt-1">
+                        <input type="text" 
+                            class="form-control {{ $errors->has('materiais') ? 'is-invalid' : ''}}" 
+                            name="materiais" 
+                            id="basic-url" 
+                            aria-describedby="basic-addon3" 
+                            placeholder="link para materiais em nuvem">
+
+                        @if ($errors->has('materiais'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('materiais') }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="form-row mt-3">
             <div class="col-12">
-                {{-- <div class="form-group">
-                    <h4 class="text-white">Obstáculos</h4>
-                    <div class="bg-white mt-3 p-2 mb-3" style="border-radius: 8px">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis similique minus quisquam sapiente. Aspernatur repudiandae reiciendis, porro vitae officiis esse quaerat pariatur accusamus commodi, deserunt doloremque, quis laboriosam non iste. <br/> <br/>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis similique minus quisquam sapiente. Aspernatur repudiandae reiciendis, porro vitae officiis esse quaerat pariatur accusamus commodi, deserunt doloremque, quis laboriosam non iste. <br/> <br/>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis similique minus quisquam sapiente. Aspernatur repudiandae reiciendis, porro vitae officiis esse quaerat pariatur accusamus commodi, deserunt doloremque, quis laboriosam non iste.
-                    </div>
-                    <textarea style="resize:none" class="form-control" id="sinopse" rows="3" placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente."></textarea>
-                </div> --}}
                 <h4 class="text-white">Obstáculos</h4>
                 <div class="form-row">
                     
-                    <textarea style="resize:none" required
+                    <textarea style="resize:none" 
                         class="form-control {{ $errors->has('sinopse') ? 'is-invalid' : ''}}" 
                         id="obstaculos" 
                         name="obstaculos" 
