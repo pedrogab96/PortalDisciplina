@@ -26,12 +26,18 @@
                         <div class="card shadow">
                             {{-- <img src="{{asset('img/teste1.jpg')}}" class="card-img-top" alt=".." > --}}
 
-                            <div class="teacher-video-container">
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="{{ $discipline->urlMedia }}"
-                                        allowfullscreen></iframe>
+                            @if (isset($discipline->urlMedia))
+                                <div class="teacher-video-container">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="{{ $discipline->urlMedia }}"
+                                            allowfullscreen></iframe>
+                                    </div>
                                 </div>
+                            @else 
+                            <div class="teacher-video-container">
+                                <img src="{{ asset('img/novideo.png') }}" alt="Sem video">
                             </div>
+                            @endif
                             <a href="/disciplina/{{ $discipline->id }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $discipline->name }}</h5>
