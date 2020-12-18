@@ -29,5 +29,12 @@ class UserTableSeeder extends Seeder
         //     'password'=> '12345678'
         // ]);
 
+        User::create([
+            'name' => 'ADMIN',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('12345678'),
+            'role' => 0
+        ]);
+        
     }
 }

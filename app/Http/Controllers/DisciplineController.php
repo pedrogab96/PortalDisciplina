@@ -20,7 +20,16 @@ class DisciplineController extends Controller
      */
     public function index()
     {
-        //
+        // $disciplines = Discipline::select('select * from disciplines');
+
+        //Ajustar isso para quando estiver o campo no banco de dados para a verificação de trailer
+        $disciplines = DB::table('disciplines')
+            ->select('disciplines.*',
+            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video') AS urlMedia")))
+            ->get();
+        
+        return view('disciplines-search')
+            ->with('disciplines',$disciplines);
     }
 
     /**
@@ -179,7 +188,10 @@ class DisciplineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $discipline = Discipline::find($id);
+        $discipline->delete();
+        return redirect()->route('index');
+
     }
 
     public function search(Request $request){
@@ -193,15 +205,19 @@ class DisciplineController extends Controller
         //     ->orderBy('nameUser','asc')
         //     ->get();
 
-        $disciplines = Discipline::where('disciplines.name','like',"%$search%")
-        ->join('users', 'users.id', '=', 'disciplines.user_id')
-        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
-        ->orderBy('disciplines.name','asc')
-        ->orderBy('nameUser','asc')
-        ->get();
+        // $disciplines = Discipline::where('disciplines.name','like',"%$search%")
+        // ->join('users', 'users.id', '=', 'disciplines.user_id')
+        // ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
+        // ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
+        // ->orderBy('disciplines.name','asc')
+        // ->orderBy('nameUser','asc')
+        // ->get();
 
-        
+        $disciplines = DB::table('disciplines')
+            ->select('disciplines.*',
+            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
+            ->where('disciplines.name','like',"%$search%")
+            ->get();
         
         return view('disciplines-search')
                 ->with('disciplines',$disciplines)
