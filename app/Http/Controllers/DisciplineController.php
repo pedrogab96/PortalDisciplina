@@ -273,6 +273,10 @@ class DisciplineController extends Controller
             ->with('disciplines',$disciplines);
     }
 
+    /** 
+     * Baseado em 
+     * https://stackoverflow.com/questions/3392993/php-regex-to-get-youtube-video-id/3393008#3393008
+    */
     public function getYoutubeIdFromUrl($url) {
         $parts = parse_url($url);
         if(isset($parts['query'])){
