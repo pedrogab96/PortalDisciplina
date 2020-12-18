@@ -104,7 +104,8 @@ class DisciplineController extends Controller
             $podcast = new Medias();
             $podcast->name = "Podcast de $discipline->name";
             $podcast->type = "podcast";
-            $podcast->url = $request->input('podcast');
+            $podcastUrl = $this->getYoutubeIdFromUrl($request->input('podcast'));
+            $podcast->url = "https://www.youtube.com/embed/" . $podcastUrl;
             $podcast->is_trailer = false;
             $podcast->discipline_id = $discipline->id;
             $podcast->save();
