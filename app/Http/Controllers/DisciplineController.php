@@ -95,7 +95,7 @@ class DisciplineController extends Controller
             $trailer->type = "video";
             $trailer->is_trailer = true;
             $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
-            $trailer->url = $trailerUrl;
+            $trailer->url = "https://www.youtube.com/embed/" . $trailerUrl;
             $trailer->discipline_id = $discipline->id;
             $trailer->save();
         }
@@ -116,7 +116,7 @@ class DisciplineController extends Controller
             $video->type = "video";
             $video->is_trailer = false;
             $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
-            $video->url = $videoUrl;
+            $video->url = "https://www.youtube.com/embed/" . $videoUrl;
             $video->discipline_id = $discipline->id;
             $video->save();
         }
