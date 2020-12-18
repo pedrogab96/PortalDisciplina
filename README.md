@@ -36,12 +36,11 @@ E aqui iremos carregar uma inserção de dados pré definidas em database -> see
 
     php artisan db:seed 
 
-Email para teste no gmail - Fazer login no Mailtrap com esse email!
+Email para teste no gmail - Fazer login no Mailtrap com esse email! (Ainda em desenvolvimento - OPCIONAL)
 
     Email: c3970951@gmail.com
     senha: imdufrn123
 
-Configurar as portas stmp no .env dadas no Mailtrap
-
+Configurar as portas stmp no .env dadas no Mailtrap (Ainda em desenvolvimento - OPCIONAL)
 
 
