@@ -17,13 +17,14 @@
 </head>
 
 <body class="content-body">
-    {{-- @yield('navbar') --}}
     
     @component('components.navbar')
     @endcomponent
 
-    @component('components.sidebar')
-    @endcomponent
+    {{-- Sidebar desativado por enquanto --}}
+    
+    {{-- @component('components.sidebar')
+    @endcomponent --}}
 
     <div class="container">
         <div class="row">

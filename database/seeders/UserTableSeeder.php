@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 
@@ -29,5 +30,12 @@ class UserTableSeeder extends Seeder
         //     'password'=> '12345678'
         // ]);
 
+        User::create([
+            'name' => 'ADMIN',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('12345678'),
+            'role' => 0
+        ]);
+        
     }
 }

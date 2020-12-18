@@ -17,6 +17,8 @@ class CreateDisciplines extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
+            $table->string('teacher');
+            $table->string('email');
             $table->longText('description')->nullable();
             $table->longText('difficulties')->nullable();
             $table->unsignedBigInteger('user_id');
