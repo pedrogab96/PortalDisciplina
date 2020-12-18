@@ -94,7 +94,8 @@ class DisciplineController extends Controller
             $trailer->name = "Trailer de $discipline->name";
             $trailer->type = "video";
             $trailer->is_trailer = true;
-            $trailer->url = $request->input('trailer');
+            $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
+            $trailer->url = $trailerUrl;
             $trailer->discipline_id = $discipline->id;
             $trailer->save();
         }
@@ -114,7 +115,8 @@ class DisciplineController extends Controller
             $video->name = "Video de $discipline->name";
             $video->type = "video";
             $video->is_trailer = false;
-            $video->url = $request->input('video');
+            $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
+            $video->url = $videoUrl;
             $video->discipline_id = $discipline->id;
             $video->save();
         }
@@ -268,6 +270,23 @@ class DisciplineController extends Controller
         
         return view('my-disciplines')
             ->with('disciplines',$disciplines);
+    }
+
+    public function getYoutubeIdFromUrl($url) {
+        $parts = parse_url($url);
+        if(isset($parts['query'])){
+            parse_str($parts['query'], $qs);
+            if(isset($qs['v'])){
+                return $qs['v'];
+            }else if(isset($qs['vi'])){
+                return $qs['vi'];
+            }
+        }
+        if(isset($parts['path'])){
+            $path = explode('/', trim($parts['path'], '/'));
+            return $path[count($path)-1];
+        }
+        return false;
     }
 
 }
