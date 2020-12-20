@@ -136,7 +136,8 @@ class DisciplineController extends Controller
             $materiais->name = "Materiais de $discipline->name";
             $materiais->type = "materiais";
             $materiais->is_trailer = false;
-            $materiais->url = $request->input('materiais');
+            $materiaisUrl = $this->getDriveIdFromUrl($request->input('materiais'));
+            $materiais->url = "https://drive.google.com/uc?export=download&id=" . $materiaisUrl;
             $materiais->discipline_id = $discipline->id;
             $materiais->save();
         }
@@ -307,6 +308,16 @@ class DisciplineController extends Controller
             $path = explode('/', trim($parts['path'], '/'));
             return $path[count($path)-1];
         }
+        return false;
+    }
+
+    // TODO
+    public function getDriveIdFromUrl($url) {
+        $parts = explode("/", $url);
+        if(isset($parts[5])) {
+            return $parts[5];
+        }
+
         return false;
     }
 
