@@ -142,8 +142,8 @@ class DisciplineController extends Controller
             $materiais->save();
         }
 
-        // return redirect('/');
-        return redirect('/disciplina/novo');
+        return redirect('/');
+        // return redirect('/disciplina/novo');
     }
 
     /**
@@ -174,6 +174,13 @@ class DisciplineController extends Controller
 
         $trailer = Medias::where('medias.discipline_id','=',"$id")
         ->where('medias.type','=',"video")
+        ->where('medias.is_trailer','=',"1")
+        ->select('medias.*','medias.url as urlMedia')
+        ->first();
+        
+        $video = Medias::where('medias.discipline_id','=',"$id")
+        ->where('medias.type','=',"video")
+        ->where('medias.is_trailer','=',"0")
         ->select('medias.*','medias.url as urlMedia')
         ->first();
 
@@ -181,12 +188,19 @@ class DisciplineController extends Controller
         ->where('medias.type','=',"podcast")
         ->select('medias.*','medias.url as urlMedia')
         ->first();
+        
+        $materiais= Medias::where('medias.discipline_id','=',"$id")
+        ->where('medias.type','=',"materiais")
+        ->select('medias.*','medias.url as urlMedia')
+        ->first();
 
 
         return view('discipline')
             ->with('disciplines',$discipline)
             ->with('trailer',$trailer)
-            ->with('podcast',$podcast);
+            ->with('video',$video)
+            ->with('podcast',$podcast)
+            ->with('materiais',$materiais);
 
 
 
@@ -311,7 +325,6 @@ class DisciplineController extends Controller
         return false;
     }
 
-    // TODO
     public function getDriveIdFromUrl($url) {
         $parts = explode("/", $url);
         if(isset($parts[5])) {
