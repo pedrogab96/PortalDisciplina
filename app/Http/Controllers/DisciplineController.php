@@ -28,7 +28,6 @@ class DisciplineController extends Controller
             (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
         ->get();
         
-        // dd($disciplines);
         return view('disciplines-search')
             ->with('disciplines',$disciplines);
     }
