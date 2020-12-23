@@ -23,8 +23,8 @@
 
     {{-- Sidebar desativado por enquanto --}}
     
-    {{-- @component('components.sidebar')
-    @endcomponent --}}
+    @component('components.sidebar')
+    @endcomponent
 
     <div class="container">
         <div class="row">
