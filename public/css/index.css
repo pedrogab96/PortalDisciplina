@@ -37,6 +37,10 @@ body {
     border: none;
 }
 
+.card-img-top{
+    height: 143px;
+}
+
 .card-auth{
     margin-bottom: 50px;
 }
@@ -49,4 +53,24 @@ body {
     color: #b1b1b1;
 }
 
+/* Cores para testes */
+/* .bg-color {
+    background-color: #1A5A7E;
+}
 
+.bg-color1 {
+    background-color: #516D87;
+}
+
+.bg-color2 {
+    background-color: white;
+}
+
+.bg-color3 {
+    background-color: #081B38;
+} */
+
+.bg-color4 {
+    background-color: #183561;
+    font-size: 20px;
+}
