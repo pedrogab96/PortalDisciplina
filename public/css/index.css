@@ -74,3 +74,12 @@ body {
     background-color: #183561;
     font-size: 20px;
 }
+
+.info-portal{
+    color: white;
+}
+
+.span-info{
+    color: var(--main-md-color);
+}
+

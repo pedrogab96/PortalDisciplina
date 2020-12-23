@@ -29,6 +29,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
 Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('createDisciplina');
 Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
-route::get('/minhasdisciplinas', [DisciplineController::class, 'mydisciplines'])->name('mydisciplines');
+
+//--Desativada por enquanto
+// route::get('/minhasdisciplinas', [DisciplineController::class, 'mydisciplines'])->name('mydisciplines');
+
+Route::get('sobre', function () { return view ('information'); })->name('information');
+
 Route::get('/disciplina/{id}', [DisciplineController::class, 'show'])->name('showDiscipline');
 Route::delete('/remove/{id}',[DisciplineController::class,'destroy'])->name('deleteDiscipline');
