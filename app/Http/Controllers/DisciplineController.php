@@ -64,6 +64,7 @@ class DisciplineController extends Controller
             'teacherEmail' => 'required|max:70',
             
             'sinopse' => 'max:5000',
+            'classificacao' => 'max:5000',
             'obstaculos' => 'max:5000',
             'trailer' => 'max:250',
             'video' => 'max:250',
@@ -78,6 +79,7 @@ class DisciplineController extends Controller
             'teacherEmail.max' => 'Máximo de 70 caracteres!',
             'inputCode.max' => 'Máximo de 10 caracteres!',
             'sinopse.max' => 'Máximo de 5000 caracteres!',
+            'classificacao.max' => 'Máximo de 5000 caracteres!',
             'obstaculos.max' => 'Máximo de 5000 caracteres!',
             'trailer.max' => 'Máximo de 250 caracteres!',
             'video.max' => 'Máximo de 250 caracteres!',
@@ -141,9 +143,19 @@ class DisciplineController extends Controller
             $materiais->discipline_id = $discipline->id;
             $materiais->save();
         }
+        
+        if($request->filled('classificacao')){
+            $classificacao = new Medias();
+            $classificacao->name = "Classificações de $discipline->name";
+            $classificacao->type = "classificacao";
+            $classificacao->is_trailer = false;
+            $classificacaoUrl = $this->getDriveIdFromUrl($request->input('materiais'));
+            $classificacao->url = "https://drive.google.com/uc?id=" . $classificacaoUrl;
+            $classificacao->discipline_id = $discipline->id;
+            $classificacao->save();
+        }
 
         return redirect('/');
-        // return redirect('/disciplina/novo');
     }
 
     /**
@@ -193,6 +205,11 @@ class DisciplineController extends Controller
         ->where('medias.type','=',"materiais")
         ->select('medias.*','medias.url as urlMedia')
         ->first();
+        
+        $classificacao= Medias::where('medias.discipline_id','=',"$id")
+        ->where('medias.type','=',"classificacao")
+        ->select('medias.*','medias.url as urlMedia')
+        ->first();
 
 
         return view('discipline')
@@ -200,7 +217,8 @@ class DisciplineController extends Controller
             ->with('trailer',$trailer)
             ->with('video',$video)
             ->with('podcast',$podcast)
-            ->with('materiais',$materiais);
+            ->with('materiais',$materiais)
+            ->with('classificacao',$classificacao);
 
 
 

@@ -474,7 +474,7 @@
 
     <div class="row mt-3">
         @if (isset($trailer->urlMedia))
-            <div class="col">
+            <div class="col-8">
                 <h3 class="text-white">Trailer</h3>
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="{{ $trailer->urlMedia }}" allowfullscreen></iframe>
@@ -487,10 +487,18 @@
             </div>
         @endif
         
-        <div class="col-4">
-            <h3 class="text-white">Classificação</h3>
-            <img src=" {{asset('img/teste1.png')}} " alt="Classificação">
-        </div>
+        
+        @if (isset($classificacao->urlMedia))
+            <div class="col-4">
+                <h3 class="text-white">Classificação</h3>
+                <img src=" {{ $classificacao->urlMedia }} " alt="Classificação">
+            </div>    
+        @else
+            <div class="col-4">
+                <h3 class="text-white">Classificação</h3>
+                <img src="{{ asset('img/novideo2.png') }}" alt="Sem classificação">
+            </div>    
+        @endif
     </div>    
     
         
@@ -505,6 +513,7 @@
             </div>
         @else
             <div class="col-12 col-sm-6">
+                <h3 class="text-white">Vídeo</h3>
                 <img src="{{ asset('img/novideo2.png') }}" alt="Sem vídeo">
             </div>
         @endif
@@ -543,9 +552,6 @@
                 <a href="{{ $materiais->urlMedia }}" class="text">
                     <img src="{{ asset('img/Download2.png') }}" alt="Download">
                 </a> <br>
-                {{-- <a href="https://drive.google.com/drive/folders/1SDWpZ76tX2CEFxNzGjBxwuRIxTYTrnwh?usp=sharing" class="text"> Aulas teste
-                    <img src="{{ asset('img/Download1.png') }}" alt="Download">
-                </a> --}}
             </div>
         
         @else
@@ -554,10 +560,6 @@
                 <a href="javascript:;" class="text">
                     <img src="{{ asset('img/Download2.png') }}" alt="Sem materiais">
                 </a> <br>
-                
-                {{-- <a href="https://drive.google.com/drive/folders/1SDWpZ76tX2CEFxNzGjBxwuRIxTYTrnwh?usp=sharing" class="text"> Aulas teste
-                    <img src="{{ asset('img/Download1.png') }}" alt="Download">
-                </a> --}}
             </div>
             
         @endif
