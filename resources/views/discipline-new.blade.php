@@ -125,7 +125,7 @@
                             name="trailer" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="youtube.com/embed/...">
+                            placeholder="Link para vídeo no Youtube">
 
                         @if ($errors->has('trailer'))
                             <div class="invalid-feedback">
@@ -141,7 +141,7 @@
                             name="video" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="youtube.com/embed/...">
+                            placeholder="Link para vídeo no Youtube">
 
                         @if ($errors->has('video'))
                             <div class="invalid-feedback">
@@ -157,7 +157,7 @@
                             name="podcast" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="link para podcast em nuvem">
+                            placeholder="Link para podcast no Youtube">
 
                         @if ($errors->has('podcast'))
                             <div class="invalid-feedback">
@@ -173,7 +173,7 @@
                             name="materiais" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="link para materiais em nuvem">
+                            placeholder="Link para arquivo no Google Drive">
 
                         @if ($errors->has('materiais'))
                             <div class="invalid-feedback">
