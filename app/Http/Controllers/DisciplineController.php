@@ -140,25 +140,29 @@ class DisciplineController extends Controller
         }
         
         if($request->filled('materiais')){
-            $materiais = new Medias();
-            $materiais->name = "Materiais de $discipline->name";
-            $materiais->type = "materiais";
-            $materiais->is_trailer = false;
-            $materiaisUrl = $this->getDriveIdFromUrl($request->input('materiais'));
-            $materiais->url = "https://drive.google.com/uc?export=download&id=" . $materiaisUrl;
-            $materiais->discipline_id = $discipline->id;
-            $materiais->save();
+            if($this->validDrive($request->input('materiais'))){
+                $materiais = new Medias();
+                $materiais->name = "Materiais de $discipline->name";
+                $materiais->type = "materiais";
+                $materiais->is_trailer = false;
+                $materiaisUrl = $this->getDriveIdFromUrl($request->input('materiais'));
+                $materiais->url = "https://drive.google.com/uc?export=download&id=" . $materiaisUrl;
+                $materiais->discipline_id = $discipline->id;
+                $materiais->save();
+            }
         }
         
         if($request->filled('classificacao')){
-            $classificacao = new Medias();
-            $classificacao->name = "Classificações de $discipline->name";
-            $classificacao->type = "classificacao";
-            $classificacao->is_trailer = false;
-            $classificacaoUrl = $this->getDriveIdFromUrl($request->input('materiais'));
-            $classificacao->url = "https://drive.google.com/uc?id=" . $classificacaoUrl;
-            $classificacao->discipline_id = $discipline->id;
-            $classificacao->save();
+            if($this->validDrive($request->input('classificacao'))){
+                $classificacao = new Medias();
+                $classificacao->name = "Classificações de $discipline->name";
+                $classificacao->type = "classificacao";
+                $classificacao->is_trailer = false;
+                $classificacaoUrl = $this->getDriveIdFromUrl($request->input('classificacao'));
+                $classificacao->url = "https://drive.google.com/uc?id=" . $classificacaoUrl;
+                $classificacao->discipline_id = $discipline->id;
+                $classificacao->save();
+            }
         }
 
         return redirect('/');
@@ -370,6 +374,15 @@ class DisciplineController extends Controller
         }
 
         return false;
+    }
+
+    public function validDrive($url) {
+        $match = "#https://drive\.google\.com/file/d/(.*?)/.*?\?usp=sharing#";
+
+        if(preg_match($match, $url))
+            return true;
+        else
+            return false;
     }
 
 }
