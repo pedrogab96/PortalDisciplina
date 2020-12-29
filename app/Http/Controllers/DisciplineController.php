@@ -101,36 +101,42 @@ class DisciplineController extends Controller
         $discipline->save();
 
         if($request->filled('trailer')){
-            $trailer = new Medias();
-            $trailer->name = "Trailer de $discipline->name";
-            $trailer->type = "video";
-            $trailer->is_trailer = true;
-            $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
-            $trailer->url = "https://www.youtube.com/embed/" . $trailerUrl;
-            $trailer->discipline_id = $discipline->id;
-            $trailer->save();
+            if($this->validYoutube($request->input('trailer'))){
+                $trailer = new Medias();
+                $trailer->name = "Trailer de $discipline->name";
+                $trailer->type = "video";
+                $trailer->is_trailer = true;
+                $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
+                $trailer->url = "https://www.youtube.com/embed/" . $trailerUrl;
+                $trailer->discipline_id = $discipline->id;
+                $trailer->save();
+            }
         }
 
         if($request->filled('podcast')){
-            $podcast = new Medias();
-            $podcast->name = "Podcast de $discipline->name";
-            $podcast->type = "podcast";
-            $podcastUrl = $this->getYoutubeIdFromUrl($request->input('podcast'));
-            $podcast->url = "https://www.youtube.com/embed/" . $podcastUrl;
-            $podcast->is_trailer = false;
-            $podcast->discipline_id = $discipline->id;
-            $podcast->save();
+            if($this->validYoutube($request->input('podcast'))){
+                $podcast = new Medias();
+                $podcast->name = "Podcast de $discipline->name";
+                $podcast->type = "podcast";
+                $podcastUrl = $this->getYoutubeIdFromUrl($request->input('podcast'));
+                $podcast->url = "https://www.youtube.com/embed/" . $podcastUrl;
+                $podcast->is_trailer = false;
+                $podcast->discipline_id = $discipline->id;
+                $podcast->save();
+            }
         }
 
         if($request->filled('video')){
-            $video = new Medias();
-            $video->name = "Video de $discipline->name";
-            $video->type = "video";
-            $video->is_trailer = false;
-            $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
-            $video->url = "https://www.youtube.com/embed/" . $videoUrl;
-            $video->discipline_id = $discipline->id;
-            $video->save();
+            if($this->validYoutube($request->input('video'))){
+                $video = new Medias();
+                $video->name = "Video de $discipline->name";
+                $video->type = "video";
+                $video->is_trailer = false;
+                $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
+                $video->url = "https://www.youtube.com/embed/" . $videoUrl;
+                $video->discipline_id = $discipline->id;
+                $video->save();
+            }
         }
         
         if($request->filled('materiais')){
@@ -323,7 +329,7 @@ class DisciplineController extends Controller
     }
 
     /** 
-     * Baseado em 
+     * Inspirado em 
      * https://stackoverflow.com/questions/3392993/php-regex-to-get-youtube-video-id/3393008#3393008
     */
     public function getYoutubeIdFromUrl($url) {
@@ -341,6 +347,20 @@ class DisciplineController extends Controller
             return $path[count($path)-1];
         }
         return false;
+    }
+    
+    /** 
+     * Inspirado em 
+     * https://stackoverflow.com/questions/19377262/regex-for-youtube-url
+     * https://regexr.com/3dj5t
+    */
+    public function validYoutube($url) {
+        $match = "#^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$#";
+
+        if(preg_match($match, $url))
+            return true;
+        else
+            return false;
     }
 
     public function getDriveIdFromUrl($url) {
