@@ -35,8 +35,12 @@
                 <a class="list-links" href="{{route('information')}}">Sobre</a>
             </li>
             <li class="sidebar-item">
-                <a class="list-links" href="#">FAQ</a>
+                <a class="list-links" href="{{route('collaborate')}}">Como colaborar</a>
             </li>
+            
+            {{-- <li class="sidebar-item">
+                <a class="list-links" href="#">FAQ</a>
+            </li> --}}
         </ul>
     </div>
 </div>

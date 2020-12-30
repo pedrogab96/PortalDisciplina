@@ -462,35 +462,41 @@
     <div class="row mt-3">
         <div class="col-12">
             <h3 class="text-white">Sinopse</h3>
-            
                 <div class="border border-info rounded">
                     <div class="bg-color4">
                         <div class="text-white text-justify px-lg-3"> {{ $disciplines->description }} </div>
                     </div>
                 </div>
-            
         </div>
     </div>
 
     <div class="row mt-3">
         @if (isset($trailer->urlMedia))
-            <div class="col">
+            <div class="col-sm-8">
                 <h3 class="text-white">Trailer</h3>
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="{{ $trailer->urlMedia }}" allowfullscreen></iframe>
                 </div>
             </div>
         @else
-            <div class="col-8">
+            <div class="col-sm-8">
                 <h3 class="text-white">Trailer</h3>
-                <img src="{{ asset('img/novideo1.png') }}" alt="Sem trailer">
+                <img class="img-fluid" src="{{ asset('img/novideo1.png') }}" alt="Sem trailer">
             </div>
         @endif
         
-        <div class="col-4">
-            <h3 class="text-white">Classificação</h3>
-            <img src=" {{asset('img/teste1.png')}} " alt="Classificação">
-        </div>
+        
+        @if (isset($classificacao->urlMedia))
+            <div class="col-sm-4 mt-3 mt-sm-0">
+                <h3 class="text-white">Classificação</h3>
+                <img class="img-fluid" src=" {{ $classificacao->urlMedia }} " alt="Classificação">
+            </div>    
+        @else
+            <div class="col-sm-4 mt-3 mt-sm-0">
+                <h3 class="text-white">Classificação</h3>
+                <img class="img-fluid" src="{{ asset('img/novideo2.png') }}" alt="Sem classificação">
+            </div>    
+        @endif
     </div>    
     
         
@@ -505,21 +511,22 @@
             </div>
         @else
             <div class="col-12 col-sm-6">
-                <img src="{{ asset('img/novideo2.png') }}" alt="Sem vídeo">
+                <h3 class="text-white">Vídeo</h3>
+                <img class="img-fluid" src="{{ asset('img/novideo2.png') }}" alt="Sem vídeo">
             </div>
         @endif
 
         @if (isset($podcast->urlMedia))
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                 <h3 class="text-white">Podcast</h3>
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="{{ $podcast->urlMedia }}" allowfullscreen></iframe>
                 </div>
             </div>
         @else
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                 <h3 class="text-white">Podcast</h3>    
-                <img src="{{ asset('img/novideo2.png') }}" alt="Sem podcast">
+                <img class="img-fluid" src="{{ asset('img/novideo2.png') }}" alt="Sem podcast">
             </div>
         @endif
        
@@ -528,7 +535,7 @@
     <div class="row mt-3">
         
 
-        <div class="col-10">
+        <div class="col-sm-10">
             <h3 class="text-white">Obstáculos</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
@@ -538,35 +545,26 @@
         </div>
 
         @if (isset($materiais->urlMedia))
-            <div class="col-2">
+            <div class="col-sm-2 mt-3 mt-sm-0">
                 <h3 class="text-white">Materiais</h3>
                 <a href="{{ $materiais->urlMedia }}" class="text">
                     <img src="{{ asset('img/Download2.png') }}" alt="Download">
                 </a> <br>
-                {{-- <a href="https://drive.google.com/drive/folders/1SDWpZ76tX2CEFxNzGjBxwuRIxTYTrnwh?usp=sharing" class="text"> Aulas teste
-                    <img src="{{ asset('img/Download1.png') }}" alt="Download">
-                </a> --}}
             </div>
         
         @else
-            <div class="col-2">
+            <div class="col-sm-2 mt-3 mt-sm-0">
                 <h3 class="text-white">Materiais</h3>
                 <a href="javascript:;" class="text">
-                    <img src="{{ asset('img/Download2.png') }}" alt="Sem materiais">
+                    <img class="img-fluid" src="{{ asset('img/Download2.png') }}" alt="Sem materiais">
                 </a> <br>
-                
-                {{-- <a href="https://drive.google.com/drive/folders/1SDWpZ76tX2CEFxNzGjBxwuRIxTYTrnwh?usp=sharing" class="text"> Aulas teste
-                    <img src="{{ asset('img/Download1.png') }}" alt="Download">
-                </a> --}}
             </div>
             
         @endif
     </div>
 
     <div class="row mt-3 mb-3">
-
-        
-        <div class="col-6">
+        <div class="col-sm-6">
             <h3 class="text-white">Sobre o professor</h3> 
             <div class="border border-info rounded">
                 <div class="bg-color4">
@@ -575,7 +573,7 @@
             </div>
         </div>
         
-        <div class="col-4">
+        <div class="col-sm-4 mt-3 mt-sm-0">
             <h3 class="text-white">Email</h3> 
             <div class="border border-info rounded">
                 <div class="bg-color4">

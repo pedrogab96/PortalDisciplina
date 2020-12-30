@@ -34,6 +34,7 @@ Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeD
 // route::get('/minhasdisciplinas', [DisciplineController::class, 'mydisciplines'])->name('mydisciplines');
 
 Route::get('sobre', function () { return view ('information'); })->name('information');
+Route::get('colaborar', function () { return view ('collaborate'); })->name('collaborate');
 
 Route::get('/disciplina/{id}', [DisciplineController::class, 'show'])->name('showDiscipline');
 Route::delete('/remove/{id}',[DisciplineController::class,'destroy'])->name('deleteDiscipline');
