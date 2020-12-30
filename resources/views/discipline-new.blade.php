@@ -86,6 +86,22 @@
                             {{ $errors->first('sinopse') }}
                         </div>
                     @endif
+
+                    <h4 class="text-white mt-3">Classificação</h4>
+                    <div class="input-group mb-3 mt-1">
+                        <input type="text" 
+                            class="form-control {{ $errors->has('classificacao') ? 'is-invalid' : ''}}" 
+                            name="classificacao" 
+                            id="classificacao" 
+                            aria-describedby="basic-addon3" 
+                            placeholder="Link para imagem no Google Drive">
+
+                        @if ($errors->has('classificacao'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('classificacao') }}
+                            </div>
+                        @endif
+                    </div>
                 </div>
 
                 {{-- <div class="form-group">
@@ -109,7 +125,7 @@
                             name="trailer" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="youtube.com/embed/...">
+                            placeholder="Link para vídeo no Youtube">
 
                         @if ($errors->has('trailer'))
                             <div class="invalid-feedback">
@@ -125,7 +141,7 @@
                             name="video" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="youtube.com/embed/...">
+                            placeholder="Link para vídeo no Youtube">
 
                         @if ($errors->has('video'))
                             <div class="invalid-feedback">
@@ -141,7 +157,7 @@
                             name="podcast" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="link para podcast em nuvem">
+                            placeholder="Link para podcast no Youtube">
 
                         @if ($errors->has('podcast'))
                             <div class="invalid-feedback">
@@ -157,7 +173,7 @@
                             name="materiais" 
                             id="basic-url" 
                             aria-describedby="basic-addon3" 
-                            placeholder="link para materiais em nuvem">
+                            placeholder="Link para arquivo no Google Drive">
 
                         @if ($errors->has('materiais'))
                             <div class="invalid-feedback">
