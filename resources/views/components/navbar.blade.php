@@ -2,9 +2,9 @@
     <nav class="navbar  navbar-light bg-light">
 
       {{-- Desativado por enquanto --}}
-      {{-- <label class="label-btn">
+      <label class="label-btn">
         <i class="fas fa-bars" id='navbar_btn' onclick="move(true)"></i>
-      </label> --}}
+      </label>
       
         <a class="navbar-brand mr-0" href="{{route('index')}}">
             <img src="{{asset('img/imdLogo.png')}}"  class='logo-navbar'alt="Logo do IMD">

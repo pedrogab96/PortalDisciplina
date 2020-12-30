@@ -11,7 +11,7 @@
         </div>
     @endauth
 
-    <div class="row justify-content-md-center mt-5">
+    {{-- <div class="row justify-content-md-center mt-5">
         <div class="col">
         <form action="{{route('search')}}" method="POST">
             @csrf
@@ -23,7 +23,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> --}}
     
     @isset($disciplines)
         @if ($disciplines->count() == 0)

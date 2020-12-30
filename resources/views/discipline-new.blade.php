@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="/disciplina" method="post">
+    <form action="{{ route("storeDisciplina") }}" method="post">
         @csrf
         <div class="form-row justify-content-md-center">
             <div class="form-group col-md-10">
@@ -218,7 +218,9 @@
 
         <div class="d-flex p-2 mb-5 justify-content-center">
             <button type="submit" class="btn btn-primary btn-sm mx-2">Salvar</button>
-            <button type="cancel" class="btn btn-danger btn-sm mx-2">Cancelar</button>
+            <a href="{{ route("home") }}" class="btn btn-danger btn-sm mx-2" >
+                Cancelar
+            </a>
         </div>
     </form>
 
