@@ -548,7 +548,9 @@
             <div class="col-sm-2 mt-3 mt-sm-0">
                 <h3 class="text-white">Materiais</h3>
                 <a href="{{ $materiais->urlMedia }}" class="text">
-                    <img src="{{ asset('img/Download2.png') }}" alt="Download">
+                    {{-- <img src="{{ asset('img/Download2.png') }}" alt="Download"> --}}
+                    <i class="fas fa-file-download fa-7x"></i>
+                    {{-- <i class="fas fa-download fa-7x"></i> --}}
                 </a> <br>
             </div>
         
@@ -556,7 +558,9 @@
             <div class="col-sm-2 mt-3 mt-sm-0">
                 <h3 class="text-white">Materiais</h3>
                 <a href="javascript:;" class="text">
-                    <img class="img-fluid" src="{{ asset('img/Download2.png') }}" alt="Sem materiais">
+                    {{-- <img class="img-fluid" src="{{ asset('img/Download2.png') }}" alt="Sem materiais"> --}}
+                    <i class="fas fa-file-download fa-7x"></i>
+                    {{-- <i class="fas fa-download fa-7x"></i> --}}
                 </a> <br>
             </div>
             
