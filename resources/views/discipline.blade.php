@@ -565,10 +565,12 @@
 
     <div class="row mt-3 mb-3">
         <div class="col-sm-6">
-            <h3 class="text-white">Sobre o professor</h3> 
+            {{-- <h3 class="text-white">Sobre o professor</h3>  --}}
+            <h3 class="text-white">Professor</h3> 
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> Professor ou docente é uma pessoa que ensina ciência, arte, técnica ou outros conhecimentos. Para o exercício dessa profissão, requer-se qualificações académicas e pedagógicas, para que consiga transmitir/ensinar a matéria de estudo da melhor forma possível ao aluno. </div>
+                    {{-- <div class="text-white text-justify px-lg-3"> Professor ou docente é uma pessoa que ensina ciência, arte, técnica ou outros conhecimentos. Para o exercício dessa profissão, requer-se qualificações académicas e pedagógicas, para que consiga transmitir/ensinar a matéria de estudo da melhor forma possível ao aluno. </div> --}}
+                    <div class="text-white text-justify px-lg-3"> {{ $disciplines->teacher }} </div>
                 </div>
             </div>
         </div>
@@ -577,7 +579,8 @@
             <h3 class="text-white">Email</h3> 
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> professor@mail.com </div>
+                    {{-- <div class="text-white text-justify px-lg-3"> professor@mail.com </div> --}}
+                    <div class="text-white text-justify px-lg-3"> {{ $disciplines->email }} </div>
                 </div>
             </div>
         </div>

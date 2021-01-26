@@ -74,8 +74,7 @@
                             </div>
 
                            
-                            {{-- TODO pegar nome do professor do banco --}}
-                            <div class="card-footer">NOME PROFESSOR</div>
+                            <div class="card-footer">{{ $discipline->teacher }}</div>
                         </div>
                     </div>
                 @endforeach 
