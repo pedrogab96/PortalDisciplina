@@ -9,6 +9,7 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
     <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     {{-- CSRF Laravel --}}
     <meta name="csrf-token" content="{{csrf_token()}}">
 
@@ -16,7 +17,7 @@
     <title>Portal de Disciplina</title>
 </head>
 
-<body class="content-body">
+<body class="content-body d-flex flex-column min-vh-100">
     
     @component('components.navbar')
     @endcomponent
@@ -26,7 +27,7 @@
     @component('components.sidebar')
     @endcomponent
 
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             <div class="col-12 text-center my-4 title-subject-container">
                 <h1 class="title-subject">Portal das Disciplinas - IMD/UFRN</h1>
@@ -34,6 +35,9 @@
         </div>
         @yield('content')
     </div>
+
+    @component('components.footer')
+    @endcomponent
 
     
     {{-- bootstrap JS --}}
