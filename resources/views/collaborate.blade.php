@@ -7,10 +7,10 @@
         <h3>Como colaborar?</h3>
         
         <p class="mt-4 span-info text-justify">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, 
-            but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release 
-            of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            Caso tenha interesse em colaborar na adição de novas funcionalidades do site como sistema de 
+            classificações dinâmicos, refinamento de mecanismos de busca, interação com o portal de dados 
+            abertos da UFRN para recuperação de índices de aprovação de disciplinas, implementação de fóruns 
+            no portal, entre outros, por favor, entre em contato conosco.
         </p>
     </div>
 
@@ -19,8 +19,7 @@
         <h3>Email para contatos</h3>
         <span class="span-info">Eugenio@gmail.com</span>
         <span class="d-block span-info">pedrogab96@gmail.com</span>
-        <span class="d-block span-info">daniel@gmail</span>
-        <span class="d-block span-info">Victor@gmail</span>
+        <span class="d-block span-info">victor_brandao@outlook.com</span>
     </div>
 
         
