@@ -547,10 +547,12 @@
         @if (isset($materiais->urlMedia))
             <div class="col-sm-2 mt-3 mt-sm-0">
                 <h3 class="text-white">Materiais</h3>
-                <a href="{{ $materiais->urlMedia }}" class="text">
-                    {{-- <img src="{{ asset('img/Download2.png') }}" alt="Download"> --}}
-                    <i class="fas fa-file-download fa-7x materiais-on"></i>
-                </a> <br>
+                <div class="d-flex align-center">
+                    <a href="{{ $materiais->urlMedia }}" class="text">
+                        {{-- <img src="{{ asset('img/Download2.png') }}" alt="Download"> --}}
+                        <i class="fas fa-file-download fa-9x materiais-on"></i>
+                    </a> <br>
+                </div>
             </div>
         
         @else
@@ -559,7 +561,7 @@
                 <a href="javascript:;" class="text">
                     {{-- <img class="img-fluid" src="{{ asset('img/Download2.png') }}" alt="Sem materiais"> --}}
                     {{-- <i class="fas fa-file-download fa-7x materiais-off"></i> --}}
-                    <i class="fas fa-file-excel fa-7x materiais-off"></i>
+                    <i class="fas fa-file-excel fa-9x materiais-off"></i>
                 </a> <br>
             </div>
             
