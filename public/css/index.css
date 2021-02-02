@@ -39,6 +39,9 @@ body {
 
 .card-img-top{
     height: 143px;
+    /* width: 255px; */
+    background: white;
+    padding: 0px 5px;
 }
 
 .card-auth{

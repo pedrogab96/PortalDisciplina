@@ -36,7 +36,7 @@
 
                             
                             @if ($discipline->urlMedia == NULL)
-                                <img src="{{asset('img/teste1.jpg')}}" class="card-img-top" alt=".." >
+                                <img src="{{asset('img/IMD_logo.svg')}}" class="card-img-top" alt=".." >
                                 
                             @else
                                 <div class="teacher-video-container">
@@ -60,7 +60,7 @@
 
                             <div class="card-body">
                                 <h5 class="card-title">{{ $discipline->name }}</h5>
-                                <p class="card-text">{{ Str::limit($discipline->description, 100,' (...)') }}</p>
+                                <p class="card-text">{{ Str::limit($discipline->description, 70,' (...)') }}</p>
                                 <a href="{{ route('showDiscipline', ['id' => $discipline->id]) }}" class="btn btn-primary">Ver mais</a>
 
                                 @auth
@@ -74,8 +74,7 @@
                             </div>
 
                            
-                            {{-- TODO pegar nome do professor do banco --}}
-                            <div class="card-footer">NOME PROFESSOR</div>
+                            <div class="card-footer">{{ $discipline->teacher }}</div>
                         </div>
                     </div>
                 @endforeach 

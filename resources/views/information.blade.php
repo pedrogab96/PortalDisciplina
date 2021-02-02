@@ -7,23 +7,21 @@
         <h3>O que é o portal da disciplina?</h3>
         
         <p class="mt-4 span-info text-justify">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, 
-            but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release 
-            of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            Este portal tem por intuito promover informações pertinentes para que os estudantes conheçam com maior profundidade a natureza das 
+            disciplinas do Instituto Metrópole Digital, de modo a terem um maior embasamento para suas escolhas curriculares a cada semestre. Basicamente, 
+            tentamos responder à pergunta "e essa disciplina aí, como é?"
         </p>
     </div>
 
     <div class="col-12 col-sm-6 mt-4">
         <h3>Docentes</h3>
-        <span class="span-info">Eugenio</span>
+        <span class="span-info">Eugenio Paccelli Aguiar Freire</span>
     </div>
 
     <div class="col-12 col-sm-6 mt-4">
         <h3>Discentes</h3>
-        <span class="d-block span-info">Pedro</span>
-        <span class="d-block span-info">Daniel</span>
-        <span class="d-block span-info">Victor</span>
+        <span class="d-block span-info">Pedro Gabriel Silva de Lima</span>
+        <span class="d-block span-info">Victor Simplício Brandão de Lima</span>
     </div>
 
         
