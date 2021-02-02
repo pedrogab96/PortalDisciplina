@@ -547,16 +547,21 @@
         @if (isset($materiais->urlMedia))
             <div class="col-sm-2 mt-3 mt-sm-0">
                 <h3 class="text-white">Materiais</h3>
-                <a href="{{ $materiais->urlMedia }}" class="text">
-                    <img src="{{ asset('img/Download2.png') }}" alt="Download">
-                </a> <br>
+                <div class="d-flex align-center">
+                    <a href="{{ $materiais->urlMedia }}" class="text">
+                        {{-- <img src="{{ asset('img/Download2.png') }}" alt="Download"> --}}
+                        <i class="fas fa-file-download fa-9x materiais-on"></i>
+                    </a> <br>
+                </div>
             </div>
         
         @else
             <div class="col-sm-2 mt-3 mt-sm-0">
                 <h3 class="text-white">Materiais</h3>
                 <a href="javascript:;" class="text">
-                    <img class="img-fluid" src="{{ asset('img/Download2.png') }}" alt="Sem materiais">
+                    {{-- <img class="img-fluid" src="{{ asset('img/Download2.png') }}" alt="Sem materiais"> --}}
+                    {{-- <i class="fas fa-file-download fa-7x materiais-off"></i> --}}
+                    <i class="fas fa-file-excel fa-9x materiais-off"></i>
                 </a> <br>
             </div>
             
@@ -565,10 +570,12 @@
 
     <div class="row mt-3 mb-3">
         <div class="col-sm-6">
-            <h3 class="text-white">Sobre o professor</h3> 
+            {{-- <h3 class="text-white">Sobre o professor</h3>  --}}
+            <h3 class="text-white">Professor</h3> 
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> Professor ou docente é uma pessoa que ensina ciência, arte, técnica ou outros conhecimentos. Para o exercício dessa profissão, requer-se qualificações académicas e pedagógicas, para que consiga transmitir/ensinar a matéria de estudo da melhor forma possível ao aluno. </div>
+                    {{-- <div class="text-white text-justify px-lg-3"> Professor ou docente é uma pessoa que ensina ciência, arte, técnica ou outros conhecimentos. Para o exercício dessa profissão, requer-se qualificações académicas e pedagógicas, para que consiga transmitir/ensinar a matéria de estudo da melhor forma possível ao aluno. </div> --}}
+                    <div class="text-white text-justify px-lg-3"> {{ $disciplines->teacher }} </div>
                 </div>
             </div>
         </div>
@@ -577,7 +584,8 @@
             <h3 class="text-white">Email</h3> 
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> professor@mail.com </div>
+                    {{-- <div class="text-white text-justify px-lg-3"> professor@mail.com </div> --}}
+                    <div class="text-white text-justify px-lg-3"> {{ $disciplines->email }} </div>
                 </div>
             </div>
         </div>
