@@ -16,26 +16,33 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        // User::create([
-        //     'name'=>'Eugênio Paccelli',
-        //     'role'=> 1,
-        //     'email'=> 'teste1@gmail.com',
-        //     'password'=> '12345678'
-        // ]);
-
-        // User::create([
-        //     'name'=>'Bruno Santana',
-        //     'role'=> 1,
-        //     'email'=> 'teste2@gmail.com',
-        //     'password'=> '12345678'
-        // ]);
-
         User::create([
-            'name' => 'ADMIN',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('12345678'),
+            'name' => 'Victor',
+            'email' => 'victor_brandao@outlook.com',
+            'password' => '$2y$10$toyM29iTlElj.ShFuHu0KumYyhKXtSGXVhBHy.YzS9eSEg89sKQMW',
             'role' => 0
         ]);
         
+        User::create([
+            'name' => 'Pedro Gabriel',
+            'email' => 'pedrogab96@gmail.com',
+            'password' => '$2y$10$NHww673REnFjun6oaaChXub6MkPN.7WR//MNoUzZjh5ruqQTm7hIC',
+            'role' => 0
+        ]);
+
+        User::create([
+            'name' => 'Eugenio Paccelli',
+            'email' => 'eugenio@imd.ufrn.br',
+            'password' => '$2y$10$WdsEhQoQuFRXpD7wd9uX7eda7JjRESNQfpMaQmPlEV4W1a6JQERaO',
+            'role' => 0
+        ]);
+
+        User::create([
+            'name' => 'Arthur Sérvulo',
+            'email' => 'arthurservulo7@gmail.com',
+            'password' => '$2y$10$rBccdnryA5R5GbYzzen82uR2Sz7Iu7BB6Vi18ocIypjyP2wPn9PY2',
+            'role' => 0
+        ]);
+
     }
 }
