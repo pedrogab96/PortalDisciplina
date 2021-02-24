@@ -2,6 +2,7 @@
 <html lang="pt_BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="google-site-verification" content="CaID-sWQ4oro51-MUzVaQlu5v5a4XqK2Xpg9uVmONKI" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- bootstrap CSS --}}
@@ -9,6 +10,7 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
     <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/discipline.css')}}">
     {{-- CSRF Laravel --}}
     <meta name="csrf-token" content="{{csrf_token()}}">
 
@@ -16,7 +18,7 @@
     <title>Portal de Disciplina</title>
 </head>
 
-<body class="content-body">
+<body class="content-body d-flex flex-column min-vh-100">
     
     @component('components.navbar')
     @endcomponent
@@ -26,7 +28,7 @@
     @component('components.sidebar')
     @endcomponent
 
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             <div class="col-12 text-center my-4 title-subject-container">
                 <h1 class="title-subject">Portal das Disciplinas - IMD/UFRN</h1>
@@ -34,6 +36,9 @@
         </div>
         @yield('content')
     </div>
+
+    @component('components.footer')
+    @endcomponent
 
     
     {{-- bootstrap JS --}}
