@@ -17,7 +17,7 @@
 
     <div class="col-12 col-sm-6 mt-4">
         <h3>Email para contatos</h3>
-        <span class="span-info">Eugenio@gmail.com</span>
+        <span class="span-info">eugenio@imd.ufrn.br</span>
         <span class="d-block span-info">pedrogab96@gmail.com</span>
         <span class="d-block span-info">victor_brandao@outlook.com</span>
     </div>
