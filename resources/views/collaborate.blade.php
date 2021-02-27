@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+Como colaborar - Portal das Disciplinas IMD
+@endsection
+
+@section('description')
+Está disposto a nos ajudar a melhorar o site? Clique aqui e saiba como!
+@endsection
+
 @section('content')
 
 <div class="row info-portal">
