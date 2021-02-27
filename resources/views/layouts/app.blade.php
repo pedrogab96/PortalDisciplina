@@ -6,6 +6,7 @@
     <meta name="lang" content="pt-BR">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="portal das disciplinas, imd">
     <meta name="robots" content="@yield('robots','all')">
     <meta name="description" content="@yield('description','Conheça as disciplinas do IMD de forma mais prática!')">
     {{-- bootstrap CSS --}}
