@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DisciplineController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Auth::routes([
 Route::get('/', [DisciplineController::class,'index'] )->name('index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/search', [DisciplineController::class,'search'])->name('search');
+//TODO adicionar dentro do grupo do middleware para apenas funcionar quando estiver logado
 Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('createDisciplina');
 Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
 
@@ -38,3 +40,10 @@ Route::get('colaborar', function () { return view ('collaborate'); })->name('col
 
 Route::get('/disciplina/{id}', [DisciplineController::class, 'show'])->name('showDiscipline');
 Route::delete('/remove/{id}',[DisciplineController::class,'destroy'])->name('deleteDiscipline');
+
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/perfil',[UsersController::class, 'index'])->name('profile');
+    Route::post('/perfil',[UsersController::class, 'update'])->name('updateUser');
+});

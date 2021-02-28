@@ -21,9 +21,9 @@
             </li>
 
             @auth
-                {{-- <li class="sidebar-item">
-                    <a href="" class="list-links">Meu perfil </a>
-                </li> --}}
+                <li class="sidebar-item">
+                    <a href="{{route('profile')}}" class="list-links">Meu perfil</a>
+                </li>
                 {{-- <li class="sidebar-item">
                     <a href="{{route("mydisciplines")}}" class="list-links">Minhas disciplinas</a>
                 </li> --}}
