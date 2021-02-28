@@ -29,11 +29,6 @@
     @endcomponent
 
     <div class="container mb-5">
-        <div class="row">
-            <div class="col-12 text-center my-4 title-subject-container">
-                <h1 class="title-subject">Portal das Disciplinas - IMD/UFRN</h1>
-            </div>
-        </div>
         @yield('content')
     </div>
 

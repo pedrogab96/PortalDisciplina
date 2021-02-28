@@ -2,7 +2,15 @@
 
 @section('content')
 
+
+    <div class="row">
+        <div class="col-12 text-center my-4 title-subject-container">
+            <h1 class="title-subject">Portal das Disciplinas - IMD/UFRN</h1>
+        </div>
+    </div>
+
     {{-- Modificar para apenas o user adm ou professor --}}
+    
     @auth
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-3 mt-5">
