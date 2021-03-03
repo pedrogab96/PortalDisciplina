@@ -33,7 +33,7 @@ class UserTableSeeder extends Seeder
         User::create([
             'name' => 'Eugenio Paccelli',
             'email' => 'eugenio@imd.ufrn.br',
-            'password' => '$2y$10$WdsEhQoQuFRXpD7wd9uX7eda7JjRESNQfpMaQmPlEV4W1a6JQERaO',
+            'password' => '$2y$10$LwYZ050GVQXu.gksBsEXyubkImKd6xLyhaiZxl0PeeuOcaOeq/7/K',
             'role' => 0
         ]);
 
