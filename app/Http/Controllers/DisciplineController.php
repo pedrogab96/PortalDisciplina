@@ -27,7 +27,7 @@ class DisciplineController extends Controller
         ->select('disciplines.*',
             (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
         ->get();
-        
+
         return view('disciplines-search')
             ->with('disciplines',$disciplines);
     }
@@ -55,14 +55,14 @@ class DisciplineController extends Controller
     {
         /* Id do usuario logado */
         $userId = Auth::id();
-        
+
         /* Validacao */
         $regras = [
             'inputSubject' => 'required|max:40',
             'inputCode' => 'required|max:10',
             'teacher' => 'required|max:70',
             'teacherEmail' => 'required|max:70',
-            
+
             'sinopse' => 'max:5000',
             'classificacao' => 'max:5000',
             'obstaculos' => 'max:5000',
@@ -88,7 +88,7 @@ class DisciplineController extends Controller
         ];
 
         $request->validate($regras, $mensagens);
-        
+
         /* Registro no banco */
         $discipline = new Discipline();
         $discipline->name = $request->input('inputSubject');
@@ -138,7 +138,7 @@ class DisciplineController extends Controller
                 $video->save();
             }
         }
-        
+
         if($request->filled('materiais')){
             if($this->validDrive($request->input('materiais'))){
                 $materiais = new Medias();
@@ -151,7 +151,7 @@ class DisciplineController extends Controller
                 $materiais->save();
             }
         }
-        
+
         if($request->filled('classificacao')){
             if($this->validDrive($request->input('classificacao'))){
                 $classificacao = new Medias();
@@ -175,20 +175,7 @@ class DisciplineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {        
-        //FUNCIONANDO MAS PEGANDO SOMENTE O TRAILER
-        
-       /*  $discipline = Discipline::where('disciplines.id','=', "$id")
-        ->join('users', 'users.id', '=', 'disciplines.user_id')
-        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
-        ->first();
-
-        return view('discipline')
-            ->with('disciplines',$discipline); */
-
-        //OUTRAS OPÇÕES
-
+    {
         $discipline = Discipline::where('disciplines.id','=', "$id")
         ->join('users', 'users.id', '=', 'disciplines.user_id')
         ->select('disciplines.*','users.name as nameUser')
@@ -199,7 +186,7 @@ class DisciplineController extends Controller
         ->where('medias.is_trailer','=',"1")
         ->select('medias.*','medias.url as urlMedia')
         ->first();
-        
+
         $video = Medias::where('medias.discipline_id','=',"$id")
         ->where('medias.type','=',"video")
         ->where('medias.is_trailer','=',"0")
@@ -210,12 +197,12 @@ class DisciplineController extends Controller
         ->where('medias.type','=',"podcast")
         ->select('medias.*','medias.url as urlMedia')
         ->first();
-        
+
         $materiais= Medias::where('medias.discipline_id','=',"$id")
         ->where('medias.type','=',"materiais")
         ->select('medias.*','medias.url as urlMedia')
         ->first();
-        
+
         $classificacao= Medias::where('medias.discipline_id','=',"$id")
         ->where('medias.type','=',"classificacao")
         ->select('medias.*','medias.url as urlMedia')
@@ -229,19 +216,6 @@ class DisciplineController extends Controller
             ->with('podcast',$podcast)
             ->with('materiais',$materiais)
             ->with('classificacao',$classificacao);
-
-
-
-        //dd($discipline);
-
-        /* $media = Medias::where('medias.discipline_id','=',"$id")
-        ->where()
-        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
-        ->first(); */
-
-        
-            //->with('medias', $media);
     }
 
     /**
@@ -284,28 +258,12 @@ class DisciplineController extends Controller
     public function search(Request $request){
         $search = $request->input('search');
 
-
-        // $disciplines = Discipline::where('disciplines.name','like',"%$search%")
-        //     ->join('users', 'users.id', '=', 'disciplines.user_id')
-        //     ->select('disciplines.*','users.name as nameUser')
-        //     ->orderBy('disciplines.name','asc')
-        //     ->orderBy('nameUser','asc')
-        //     ->get();
-
-        // $disciplines = Discipline::where('disciplines.name','like',"%$search%")
-        // ->join('users', 'users.id', '=', 'disciplines.user_id')
-        // ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        // ->select('disciplines.*','users.name as nameUser','medias.url as urlMedia','medias.name as nameMedia','medias.type as mediaType')
-        // ->orderBy('disciplines.name','asc')
-        // ->orderBy('nameUser','asc')
-        // ->get();
-
         $disciplines = DB::table('disciplines')
             ->select('disciplines.*',
             (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
             ->where('disciplines.name','like',"%$search%")
             ->get();
-        
+
         return view('disciplines-search')
                 ->with('disciplines',$disciplines)
                 ->with('search',$search);
@@ -327,13 +285,13 @@ class DisciplineController extends Controller
         ->orderBy('disciplines.name','asc')
         ->orderBy('nameUser','asc')
         ->get();
-        
+
         return view('my-disciplines')
             ->with('disciplines',$disciplines);
     }
 
-    /** 
-     * Inspirado em 
+    /**
+     * Inspirado em
      * https://stackoverflow.com/questions/3392993/php-regex-to-get-youtube-video-id/3393008#3393008
     */
     public function getYoutubeIdFromUrl($url) {
@@ -352,9 +310,9 @@ class DisciplineController extends Controller
         }
         return false;
     }
-    
-    /** 
-     * Inspirado em 
+
+    /**
+     * Inspirado em
      * https://stackoverflow.com/questions/19377262/regex-for-youtube-url
      * https://regexr.com/3dj5t
     */
