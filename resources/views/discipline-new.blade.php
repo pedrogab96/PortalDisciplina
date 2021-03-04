@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+Cadastrar disciplina - Portal das Disciplinas IMD
+@endsection
+
+@section('robots')
+noindex, follow
+@endsection
+
 @section('content')
 
     <form action="{{ route("storeDisciplina") }}" method="post">
