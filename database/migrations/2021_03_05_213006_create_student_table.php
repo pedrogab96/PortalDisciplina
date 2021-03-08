@@ -16,10 +16,11 @@ class CreateStudentTable extends Migration
         Schema::create('student', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("profile_pic_address");
+            $table->string("profile_pic_link");
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')
-            ->on('users')->onDelete('cascade');
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

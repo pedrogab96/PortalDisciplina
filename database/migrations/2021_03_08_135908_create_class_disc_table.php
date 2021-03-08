@@ -14,12 +14,14 @@ class CreateClassDiscTable extends Migration
     public function up()
     {
         Schema::create('class_disc', function (Blueprint $table) {
-            $table->unsignedBigInteger('class_id');
-            $table->foreign('class_id')->references('id')
-                ->on('classification')->onDelete('cascade');
+            $table->unsignedBigInteger('classification_id');
+            $table->foreign('classification_id')->references('id')
+                ->on('classifications')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('disc_id');
             $table->foreign('disc_id')->references('id')
-                ->on('disciplines')->onDelete('cascade');
+                ->on('disciplines')
+                ->onDelete('cascade');
             $table->string("value");
             $table->timestamps();
         });

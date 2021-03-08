@@ -21,7 +21,8 @@ class CreateDisciplines extends Migration
             $table->longText('difficulties')->nullable();
             $table->unsignedBigInteger('prof_id');
             $table->foreign('prof_id')->references('id')
-                ->on('professor')->onDelete('cascade');
+                ->on('professors')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

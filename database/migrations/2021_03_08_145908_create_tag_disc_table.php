@@ -16,10 +16,12 @@ class CreateTagDiscTable extends Migration
         Schema::create('tag_disc', function (Blueprint $table) {
             $table->unsignedBigInteger('tag_id');
             $table->foreign('tag_id')->references('id')
-                ->on('tags')->onDelete('cascade');
+                ->on('tags')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('disc_id');
             $table->foreign('disc_id')->references('id')
-                ->on('disciplines')->onDelete('cascade');
+                ->on('disciplines')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

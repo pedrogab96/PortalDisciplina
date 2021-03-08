@@ -19,10 +19,12 @@ class CreateRatingTable extends Migration
             $table->integer("rating_value");
             $table->unsignedBigInteger('disc_id');
             $table->foreign('disc_id')->references('id')
-                ->on('disciplines')->onDelete('cascade');
+                ->on('disciplines')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')
-                ->on('student')->onDelete('cascade');
+                ->on('student')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
