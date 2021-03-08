@@ -14,7 +14,7 @@ class ClassDisc extends Model
      *
      * @var string
      */
-    protected $table = 'students';
+    protected $table = 'classifications_disciplines';
 
     /**
      * The attributes that are mass assignable.

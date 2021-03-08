@@ -21,7 +21,7 @@ class DisciplineTableSeeder extends Seeder
             'name' => 'Estrutura de dados básicas I',
             'description'=>'Nessa disciplina estudaremos como estruturar dados.',
             'difficulties' => 'As dificuldades que os alunos encontram são programar com c++',
-            'user_id' => 1
+            'professor_id' => 1
         ]);
 
         Discipline::create([
@@ -29,7 +29,7 @@ class DisciplineTableSeeder extends Seeder
             'name' => 'Estrutura de dados básicas II',
             'description'=>'Nessa disciplina iremos continuar o estudo sobre estrutura de dados.',
             'difficulties' => 'As dificuldades que os alunos encontram são programar com c++',
-            'user_id' => 1
+            'professor_id' => 1
         ]);
 
         Discipline::create([
@@ -37,7 +37,7 @@ class DisciplineTableSeeder extends Seeder
             'name' => 'Estrutura de dados básicas I',
             'description'=>'Iremos aprender como funciona a estrutura de dados.',
             'difficulties' => 'As dificuldades que os alunos encontram são programar com c++',
-            'user_id' => 3
+            'professor_id' => 3
         ]);
 
         Discipline::create([
@@ -45,8 +45,8 @@ class DisciplineTableSeeder extends Seeder
             'name' => 'Vetores e Geometria Analítica',
             'description'=>'Iremos aprender funções vetoriais e geometria',
             'difficulties' => 'As dificuldades que os alunos encontram são ter um conhecimento básico em vetores e geometria.',
-            'user_id' => 3
+            'professor_id' => 3
         ]);
-        
+
     }
 }
