@@ -23,7 +23,7 @@ class CreateRatingTable extends Migration
                 ->onDelete('cascade');
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')
-                ->on('student')
+                ->on('students')
                 ->onDelete('cascade');
             $table->timestamps();
         });

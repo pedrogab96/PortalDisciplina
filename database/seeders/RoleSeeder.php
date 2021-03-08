@@ -15,12 +15,23 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        foreach (RoleName::getConstants() as $name => $priorityLevel) {
+        $roles = [
+            [
+                'name' => RoleName::STUDENT,
+                'priority_level' => 1,
+            ],
+            [
+                'name' => RoleName::PROFESSOR,
+                'priority_level' => 1,
+            ],
+        ];
+
+        foreach ($roles as $role) {
             Role::query()
                 ->updateOrCreate([
-                    'name' => $name,
+                    'name' => $role['name'],
                 ], [
-                    'priority_level' => $priorityLevel,
+                    'priority_level' => $role['priority_level'],
                 ]);
         }
     }
