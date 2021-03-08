@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMedias extends Migration
+class CreateTagDiscTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateMedias extends Migration
      */
     public function up()
     {
-        Schema::create('medias', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('type');
-            $table->string('address');
-            $table->boolean('is_trailer');
+        Schema::create('tag_disc', function (Blueprint $table) {
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id')->references('id')
+                ->on('tags')->onDelete('cascade');
             $table->unsignedBigInteger('disc_id');
             $table->foreign('disc_id')->references('id')
                 ->on('disciplines')->onDelete('cascade');
@@ -33,6 +31,6 @@ class CreateMedias extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medias');
+        Schema::dropIfExists('tag_disc');
     }
 }
