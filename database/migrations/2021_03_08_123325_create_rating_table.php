@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMedias extends Migration
+class CreateRatingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateMedias extends Migration
      */
     public function up()
     {
-        Schema::create('medias', function (Blueprint $table) {
+        Schema::create('rating', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('type');
-            $table->string('address');
-            $table->boolean('is_trailer');
+            $table->string("content");
+            $table->integer("rating_value");
             $table->unsignedBigInteger('disc_id');
             $table->foreign('disc_id')->references('id')
                 ->on('disciplines')->onDelete('cascade');
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')
+                ->on('student')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateMedias extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medias');
+        Schema::dropIfExists('rating');
     }
 }
