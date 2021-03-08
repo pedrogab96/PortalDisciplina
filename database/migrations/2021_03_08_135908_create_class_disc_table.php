@@ -13,16 +13,16 @@ class CreateClassDiscTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_disc', function (Blueprint $table) {
+        Schema::create('classifications_disciplines', function (Blueprint $table) {
             $table->unsignedBigInteger('classification_id');
             $table->foreign('classification_id')->references('id')
                 ->on('classifications')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('disc_id');
-            $table->foreign('disc_id')->references('id')
+            $table->unsignedBigInteger('discipline_id');
+            $table->foreign('discipline_id')->references('id')
                 ->on('disciplines')
                 ->onDelete('cascade');
-            $table->string("value");
+            $table->integer("value");
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateClassDiscTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_disc');
+        Schema::dropIfExists('classifications_disciplines');
     }
 }

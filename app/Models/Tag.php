@@ -30,7 +30,7 @@ class Tag extends Model
      */
     public function disciplines()
     {
-        return $this->hasManyThrough(Discipline::class, TagDisc::class,
+        return $this->hasManyThrough(Discipline::class, TagDiscipline::class,
         'tag_id', 'id',
         'id', 'disc_id');
     }

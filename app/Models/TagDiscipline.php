@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TagDisc extends Model
+class TagDiscipline extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class TagDisc extends Model
      *
      * @var string
      */
-    protected $table = 'tag_disc';
+    protected $table = 'tags_disciplines';
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +23,7 @@ class TagDisc extends Model
      */
     protected $fillable = [
         'tag_id',
-        'disc_id',
+        'discipline_id',
     ];
 
     /**

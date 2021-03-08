@@ -14,7 +14,7 @@ class Classification extends Model
      *
      * @var string
      */
-    protected $table = 'students';
+    protected $table = 'classifications';
 
     /**
      * The attributes that are mass assignable.
@@ -30,7 +30,7 @@ class Classification extends Model
      */
     public function disciplines()
     {
-        return $this->hasManyThrough(Discipline::class, ClassDisc::class,
+        return $this->hasManyThrough(Discipline::class, ClassificationDiscipline::class,
         'classification_id', 'id',
         'id', 'disc_id');
     }

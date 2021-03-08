@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ClassDisc extends Model
+class ClassificationDiscipline extends Model
 {
     use HasFactory;
 
@@ -23,7 +23,7 @@ class ClassDisc extends Model
      */
     protected $fillable = [
         'classification_id',
-        'disc_id',
+        'discipline_id',
         'value',
     ];
 
@@ -40,6 +40,6 @@ class ClassDisc extends Model
      */
     public function discipline()
     {
-        return $this->belongsTo(Discipline::class, 'disc_id');
+        return $this->belongsTo(Discipline::class);
     }
 }

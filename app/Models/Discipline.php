@@ -26,7 +26,7 @@ class Discipline extends Model
         'name',
         'synopsis',
         'difficulties',
-        'prof_id',
+        'professor_id',
     ];
 
     /**
@@ -34,7 +34,7 @@ class Discipline extends Model
      */
     public function professor()
     {
-        return $this->belongsTo(Professor::class, 'prof_id');
+        return $this->belongsTo(Professor::class);
     }
 
     /**
@@ -42,7 +42,7 @@ class Discipline extends Model
      */
     public function classifications()
     {
-        return $this->hasManyThrough(Classification::class, ClassDisc::class,
+        return $this->hasManyThrough(Classification::class, ClassificationDiscipline::class,
             'disc_id', 'id',
             'id', 'classification_id');
     }
@@ -52,7 +52,7 @@ class Discipline extends Model
      */
     public function tags()
     {
-        return $this->hasManyThrough(Tag::class, TagDisc::class,
+        return $this->hasManyThrough(Tag::class, TagDiscipline::class,
             'disc_id', 'id',
             'id', 'tag_id');
     }

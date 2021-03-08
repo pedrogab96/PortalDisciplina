@@ -26,7 +26,7 @@ class Media extends Model
         'type',
         'address',
         'is_trailer',
-        'disc_id',
+        'discipline_id',
     ];
 
     /**
@@ -34,6 +34,6 @@ class Media extends Model
      */
     public function discipline()
     {
-        return $this->belongsTo(Discipline::class, 'disc_id');
+        return $this->belongsTo(Discipline::class);
     }
 }

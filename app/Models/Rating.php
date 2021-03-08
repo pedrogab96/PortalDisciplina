@@ -24,7 +24,7 @@ class Rating extends Model
     protected $fillable = [
         'content',
         'rating_value',
-        'disc_id',
+        'discipline_id',
         'student_id',
     ];
 
@@ -33,7 +33,7 @@ class Rating extends Model
      */
     public function discipline()
     {
-        return $this->belongsTo(Discipline::class, 'disc_id');
+        return $this->belongsTo(Discipline::class);
     }
 
     /**
