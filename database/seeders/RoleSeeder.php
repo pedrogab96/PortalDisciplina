@@ -17,6 +17,10 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             [
+                'name' => RoleName::ADMIN,
+                'priority_level' => 999,
+            ],
+            [
                 'name' => RoleName::STUDENT,
                 'priority_level' => 1,
             ],
