@@ -17,12 +17,14 @@ class CreateRatingTable extends Migration
             $table->id();
             $table->string("content");
             $table->integer("rating_value");
-            $table->unsignedBigInteger('disc_id');
-            $table->foreign('disc_id')->references('id')
-                ->on('disciplines')->onDelete('cascade');
+            $table->unsignedBigInteger('discipline_id');
+            $table->foreign('discipline_id')->references('id')
+                ->on('disciplines')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')
-                ->on('student')->onDelete('cascade');
+                ->on('students')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

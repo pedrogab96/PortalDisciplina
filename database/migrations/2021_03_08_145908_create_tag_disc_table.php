@@ -13,13 +13,15 @@ class CreateTagDiscTable extends Migration
      */
     public function up()
     {
-        Schema::create('tag_disc', function (Blueprint $table) {
+        Schema::create('tags_disciplines', function (Blueprint $table) {
             $table->unsignedBigInteger('tag_id');
             $table->foreign('tag_id')->references('id')
-                ->on('tags')->onDelete('cascade');
-            $table->unsignedBigInteger('disc_id');
-            $table->foreign('disc_id')->references('id')
-                ->on('disciplines')->onDelete('cascade');
+                ->on('tags')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('discipline_id');
+            $table->foreign('discipline_id')->references('id')
+                ->on('disciplines')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateTagDiscTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tag_disc');
+        Schema::dropIfExists('tags_disciplines');
     }
 }

@@ -19,9 +19,10 @@ class CreateMedias extends Migration
             $table->string('type');
             $table->string('address');
             $table->boolean('is_trailer');
-            $table->unsignedBigInteger('disc_id');
-            $table->foreign('disc_id')->references('id')
-                ->on('disciplines')->onDelete('cascade');
+            $table->unsignedBigInteger('discipline_id');
+            $table->foreign('discipline_id')->references('id')
+                ->on('disciplines')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
