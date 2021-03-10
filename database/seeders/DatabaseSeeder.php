@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        #$this->call(RoleSeeder::class);
-        #$this->call(UserTableSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(UserTableSeeder::class);
 
         if (app()->isLocal()) {
             // $this->call(DisciplineTableSeeder::class);
-            // user
+            // User
             $users = User::factory()
                 ->count(3)
                 ->withRole(RoleName::PROFESSOR)
