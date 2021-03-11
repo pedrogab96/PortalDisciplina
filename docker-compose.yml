@@ -32,7 +32,6 @@ services:
     container_name: portal_disciplina_laravel
     volumes:
       - ./:/var/www/app
-      - ./.env.development:/var/www/app/.env
     networks:
       - portal_disciplina-network
     ports:
