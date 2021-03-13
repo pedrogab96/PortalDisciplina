@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\RoleName;
+use App\Models\Professor;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -57,11 +58,17 @@ class UserTableSeeder extends Seeder
          */
         $roleProfessor = Role::query()
             ->firstWhere('name', RoleName::PROFESSOR);
-        User::create([
+        $user = User::create([
             'name' => 'Eugenio Paccelli',
             'email' => 'eugenio@imd.ufrn.br',
             'password' => '$2y$10$LwYZ050GVQXu.gksBsEXyubkImKd6xLyhaiZxl0PeeuOcaOeq/7/K',
             'role_id' => $roleProfessor->id,
+        ]);
+        Professor::create([
+            'name' => $user->name,
+            'public_email' => $user->email,
+            'profile_pic_link' => '',
+            'user_id' => $user->id,
         ]);
     }
 }
