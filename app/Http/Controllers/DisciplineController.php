@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use \App\Models\Discipline;
+use App\Models\Media;
 use \App\Models\Medias;
+use App\Models\Professor;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -18,16 +21,24 @@ class DisciplineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //Objetos de Model
+    private $objDiscipline;
+    private $objUser;
+    private $objProfessor;
+    private $objMedia;
+
+    public function __construct()
+    {
+        $this->objDiscipline = new Discipline();
+        $this->objUser = new User();
+        $this->objProfessor = new Professor();
+        $this->objMedia = new Media();
+    }
+
     public function index()
     {
-        // $disciplines = Discipline::select('select * from disciplines');
-
-        //Ajustar isso para quando estiver o campo no banco de dados para a verificação de trailer
-        $disciplines = DB::table('disciplines')
-        ->select('disciplines.*',
-            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
-        ->get();
-
+        $disciplines = $this->objDiscipline->all();
         return view('disciplines-search')
             ->with('disciplines',$disciplines);
     }
@@ -55,9 +66,11 @@ class DisciplineController extends Controller
     {
         /* Id do usuario logado */
         $userId = Auth::id();
-
-        /* Validacao */
-        $regras = [
+        $user = $this->objUser->find($userId);
+        $professor = $user->professor();
+        $discipline = $this->objDiscipline;
+        /* Validacao (refazer)*/
+        $rules = [
             'inputSubject' => 'required|max:40',
             'inputCode' => 'required|max:10',
             'teacher' => 'required|max:70',
@@ -71,8 +84,7 @@ class DisciplineController extends Controller
             'podcast' => 'max:250',
             'material' => 'max:250',
         ];
-
-        $mensagens = [
+        $error_messages = [
             'required' => 'O atributo :attribute não pode estar em branco.',
             'inputSubject.max' => 'Máximo de 40 caracteres!',
             'teacher.max' => 'Máximo de 70 caracteres!',
@@ -86,69 +98,49 @@ class DisciplineController extends Controller
             'podcast.max' => 'Máximo de 250 caracteres!',
             'material.max' => 'Máximo de 250 caracteres!',
         ];
-
-        $request->validate($regras, $mensagens);
-
+        $request->validate($rules, $error_messages);
         /* Registro no banco */
-        $discipline = new Discipline();
         $discipline->name = $request->input('inputSubject');
         $discipline->code = $request->input('inputCode');
-        $discipline->teacher = $request->input('teacher');
-        $discipline->email = $request->input('teacherEmail');
-        $discipline->description = $request->input('sinopse');
+        $discipline->synopsis = $request->input('sinopse');
         $discipline->difficulties = $request->input('obstaculos');
-        $discipline->user_id = $userId;
+        $discipline->professor_id = $professor->id;
         $discipline->save();
 
-        if($request->filled('trailer')){
-            if($this->validYoutube($request->input('trailer'))){
-                $trailer = new Medias();
-                $trailer->name = "Trailer de $discipline->name";
-                $trailer->type = "video";
-                $trailer->is_trailer = true;
-                $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
-                $trailer->url = "https://www.youtube.com/embed/" . $trailerUrl;
-                $trailer->discipline_id = $discipline->id;
-                $trailer->save();
+        if($request->VideoMedias->count != 0){
+            foreach($request->VideoMedias as $video){
+                $newMedia = $this->objMedia;
+                $newMedia->title = $video->title;
+                $newMedia->type = "video";
+                $video->file->store("videos");
+                $newMedia->address = "/videos/"+$video->file->hash();
+                $newMedia->is_trailer = $video->is_trailer;
+                $newMedia->discipline_id = $discipline->id;
+                $newMedia->save();
             }
         }
-
-        if($request->filled('podcast')){
-            if($this->validYoutube($request->input('podcast'))){
-                $podcast = new Medias();
-                $podcast->name = "Podcast de $discipline->name";
-                $podcast->type = "podcast";
-                $podcastUrl = $this->getYoutubeIdFromUrl($request->input('podcast'));
-                $podcast->url = "https://www.youtube.com/embed/" . $podcastUrl;
-                $podcast->is_trailer = false;
-                $podcast->discipline_id = $discipline->id;
-                $podcast->save();
+        if($request->PodcastMedias->count != 0){
+            foreach($request->PodcastMedias as $podcast){
+                $newMedia = $this->objMedia;
+                $newMedia->title = $podcast->title;
+                $newMedia->type = "podcast";
+                $podcast->file->store("podcasts");
+                $newMedia->address = "/podcasts/"+$podcast->file->hash();
+                $newMedia->is_trailer = false;
+                $newMedia->discipline_id = $discipline->id;
+                $newMedia->save();
             }
         }
-
-        if($request->filled('video')){
-            if($this->validYoutube($request->input('video'))){
-                $video = new Medias();
-                $video->name = "Video de $discipline->name";
-                $video->type = "video";
-                $video->is_trailer = false;
-                $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
-                $video->url = "https://www.youtube.com/embed/" . $videoUrl;
-                $video->discipline_id = $discipline->id;
-                $video->save();
-            }
-        }
-
-        if($request->filled('materiais')){
-            if($this->validDrive($request->input('materiais'))){
-                $materiais = new Medias();
-                $materiais->name = "Materiais de $discipline->name";
-                $materiais->type = "materiais";
-                $materiais->is_trailer = false;
-                $materiaisUrl = $this->getDriveIdFromUrl($request->input('materiais'));
-                $materiais->url = "https://drive.google.com/uc?export=download&id=" . $materiaisUrl;
-                $materiais->discipline_id = $discipline->id;
-                $materiais->save();
+        if($request->MaterialMedias->count != 0){
+            foreach($request->MaterialMedias as $material){
+                $newMedia = $this->objMedia;
+                $newMedia->title = $material->title;
+                $newMedia->type = "material";
+                $material->file->store("materials");
+                $newMedia->address = "/materials/"+$material->file->hash();
+                $newMedia->is_trailer = false;
+                $newMedia->discipline_id = $discipline->id;
+                $newMedia->save();
             }
         }
 

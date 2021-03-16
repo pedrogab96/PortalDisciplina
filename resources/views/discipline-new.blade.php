@@ -202,6 +202,15 @@ noindex, follow
                     @endif
 
                 </div>
+                <div class="form-row">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                        <div class="container1">
+                            <button class="add_form_field">Add New Field &nbsp;
+                            <span style="font-size:16px; font-weight:bold;">+ </span>
+                            </button>
+                            <div><input type="text" name="mytext[]"></div>
+                        </div>
+                </div>
             </div>
         </div>
 
@@ -212,5 +221,29 @@ noindex, follow
             </a>
         </div>
     </form>
+    <script>
+        //adicionar campos de video
+        $(document).ready(function() {
+            var max_fields = 15;
+            var wrapper = $(".container1");
+            var add_button = $(".add_form_field");
+
+            var x = 1;
+            $(add_button).click(function(e) {
+                e.preventDefault();
+                if (x < max_fields) {
+                    x++;
+                    $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>'); //add input box
+                } else {
+                    alert('You Reached the limits')
+                }
+            });
+            $(wrapper).on("click", ".delete", function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+            })
+        });
+    </script>
 
 @endsection
