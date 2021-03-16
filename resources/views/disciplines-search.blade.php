@@ -41,43 +41,41 @@
                 @foreach ($disciplines as $discipline)
                     <div class="col-12 col-sm-6 col-lg-3 mt-5">
                         <div class="card shadow">
-
-
-                            @if ($discipline->urlMedia == NULL)
+                            @php
+                                $trailer = $discipline->media()->where("is_trailer","=","1");
+                            @endphp
+                            @if ($trailer == NULL)
                                 <img src="{{asset('img/IMD_logo.svg')}}" class="card-img-top" alt=".." >
-
                             @else
                                 <div class="teacher-video-container">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="{{ $discipline->urlMedia }}"
+                                        <iframe class="embed-responsive-item" src="{{ $trailer->address }}"
                                             allowfullscreen></iframe>
                                     </div>
                                 </div>
                             @endif
-
                             <div class="card-body">
                                 <h5 class="card-title">{{ $discipline->name }}</h5>
-                                <p class="card-text">{{ Str::limit($discipline->description, 70,' (...)') }}</p>
+                                <p class="card-text">{{ Str::limit($discipline->synopsis, 70,' (...)') }}</p>
                                 <a href="{{ route('showDiscipline', ['id' => $discipline->id]) }}" class="btn btn-primary">Ver mais</a>
-
                                 @auth
                                     <form action=" {{route('deleteDiscipline',$discipline->id)}}" class="d-inline" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger" value="Apagar">Apagar</button>
                                     </form>
+                                    <form action=" {{route('editDiscipline',$discipline->id)}}" class="d-inline" method="post">
+                                        @csrf
+                                        @method('UPDATE')
+                                        <button type="submit" class="btn btn-primary" value="Editar">Editar</button>
+                                    </form>
                                 @endauth
-
                             </div>
-
-
-                            <div class="card-footer">{{ $discipline->teacher }}</div>
+                            <div class="card-footer">{{ $discipline->teacher()->name }}</div>
                         </div>
                     </div>
                 @endforeach
             </div>
         @endif
     @endisset
-
-
 @endsection

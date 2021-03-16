@@ -32,9 +32,9 @@ class Discipline extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function professor()
+    public function teacher()
     {
-        return $this->belongsTo(Professor::class);
+        return $this->belongsTo(Professor::class,"professor_id","id");
     }
 
     /**
@@ -55,5 +55,9 @@ class Discipline extends Model
         return $this->hasManyThrough(Tag::class, TagDiscipline::class,
             'disc_id', 'id',
             'id', 'tag_id');
+    }
+
+    public function medias(){
+        return $this->hasMany(Media::class,"discipline_id","id");
     }
 }
