@@ -69,7 +69,7 @@ class DisciplineController extends Controller
     public function store(Request $request)
     {
         /* Id do usuario logado */
-        $professor = $this->objUser->find(Auth::id())professor();
+        $professor = $this->objUser->find(Auth::id())->professor();
         $discipline = $this->objDiscipline;
 
         /* Validacao (refazer)*/
@@ -217,6 +217,7 @@ class DisciplineController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $professor = $this->objUser->find(Auth::id())->professor();
         $discipline = $this->objDiscipline->find($id);
         $discipline->name = $request->input('inputSubject');
         $discipline->code = $request->input('inputCode');
