@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="portal das disciplinas, imd">
     <meta name="robots" content="@yield('robots','all')">
+    <title>@yield('title', 'Portal das Disciplinas IMD')</title>
     <meta name="description" content="@yield('description','Conheça as disciplinas do IMD de forma mais prática!')">
     {{-- bootstrap CSS --}}
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -17,32 +18,28 @@
     <link rel="stylesheet" href="{{asset('css/discipline.css')}}">
     {{-- CSRF Laravel --}}
     <meta name="csrf-token" content="{{csrf_token()}}">
+    @yield('styles-head')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>@yield('title', 'Portal das Disciplinas IMD')</title>
+    @yield('scripts-head')
 </head>
 
 <body class="content-body d-flex flex-column min-vh-100">
-    
-    @component('components.navbar')
-    @endcomponent
+    @include('components.navbar')
 
     {{-- Sidebar desativado por enquanto --}}
-    
-    @component('components.sidebar')
-    @endcomponent
+
+    @include('components.sidebar')
 
     <div class="container mb-5">
         @yield('content')
     </div>
 
-    @component('components.footer')
-    @endcomponent
-
-    
+    @include('components.footer')
     {{-- bootstrap JS --}}
     <script src="{{asset('js/app.js')}}" type="text/javascript"></script>
     {{-- Sidebar JS --}}
     <script src="{{asset('js/sidebar.js')}}" type="text/javascript"></script>
+    @yield('scripts-bottom')
 </body>
 </html>
