@@ -59,5 +59,7 @@ Route::group([
             ->name('professors');
         Route::get('select/disciplines', [\App\Http\Controllers\Chart\PassRateController::class, 'selectDisciplines'])
             ->name('disciplines');
+        Route::get('tables', [\App\Http\Controllers\Chart\PassRateController::class, 'getTableData'])
+            ->name('tables');
     });
 });

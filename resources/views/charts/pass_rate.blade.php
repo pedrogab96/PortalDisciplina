@@ -33,12 +33,24 @@
                 Aqui você pode buscar por um docente e visualizar a sua taxa de aprovação para cada disciplina lecionada por ele.
             </p>
             <div class="row">
-                <div class="col-md-12 form-group mb-3">
+                <div class="col-md-12 form-group mb-2">
                     <label for="select_professor">
                         Docente
                     </label>
-                    <select class="form-control select2" style="width: 100%;"
+                    <select class="form-control select2"
                             id="select_professor" name="select_professor"></select>
+                </div>
+                <div class="col-md-12">
+                    <table class="table text-white">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nome do componente curricular</th>
+                            <th scope="col">Taxa de aprovação (%)</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody_professor">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -52,8 +64,20 @@
                     <label for="select_discipline">
                         Componente Curricular
                     </label>
-                    <select class="form-control select2" style="width: 100%;"
+                    <select class="form-control select2"
                             id="select_discipline" name="select_discipline"></select>
+                </div>
+                <div class="col-md-12">
+                    <table class="table text-white">
+                        <thead>
+                        <tr>
+                            <th scope="col">Nome do docente</th>
+                            <th scope="col">Taxa de aprovação (%)</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody_discipline">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -94,6 +118,22 @@
                 cache: true,
                 minimumInputLength: 1,
             }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+            const tbody = $('#tbody_professor');
+            tbody.html('');
+
+            $.get('{{route('charts.pass_rate.tables')}}', {
+                type: 'professor',
+                id: data.id
+            }, function (rows) {
+                rows.forEach((element, index, array) => {
+                    let rowHtml = '<tr><td>' + element.nome_componente + '</td><td>' + Number(element.taxa_aprovacao).toFixed(2) + '</td></tr>';
+                    tbody.append(rowHtml);
+                });
+            }).fail(function (data) {
+                console.log(data);
+            });
         });
 
         $('#select_discipline').select2({
@@ -125,6 +165,22 @@
                 cache: true,
                 minimumInputLength: 1,
             }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+            const tbody = $('#tbody_discipline');
+            tbody.html('');
+
+            $.get('{{route('charts.pass_rate.tables')}}', {
+                type: 'discipline',
+                id: data.id
+            }, function (rows) {
+                rows.forEach((element, index, array) => {
+                    let rowHtml = '<tr><td>' + element.nome_docente + '</td><td>' + Number(element.taxa_aprovacao).toFixed(2) + '</td></tr>';
+                    tbody.append(rowHtml);
+                });
+            }).fail(function (data) {
+                console.log(data);
+            });
         });
     </script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Chart;
 
 use App\Enums\CacheKey;
+use App\Http\Requests\Chart\PassRate\GetTableDataRequest;
 use App\Http\Requests\Chart\PassRate\IndexRequest;
 use App\Http\Requests\Chart\PassRate\SelectDisciplinesRequest;
 use App\Http\Requests\Chart\PassRate\SelectProfessorsRequest;
@@ -20,6 +21,28 @@ class PassRateController extends ChartController
     public function index(IndexRequest $request)
     {
         return view(self::VIEW_PATH . 'pass_rate');
+    }
+
+    /**
+     * @return Collection
+     */
+    private function getData(): Collection
+    {
+        $data = Cache::get(CacheKey::CHART_DATA);
+
+        if (is_null($data)) {
+            $filePath = storage_path(self::STORAGE_PATH . 'pass_rate.csv');
+            $csvReader = new CsvReader($filePath, CsvReader::SEPARATOR_COMMA, true);
+            $data = $csvReader->getAsCollection();
+
+            $date = Carbon::now()
+                ->addDay()
+                ->setTime(0, 0, 0);
+
+            Cache::put(CacheKey::CHART_DATA, $data, $date);
+        }
+
+        return $data;
     }
 
     /**
@@ -89,24 +112,28 @@ class PassRateController extends ChartController
     }
 
     /**
-     * @return Collection
+     * @param GetTableDataRequest $request
+     * @return array
      */
-    private function getData(): Collection
+    public function getTableData(GetTableDataRequest $request)
     {
-        $data = Cache::get(CacheKey::CHART_DATA);
+        $passRateCollect = $this->getData();
+        $type = $request->get('type');
+        $id = $request->get('id');
+        $data = collect();
 
-        if (is_null($data)) {
-            $filePath = storage_path(self::STORAGE_PATH . 'pass_rate.csv');
-            $csvReader = new CsvReader($filePath, CsvReader::SEPARATOR_COMMA, true);
-            $data = $csvReader->getAsCollection();
-
-            $date = Carbon::now()
-                ->addDay()
-                ->setTime(0, 0, 0);
-
-            Cache::put(CacheKey::CHART_DATA, $data, $date);
+        if ($type == 'professor') {
+            $data = $passRateCollect->filter(function ($row) use ($id) {
+                return $row['siape'] == $id;
+            })->sortByDesc('taxa_aprovacao')
+                ->values();
+        } elseif ($type == 'discipline') {
+            $data = $passRateCollect->filter(function ($row) use ($id) {
+                return $row['id_componente_curricular'] == $id;
+            })->sortByDesc('taxa_aprovacao')
+                ->values();
         }
 
-        return $data;
+        return $data->toArray();
     }
 }
