@@ -9,7 +9,6 @@ noindex, follow
 @endsection
 
 @section('content')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <form action="{{ route("storeDisciplina") }}" method="post">
         @csrf
         <div class="form-row justify-content-md-center">
@@ -44,7 +43,7 @@ noindex, follow
                     </div>
                 @endif
             </div>
-
+  {{-- if para caso seja admin --}}
             <div class="form-group col-md-8">
                 <h4 class="text-white">Professor</h4>
                 <input type="text"
@@ -97,19 +96,16 @@ noindex, follow
 
                     <h4 class="text-white mt-3">Classificação</h4>
                     <div class="input-group mb-3 mt-1">
-                        <span class="review-stars" style="color: #fffb00;">
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                        </span>
-                        @if ($errors->has('classificacao'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('classificacao') }}
-                            </div>
-                        @endif
-                    </div>
+                        <div class="row">
+                            <input type="text" hidden="true" value="1" id="classification-1" name="classifications[0]">
+                            <input type="text" hidden="true" value="2" id="classification-2" name="classifications[1]">
+                            <input type="text" hidden="true" value="3" id="classification-3" name="classifications[2]">
+                            <input type="text" hidden="true" value="4" id="classification-4" name="classifications[3]">
+                            <input type="text" hidden="true" value="5" id="classification-5" name="classifications[4]">
+                            <input type="text" hidden="true" value="1" id="classification-6" name="classifications[5]">
+                            <input type="text" hidden="true" value="2" id="classification-7" name="classifications[6]">
+                            <input type="text" hidden="true" value="3" id="classification-8" name="classifications[7]">
+                        </div>
                 </div>
 
             </div>

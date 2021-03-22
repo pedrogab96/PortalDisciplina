@@ -156,7 +156,7 @@ class DisciplineController extends Controller
         if($request->classifications->count != 0){
             foreach($request->classifications as $classification){
                 $newClassificationDiscipline = ClassificationDiscipline::create([
-                   'classification_id' => $classification->classification_id,
+                   'classification_id' => $classification->id,
                    'discipline_id' => $classification->discipline_id,
                    'value' => $classification->value
                 ]);
