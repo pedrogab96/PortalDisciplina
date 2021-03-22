@@ -24,7 +24,7 @@ class Media extends Model
     protected $fillable = [
         'title',
         'type',
-        'address',
+        'url',
         'is_trailer',
         'discipline_id',
     ];

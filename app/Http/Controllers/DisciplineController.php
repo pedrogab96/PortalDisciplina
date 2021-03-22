@@ -41,7 +41,8 @@ class DisciplineController extends Controller
 
     public function index()
     {
-        $disciplines = $this->objDiscipline->all();
+        $disciplines = new Discipline();
+        $disciplines = $disciplines->all();
         return view('disciplines-search')
             ->with('disciplines',$disciplines);
     }
@@ -56,7 +57,8 @@ class DisciplineController extends Controller
         if(!Auth::check()){
             return redirect()->route('login');
         }
-        $professor = $this->objUser->find(Auth::id())->professor();
+        $professor = new User();
+        $professor = $professor->find(Auth::id())->professor();
         return view('discipline-new')->with('professor',$professor);
     }
 
@@ -104,59 +106,60 @@ class DisciplineController extends Controller
 
         /* Registro no banco */
         // disciplina
-        $discipline->name = $request->input('inputSubject');
-        $discipline->code = $request->input('inputCode');
-        $discipline->synopsis = $request->input('sinopse');
-        $discipline->difficulties = $request->input('obstaculos');
-        $discipline->professor_id = $professor->id;
-        $discipline->save();
+        $discipline = Discipline::create([
+            'name' => $request->input('inputSubject'),
+            'code' => $request->input('inputCode'),
+            'synopsis' => $request->input('sinopse'),
+            'difficulties' => $request->input('obstaculos'),
+           'professor_id' => $professor->id
+        ]);
         // videos
-        if($request->VideoMedias->count != 0){
+        if($request->VideoMedias->count > 0){
             foreach($request->VideoMedias as $video){
-                $newMedia = $this->objMedia;
-                $newMedia->title = $video->title;
-                $newMedia->type = "video";
                 $video->file->store("videos");
-                $newMedia->address = "/videos/"+$video->file->hash();
-                $newMedia->is_trailer = $video->is_trailer;
-                $newMedia->discipline_id = $discipline->id;
-                $newMedia->save();
+                $newMedia = Media::create([
+                    'title' => $video->title,
+                    'type' => "video",
+                    'url' => "/videos/"+$video->file->hash(),
+                    'is_trailer' => $video->is_trailer,
+                    'discipline_id' => $discipline->id
+                ]);
             }
         }
         // podcasts
-        if($request->PodcastMedias->count != 0){
+        if($request->PodcastMedias->count > 0){
             foreach($request->PodcastMedias as $podcast){
-                $newMedia = $this->objMedia;
-                $newMedia->title = $podcast->title;
-                $newMedia->type = "podcast";
                 $podcast->file->store("podcasts");
-                $newMedia->address = "/podcasts/"+$podcast->file->hash();
-                $newMedia->is_trailer = false;
-                $newMedia->discipline_id = $discipline->id;
-                $newMedia->save();
+                $newMedia = Media::create([
+                    'title' => $podcast->title,
+                    'type' => "podcast",
+                    'url' => "/podcasts/"+$podcast->file->hash(),
+                    'is_trailer' => $podcast->is_trailer,
+                    'discipline_id' => $discipline->id
+                ]);
             }
         }
         // materiais
         if($request->MaterialMedias->count != 0){
             foreach($request->MaterialMedias as $material){
-                $newMedia = $this->objMedia;
-                $newMedia->title = $material->title;
-                $newMedia->type = "material";
-                $material->file->store("materials");
-                $newMedia->address = "/materials/"+$material->file->hash();
-                $newMedia->is_trailer = false;
-                $newMedia->discipline_id = $discipline->id;
-                $newMedia->save();
+                $material->file->store("materiais");
+                $newMedia = Media::create([
+                    'title' => $material->title,
+                    'type' => "material",
+                    'url' => "/materiais/"+$material->file->hash(),
+                    'is_trailer' => $material->is_trailer,
+                    'discipline_id' => $discipline->id
+                ]);
             }
         }
         // classificações
         if($request->classifications->count != 0){
             foreach($request->classifications as $classification){
-                $newClassificationDiscipline = $this->objClassificationDiscipline;
-                $newClassificationDiscipline->classification_id = $classification->classification_id;
-                $newClassificationDiscipline->discipline_id = $classification->discipline_id;
-                $newClassificationDiscipline->value = $classification->value;
-                $newClassificationDiscipline->save();
+                $newClassificationDiscipline = ClassificationDiscipline::create([
+                   'classification_id' => $classification->classification_id,
+                   'discipline_id' => $classification->discipline_id,
+                   'value' => $classification->value
+                ]);
             }
         }
         return redirect('/');

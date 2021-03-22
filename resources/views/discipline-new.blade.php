@@ -9,7 +9,7 @@ noindex, follow
 @endsection
 
 @section('content')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <form action="{{ route("storeDisciplina") }}" method="post">
         @csrf
         <div class="form-row justify-content-md-center">
@@ -97,13 +97,13 @@ noindex, follow
 
                     <h4 class="text-white mt-3">Classificação</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text"
-                            class="form-control {{ $errors->has('classificacao') ? 'is-invalid' : ''}}"
-                            name="classificacao"
-                            id="classificacao"
-                            aria-describedby="basic-addon3"
-                            placeholder="Link para imagem no Google Drive">
-
+                        <span class="review-stars" style="color: #fffb00;">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </span>
                         @if ($errors->has('classificacao'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('classificacao') }}
@@ -116,68 +116,31 @@ noindex, follow
 
             <div class="col-12 col-sm-6">
                 <div class="form-group">
-                    <h4 class="text-white">Trailer da disciplina</h4>
-                    <div class="input-group mb-3 mt-1">
-                        <input type="text"
-                            class="form-control {{ $errors->has('trailer') ? 'is-invalid' : ''}}"
-                            name="trailer"
-                            id="basic-url"
-                            aria-describedby="basic-addon3"
-                            placeholder="Link para vídeo no Youtube">
-
-                        @if ($errors->has('trailer'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('trailer') }}
-                            </div>
-                        @endif
-                    </div>
-
                     <h4 class="text-white">Vídeo</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text"
-                            class="form-control {{ $errors->has('video') ? 'is-invalid' : ''}}"
-                            name="video"
-                            id="basic-url"
-                            aria-describedby="basic-addon3"
-                            placeholder="Link para vídeo no Youtube">
-
-                        @if ($errors->has('video'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('video') }}
-                            </div>
-                        @endif
+                        <div class="container1">
+                            <button class="add_form_field1">Adicionar novo video &nbsp;
+                                <span style="font-size:16px; font-weight:bold;">+ </span>
+                            </button>
+                        </div>
                     </div>
 
                     <h4 class="text-white">Podcast</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text"
-                            class="form-control {{ $errors->has('podcast') ? 'is-invalid' : ''}}"
-                            name="podcast"
-                            id="basic-url"
-                            aria-describedby="basic-addon3"
-                            placeholder="Link para podcast no Youtube">
-
-                        @if ($errors->has('podcast'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('podcast') }}
-                            </div>
-                        @endif
+                        <div class="container2">
+                            <button class="add_form_field2">Adicionar novo podcast &nbsp;
+                                <span style="font-size:16px; font-weight:bold;">+ </span>
+                            </button>
+                        </div>
                     </div>
 
                     <h4 class="text-white">Materiais</h4>
                     <div class="input-group mb-3 mt-1">
-                        <input type="text"
-                            class="form-control {{ $errors->has('materiais') ? 'is-invalid' : ''}}"
-                            name="materiais"
-                            id="basic-url"
-                            aria-describedby="basic-addon3"
-                            placeholder="Link para arquivo no Google Drive">
-
-                        @if ($errors->has('materiais'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('materiais') }}
-                            </div>
-                        @endif
+                        <div class="container3">
+                            <button class="add_form_field3">Adicionar novo material &nbsp;
+                                <span style="font-size:16px; font-weight:bold;">+ </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -202,15 +165,6 @@ noindex, follow
                     @endif
 
                 </div>
-                <div class="form-row">
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                        <div class="container1">
-                            <button class="add_form_field">Add New Field &nbsp;
-                            <span style="font-size:16px; font-weight:bold;">+ </span>
-                            </button>
-                            <div><input type="text" name="mytext[]"></div>
-                        </div>
-                </div>
             </div>
         </div>
 
@@ -222,18 +176,61 @@ noindex, follow
         </div>
     </form>
     <script>
-        //adicionar campos de video
+        //adicionar campos de video dinamicamente
         $(document).ready(function() {
             var max_fields = 15;
             var wrapper = $(".container1");
-            var add_button = $(".add_form_field");
+            var add_button = $(".add_form_field1");
 
             var x = 1;
             $(add_button).click(function(e) {
                 e.preventDefault();
                 if (x < max_fields) {
                     x++;
-                    $(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="delete">Delete</a></div>'); //add input box
+                    $(wrapper).append('<div><input type="file" name="videos[]"/><a href="#" class="delete btn btn-danger">Deletar</a></div>'); //add input box
+                } else {
+                    alert('You Reached the limits')
+                }
+            });
+            $(wrapper).on("click", ".delete", function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+            })
+        });
+        //adicionar campos de podcast dinamicamente
+        $(document).ready(function() {
+            var max_fields = 15;
+            var wrapper = $(".container2");
+            var add_button = $(".add_form_field2");
+
+            var x = 1;
+            $(add_button).click(function(e) {
+                e.preventDefault();
+                if (x < max_fields) {
+                    x++;
+                    $(wrapper).append('<div><input type="file" name="podcasts[]"/><a href="#" class="delete btn btn-danger">Deletar</a></div>'); //add input box
+                } else {
+                    alert('You Reached the limits')
+                }
+            });
+            $(wrapper).on("click", ".delete", function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+            })
+        });
+        $(document).ready(function() {
+            var max_fields = 15;
+            var wrapper = $(".container3");
+            var add_button = $(".add_form_field3");
+
+            var x = 1;
+            $(add_button).click(function(e) {
+                e.preventDefault();
+                if (x < max_fields) {
+                    x++;
+                    $(wrapper).append('<div><input type="file" name="materials[]"/><a href="#" class="delete btn btn-danger">Deletar</a></div>'); //add input box
                 } else {
                     alert('You Reached the limits')
                 }

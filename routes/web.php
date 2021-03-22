@@ -32,7 +32,7 @@ Route::post('/search', [DisciplineController::class,'search'])->name('search');
 Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('createDisciplina');
 Route::get('/disciplina/editar', [DisciplineController::class, 'edit'])->name('editDisciplina');
 Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
-Route::post('/disciplina', [DisciplineController::class, 'update'])->name('updateDisciplina');
+Route::post('/disciplinaupdate', [DisciplineController::class, 'update'])->name('updateDisciplina');
 
 //--Desativada por enquanto
 // route::get('/minhasdisciplinas', [DisciplineController::class, 'mydisciplines'])->name('mydisciplines');

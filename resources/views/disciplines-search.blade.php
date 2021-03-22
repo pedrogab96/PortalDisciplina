@@ -41,15 +41,12 @@
                 @foreach ($disciplines as $discipline)
                     <div class="col-12 col-sm-6 col-lg-3 mt-5">
                         <div class="card shadow">
-                            @php
-                                $trailer = $discipline->media()->where("is_trailer","=","1");
-                            @endphp
                             @if ($trailer == NULL)
                                 <img src="{{asset('img/IMD_logo.svg')}}" class="card-img-top" alt=".." >
                             @else
                                 <div class="teacher-video-container">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="{{ $trailer->address }}"
+                                        <iframe class="embed-responsive-item" src="{{ $discipline->media_trailer()->url }}"
                                             allowfullscreen></iframe>
                                     </div>
                                 </div>

@@ -17,7 +17,7 @@ class CreateMedias extends Migration
             $table->id();
             $table->string('title');
             $table->string('type');
-            $table->string('address');
+            $table->string('url');
             $table->boolean('is_trailer');
             $table->unsignedBigInteger('discipline_id');
             $table->foreign('discipline_id')->references('id')
