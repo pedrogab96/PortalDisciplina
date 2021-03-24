@@ -1,25 +1,24 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $disciplines->name }} - Portal das Disciplinas IMD
+    {{ $discipline->name }} - Portal das Disciplinas IMD
 @endsection
 
 @section('description')
-{{ $disciplines->name }} - {{ $disciplines->code }}, tutorado por {{ $disciplines->teacher }}. Clique para saiber mais.
+    {{ $discipline->name }} - {{ $discipline->code }}, tutorado por {{ $discipline->professor->name }}. Clique para saiber mais.
 @endsection
 
 @section('content')
-
-    <h2 class="container-fluid text-white text-center">{{ $disciplines->name }} - {{ $disciplines->code }}</h2>
+    <h2 class="container-fluid text-white text-center">{{ $discipline->name }} - {{ $discipline->code }}</h2>
 
     <div class="row mt-3">
         <div class="col-12">
             <h3 class="text-white">Sinopse</h3>
-                <div class="border border-info rounded">
-                    <div class="bg-color4">
-                        <div class="text-white text-justify px-lg-3"> {{ $disciplines->description }} </div>
-                    </div>
+            <div class="border border-info rounded">
+                <div class="bg-color4">
+                    <div class="text-white text-justify px-lg-3"> {{ $discipline->description }} </div>
                 </div>
+            </div>
         </div>
     </div>
 
@@ -38,7 +37,6 @@
             </div>
         @endif
 
-
         @if (isset($classificacao->urlMedia))
             <div class="col-sm-4 mt-3 mt-sm-0">
                 <h3 class="text-white">Classificação</h3>
@@ -51,8 +49,6 @@
             </div>
         @endif
     </div>
-
-
 
     <div class="row mt-3">
         @if (isset($video->urlMedia))
@@ -86,13 +82,11 @@
     </div>
 
     <div class="row mt-3">
-
-
         <div class="col-sm-10">
             <h3 class="text-white">Obstáculos</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3">{{ $disciplines->difficulties }}</div>
+                    <div class="text-white text-justify px-lg-3">{{ $discipline->difficulties }}</div>
                 </div>
             </div>
         </div>
@@ -124,7 +118,7 @@
             <h3 class="text-white">Professor</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> {{ $disciplines->teacher }} </div>
+                    <div class="text-white text-justify px-lg-3"> {{ $discipline->teacher }} </div>
                 </div>
             </div>
         </div>
@@ -133,11 +127,9 @@
             <h3 class="text-white">Email</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> {{ $disciplines->email }} </div>
+                    <div class="text-white text-justify px-lg-3"> {{ $discipline->email }} </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 @endsection

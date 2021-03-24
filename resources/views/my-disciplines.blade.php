@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
-@section('content')    
-
-
+@section('content')
     <div class="row">
         <div class="col-12 col-sm-6 col-lg-3 mt-5">
-            <a name="createDisciplina" class="btn btn-outline-light btn-block" href="{{ route("createDisciplina") }}" role="button">Cadastrar disciplina</a>
+            <a name="createDisciplina" class="btn btn-outline-light btn-block" href="{{ route("disciplinas.create") }}" role="button">Cadastrar disciplina</a>
         </div>
     </div>
 
     @isset($disciplines)
-        @if ($disciplines->count() == 0)
+        @if($disciplines->count() == 0)
             <p class="response-search"> Nenhuma disciplina encontrada </p>
         @else
             <div class="row">
@@ -32,10 +30,10 @@
                             <div class="card-footer">{{ Str::words( $discipline->nameUser , 2, '' ) }}</div>
                         </div>
                     </div>
-                @endforeach 
+                @endforeach
             </div>
         @endif
     @endisset
-    
-    
+
+
 @endsection

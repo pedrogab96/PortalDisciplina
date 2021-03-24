@@ -9,8 +9,7 @@ noindex, follow
 @endsection
 
 @section('content')
-
-    <form action="{{ route("storeDisciplina") }}" method="post">
+    <form action="{{ route("disciplinas.store") }}" method="post">
         @csrf
         <div class="form-row justify-content-md-center">
             <div class="form-group col-md-10">
