@@ -59,7 +59,7 @@ class DisciplineController extends Controller
                 'code' => $request->input('inputCode'),
                 'teacher' => $request->input('teacher'),
                 'email' => $request->input('teacherEmail'),
-                'description' => $request->input('sinopse'),
+                'synopsis' => $request->input('sinopse'),
                 'difficulties' => $request->input('obstaculos'),
                 'professor_id' => $userId,
             ]);
