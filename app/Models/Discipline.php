@@ -44,11 +44,15 @@ class Discipline extends Model
     {
         return $this->hasMany(Media::class);
     }
+
     public function mediaTrailer()
     {
         return $this->medias()->where("is_trailer","=","1");
     }
-
+    public function mediaNotTrailer()
+    {
+        return $this->medias()->where("is_trailer","=","0");
+    }
     public function scopeMediasByType(string $type)
     {
         return $this->medias()->where('type',"=", $type);

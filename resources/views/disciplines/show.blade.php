@@ -23,7 +23,7 @@
     </div>
 
     <div class="row mt-3">
-        @if (isset($discipline->mediaTrailer))
+        @if (isset($discipline->mediaTrailer->first()->url))
             <div class="col-sm-8">
                 <h3 class="text-white">Trailer</h3>
                 <div class="embed-responsive embed-responsive-16by9">
