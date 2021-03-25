@@ -66,69 +66,69 @@ class DisciplineController extends Controller
 
             if($request->filled('trailer')){
                 if($this->validYoutube($request->input('trailer'))){
-                    $trailer = new Media();
-                    $trailer->title = "Trailer de $discipline->name";
-                    $trailer->type = "video";
-                    $trailer->is_trailer = true;
                     $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
-                    $trailer->url = "https://www.youtube.com/embed/" . $trailerUrl;
-                    $trailer->discipline_id = $discipline->id;
-                    $trailer->save();
+                    Media::create([
+                    'title' => "Trailer de $discipline->name",
+                    'type' => "video",
+                    'is_trailer' => true,
+                    'url' => "https://www.youtube.com/embed/" . $trailerUrl,
+                    'discipline_id' => $discipline->id
+                    ]);
                 }
             }
 
             if($request->filled('podcast')){
                 if($this->validYoutube($request->input('podcast'))){
-                    $podcast = new Media();
-                    $podcast->title = "Podcast de $discipline->name";
-                    $podcast->type = "podcast";
                     $podcastUrl = $this->getYoutubeIdFromUrl($request->input('podcast'));
-                    $podcast->url = "https://www.youtube.com/embed/" . $podcastUrl;
-                    $podcast->is_trailer = false;
-                    $podcast->discipline_id = $discipline->id;
-                    $podcast->save();
+                    Media::create([
+                        'title' => "Podcast de $discipline->name",
+                        'type' => "podcast",
+                        'url' => "https://www.youtube.com/embed/" . $podcastUrl,
+                        'is_trailer' => false,
+                        'discipline_id' => $discipline->id
+                    ]);
                 }
             }
 
             if($request->filled('video')){
                 if($this->validYoutube($request->input('video'))){
-                    $video = new Media();
-                    $video->title = "Video de $discipline->name";
-                    $video->type = "video";
-                    $video->is_trailer = false;
                     $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
-                    $video->url = "https://www.youtube.com/embed/" . $videoUrl;
-                    $video->discipline_id = $discipline->id;
-                    $video->save();
+                    Media::create([
+                        'title' => "Video de $discipline->name",
+                        'type' => "video",
+                        'is_trailer' => false,
+                        'url' => "https://www.youtube.com/embed/" . $videoUrl,
+                        'discipline_id' => $discipline->id
+                    ]);
                 }
             }
 
             if($request->filled('materiais')){
                 if($this->validDrive($request->input('materiais'))){
-                    $materiais = new Media();
-                    $materiais->title = "Materiais de $discipline->name";
-                    $materiais->type = "materiais";
-                    $materiais->is_trailer = false;
                     $materiaisUrl = $this->getDriveIdFromUrl($request->input('materiais'));
-                    $materiais->url = "https://drive.google.com/uc?export=download&id=" . $materiaisUrl;
-                    $materiais->discipline_id = $discipline->id;
-                    $materiais->save();
+                    Media::create([
+                        'title' => "Materiais de $discipline->name",
+                        'type' => "materiais",
+                        'is_trailer' => false,
+                        'url' => "https://drive.google.com/uc?export=download&id=" . $materiaisUrl,
+                        'discipline_id' => $discipline->id
+                    ]);
                 }
             }
 
+            //todo: sistema de classificação
             if($request->filled('classificacao')){
                 if($this->validDrive($request->input('classificacao'))){
-                    $classificacao = new Media();
-                    $classificacao->title = "Classificações de $discipline->name";
-                    $classificacao->type = "classificacao";
-                    $classificacao->is_trailer = false;
                     $classificacaoUrl = $this->getDriveIdFromUrl($request->input('classificacao'));
-                    $classificacao->url = "https://drive.google.com/uc?id=" . $classificacaoUrl;
-                    $classificacao->discipline_id = $discipline->id;
-                    $classificacao->save();
+                    Media::create([
+                        'title' => "Classificações de $discipline->name",
+                        'type' => "classificacao",
+                        'is_trailer' => false,
+                        'url' => "https://drive.google.com/uc?id=" . $classificacaoUrl,
+                        'discipline_id' => $discipline->id,
+                    ]);
                 }
             }
-
             DB::commit();
             return redirect()->route('index');
         } catch (\Exception $exception) {

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Builder;
 class Discipline extends Model
 {
     use HasFactory;
@@ -43,6 +43,15 @@ class Discipline extends Model
     public function medias()
     {
         return $this->hasMany(Media::class);
+    }
+    public function mediaTrailer()
+    {
+        return $this->medias()->where("is_trailer","=","1");
+    }
+
+    public function scopeMediasByType(string $type)
+    {
+        return $this->medias()->where('type',"=", $type);
     }
 
     /**

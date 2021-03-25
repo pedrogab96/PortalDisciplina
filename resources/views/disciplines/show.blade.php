@@ -16,18 +16,18 @@
             <h3 class="text-white">Sinopse</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> {{ $discipline->description }} </div>
+                    <div class="text-white text-justify px-lg-3"> {{ $discipline->synopsis }} </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row mt-3">
-        @if (isset($trailer->urlMedia))
+        @if (isset($discipline->mediaTrailer))
             <div class="col-sm-8">
                 <h3 class="text-white">Trailer</h3>
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="{{ $trailer->urlMedia }}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="{{ $discipline->mediaTrailer->first()->url}}" allowfullscreen></iframe>
                 </div>
             </div>
         @else
@@ -37,10 +37,10 @@
             </div>
         @endif
 
-        @if (isset($classificacao->urlMedia))
+        @if (isset($discipline->scopeMediasByType("classificacao")->first()->url))
             <div class="col-sm-4 mt-3 mt-sm-0">
                 <h3 class="text-white">Classificação</h3>
-                <img class="img-fluid" src=" {{ $classificacao->urlMedia }} " alt="Classificação">
+                <img class="img-fluid" src=" {{ $discipline->scopeMediasByType("classificacao")->first()->url }} " alt="Classificação">
             </div>
         @else
             <div class="col-sm-4 mt-3 mt-sm-0">
@@ -51,11 +51,11 @@
     </div>
 
     <div class="row mt-3">
-        @if (isset($video->urlMedia))
+        @if (isset($discipline->getVideo->first()->url))
             <div class="col-12 col-sm-6">
                 <h3 class="text-white">Vídeo</h3>
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="{{ $video->urlMedia }}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="{{ $discipline->scopeMediasByType("video")->first()->url }}" allowfullscreen></iframe>
                 </div>
             </div>
         @else
@@ -65,11 +65,11 @@
             </div>
         @endif
 
-        @if (isset($podcast->urlMedia))
+        @if (isset($discipline->scopeMediasByType("podcast")->first()->url))
             <div class="col-12 col-sm-6 mt-3 mt-sm-0">
                 <h3 class="text-white">Podcast</h3>
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="{{ $podcast->urlMedia }}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="{{ $discipline->scopeMediasByType("podcast")->first()->url}}" allowfullscreen></iframe>
                 </div>
             </div>
         @else
@@ -91,11 +91,11 @@
             </div>
         </div>
 
-        @if (isset($materiais->urlMedia))
+        @if (isset($discipline->scopeMediasByType("materiais")->first()->url))
             <div class="col-sm-2 mt-3 mt-sm-0">
                 <h3 class="text-white">Materiais</h3>
                 <div class="d-flex align-center">
-                    <a href="{{ $materiais->urlMedia }}" class="text">
+                    <a href="{{ $discipline->scopeMediasByType("materiais")->first()->url}}" class="text">
                         <i class="fas fa-file-download fa-9x materiais-on"></i>
                     </a> <br>
                 </div>
@@ -118,7 +118,7 @@
             <h3 class="text-white">Professor</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> {{ $discipline->teacher }} </div>
+                    <div class="text-white text-justify px-lg-3"> {{ $discipline->professor->name }} </div>
                 </div>
             </div>
         </div>
@@ -127,7 +127,7 @@
             <h3 class="text-white">Email</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
-                    <div class="text-white text-justify px-lg-3"> {{ $discipline->email }} </div>
+                    <div class="text-white text-justify px-lg-3"> {{ $discipline->professor->public_email }} </div>
                 </div>
             </div>
         </div>
