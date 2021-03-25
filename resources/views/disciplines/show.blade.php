@@ -51,11 +51,15 @@
     </div>
 
     <div class="row mt-3">
+<<<<<<< HEAD
         @if (isset($discipline->scopeMediasByType("video")->first()->url))
+=======
+        @if (isset($discipline->scopeMediasByType("video")->where("is_trailer","=","0")->first()->url))
+>>>>>>> e9afc6259ae2edc301ffc65a48db73207313fb7b
             <div class="col-12 col-sm-6">
                 <h3 class="text-white">Vídeo</h3>
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="{{ $discipline->scopeMediasByType("video")->first()->url }}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="{{ $discipline->scopeMediasByType("video")->where("is_trailer","=","0")->first()->url }}" allowfullscreen></iframe>
                 </div>
             </div>
         @else
