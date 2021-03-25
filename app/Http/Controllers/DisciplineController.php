@@ -61,13 +61,13 @@ class DisciplineController extends Controller
                 'email' => $request->input('teacherEmail'),
                 'description' => $request->input('sinopse'),
                 'difficulties' => $request->input('obstaculos'),
-                'user_id' => $userId,
+                'professor_id' => $userId,
             ]);
 
             if($request->filled('trailer')){
                 if($this->validYoutube($request->input('trailer'))){
-                    $trailer = new Medias();
-                    $trailer->name = "Trailer de $discipline->name";
+                    $trailer = new Media();
+                    $trailer->title = "Trailer de $discipline->name";
                     $trailer->type = "video";
                     $trailer->is_trailer = true;
                     $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
@@ -79,8 +79,8 @@ class DisciplineController extends Controller
 
             if($request->filled('podcast')){
                 if($this->validYoutube($request->input('podcast'))){
-                    $podcast = new Medias();
-                    $podcast->name = "Podcast de $discipline->name";
+                    $podcast = new Media();
+                    $podcast->title = "Podcast de $discipline->name";
                     $podcast->type = "podcast";
                     $podcastUrl = $this->getYoutubeIdFromUrl($request->input('podcast'));
                     $podcast->url = "https://www.youtube.com/embed/" . $podcastUrl;
@@ -92,8 +92,8 @@ class DisciplineController extends Controller
 
             if($request->filled('video')){
                 if($this->validYoutube($request->input('video'))){
-                    $video = new Medias();
-                    $video->name = "Video de $discipline->name";
+                    $video = new Media();
+                    $video->title = "Video de $discipline->name";
                     $video->type = "video";
                     $video->is_trailer = false;
                     $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
@@ -105,8 +105,8 @@ class DisciplineController extends Controller
 
             if($request->filled('materiais')){
                 if($this->validDrive($request->input('materiais'))){
-                    $materiais = new Medias();
-                    $materiais->name = "Materiais de $discipline->name";
+                    $materiais = new Media();
+                    $materiais->title = "Materiais de $discipline->name";
                     $materiais->type = "materiais";
                     $materiais->is_trailer = false;
                     $materiaisUrl = $this->getDriveIdFromUrl($request->input('materiais'));
@@ -118,8 +118,8 @@ class DisciplineController extends Controller
 
             if($request->filled('classificacao')){
                 if($this->validDrive($request->input('classificacao'))){
-                    $classificacao = new Medias();
-                    $classificacao->name = "Classificações de $discipline->name";
+                    $classificacao = new Media();
+                    $classificacao->title = "Classificações de $discipline->name";
                     $classificacao->type = "classificacao";
                     $classificacao->is_trailer = false;
                     $classificacaoUrl = $this->getDriveIdFromUrl($request->input('classificacao'));
