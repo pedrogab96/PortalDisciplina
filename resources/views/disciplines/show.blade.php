@@ -51,7 +51,7 @@
     </div>
 
     <div class="row mt-3">
-        @if (isset($discipline->getVideo->first()->url))
+        @if (isset($discipline->scopeMediasByType("video")->first()->url))
             <div class="col-12 col-sm-6">
                 <h3 class="text-white">Vídeo</h3>
                 <div class="embed-responsive embed-responsive-16by9">
