@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Discipline;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return !is_null(Auth::user()->professor);
     }
 
     /**
@@ -24,18 +25,17 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'inputSubject' => 'required|max:40',
-            'inputCode' => 'required|max:10',
-            'teacher' => 'required|max:70',
-            'teacherEmail' => 'required|max:70',
-
-            'sinopse' => 'max:5000',
-            'classificacao' => 'max:5000',
-            'obstaculos' => 'max:5000',
-            'trailer' => 'max:250',
-            'video' => 'max:250',
-            'podcast' => 'max:250',
-            'material' => 'max:250',
+            'name' => ['required', 'max:40',],
+            'code' => ['required', 'max:10',],
+            'professor-name' => ['required', 'max:70',],
+            'professor-email' => ['required', 'max:70',],
+            'synopsis' => ['nullable', 'max:5000',],
+            'classificacao' => ['nullable', 'max:5000',],
+            'difficulties' => ['nullable', 'max:5000',],
+            'media-trailer' => ['nullable', 'max:250',],
+            'media-video' => ['nullable', 'max:250',],
+            'media-podcast' => ['nullable', 'max:250',],
+            'media-material' => ['nullable', 'max:250',],
         ];
     }
 
