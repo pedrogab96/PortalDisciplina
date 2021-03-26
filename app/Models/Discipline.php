@@ -31,9 +31,9 @@ class Discipline extends Model
     ];
 
     /**
-     * @return Media
+     * @return Media|null
      */
-    public function getTrailerAttribute(): Media
+    public function getTrailerAttribute(): ?Media
     {
         return $this->medias
             ->where('is_trailer', true)
