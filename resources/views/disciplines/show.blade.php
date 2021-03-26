@@ -23,66 +23,56 @@
     </div>
 
     <div class="row mt-3">
-        @if (isset($discipline->mediaTrailer->first()->url))
-            <div class="col-sm-8">
-                <h3 class="text-white">Trailer</h3>
+        <div class="col-md-8">
+            <h3 class="text-white">Trailer</h3>
+            @if(!is_null($discipline->trailer))
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="{{ $discipline->mediaTrailer->first()->url}}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="{{ $discipline->trailer->url}}" allowfullscreen></iframe>
                 </div>
-            </div>
-        @else
-            <div class="col-sm-8">
-                <h3 class="text-white">Trailer</h3>
+            @else
                 <img class="img-fluid" src="{{ asset('img/novideo1.png') }}" alt="Sem trailer">
-            </div>
-        @endif
+            @endif
+        </div>
 
-        @if (isset($discipline->scopeMediasByType("classificacao")->first()->url))
-            <div class="col-sm-4 mt-3 mt-sm-0">
-                <h3 class="text-white">Classificação</h3>
-                <img class="img-fluid" src=" {{ $discipline->scopeMediasByType("classificacao")->first()->url }} " alt="Classificação">
-            </div>
-        @else
-            <div class="col-sm-4 mt-3 mt-sm-0">
-                <h3 class="text-white">Classificação</h3>
+        <div class="col-md-4">
+            <h3 class="text-white">Classificação</h3>
+            @if($discipline->hasMediaOfType(\App\Enums\MediaType::CLASSIFICACAO))
+                <img class="img-fluid" alt="Classificação"
+                     src="{{ $discipline->getMediasByType(\App\Enums\MediaType::CLASSIFICACAO)->first()->url }}">
+            @else
                 <img class="img-fluid" src="{{ asset('img/novideo2.png') }}" alt="Sem classificação">
-            </div>
-        @endif
+            @endif
+        </div>
     </div>
 
     <div class="row mt-3">
-        @if (isset($discipline->scopeMediasByType("video")->where("is_trailer","=","0")->first()->url))
-            <div class="col-12 col-sm-6">
-                <h3 class="text-white">Vídeo</h3>
+        <div class="col-md-6">
+            <h3 class="text-white">Vídeo</h3>
+            @if($discipline->hasMediaOfType(\App\Enums\MediaType::VIDEO))
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="{{ $discipline->scopeMediasByType("video")->where("is_trailer","=","0")->first()->url }}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" allowfullscreen
+                            src="{{ $discipline->getMediasByType(\App\Enums\MediaType::VIDEO)->first()->url }}"></iframe>
                 </div>
-            </div>
-        @else
-            <div class="col-12 col-sm-6">
-                <h3 class="text-white">Vídeo</h3>
+            @else
                 <img class="img-fluid" src="{{ asset('img/novideo2.png') }}" alt="Sem vídeo">
-            </div>
-        @endif
+            @endif
+        </div>
 
-        @if (isset($discipline->scopeMediasByType("podcast")->first()->url))
-            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                <h3 class="text-white">Podcast</h3>
+        <div class="col-md-6">
+            <h3 class="text-white">Podcast</h3>
+            @if($discipline->hasMediaOfType(\App\Enums\MediaType::PODCAST))
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="{{ $discipline->scopeMediasByType("podcast")->first()->url}}" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" allowfullscreen
+                            src="{{ $discipline->getMediasByType(\App\Enums\MediaType::PODCAST)->first()->url}}"></iframe>
                 </div>
-            </div>
-        @else
-            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                <h3 class="text-white">Podcast</h3>
+            @else
                 <img class="img-fluid" src="{{ asset('img/novideo2.png') }}" alt="Sem podcast">
-            </div>
-        @endif
-
+            @endif
+        </div>
     </div>
 
     <div class="row mt-3">
-        <div class="col-sm-10">
+        <div class="col-md-10">
             <h3 class="text-white">Obstáculos</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
@@ -91,30 +81,28 @@
             </div>
         </div>
 
-        @if (isset($discipline->scopeMediasByType("materiais")->first()->url))
-            <div class="col-sm-2 mt-3 mt-sm-0">
-                <h3 class="text-white">Materiais</h3>
+        <div class="col-md-2">
+            <h3 class="text-white">Materiais</h3>
+            @if($discipline->hasMediaOfType(\App\Enums\MediaType::MATERIAIS))
                 <div class="d-flex align-center">
-                    <a href="{{ $discipline->scopeMediasByType("materiais")->first()->url}}" class="text">
+                    <a href="{{ $discipline->getMediasByType(\App\Enums\MediaType::MATERIAIS)->first()->url}}"
+                       class="text">
                         <i class="fas fa-file-download fa-9x materiais-on"></i>
-                    </a> <br>
+                    </a>
+                    <br/>
                 </div>
-            </div>
-
-        @else
-            <div class="col-sm-2 mt-3 mt-sm-0">
-                <h3 class="text-white">Materiais</h3>
-                <a href="javascript:;" class="text">
+            @else
+                <a href="#" class="text">
                     {{-- <i class="fas fa-file-download fa-7x materiais-off"></i> --}}
                     <i class="fas fa-file-excel fa-9x materiais-off"></i>
-                </a> <br>
-            </div>
-
-        @endif
+                </a>
+                <br/>
+            @endif
+        </div>
     </div>
 
-    <div class="row mt-3 mb-3">
-        <div class="col-sm-6">
+    <div class="row mt-3">
+        <div class="col-md-6">
             <h3 class="text-white">Professor</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
@@ -123,7 +111,7 @@
             </div>
         </div>
 
-        <div class="col-sm-4 mt-3 mt-sm-0">
+        <div class="col-md-6">
             <h3 class="text-white">Email</h3>
             <div class="border border-info rounded">
                 <div class="bg-color4">
