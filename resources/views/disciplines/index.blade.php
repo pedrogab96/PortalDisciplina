@@ -40,13 +40,13 @@
                 @foreach ($disciplines as $discipline)
                     <div class="col-12 col-sm-6 col-lg-3 mt-5">
                         <div class="card shadow">
-                            @if (!isset($discipline->mediaTrailer->first()->url))
+                            @if (!is_null($discipline->trailer))
                                 <img src="{{asset('img/IMD_logo.svg')}}" class="card-img-top" alt="..">
 
                             @else
                                 <div class="teacher-video-container">
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="{{ $discipline->mediaTrailer->first()->url }}" allowfullscreen></iframe>
+                                        <iframe class="embed-responsive-item" src="{{ $discipline->trailer->url }}" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             @endif
