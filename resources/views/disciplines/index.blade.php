@@ -52,8 +52,8 @@
 
                             <div class="card-body">
                                 <h5 class="card-title">{{ $discipline->name }}</h5>
-                                <p class="card-text">{{ Str::limit($discipline->description, 70,' (...)') }}</p>
-                                <a href="{{ route('disciplinas.show', $discipline->id) }}" class="btn btn-primary">Ver
+                                <p class="card-text">{{ Str::limit($discipline->synopsis, 70,' (...)') }}</p>
+                                <a href="{{ route('disciplinas.show', $discipline->id) }}" class="btn btn-primary mt-2">Ver
                                     mais</a>
 
                                 @auth
