@@ -58,6 +58,7 @@ class Discipline extends Model
     public function getMediasByType(string $type): Collection
     {
         return $this->medias
+            ->where('is_trailer', false)
             ->where('type', $type);
     }
 
