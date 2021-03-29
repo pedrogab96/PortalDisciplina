@@ -70,5 +70,18 @@ class UserTableSeeder extends Seeder
             'profile_pic_link' => '',
             'user_id' => $user->id,
         ]);
+
+        $user = User::create([
+            'name' => 'Victor Professor',
+            'email' => 'victor.professor@email.com',
+            'password' => '$2y$10$toyM29iTlElj.ShFuHu0KumYyhKXtSGXVhBHy.YzS9eSEg89sKQMW',
+            'role_id' => $roleProfessor->id,
+        ]);
+        Professor::create([
+            'name' => $user->name,
+            'public_email' => $user->email,
+            'profile_pic_link' => '',
+            'user_id' => $user->id,
+        ]);
     }
 }

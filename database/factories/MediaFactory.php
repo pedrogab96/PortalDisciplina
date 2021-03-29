@@ -27,7 +27,7 @@ class MediaFactory extends Factory
         return [
             'title' => $this->faker->text(25),
             'type' => MediaType::random(),
-            'address' => $this->faker->text(50),
+            'url' => $this->faker->text(50),
             'is_trailer' => $this->faker->boolean,
             'discipline_id' => Discipline::factory(),
         ];

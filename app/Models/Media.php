@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Media extends Model
 {
     use HasFactory;
@@ -24,7 +23,7 @@ class Media extends Model
     protected $fillable = [
         'title',
         'type',
-        'address',
+        'url',
         'is_trailer',
         'discipline_id',
     ];
