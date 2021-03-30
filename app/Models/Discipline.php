@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Discipline extends Model
 {
@@ -28,6 +29,50 @@ class Discipline extends Model
         'difficulties',
         'professor_id',
     ];
+
+    /**
+     * @return Media|null
+     */
+    public function getTrailerAttribute(): ?Media
+    {
+        return $this->medias
+            ->where('is_trailer', true)
+            ->first();
+    }
+
+    /**
+     * Get all medias (trailer not included).
+     *
+     * @return Collection
+     */
+    public function getMedias(): Collection
+    {
+        return $this->medias
+            ->where('is_trailer', false);
+    }
+
+    /**
+     * @param string $type
+     * @return Collection
+     */
+    public function getMediasByType(string $type): Collection
+    {
+        return $this->medias
+            ->where('is_trailer', false)
+            ->where('type', $type);
+    }
+
+    /**
+     * @param string $type
+     * @return bool
+     */
+    public function hasMediaOfType(string $type): bool
+    {
+        return $this->medias
+                ->where('is_trailer', false)
+                ->where('type', $type)
+                ->count() > 0;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

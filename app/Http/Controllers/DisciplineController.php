@@ -2,180 +2,153 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\MediaType;
+use App\Http\Requests\Discipline\CreateRequest;
+use App\Http\Requests\Discipline\StoreRequest;
+use App\Services\Urls\GoogleDriveService;
+use App\Services\Urls\YoutubeService;
 use Illuminate\Http\Request;
-
 use \App\Models\Discipline;
-use \App\Models\Medias;
+use \App\Models\Media;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 
 class DisciplineController extends Controller
 {
+    const VIEW_PATH = 'disciplines.';
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        // $disciplines = Discipline::select('select * from disciplines');
+        $disciplines = Discipline::query()
+            ->with([
+                'medias',
+            ])->get();
 
-        //Ajustar isso para quando estiver o campo no banco de dados para a verificação de trailer
-        $disciplines = DB::table('disciplines')
-        ->select('disciplines.*',
-            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
-        ->get();
-
-        return view('disciplines-search')
-            ->with('disciplines',$disciplines);
+        return view(self::VIEW_PATH . 'index', compact('disciplines'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param CreateRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create(CreateRequest $request)
     {
-        if(!Auth::check()){
-            return redirect()->route('login');
-        }
-        return view('discipline-new');
+        return view(self::VIEW_PATH . 'create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        /* Id do usuario logado */
-        $userId = Auth::id();
+        $user = Auth::user();
 
-        /* Validacao */
-        $regras = [
-            'inputSubject' => 'required|max:40',
-            'inputCode' => 'required|max:10',
-            'teacher' => 'required|max:70',
-            'teacherEmail' => 'required|max:70',
+        DB::beginTransaction();
+        try {
+            $discipline = Discipline::create([
+                'name' => $request->input('name'),
+                'code' => $request->input('code'),
+                'teacher' => $request->input('professor-name'),
+                'email' => $request->input('professor-email'),
+                'synopsis' => $request->input('synopsis'),
+                'difficulties' => $request->input('difficulties'),
+                'professor_id' => $user->professor->id,
+            ]);
 
-            'sinopse' => 'max:5000',
-            'classificacao' => 'max:5000',
-            'obstaculos' => 'max:5000',
-            'trailer' => 'max:250',
-            'video' => 'max:250',
-            'podcast' => 'max:250',
-            'material' => 'max:250',
-        ];
-
-        $mensagens = [
-            'required' => 'O atributo :attribute não pode estar em branco.',
-            'inputSubject.max' => 'Máximo de 40 caracteres!',
-            'teacher.max' => 'Máximo de 70 caracteres!',
-            'teacherEmail.max' => 'Máximo de 70 caracteres!',
-            'inputCode.max' => 'Máximo de 10 caracteres!',
-            'sinopse.max' => 'Máximo de 5000 caracteres!',
-            'classificacao.max' => 'Máximo de 5000 caracteres!',
-            'obstaculos.max' => 'Máximo de 5000 caracteres!',
-            'trailer.max' => 'Máximo de 250 caracteres!',
-            'video.max' => 'Máximo de 250 caracteres!',
-            'podcast.max' => 'Máximo de 250 caracteres!',
-            'material.max' => 'Máximo de 250 caracteres!',
-        ];
-
-        $request->validate($regras, $mensagens);
-
-        /* Registro no banco */
-        $discipline = new Discipline();
-        $discipline->name = $request->input('inputSubject');
-        $discipline->code = $request->input('inputCode');
-        $discipline->teacher = $request->input('teacher');
-        $discipline->email = $request->input('teacherEmail');
-        $discipline->description = $request->input('sinopse');
-        $discipline->difficulties = $request->input('obstaculos');
-        $discipline->user_id = $userId;
-        $discipline->save();
-
-        if($request->filled('trailer')){
-            if($this->validYoutube($request->input('trailer'))){
-                $trailer = new Medias();
-                $trailer->name = "Trailer de $discipline->name";
-                $trailer->type = "video";
-                $trailer->is_trailer = true;
-                $trailerUrl = $this->getYoutubeIdFromUrl($request->input('trailer'));
-                $trailer->url = "https://www.youtube.com/embed/" . $trailerUrl;
-                $trailer->discipline_id = $discipline->id;
-                $trailer->save();
+            if ($request->filled('media-trailer') && YoutubeService::match($request->input('media-trailer'))) {
+                $mediaId = YoutubeService::getIdFromUrl($request->input('media-trailer'));
+                Media::create([
+                    'title' => 'Trailer de ' . $discipline->name,
+                    'type' => MediaType::VIDEO,
+                    'is_trailer' => true,
+                    'url' => 'https://www.youtube.com/embed/' . $mediaId,
+                    'discipline_id' => $discipline->id,
+                ]);
             }
-        }
 
-        if($request->filled('podcast')){
-            if($this->validYoutube($request->input('podcast'))){
-                $podcast = new Medias();
-                $podcast->name = "Podcast de $discipline->name";
-                $podcast->type = "podcast";
-                $podcastUrl = $this->getYoutubeIdFromUrl($request->input('podcast'));
-                $podcast->url = "https://www.youtube.com/embed/" . $podcastUrl;
-                $podcast->is_trailer = false;
-                $podcast->discipline_id = $discipline->id;
-                $podcast->save();
+            if ($request->filled('media-podcast') && YoutubeService::match($request->input('media-podcast'))) {
+                $mediaId = YoutubeService::getIdFromUrl($request->input('media-podcast'));
+                Media::create([
+                    'title' => "Podcast de " . $discipline->name,
+                    'type' => MediaType::PODCAST,
+                    'url' => "https://www.youtube.com/embed/" . $mediaId,
+                    'is_trailer' => false,
+                    'discipline_id' => $discipline->id
+                ]);
             }
-        }
 
-        if($request->filled('video')){
-            if($this->validYoutube($request->input('video'))){
-                $video = new Medias();
-                $video->name = "Video de $discipline->name";
-                $video->type = "video";
-                $video->is_trailer = false;
-                $videoUrl = $this->getYoutubeIdFromUrl($request->input('video'));
-                $video->url = "https://www.youtube.com/embed/" . $videoUrl;
-                $video->discipline_id = $discipline->id;
-                $video->save();
+            if ($request->filled('media-video') && YoutubeService::match($request->input('media-video'))) {
+                $mediaId = YoutubeService::getIdFromUrl($request->input('media-video'));
+                Media::create([
+                    'title' => "Video de " . $discipline->name,
+                    'type' => MediaType::VIDEO,
+                    'is_trailer' => false,
+                    'url' => "https://www.youtube.com/embed/" . $mediaId,
+                    'discipline_id' => $discipline->id
+                ]);
             }
-        }
 
-        if($request->filled('materiais')){
-            if($this->validDrive($request->input('materiais'))){
-                $materiais = new Medias();
-                $materiais->name = "Materiais de $discipline->name";
-                $materiais->type = "materiais";
-                $materiais->is_trailer = false;
-                $materiaisUrl = $this->getDriveIdFromUrl($request->input('materiais'));
-                $materiais->url = "https://drive.google.com/uc?export=download&id=" . $materiaisUrl;
-                $materiais->discipline_id = $discipline->id;
-                $materiais->save();
+            if ($request->filled('media-material') && GoogleDriveService::match($request->input('media-material'))) {
+                $mediaId = GoogleDriveService::getIdFromUrl($request->input('media-material'));
+                Media::create([
+                    'title' => "Materiais de " . $discipline->name,
+                    'type' => MediaType::MATERIAIS,
+                    'is_trailer' => false,
+                    'url' => "https://drive.google.com/uc?export=download&id=" . $mediaId,
+                    'discipline_id' => $discipline->id
+                ]);
             }
-        }
 
-        if($request->filled('classificacao')){
-            if($this->validDrive($request->input('classificacao'))){
-                $classificacao = new Medias();
-                $classificacao->name = "Classificações de $discipline->name";
-                $classificacao->type = "classificacao";
-                $classificacao->is_trailer = false;
-                $classificacaoUrl = $this->getDriveIdFromUrl($request->input('classificacao'));
-                $classificacao->url = "https://drive.google.com/uc?id=" . $classificacaoUrl;
-                $classificacao->discipline_id = $discipline->id;
-                $classificacao->save();
+            // TODO: sistema de classificação
+            /*
+            if ($request->filled('classificacao')) {
+                if ($this->validDrive($request->input('classificacao'))) {
+                    $classificacaoUrl = $this->getDriveIdFromUrl($request->input('classificacao'));
+                    Media::create([
+                        'title' => "Classificações de $discipline->name",
+                        'type' => "classificacao",
+                        'is_trailer' => false,
+                        'url' => "https://drive.google.com/uc?id=" . $classificacaoUrl,
+                        'discipline_id' => $discipline->id,
+                    ]);
+                }
             }
+            */
+            DB::commit();
+            return redirect()->route('disciplinas.show', $discipline->id);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->route('disciplinas.create')
+                ->withInput();
         }
-
-        return redirect('/');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
+        $discipline = Discipline::query()
+            ->with([
+                'professor',
+                'medias',
+            ])
+            ->findOrFail($id);
+        /*
         $discipline = Discipline::where('disciplines.id','=', "$id")
         ->join('users', 'users.id', '=', 'disciplines.user_id')
         ->select('disciplines.*','users.name as nameUser')
@@ -207,21 +180,15 @@ class DisciplineController extends Controller
         ->where('medias.type','=',"classificacao")
         ->select('medias.*','medias.url as urlMedia')
         ->first();
+        */
 
-
-        return view('discipline')
-            ->with('disciplines',$discipline)
-            ->with('trailer',$trailer)
-            ->with('video',$video)
-            ->with('podcast',$podcast)
-            ->with('materiais',$materiais)
-            ->with('classificacao',$classificacao);
+        return view(self::VIEW_PATH . 'show', compact('discipline'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -232,8 +199,8 @@ class DisciplineController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -244,103 +211,53 @@ class DisciplineController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        $discipline = Discipline::find($id);
-        $discipline->delete();
+        Discipline::query()
+            ->where('id', $id)
+            ->delete();
+
         return redirect()->route('index');
 
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $search = $request->input('search');
 
         $disciplines = DB::table('disciplines')
             ->select('disciplines.*',
-            (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
-            ->where('disciplines.name','like',"%$search%")
+                (DB::raw("(SELECT medias.url FROM medias WHERE medias.discipline_id = disciplines.id and medias.type = 'video' and medias.is_trailer = '1' ) AS urlMedia")))
+            ->where('disciplines.name', 'like', "%$search%")
             ->get();
 
         return view('disciplines-search')
-                ->with('disciplines',$disciplines)
-                ->with('search',$search);
+            ->with('disciplines', $disciplines)
+            ->with('search', $search);
 
     }
 
-    public function mydisciplines(){
+    public function mydisciplines()
+    {
 
 
-        if(!Auth::check()){
+        if (!Auth::check()) {
             return redirect()->route('login');
         }
 
         $id = Auth::id();
-        $disciplines = Discipline::where('user_id','=',$id)
-        ->join('users', 'users.id', '=', 'disciplines.user_id')
-        ->leftJoin('medias','disciplines.id','=','medias.discipline_id')
-        ->select('disciplines.*','users.name as nameUser')
-        ->orderBy('disciplines.name','asc')
-        ->orderBy('nameUser','asc')
-        ->get();
+        $disciplines = Discipline::where('user_id', '=', $id)
+            ->join('users', 'users.id', '=', 'disciplines.user_id')
+            ->leftJoin('medias', 'disciplines.id', '=', 'medias.discipline_id')
+            ->select('disciplines.*', 'users.name as nameUser')
+            ->orderBy('disciplines.name', 'asc')
+            ->orderBy('nameUser', 'asc')
+            ->get();
 
         return view('my-disciplines')
-            ->with('disciplines',$disciplines);
+            ->with('disciplines', $disciplines);
     }
-
-    /**
-     * Inspirado em
-     * https://stackoverflow.com/questions/3392993/php-regex-to-get-youtube-video-id/3393008#3393008
-    */
-    public function getYoutubeIdFromUrl($url) {
-        $parts = parse_url($url);
-        if(isset($parts['query'])){
-            parse_str($parts['query'], $qs);
-            if(isset($qs['v'])){
-                return $qs['v'];
-            }else if(isset($qs['vi'])){
-                return $qs['vi'];
-            }
-        }
-        if(isset($parts['path'])){
-            $path = explode('/', trim($parts['path'], '/'));
-            return $path[count($path)-1];
-        }
-        return false;
-    }
-
-    /**
-     * Inspirado em
-     * https://stackoverflow.com/questions/19377262/regex-for-youtube-url
-     * https://regexr.com/3dj5t
-    */
-    public function validYoutube($url) {
-        $match = "#^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$#";
-
-        if(preg_match($match, $url))
-            return true;
-        else
-            return false;
-    }
-
-    public function getDriveIdFromUrl($url) {
-        $parts = explode("/", $url);
-        if(isset($parts[5])) {
-            return $parts[5];
-        }
-
-        return false;
-    }
-
-    public function validDrive($url) {
-        $match = "#https://drive\.google\.com/file/d/(.*?)/.*?\?usp=sharing#";
-
-        if(preg_match($match, $url))
-            return true;
-        else
-            return false;
-    }
-
 }
