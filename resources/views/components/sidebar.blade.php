@@ -27,9 +27,15 @@
                 {{-- <li class="sidebar-item">
                     <a href="{{route("mydisciplines")}}" class="list-links">Minhas disciplinas</a>
                 </li> --}}
+                @if (auth()->user()->is_admin)
+                <li class="sidebar-item">
+                        <a name="adminPannel" class="list-links"
+                           href="{{ route("professores.index") }}" role="button">Painel de Administração</a>
+                </li>
+                @endif
             @endauth
-            
-            
+
+
 
             <li class="sidebar-item">
                 <a class="list-links" href="{{route('information')}}">Sobre</a>
@@ -37,7 +43,7 @@
             <li class="sidebar-item">
                 <a class="list-links" href="{{route('collaborate')}}">Como colaborar</a>
             </li>
-            
+
             {{-- <li class="sidebar-item">
                 <a class="list-links" href="#">FAQ</a>
             </li> --}}

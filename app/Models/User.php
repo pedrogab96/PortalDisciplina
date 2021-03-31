@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Professor::class);
     }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->role->priority_level == 999;
+    }
 }
