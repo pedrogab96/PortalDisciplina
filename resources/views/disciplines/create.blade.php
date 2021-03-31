@@ -103,7 +103,7 @@
 
                 <div class="form-group mt-3">
                     <label class="text-white" for="classificacao">
-                        Classificação
+                        Classificações
                     </label>
 
                     <div class="form-row text-white align-items-center">
