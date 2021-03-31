@@ -31,7 +31,6 @@ class ProfessorUserController extends Controller
         DB::beginTransaction();
         try
         {
-
             $user = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
@@ -52,6 +51,7 @@ class ProfessorUserController extends Controller
             ]);
 
             DB::commit();
+            return redirect()->route('professores.index');
 
         }catch(\Exception $exception)
         {

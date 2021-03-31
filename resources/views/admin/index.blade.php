@@ -10,31 +10,33 @@ Painel de Administração
 
 @section('content')
 
-<div class="row">
-    <div class="col-12 col-sm-6 col-lg-3 mt-5 mb-2">
-        <a name="createProfessor" class="btn btn-outline-light btn-block"
-           href="{{ route("professores.create") }}" role="button">Cadastrar professor</a>
+@isset($success)
+    <div class="alert alert-success border-left-success" role="alert">
+        <span>{{ $success }}</span>
     </div>
-</div>
-    <div>
+@endisset
+
+<div class="card">
+    <h4 class="text-center m-4">Professores</h4>
+    <div class="card-body">
         <table class="table">
-            <thead class="thead-light">
+            <thead>
                 <tr>
-                    <th scope="col" class="text-black">ID</th>
-                    <th scope="col" class="text-black">Nome</th>
-                    <th scope="col" class="text-black">Email</th>
-                    <th scope="col" class="text-black">Email Público</th>
-                    <th scope="col" class="text-black">Ações</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Email Público</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($professors as $professor)
+                @foreach ($professors as $i => $professor)
                     <tr>
-                        <th scope="row" class="text-white">{{$professor->id}}</th>
-                        <td class="text-white">{{$professor->name}}</td>
-                        <td class="text-white">{{$professor->user->email}}</td>
-                        <td class="text-white">{{$professor->public_email}}</td>
-                        <td class="text-white">
+                        <th scope="row">{{$i+1}}</th>
+                        <td>{{$professor->name}}</td>
+                        <td>{{$professor->user->email}}</td>
+                        <td>{{$professor->public_email}}</td>
+                        <td>
                             <div class="form-group">
                                 <form action="{{route('professores.destroy',$professor->id)}}" method="POST">
                                     @csrf
@@ -44,7 +46,7 @@ Painel de Administração
                             </div>
                             <div class="form-group">
                                 <form action="" method="POST">
-                                    <input type="submit" value="Redefinir Senha" class="btn btn-outline-light btn-block">
+                                    <input type="submit" value="Redefinir Senha" class="btn btn-primary btn-block">
                                 </form>
                             </div>
                         </td>
@@ -52,5 +54,16 @@ Painel de Administração
                 @endforeach
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-sm-6 col-lg-3 mt-5 mb-2">
+        <a name="createProfessor" class="btn btn-outline-light btn-block"
+           href="{{ route("professores.create") }}" role="button">Cadastrar professor</a>
+    </div>
+</div>
+    <div>
+       
     </div>
 @endsection

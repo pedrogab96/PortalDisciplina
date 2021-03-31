@@ -13,7 +13,7 @@ Cadastro de Professor
      <form action="{{route('professores.store')}}" method="post">
         @csrf
         <div class="form-row">
-            <div class="form-group col-md-10">
+            <div class="form-group col-12">
                 <label for="name" class="text-white">Nome</label>
                 <input  type="text"
                         class="form-control {{ $errors->has('name') ? 'is-invalid' : ''}}"
@@ -27,7 +27,7 @@ Cadastro de Professor
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-10">
+            <div class="form-group col-12">
                 <label for="email" class="text-white">Email</label>
                 <input  type="text"
                         class="form-control {{ $errors->has('email') ? 'is-invalid' : ''}}"
@@ -41,7 +41,7 @@ Cadastro de Professor
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-10">
+            <div class="form-group col-12">
                 <label for="public_email" class="text-white">Email Público</label>
                 <input  type="text"
                         class="form-control {{ $errors->has('public-email') ? 'is-invalid' : ''}}"
@@ -55,7 +55,7 @@ Cadastro de Professor
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-6">
                 <label for="password" class="text-white">Senha</label>
                 <input  type="password"
                         class="form-control {{ $errors->has('password') ? 'is-invalid' : ''}}"
@@ -66,7 +66,7 @@ Cadastro de Professor
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-6">
                 <label for="password-confirmation" class="text-white">Confirmar senha</label>
                 <input  type="password"
                         class="form-control {{ $errors->has('password-confirmation') ? 'is-invalid' : ''}}"
