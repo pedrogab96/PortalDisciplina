@@ -106,32 +106,188 @@
                         Classificação
                     </label>
 
-                    <div>
-                        <a href="javascript:void(0)" onclick="Avaliar(1)">
-                            <img src="{{ asset('img/star0.png') }}" id="s1"></a>
+                    <div class="form-row text-white align-items-center">
+                        <div class="col-12" id="classification-1">
+                            <span class="text-white mr-3">Apresentação de Trabalhos</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-1')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
 
-                        <a href="javascript:void(0)" onclick="Avaliar(2)">
-                            <img src="{{ asset('img/star0.png') }}" id="s2"></a>
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-1')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
 
-                        <a href="javascript:void(0)" onclick="Avaliar(3)">
-                            <img src="{{ asset('img/star0.png') }}" id="s3"></a>
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-1')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
 
-                        <a href="javascript:void(0)" onclick="Avaliar(4)">
-                            <img src="{{ asset('img/star0.png') }}" id="s4"></a>
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-1')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
 
-                        <a href="javascript:void(0)" onclick="Avaliar(5)">
-                            <img src="{{ asset('img/star0.png') }}" id="s5"></a>
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-1')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
 
-                        <p id="rating" class="text-white">0</p>
+                            <span class="rating">0</span>
+                        </div>
+
+                        <div class="col-12" id='classification-2'>
+                            <span class="text-white mr-3">Produção Textual</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-2')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-2')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-2')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-2')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-2')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <span class="rating">0</span>
+                        </div>
+
+                        <div class="col-12" id='classification-3'>
+                            <span class="text-white mr-3">Lista de Exercícios</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-3')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-3')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-3')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-3')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-3')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <span class="rating">0</span>
+                        </div>
+
+                         <div class="col-12" id='classification-4'>
+                            <span class="text-white mr-3">Discussão Social</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-4')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-4')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-4')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-4')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-4')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <span class="rating">0</span>
+                        </div>
+
+                        <div class="col-12" id='classification-5'>
+                            <span class="text-white mr-3">Discussão Técnica</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-5')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-5')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-5')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-5')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-5')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <span class="rating">0</span>
+                        </div>
+
+                        <div class="col-12" id='classification-6'>
+                            <span class="text-white mr-3">Abordagem Teórica</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-6')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-6')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-6')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-6')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-6')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <span class="rating">0</span>
+                        </div>
+
+                        <div class="col-12" id='classification-7'>
+                            <span class="text-white mr-3">Abordagem Prática</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-7')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-7')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-7')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-7')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-7')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <span class="rating">0</span>
+                        </div>
+
+                        <div class="col-12" id='classification-8'>
+                            <span class="text-white mr-3">Avaliação por Provas Escritas</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-8')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-8')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-8')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-8')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-8')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <span class="rating">0</span>
+                        </div>
+
+                        <div class="col-12" id='classification-9'>
+                            <span class="text-white mr-3">Avaliação por Atividades</span>
+                            <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'classification-9')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s2" onclick="Avaliar(2, 'classification-9')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s3" onclick="Avaliar(3, 'classification-9')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s4" onclick="Avaliar(4, 'classification-9')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <a href="javascript:void(0)" class="s5" onclick="Avaliar(5, 'classification-9')">
+                                <img src="{{ asset('img/star0.png') }}"></a>
+
+                            <span class="rating">0</span>
+                        </div>
                     </div>
 
-                    {{-- <input type="text"
-                           class="form-control {{ $errors->has('classificacao') ? 'is-invalid' : ''}}"
-                           name="classificacao"
-                           id="classificacao"
-                           value="{{old('classificacao')}}"
-                           aria-describedby="basic-addon3"
-                           placeholder="Link para imagem no Google Drive"> --}}
                     @error('classificacao')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
