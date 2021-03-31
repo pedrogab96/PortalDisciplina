@@ -8,6 +8,10 @@
     noindex, follow
 @endsection
 
+@section('scripts-head')
+    <script src="{{asset('js/rating.js')}}" type="text/javascript"></script>
+@endsection
+
 @section('content')
     <h4 class="text-white">Registrar nova disciplina</h4>
     <form action="{{ route("disciplinas.store") }}" method="post">
@@ -101,13 +105,33 @@
                     <label class="text-white" for="classificacao">
                         Classificação
                     </label>
-                    <input type="text"
+
+                    <div>
+                        <a href="javascript:void(0)" onclick="Avaliar(1)">
+                            <img src="{{ asset('img/star0.png') }}" id="s1"></a>
+
+                        <a href="javascript:void(0)" onclick="Avaliar(2)">
+                            <img src="{{ asset('img/star0.png') }}" id="s2"></a>
+
+                        <a href="javascript:void(0)" onclick="Avaliar(3)">
+                            <img src="{{ asset('img/star0.png') }}" id="s3"></a>
+
+                        <a href="javascript:void(0)" onclick="Avaliar(4)">
+                            <img src="{{ asset('img/star0.png') }}" id="s4"></a>
+
+                        <a href="javascript:void(0)" onclick="Avaliar(5)">
+                            <img src="{{ asset('img/star0.png') }}" id="s5"></a>
+
+                        <p id="rating" class="text-white">0</p>
+                    </div>
+
+                    {{-- <input type="text"
                            class="form-control {{ $errors->has('classificacao') ? 'is-invalid' : ''}}"
                            name="classificacao"
                            id="classificacao"
                            value="{{old('classificacao')}}"
                            aria-describedby="basic-addon3"
-                           placeholder="Link para imagem no Google Drive">
+                           placeholder="Link para imagem no Google Drive"> --}}
                     @error('classificacao')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
