@@ -27,6 +27,7 @@ class DisciplineController extends Controller
     {
         $disciplines = Discipline::query()
             ->with([
+                'professor',
                 'medias',
             ])->get();
 
