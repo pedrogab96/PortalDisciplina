@@ -91,6 +91,14 @@ class Discipline extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function classifications()

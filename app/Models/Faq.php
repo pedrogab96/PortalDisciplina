@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Media extends Model
+class Faq extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Media extends Model
      *
      * @var string
      */
-    protected $table = 'medias';
+    protected $table = 'faqs';
 
     /**
      * The attributes that are mass assignable.
@@ -23,19 +23,8 @@ class Media extends Model
      */
     protected $fillable = [
         'title',
-        'type',
-        'url',
-        'is_trailer',
+        'content',
         'discipline_id',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'is_trailer' => 'boolean',
     ];
 
     /**
