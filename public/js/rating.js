@@ -1,4 +1,4 @@
-function Avaliar(estrela, classificationId) {
+function Avaliar(estrela, classificationName) {
 
     var url = window.location;
     url = url.toString()
@@ -7,6 +7,10 @@ function Avaliar(estrela, classificationId) {
 
     var star0 = "../img/star0.png";
     var star1 = "../img/star1.png";
+
+    var classificationId = "classification-" + classificationName;
+    var classificationStars = "stars-" + classificationName;
+
 
     var classification = document.getElementById(classificationId);
 
@@ -23,6 +27,8 @@ function Avaliar(estrela, classificationId) {
     var uriS3 = s3.substring(s3.length-13);
     var uriS4 = s4.substring(s4.length-13);
     var uriS5 = s5.substring(s5.length-13);
+
+    console.log()
 
 
     if (estrela == 5){
@@ -125,5 +131,5 @@ function Avaliar(estrela, classificationId) {
     }
 
     classification.getElementsByClassName('rating')[0].innerHTML = avaliacao;
-
+    document.getElementById(classificationStars).value = avaliacao;
 }
