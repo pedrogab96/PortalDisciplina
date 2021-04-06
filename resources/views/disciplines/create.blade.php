@@ -106,7 +106,7 @@
                         Classificações
                     </label>
 
-                    <div class="form-row text-white align-items-center">
+                    <div class="form-row text-white align-items-center" id="classificacao">
                         <div class="col-12" id="classification-apresentacao-trabalhos">
                             <span class="text-white mr-3">Apresentação de Trabalhos</span>
                             <a href="javascript:void(0)" class="s1" onclick="Avaliar(1, 'apresentacao-trabalhos')">
@@ -295,6 +295,11 @@
                             <span class="rating">0</span>
                             <input type="hidden" id="stars-avaliacao-atividades" name="stars-avaliacao-atividades" value=0>
                         </div>
+
+                        <span id="rating-available">20</span>
+                        <span>/</span>
+                        <span id="rating-total">0</span>
+                        <input type="hidden" id="stars-total" name="stars-total" value=0>
                     </div>
 
                     @error('classificacao')
