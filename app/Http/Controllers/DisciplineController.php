@@ -145,6 +145,7 @@ class DisciplineController extends Controller
             ->with([
                 'professor',
                 'medias',
+                'faqs',
             ])
             ->findOrFail($id);
 
