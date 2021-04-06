@@ -60,8 +60,6 @@ class DisciplineController extends Controller
             $discipline = Discipline::create([
                 'name' => $request->input('name'),
                 'code' => $request->input('code'),
-                'teacher' => $request->input('professor-name'),
-                'email' => $request->input('professor-email'),
                 'synopsis' => $request->input('synopsis'),
                 'difficulties' => $request->input('difficulties'),
                 'professor_id' => $user->professor->id,
