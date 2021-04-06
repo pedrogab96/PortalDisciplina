@@ -147,41 +147,10 @@ class DisciplineController extends Controller
                 'medias',
             ])
             ->findOrFail($id);
-        /*
-        $discipline = Discipline::where('disciplines.id','=', "$id")
-        ->join('users', 'users.id', '=', 'disciplines.user_id')
-        ->select('disciplines.*','users.name as nameUser')
-        ->first();
 
-        $trailer = Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"video")
-        ->where('medias.is_trailer','=',"1")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
+        $can = Auth::user()->canDiscipline($discipline);
 
-        $video = Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"video")
-        ->where('medias.is_trailer','=',"0")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
-
-        $podcast= Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"podcast")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
-
-        $materiais= Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"materiais")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
-
-        $classificacao= Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"classificacao")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
-        */
-
-        return view(self::VIEW_PATH . 'show', compact('discipline'));
+        return view(self::VIEW_PATH . 'show', compact('discipline', 'can'));
     }
 
     /**

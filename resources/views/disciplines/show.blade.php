@@ -11,6 +11,18 @@
 @section('content')
     <h2 class="container-fluid text-white text-center">{{ $discipline->name }} - {{ $discipline->code }}</h2>
 
+    @if($can)
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3 mt-5">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-light btn-block"
+                        data-toggle="modal" data-target="#faqs-create">
+                    Registrar FAQ
+                </button>
+            </div>
+        </div>
+    @endif
+
     <div class="row mt-3">
         <div class="col-12">
             <h3 class="text-white">Sinopse</h3>
@@ -120,4 +132,8 @@
             </div>
         </div>
     </div>
+
+    @if($can)
+        @include('faqs.create_modal', ['discipline' => $discipline])
+    @endif
 @endsection
