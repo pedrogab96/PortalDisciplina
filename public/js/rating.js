@@ -122,8 +122,8 @@ function Avaliar(estrela, classificationName) {
             classification.getElementsByClassName('s5')[0].children[0].src = star0;
             avaliacao = 1;
         }
-        // else if(verifyStars(classificationStars, 0)) {
-        else {
+        // else {
+        else if(verifyStars(classificationStars, 0)) {
             classification.getElementsByClassName('s1')[0].children[0].src = star0;
             classification.getElementsByClassName('s2')[0].children[0].src = star0;
             classification.getElementsByClassName('s3')[0].children[0].src = star0;
@@ -152,7 +152,8 @@ function verifyStars(classificationStars, avaliacao){
     stars = starSum();
     starsAvailable = 20 - (stars + diff);
 
-    // console.log(stars,diff,starsAvailable);
+    console.log(document.getElementById(classificationStars));
+    console.log(stars,avaliacao,diff,starsAvailable);
 
     if(starsAvailable >= 0)
         return true;
