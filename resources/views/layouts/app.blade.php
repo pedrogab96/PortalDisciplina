@@ -20,7 +20,7 @@
     <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> --}}
     {{-- CSRF Laravel --}}
     <meta name="csrf-token" content="{{csrf_token()}}">
 

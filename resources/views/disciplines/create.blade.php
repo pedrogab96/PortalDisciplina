@@ -108,13 +108,13 @@
 
                     <div class="form-row text-white align-items-center">
                         <div class="col-12">
-                            <input id="apresentacao-trabalhos" name="apresentacao-trabalhos" type="number" class="rating" min="1" max="5" step="1">
+                            <input id="apresentacao-trabalhos" name="apresentacao-trabalhos" type="number" class="rating rating-loading" min="1" max="5" step="1">
                         </div>
                         <div class="col-12">
-                            <input id="producao-textual" name="producao-textual" type="number" class="rating" min="1" max="5" step="1">
+                            <input id="producao-textual" name="producao-textual" type="number" class="rating rating-loading" min="1" max="5" step="1">
                         </div>
                         <div class="col-12">
-                            <input id="lista-exercicios" name="lista-exercicios" type="number" class="rating" min="1" max="5" step="1">
+                            <input id="lista-exercicios" name="lista-exercicios" type="number" class="rating rating-loading" min="1" max="5" step="1">
                         </div>
                         <div class="col-12">
                             <input id="discussao-social" name="discussao-social" type="number" class="rating" min="1" max="5" step="1">

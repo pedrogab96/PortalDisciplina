@@ -13,7 +13,7 @@
     height: 25px;
     font-size: 0;
     color: #fff;
-    background: transparent url('../img/loading.gif') top left no-repeat;
+    background: transparent url('assets/img/loading.gif') top left no-repeat;
     border: none;
 }
 
@@ -107,7 +107,7 @@
     cursor: not-allowed;
     display: inline-block;
     vertical-align: middle;
-    font-size: 60%;
+    font-size: 100%;
 }
 
 .clear-rating-active {

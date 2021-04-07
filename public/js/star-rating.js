@@ -37,7 +37,7 @@
         NAMESPACE: '.rating',
         DEFAULT_MIN: 0,
         DEFAULT_MAX: 5,
-        DEFAULT_STEP: 0.5,
+        DEFAULT_STEP: 1,
         isEmpty: function (value, trim) {
             return value === null || value === undefined || value.length === 0 || (trim && $.trim(value) === '');
         },
@@ -551,10 +551,10 @@
         theme: '',
         language: 'en',
         stars: 5,
-        filledStar: '<i class="glyphicon glyphicon-star"></i>',
-        emptyStar: '<i class="glyphicon glyphicon-star-empty"></i>',
+        filledStar: '<i class="fa fa-star checked"></i>',
+        emptyStar: '<i class="fa fa-star"></i>',
         containerClass: '',
-        size: 'md',
+        size: 'lg',
         animate: true,
         displayOnly: false,
         rtl: false,
