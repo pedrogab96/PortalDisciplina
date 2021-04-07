@@ -162,6 +162,7 @@ function verifyStars(classificationStars, avaliacao){
 }
 
 function starSum() {
+    var limit
     var sum = 0;
 
     sum += parseInt(document.getElementById('stars-apresentacao-trabalhos').value);

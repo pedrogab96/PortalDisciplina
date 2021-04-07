@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Discipline;
 
+use App\Enums\RoleName;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return !is_null(Auth::user()->professor);
+        return !is_null(Auth::user()->professor || Auth::user()->role == RoleName::ADMIN);
     }
 
     /**
