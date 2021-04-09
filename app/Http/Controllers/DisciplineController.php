@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\MediaType;
 use App\Http\Requests\Discipline\CreateRequest;
 use App\Http\Requests\Discipline\StoreRequest;
+use App\Models\ClassificationDiscipline;
 use App\Services\Urls\GoogleDriveService;
 use App\Services\Urls\YoutubeService;
 use Illuminate\Http\Request;
@@ -109,28 +110,61 @@ class DisciplineController extends Controller
                     'discipline_id' => $discipline->id
                 ]);
             }
+            ClassificationDiscipline::create([
+                'classification_id' => 0,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('apresentacao-trabalhos'),
+            ]);
 
-            // TODO: sistema de classificação
-            /*
-            if ($request->filled('classificacao')) {
-                if ($this->validDrive($request->input('classificacao'))) {
-                    $classificacaoUrl = $this->getDriveIdFromUrl($request->input('classificacao'));
-                    Media::create([
-                        'title' => "Classificações de $discipline->name",
-                        'type' => "classificacao",
-                        'is_trailer' => false,
-                        'url' => "https://drive.google.com/uc?id=" . $classificacaoUrl,
-                        'discipline_id' => $discipline->id,
-                    ]);
-                }
-            }
-            */
+            ClassificationDiscipline::create([
+                'classification_id' => 1,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('producao-textual'),
+            ]);
+
+            ClassificationDiscipline::create([
+                'classification_id' => 2,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('lista-exercicios'),
+            ]);
+
+            ClassificationDiscipline::create([
+                'classification_id' => 3,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('discussao-social'),
+            ]);
+
+
+            ClassificationDiscipline::create([
+                'classification_id' => 4,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('discussao-teorica'),
+            ]);
+
+            ClassificationDiscipline::create([
+                'classification_id' => 5,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('abordagem-pratica'),
+            ]);
+
+            ClassificationDiscipline::create([
+                'classification_id' => 6,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('av-prova-escrita'),
+            ]);
+
+            ClassificationDiscipline::create([
+                'classification_id' => 7,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('av-atividades'),
+            ]);
+
             DB::commit();
             return redirect()->route('disciplinas.show', $discipline->id);
         } catch (\Exception $exception) {
             DB::rollBack();
             return redirect()->route('disciplinas.create')
-                ->withInput();
+                 ->withInput();
         }
     }
 

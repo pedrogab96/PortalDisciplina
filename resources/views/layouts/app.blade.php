@@ -16,12 +16,15 @@
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
     <link rel="stylesheet" href="{{asset('css/sidebar.css')}}">
     <link rel="stylesheet" href="{{asset('css/discipline.css')}}">
+    {{-- RATING PLUGIN --}}
+    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+    {{-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> --}}
     {{-- CSRF Laravel --}}
     <meta name="csrf-token" content="{{csrf_token()}}">
-    @yield('styles-head')
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    @yield('scripts-head')
+
 </head>
 
 <body class="content-body d-flex flex-column min-vh-100">
