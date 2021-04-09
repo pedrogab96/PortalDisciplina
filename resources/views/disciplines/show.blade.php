@@ -8,6 +8,13 @@
     {{ $discipline->name }} - {{ $discipline->code }}, tutorado por {{ $discipline->professor->name }}. Clique para saiber mais.
 @endsection
 
+@section('scripts-head')
+    <script src="{{asset('js/rating.js')}}" type="text/javascript"></script>
+    {{-- RATING PLUGIN --}}
+    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
+    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+@endsection
+
 @section('content')
     <h2 class="container-fluid text-white text-center">{{ $discipline->name }} - {{ $discipline->code }}</h2>
 
@@ -36,12 +43,18 @@
 
         <div class="col-md-4">
             <h3 class="text-white">Classificação</h3>
-            @if($discipline->hasMediaOfType(\App\Enums\MediaType::CLASSIFICACAO))
-                <img class="img-fluid" alt="Classificação"
-                     src="{{ $discipline->getMediasByType(\App\Enums\MediaType::CLASSIFICACAO)->first()->url }}">
-            @else
-                <img class="img-fluid" src="{{ asset('img/novideo2.png') }}" alt="Sem classificação">
-            @endif
+            @foreach ($discipline->classifications as $classification)
+            <div class="row">
+                <div class="col-md-5 mt-1">
+                    <label class="text-white">
+                        {{$classification->name}}
+                    </label>
+                </div>
+                <div class="col-md-6">
+                    <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{$classification->classificationDiscipline($discipline->id)->first()->value}}" data-size="md" disabled>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 

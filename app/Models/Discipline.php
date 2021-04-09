@@ -96,7 +96,7 @@ class Discipline extends Model
     public function classifications()
     {
         return $this->hasManyThrough(Classification::class, ClassificationDiscipline::class,
-            'disc_id', 'id',
+            'discipline_id', 'id',
             'id', 'classification_id');
     }
 
@@ -106,7 +106,7 @@ class Discipline extends Model
     public function tags()
     {
         return $this->hasManyThrough(Tag::class, TagDiscipline::class,
-            'disc_id', 'id',
+            'discipline_id', 'id',
             'id', 'tag_id');
     }
 }

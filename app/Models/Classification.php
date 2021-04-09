@@ -32,6 +32,10 @@ class Classification extends Model
     {
         return $this->hasManyThrough(Discipline::class, ClassificationDiscipline::class,
         'classification_id', 'id',
-        'id', 'disc_id');
+        'id', 'discipline_id');
+    }
+    public function classificationDiscipline($discipline_id)
+    {
+        return $this->hasMany(ClassificationDiscipline::class,"classification_id","id")->where('discipline_id',$discipline_id);
     }
 }
