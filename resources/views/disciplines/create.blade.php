@@ -10,6 +10,10 @@
 
 @section('scripts-head')
     <script src="{{asset('js/rating.js')}}" type="text/javascript"></script>
+    {{-- RATING PLUGIN --}}
+    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
 @endsection
 
 @section('content')
