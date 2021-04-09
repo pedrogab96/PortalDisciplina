@@ -19,9 +19,10 @@
     {{-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> --}}
     @yield('styles-head')
     {{-- SCRIPTS JS --}}
-    @yield('scripts-head')
     {{-- CSRF Laravel --}}
     <meta name="csrf-token" content="{{csrf_token()}}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    @yield('scripts-head')
 </head>
 
 <body class="content-body d-flex flex-column min-vh-100">

@@ -12,7 +12,6 @@
     <script src="{{asset('js/rating.js')}}" type="text/javascript"></script>
     {{-- RATING PLUGIN --}}
     <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
 @endsection
 
@@ -53,7 +52,7 @@
                 @enderror
             </div>
         </div>
-
+        {{-- mudar para admins --}}
         <div class="form-row">
             <div class="form-group col-md-8">
                 <label class="text-white" for="professor-name">
@@ -105,37 +104,128 @@
                     @enderror
                 </div>
 
-                <div class="form-group mt-3">
-                    <label class="text-white" for="classificacao">
+                <div class="form-group mt-3 ml-2">
+                    {{-- <label class="text-white" for="classificacao">
                         Classificações
-                    </label>
-
-                    <div class="form-row text-white align-items-center">
-                        <div class="col-12">
-                            <input id="apresentacao-trabalhos" name="apresentacao-trabalhos" type="number" class="rating rating-loading" min="1" max="5" step="1">
+                    </label> --}}
+                    <h3 class="text-white">Classificações</h3>
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Apresentação de Trabalhos
+                            </label>
                         </div>
-                        <div class="col-12">
-                            <input id="producao-textual" name="producao-textual" type="number" class="rating rating-loading" min="1" max="5" step="1">
-                        </div>
-                        <div class="col-12">
-                            <input id="lista-exercicios" name="lista-exercicios" type="number" class="rating rating-loading" min="1" max="5" step="1">
-                        </div>
-                        <div class="col-12">
-                            <input id="discussao-social" name="discussao-social" type="number" class="rating" min="1" max="5" step="1">
-                        </div>
-                        <div class="col-12">
-                            <input id="discussao-teorica" name="discussao-teorica" type="number" class="rating" min="1" max="5" step="1">
-                        </div>
-                        <div class="col-12">
-                            <input id="abordagem-pratica" name="abordagem-pratica" type="number" class="rating" min="1" max="5" step="1">
-                        </div>
-                        <div class="col-12">
-                            <input id="av-prova-escrita" name="av-prova-escrita" type="number" class="rating" min="1" max="5" step="1">
-                        </div>
-                        <div class="col-12">
-                            <input id="av-atividades" name="av-atividades" type="number" class="rating" min="1" max="5" step="1">
+                        <div class="col-md-6">
+                            <div>
+                                <input id="apresentacao-trabalhos" name="apresentacao-trabalhos" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Produção Textual
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="producao-textual" name="producao-textual" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Lista de Exercícios
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="lista-exercicios" name="lista-exercicios" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Discussão Social
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="discussao-social" name="discussao-social" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Discussão Técnica
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="discussao-tecnica" name="discussao-tecnica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Abordagem Teórica
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="abordagem-teorica" name="abordagem-teorica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Abordagem Prática
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="abordagem-pratica" name="abordagem-pratica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Avaliação por Provas Escritas
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="av-prova-escrita" name="av-prova-escrita" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Avaliação por Atividades
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="av-atividades" name="av-atividades" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                            </div>
+                        </div>
+                    </div>
+
                     @error('classificacao')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

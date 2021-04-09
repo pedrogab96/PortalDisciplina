@@ -111,50 +111,55 @@ class DisciplineController extends Controller
                 ]);
             }
             ClassificationDiscipline::create([
-                'classification_id' => 0,
+                'classification_id' => 1,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('apresentacao-trabalhos'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 1,
+                'classification_id' => 2,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('producao-textual'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 2,
+                'classification_id' => 3,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('lista-exercicios'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 3,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('discussao-social'),
-            ]);
-
-
-            ClassificationDiscipline::create([
                 'classification_id' => 4,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('discussao-teorica'),
+                'value' => $request->input('discussao-social'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => 5,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('abordagem-pratica'),
+                'value' => $request->input('discussao-tecnica'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => 6,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('av-prova-escrita'),
+                'value' => $request->input('abordagem-teorica'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => 7,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('abordagem-pratica'),
+            ]);
+
+            ClassificationDiscipline::create([
+                'classification_id' => 8,
+                'discipline_id' => $discipline->id,
+                'value' => $request->input('av-prova-escrita'),
+            ]);
+
+            ClassificationDiscipline::create([
+                'classification_id' => 9,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('av-atividades'),
             ]);
@@ -163,8 +168,9 @@ class DisciplineController extends Controller
             return redirect()->route('disciplinas.show', $discipline->id);
         } catch (\Exception $exception) {
             DB::rollBack();
-            return redirect()->route('disciplinas.create')
-                 ->withInput();
+            return dd($exception);
+            // return redirect()->route('disciplinas.create')
+            //      ->withInput();
         }
     }
 
