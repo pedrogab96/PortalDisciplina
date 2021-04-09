@@ -117,7 +117,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="apresentacao-trabalhos" name="apresentacao-trabalhos" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="apresentacao-trabalhos" name="apresentacao-trabalhos" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="producao-textual" name="producao-textual" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="producao-textual" name="producao-textual" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="lista-exercicios" name="lista-exercicios" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="lista-exercicios" name="lista-exercicios" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="discussao-social" name="discussao-social" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="discussao-social" name="discussao-social" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="discussao-tecnica" name="discussao-tecnica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="discussao-tecnica" name="discussao-tecnica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -182,7 +182,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="abordagem-teorica" name="abordagem-teorica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="abordagem-teorica" name="abordagem-teorica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="abordagem-pratica" name="abordagem-pratica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="abordagem-pratica" name="abordagem-pratica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="av-prova-escrita" name="av-prova-escrita" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="av-prova-escrita" name="av-prova-escrita" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="av-atividades" name="av-atividades" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md">
+                                <input id="av-atividades" name="av-atividades" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>

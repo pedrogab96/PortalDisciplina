@@ -51,7 +51,7 @@
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{$classification->classificationDiscipline($discipline->id)->first()->value}}" data-size="md" disabled>
+                    <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{$classification->classificationDiscipline($discipline->id)->first()->value}}" data-size="md" disabled data-showcaption=false>
                 </div>
             </div>
             @endforeach
