@@ -11,6 +11,18 @@
 @section('content')
     <h2 class="container-fluid text-white text-center">{{ $discipline->name }} - {{ $discipline->code }}</h2>
 
+    @if($can)
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3 mt-5">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-light btn-block"
+                        data-toggle="modal" data-target="#faqs-create">
+                    Registrar FAQ
+                </button>
+            </div>
+        </div>
+    @endif
+
     <div class="row mt-3">
         <div class="col-12">
             <h3 class="text-white">Sinopse</h3>
@@ -120,4 +132,32 @@
             </div>
         </div>
     </div>
+
+    @if($discipline->faqs->count())
+        <h2 class="container-fluid text-white text-center mt-5">FAQ</h2>
+        <div class="row mt-3" id="faqs">
+            @foreach($discipline->faqs as $faq)
+                <div class="col-md-12 card">
+                    <div class="card-header" id="faq-header-{{$faq->id}}">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq-content-{{$faq->id}}"
+                                    aria-expanded="true" aria-controls="faq-header-{{$faq->id}}">
+                                {!! $faq->title !!}
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="faq-content-{{$faq->id}}" class="collapse" aria-labelledby="faq-header-{{$faq->id}}" data-parent="#faqs">
+                        <div class="card-body">
+                            {!! $faq->content !!}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
+
+    @if($can)
+        @include('faqs.create_modal', ['discipline' => $discipline])
+    @endif
 @endsection
