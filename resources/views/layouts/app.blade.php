@@ -41,5 +41,11 @@
     {{-- Sidebar JS --}}
     <script src="{{asset('js/sidebar.js')}}" type="text/javascript"></script>
     @yield('scripts-bottom')
+
+    @isset($success)
+    <div class="alert alert-success border-left-success" role="alert">
+        <span>{{ $success }}</span>
+    </div>
+    @endisset
 </body>
 </html>

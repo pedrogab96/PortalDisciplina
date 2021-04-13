@@ -12,8 +12,6 @@ use \App\Models\Discipline;
 use \App\Models\Media;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use phpDocumentor\Reflection\Types\Self_;
-
 class DisciplineController extends Controller
 {
     const VIEW_PATH = 'disciplines.';

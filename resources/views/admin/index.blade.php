@@ -10,12 +10,6 @@ Painel de Administração
 
 @section('content')
 
-@isset($success)
-    <div class="alert alert-success border-left-success" role="alert">
-        <span>{{ $success }}</span>
-    </div>
-@endisset
-
 <div class="card">
     <h4 class="text-center m-4">Professores</h4>
     <div class="card-body">
@@ -63,7 +57,4 @@ Painel de Administração
            href="{{ route("professores.create") }}" role="button">Cadastrar professor</a>
     </div>
 </div>
-    <div>
-       
-    </div>
 @endsection

@@ -7,12 +7,9 @@ use App\Http\Requests\Professor\StoreRequest;
 use App\Models\Professor;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Self_;
-
 class ProfessorUserController extends Controller
 {
     const VIEW_PATH = "admin.";
-    const DEFAULT_PIC_URL = "default_todo";
 
     public function index()
     {
@@ -26,6 +23,7 @@ class ProfessorUserController extends Controller
     {
         return view(self::VIEW_PATH.'create');
     }
+
     public function store(StoreRequest $request)
     {
         DB::beginTransaction();
@@ -38,15 +36,15 @@ class ProfessorUserController extends Controller
                 'role_id' => '3'
             ]);
 
-            $public_email = $request->input('public_email');
-            if($public_email == null){
-                $public_email = $user->email;
+            $publicEmail = $request->input('public_email');
+            if($publicEmail == null){
+                $publicEmail = $user->email;
             }
 
             Professor::create([
                 'name' => $user->name,
-                'profile_pic_link' => self::DEFAULT_PIC_URL,
-                'public_email' => $public_email,
+                'profile_pic_link' => null,
+                'public_email' => $publicEmail,
                 'user_id' => $user->id
             ]);
 

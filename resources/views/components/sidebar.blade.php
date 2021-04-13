@@ -35,8 +35,6 @@
                 @endif
             @endauth
 
-
-
             <li class="sidebar-item">
                 <a class="list-links" href="{{route('information')}}">Sobre</a>
             </li>
