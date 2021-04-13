@@ -36,15 +36,10 @@ class ProfessorUserController extends Controller
                 'role_id' => '3'
             ]);
 
-            $publicEmail = $request->input('public_email');
-            if($publicEmail == null){
-                $publicEmail = $user->email;
-            }
-
             Professor::create([
                 'name' => $user->name,
                 'profile_pic_link' => null,
-                'public_email' => $publicEmail,
+                'public_email' => $request->get('public_email', $user->email),
                 'user_id' => $user->id
             ]);
 
@@ -64,3 +59,4 @@ class ProfessorUserController extends Controller
         return redirect()->route('professores.index');
     }
 }
+

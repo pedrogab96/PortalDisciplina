@@ -67,13 +67,13 @@ Cadastro de Professor
                 @enderror
             </div>
             <div class="form-group col-md-6">
-                <label for="password-confirmation" class="text-white">Confirmar senha</label>
+                <label for="password_confirmation" class="text-white">Confirmar senha</label>
                 <input  type="password"
-                        class="form-control {{ $errors->has('password-confirmation') ? 'is-invalid' : ''}}"
-                        name="password-confirmation"
-                        id="password-confirmation"
+                        class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : ''}}"
+                        name="password_confirmation"
+                        id="password_confirmation"
                         autocomplete="off">
-                @error('password-confirmation')
+                @error('password_confirmation')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
