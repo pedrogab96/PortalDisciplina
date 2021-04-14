@@ -9,7 +9,6 @@
 @endsection
 
 @section('scripts-head')
-    <script src="{{asset('js/rating.js')}}" type="text/javascript"></script>
     {{-- RATING PLUGIN --}}
     <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
     <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
@@ -105,9 +104,6 @@
                 </div>
 
                 <div class="form-group mt-3 ml-2">
-                    {{-- <label class="text-white" for="classificacao">
-                        Classificações
-                    </label> --}}
                     <h3 class="text-white">Classificações</h3>
                     <div class="row">
                         <div class="col-md-5 mt-1">
