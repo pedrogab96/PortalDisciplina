@@ -15,7 +15,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return !is_null(Auth::user()->professor || Auth::user()->role == RoleName::ADMIN);
+        return Auth::user()->getIsAdminAttibute || Auth::user()->getIsProfessorAttibute;
     }
 
     /**

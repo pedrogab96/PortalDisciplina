@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RoleName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -64,5 +65,20 @@ class User extends Authenticatable
     public function professor()
     {
         return $this->hasOne(Professor::class);
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->role() == RoleName::ADMIN;
+    }
+
+    public function getIsProfessorAttribute()
+    {
+        return $this->role() == RoleName::PROFESSOR;
+    }
+
+    public function getIsStudentAttribute()
+    {
+        return $this->role() == RoleName::STUDENT;
     }
 }

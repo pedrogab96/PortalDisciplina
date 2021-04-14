@@ -15,7 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return !is_null(Auth::user()->professor || Auth::user()->role == RoleName::ADMIN);
+        return Auth::user()->getIsAdminAttribute || Auth::user()->getIsProfessorAttribute;
     }
 
     /**
