@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ClassificationID;
 use App\Enums\MediaType;
 use App\Http\Requests\Discipline\CreateRequest;
 use App\Http\Requests\Discipline\StoreRequest;
@@ -111,55 +112,56 @@ class DisciplineController extends Controller
                 ]);
             }
             ClassificationDiscipline::create([
-                'classification_id' => 1,
+                // 'classification_id' => 1,
+                'classification_id' => ClassificationID::APRESENTACAO_TRABALHOS,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('apresentacao-trabalhos'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 2,
+                'classification_id' => ClassificationID::PRODUCAO_TEXTUAL,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('producao-textual'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 3,
+                'classification_id' => ClassificationID::LISTA_EXERCICIOS,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('lista-exercicios'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 4,
+                'classification_id' => ClassificationID::DISCUSSAO_SOCIAL,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('discussao-social'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 5,
+                'classification_id' => ClassificationID::DISCUSSAO_TECNICA,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('discussao-tecnica'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 6,
+                'classification_id' => ClassificationID::ABORDAGEM_TEORICA,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('abordagem-teorica'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 7,
+                'classification_id' => ClassificationID::ABORDAGEM_PRATICA,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('abordagem-pratica'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 8,
+                'classification_id' => ClassificationID::AVALIACAO_PROVAS_ESCRITAS,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('av-prova-escrita'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => 9,
+                'classification_id' => ClassificationID::AVALIACAO_ATIVIDADES,
                 'discipline_id' => $discipline->id,
                 'value' => $request->input('av-atividades'),
             ]);
