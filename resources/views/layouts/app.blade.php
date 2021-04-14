@@ -28,6 +28,11 @@
     @include('components.navbar')
 
     {{-- Sidebar desativado por enquanto --}}
+    @isset($success)
+    <div class="alert alert-success border-left-success" role="alert">
+        <span>{{ $success }}</span>
+    </div>
+    @endisset
 
     @include('components.sidebar')
 
@@ -41,5 +46,6 @@
     {{-- Sidebar JS --}}
     <script src="{{asset('js/sidebar.js')}}" type="text/javascript"></script>
     @yield('scripts-bottom')
+
 </body>
 </html>

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DisciplineController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfessorUserController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Chart\PassRateController;
 
@@ -48,7 +49,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('disciplinas', DisciplineController::class)
         ->except(['index', 'show',]);
-
+  
+    Route::resource('professores', ProfessorUserController::class)
+        ->except(['show','update']);
+  
     Route::resource('disciplinas.faqs', FaqController::class)
         ->except(['index']);
 });

@@ -27,8 +27,6 @@ class UsersController extends Controller
         $request->validate($rules);
         $user = Auth::user();
 
-        // dd($user);
-        
         if (!is_null($request->input('current_password'))) {
             if (Hash::check($request->input('current_password'), $user->password)) {
                 $user->password = bcrypt($request->input('new_password'));

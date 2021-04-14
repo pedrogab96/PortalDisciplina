@@ -12,8 +12,6 @@ use \App\Models\Discipline;
 use \App\Models\Media;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
-
 class DisciplineController extends Controller
 {
     const VIEW_PATH = 'disciplines.';
@@ -125,10 +123,10 @@ class DisciplineController extends Controller
             }
             */
             DB::commit();
-            return redirect()->route('disciplinas.show', $discipline->id);
+            return redirect()->route(Self::VIEW_PATH .'show', $discipline->id);
         } catch (\Exception $exception) {
             DB::rollBack();
-            return redirect()->route('disciplinas.create')
+            return redirect()->route(Self::VIEW_PATH.'create')
                 ->withInput();
         }
     }
