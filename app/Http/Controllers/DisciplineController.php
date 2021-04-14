@@ -112,58 +112,57 @@ class DisciplineController extends Controller
                 ]);
             }
             ClassificationDiscipline::create([
-                // 'classification_id' => 1,
                 'classification_id' => ClassificationID::APRESENTACAO_TRABALHOS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('apresentacao-trabalhos'),
+                'value' => $request->input('classificacao-apresentacao-trabalhos'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::PRODUCAO_TEXTUAL,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('producao-textual'),
+                'value' => $request->input('classificacao-producao-textual'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::LISTA_EXERCICIOS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('lista-exercicios'),
+                'value' => $request->input('classificacao-lista-exercicios'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::DISCUSSAO_SOCIAL,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('discussao-social'),
+                'value' => $request->input('classificacao-discussao-social'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::DISCUSSAO_TECNICA,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('discussao-tecnica'),
+                'value' => $request->input('classificacao-discussao-tecnica'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::ABORDAGEM_TEORICA,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('abordagem-teorica'),
+                'value' => $request->input('classificacao-abordagem-teorica'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::ABORDAGEM_PRATICA,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('abordagem-pratica'),
+                'value' => $request->input('classificacao-abordagem-pratica'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::AVALIACAO_PROVAS_ESCRITAS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('av-prova-escrita'),
+                'value' => $request->input('classificacao-av-prova-escrita'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::AVALIACAO_ATIVIDADES,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('av-atividades'),
+                'value' => $request->input('classificacao-av-atividades'),
             ]);
 
             DB::commit();
