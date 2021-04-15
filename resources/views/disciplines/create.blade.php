@@ -54,41 +54,6 @@
                 @enderror
             </div>
         </div>
-        {{-- TODO --}}
-        {{-- mudar para admins --}}
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label class="text-white" for="professor-name">
-                    Nome do professor que irá lecionar a disciplina
-                </label>
-                <input type="text"
-                       required
-                       class="form-control {{ $errors->has('professor-name') ? 'is-invalid' : ''}}"
-                       id="professor-name"
-                       name="professor-name"
-                       value="{{old('professor-name')}}"
-                       placeholder="Nome do professor que irá lecionar a disciplina">
-                @error('professor-name')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group col-md-4">
-                <label class="text-white" for="professor-email">
-                    E-mail do professor
-                </label>
-                <input type="text"
-                       required
-                       class="form-control {{ $errors->has('professor-email') ? 'is-invalid' : ''}}"
-                       id="professor-email"
-                       name="professor-email"
-                       value="{{old('professor-email')}}"
-                       placeholder="professor@gmail.com">
-                @error('professor-email')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
 
         <div class="form-row mt-3">
             <div class="col-md-6">

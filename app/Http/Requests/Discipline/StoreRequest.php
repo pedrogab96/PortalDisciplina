@@ -28,8 +28,6 @@ class StoreRequest extends FormRequest
         return [
             'name' => ['required', 'max:40',],
             'code' => ['required', 'max:10',],
-            'professor-name' => ['required', 'max:70',],
-            'professor-email' => ['required', 'max:70',],
             'synopsis' => ['nullable', 'max:5000',],
             'difficulties' => ['nullable', 'max:5000',],
             'media-trailer' => ['nullable', 'max:250',],

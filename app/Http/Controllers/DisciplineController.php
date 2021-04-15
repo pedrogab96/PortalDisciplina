@@ -14,8 +14,6 @@ use \App\Models\Discipline;
 use \App\Models\Media;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
-
 class DisciplineController extends Controller
 {
     const VIEW_PATH = 'disciplines.';
@@ -29,6 +27,7 @@ class DisciplineController extends Controller
     {
         $disciplines = Discipline::query()
             ->with([
+                'professor',
                 'medias',
             ])->get();
 
@@ -61,8 +60,6 @@ class DisciplineController extends Controller
             $discipline = Discipline::create([
                 'name' => $request->input('name'),
                 'code' => $request->input('code'),
-                'teacher' => $request->input('professor-name'),
-                'email' => $request->input('professor-email'),
                 'synopsis' => $request->input('synopsis'),
                 'difficulties' => $request->input('difficulties'),
                 'professor_id' => $user->professor->id,
@@ -166,10 +163,10 @@ class DisciplineController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('disciplinas.show', $discipline->id);
+            return redirect()->route(Self::VIEW_PATH .'show', $discipline->id);
         } catch (\Exception $exception) {
             DB::rollBack();
-            return redirect()->route('disciplinas.create')
+            return redirect()->route(Self::VIEW_PATH.'create')
                 ->withInput();
         }
     }
@@ -186,43 +183,13 @@ class DisciplineController extends Controller
             ->with([
                 'professor',
                 'medias',
+                'faqs',
             ])
             ->findOrFail($id);
-        /*
-        $discipline = Discipline::where('disciplines.id','=', "$id")
-        ->join('users', 'users.id', '=', 'disciplines.user_id')
-        ->select('disciplines.*','users.name as nameUser')
-        ->first();
 
-        $trailer = Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"video")
-        ->where('medias.is_trailer','=',"1")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
+        $can = Auth::user()->canDiscipline($discipline);
 
-        $video = Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"video")
-        ->where('medias.is_trailer','=',"0")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
-
-        $podcast= Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"podcast")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
-
-        $materiais= Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"materiais")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
-
-        $classificacao= Medias::where('medias.discipline_id','=',"$id")
-        ->where('medias.type','=',"classificacao")
-        ->select('medias.*','medias.url as urlMedia')
-        ->first();
-        */
-
-        return view(self::VIEW_PATH . 'show', compact('discipline'));
+        return view(self::VIEW_PATH . 'show', compact('discipline', 'can'));
     }
 
     /**

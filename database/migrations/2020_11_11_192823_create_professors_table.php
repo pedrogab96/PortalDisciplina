@@ -16,7 +16,7 @@ class CreateProfessorsTable extends Migration
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("profile_pic_link");
+            $table->string("profile_pic_link")->nullable();
             $table->string("public_email");
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')

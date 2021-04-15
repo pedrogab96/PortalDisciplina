@@ -44,6 +44,35 @@ class User extends Authenticatable
     ];
 
     /**
+     * @param $discipline
+     * @return bool
+     */
+    public function canDiscipline($discipline): bool
+    {
+        if ($this->is_admin) {
+            return true;
+        }
+
+        if (is_null($this->professor)) {
+            return false;
+        }
+
+        if (is_int($discipline)) {
+            $discipline = Discipline::findOrFail($discipline);
+        }
+
+        return $this->professor->id == $discipline->professor_id;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->role->priority_level == 999;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function role()
@@ -66,25 +95,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Professor::class);
     }
-     /**
-     * @return boolean
-     */
-    public function getIsAdminAttribute()
-    {
-        return $this->role->priority_level == 999;
-    }
-     /**
-     * @return boolean
-     */
-    public function getIsProfessorAttribute()
-    {
-        return $this->role->priority_level == 2;
-    }
-     /**
-     * @return boolean
-     */
-    public function getIsStudentAttribute()
-    {
-        return $this->role->priority_level == 1;
-    }
+    // public function getIsAdminAttribute()
+    // {
+    //     return $this->role->priority_level == 999;
+    // }
 }
