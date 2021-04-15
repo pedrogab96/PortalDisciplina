@@ -71,20 +71,20 @@ class User extends Authenticatable
      */
     public function getIsAdminAttribute()
     {
-        return $this->role()->first()->priority_level == 999;
+        return $this->role->priority_level == 999;
     }
      /**
      * @return boolean
      */
     public function getIsProfessorAttribute()
     {
-        return $this->role()->first()->priority_level == 2;
+        return $this->role->priority_level == 2;
     }
      /**
      * @return boolean
      */
     public function getIsStudentAttribute()
     {
-        return $this->role()->first()->priority_level == 1;
+        return $this->role->priority_level == 1;
     }
 }
