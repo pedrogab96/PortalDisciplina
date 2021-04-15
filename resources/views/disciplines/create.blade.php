@@ -10,8 +10,11 @@
 
 @section('scripts-head')
     {{-- RATING PLUGIN --}}
-    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
     <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+@endsection
+@section('styles-head')
+    {{-- RATING PLUGIN --}}
+    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -51,6 +54,7 @@
                 @enderror
             </div>
         </div>
+        {{-- TODO --}}
         {{-- mudar para admins --}}
         <div class="form-row">
             <div class="form-group col-md-8">
@@ -113,7 +117,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-apresentacao-trabalhos" name="classificacao-apresentacao-trabalhos" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-apresentacao-trabalhos" name="classificacao-apresentacao-trabalhos" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -126,7 +130,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-producao-textual" name="classificacao-producao-textual" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-producao-textual" name="classificacao-producao-textual" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -139,7 +143,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-lista-exercicios" name="classificacao-lista-exercicios" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-lista-exercicios" name="classificacao-lista-exercicios" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -152,7 +156,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-discussao-social" name="classificacao-discussao-social" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-discussao-social" name="classificacao-discussao-social" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -165,7 +169,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -178,7 +182,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -191,7 +195,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -204,7 +208,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-prova-escrita" name="classificacao-av-prova-escrita" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-av-prova-escrita" name="classificacao-av-prova-escrita" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -217,7 +221,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-atividades" name="classificacao-av-atividades" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="1" data-size="md" data-showcaption=false>
+                                <input id="classificacao-av-atividades" name="classificacao-av-atividades" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>

@@ -114,64 +114,63 @@ class DisciplineController extends Controller
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::APRESENTACAO_TRABALHOS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-apresentacao-trabalhos'),
+                'value' => $request->input('classificacao-apresentacao-trabalhos') == null ? 0 : $request->input('classificacao-apresentacao-trabalhos'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::PRODUCAO_TEXTUAL,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-producao-textual'),
+                'value' => $request->input('classificacao-producao-textual') == null ? 0 : $request->input('classificacao-producao-textual'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::LISTA_EXERCICIOS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-lista-exercicios'),
+                'value' => $request->input('classificacao-lista-exercicios') == null ? 0 : $request->input('classificacao-lista-exercicios'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::DISCUSSAO_SOCIAL,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-discussao-social'),
+                'value' => $request->input('classificacao-discussao-social') == null ? 0 : $request->input('classificacao-discussao-social'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::DISCUSSAO_TECNICA,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-discussao-tecnica'),
+                'value' => $request->input('classificacao-discussao-tecnica') == null ? 0 : $request->input('classificacao-discussao-tecnica'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::ABORDAGEM_TEORICA,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-abordagem-teorica'),
+                'value' => $request->input('classificacao-abordagem-teorica') == null ? 0 : $request->input('classificacao-abordagem-teorica'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::ABORDAGEM_PRATICA,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-abordagem-pratica'),
+                'value' => $request->input('classificacao-abordagem-pratica') == null ? 0 : $request->input('classificacao-abordagem-pratica'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::AVALIACAO_PROVAS_ESCRITAS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-av-prova-escrita'),
+                'value' => $request->input('classificacao-av-prova-escrita') == null ? 0 : $request->input('classificacao-av-prova-escrita'),
             ]);
 
             ClassificationDiscipline::create([
                 'classification_id' => ClassificationID::AVALIACAO_ATIVIDADES,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-av-atividades'),
+                'value' => $request->input('classificacao-av-atividades') == null ? 0 : $request->input('classificacao-av-atividades'),
             ]);
 
             DB::commit();
             return redirect()->route('disciplinas.show', $discipline->id);
         } catch (\Exception $exception) {
             DB::rollBack();
-            return dd($exception);
-            // return redirect()->route('disciplinas.create')
-            //      ->withInput();
+            return redirect()->route('disciplinas.create')
+                ->withInput();
         }
     }
 

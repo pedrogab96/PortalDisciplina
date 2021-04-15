@@ -9,10 +9,12 @@
 @endsection
 
 @section('scripts-head')
-    <script src="{{asset('js/rating.js')}}" type="text/javascript"></script>
+    {{-- RATING PLUGIN --}}
+    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+@endsection
+@section('styles-head')
     {{-- RATING PLUGIN --}}
     <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
-    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
 @endsection
 
 @section('content')

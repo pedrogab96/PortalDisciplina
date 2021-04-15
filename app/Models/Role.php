@@ -33,4 +33,15 @@ class Role extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    /**
+     * Get priority_level attribute.
+     *
+     * @param  integer  $value
+     * @return integer
+     */
+    public function getPriorityLevelAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }

@@ -66,19 +66,25 @@ class User extends Authenticatable
     {
         return $this->hasOne(Professor::class);
     }
-
+     /**
+     * @return boolean
+     */
     public function getIsAdminAttribute()
     {
-        return $this->role() == RoleName::ADMIN;
+        return $this->role()->first()->priority_level == 999;
     }
-
+     /**
+     * @return boolean
+     */
     public function getIsProfessorAttribute()
     {
-        return $this->role() == RoleName::PROFESSOR;
+        return $this->role()->first()->priority_level == 2;
     }
-
+     /**
+     * @return boolean
+     */
     public function getIsStudentAttribute()
     {
-        return $this->role() == RoleName::STUDENT;
+        return $this->role()->first()->priority_level == 1;
     }
 }

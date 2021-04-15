@@ -15,7 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->getIsAdminAttribute || Auth::user()->getIsProfessorAttribute;
+        return Auth::user()->is_admin || Auth::user()->is_professor;
     }
 
     /**
@@ -36,23 +36,6 @@ class StoreRequest extends FormRequest
             'media-video' => ['nullable', 'max:250',],
             'media-podcast' => ['nullable', 'max:250',],
             'media-material' => ['nullable', 'max:250',],
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'required' => 'O atributo :attribute não pode estar em branco.',
-            'inputSubject.max' => 'Máximo de 40 caracteres!',
-            'teacher.max' => 'Máximo de 70 caracteres!',
-            'teacherEmail.max' => 'Máximo de 70 caracteres!',
-            'inputCode.max' => 'Máximo de 10 caracteres!',
-            'sinopse.max' => 'Máximo de 5000 caracteres!',
-            'obstaculos.max' => 'Máximo de 5000 caracteres!',
-            'trailer.max' => 'Máximo de 250 caracteres!',
-            'video.max' => 'Máximo de 250 caracteres!',
-            'podcast.max' => 'Máximo de 250 caracteres!',
-            'material.max' => 'Máximo de 250 caracteres!',
         ];
     }
 }
