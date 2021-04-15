@@ -12,6 +12,7 @@ use App\Services\Urls\YoutubeService;
 use Illuminate\Http\Request;
 use \App\Models\Discipline;
 use \App\Models\Media;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class DisciplineController extends Controller
@@ -163,11 +164,12 @@ class DisciplineController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route(Self::VIEW_PATH .'show', $discipline->id);
+            return redirect()->route("disciplinas.show", $discipline->id);
         } catch (\Exception $exception) {
             DB::rollBack();
-            return redirect()->route(Self::VIEW_PATH.'create')
-                ->withInput();
+            return dd($exception);
+            // return redirect()->route("disciplinas.create")
+            //     ->withInput();
         }
     }
 
@@ -187,9 +189,12 @@ class DisciplineController extends Controller
             ])
             ->findOrFail($id);
 
-        $can = Auth::user()->canDiscipline($discipline);
+        if(Auth::user() !== null){
+            $can = Auth::user()->canDiscipline($discipline);
+            return view(self::VIEW_PATH . 'show', compact('discipline', 'can'));
+        }
 
-        return view(self::VIEW_PATH . 'show', compact('discipline', 'can'));
+        return view(self::VIEW_PATH . 'show', compact('discipline'));
     }
 
     /**
