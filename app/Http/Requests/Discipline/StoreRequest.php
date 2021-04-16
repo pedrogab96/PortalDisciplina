@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Discipline;
 
+use App\Enums\RoleName;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return !is_null(Auth::user()->professor);
+        return Auth::user()->is_admin || Auth::user()->is_professor;
     }
 
     /**
@@ -28,7 +29,6 @@ class StoreRequest extends FormRequest
             'name' => ['required', 'max:40',],
             'code' => ['required', 'max:10',],
             'synopsis' => ['nullable', 'max:5000',],
-            'classificacao' => ['nullable', 'max:5000',],
             'difficulties' => ['nullable', 'max:5000',],
             'media-trailer' => ['nullable', 'max:250',],
             'media-video' => ['nullable', 'max:250',],

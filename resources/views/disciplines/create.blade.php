@@ -8,6 +8,15 @@
     noindex, follow
 @endsection
 
+@section('scripts-head')
+    {{-- RATING PLUGIN --}}
+    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+@endsection
+@section('styles-head')
+    {{-- RATING PLUGIN --}}
+    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('content')
     <h4 class="text-white">Registrar nova disciplina</h4>
     <form action="{{ route("disciplinas.store") }}" method="post">
@@ -63,17 +72,125 @@
                     @enderror
                 </div>
 
-                <div class="form-group mt-3">
-                    <label class="text-white" for="classificacao">
-                        Classificação
-                    </label>
-                    <input type="text"
-                           class="form-control {{ $errors->has('classificacao') ? 'is-invalid' : ''}}"
-                           name="classificacao"
-                           id="classificacao"
-                           value="{{old('classificacao')}}"
-                           aria-describedby="basic-addon3"
-                           placeholder="Link para imagem no Google Drive">
+                <div class="form-group mt-3 ml-2">
+                    <h3 class="text-white">Classificações</h3>
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Apresentação de Trabalhos
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-apresentacao-trabalhos" name="classificacao-apresentacao-trabalhos" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Produção Textual
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-producao-textual" name="classificacao-producao-textual" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Lista de Exercícios
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-lista-exercicios" name="classificacao-lista-exercicios" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Discussão Social
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-discussao-social" name="classificacao-discussao-social" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Discussão Técnica
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Abordagem Teórica
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Abordagem Prática
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Avaliação por Provas Escritas
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-av-prova-escrita" name="classificacao-av-prova-escrita" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
+                                Avaliação por Atividades
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <input id="classificacao-av-atividades" name="classificacao-av-atividades" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                            </div>
+                        </div>
+                    </div>
+
                     @error('classificacao')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

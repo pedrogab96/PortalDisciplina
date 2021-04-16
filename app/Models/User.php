@@ -71,7 +71,20 @@ class User extends Authenticatable
     {
         return $this->role->priority_level == 999;
     }
-
+    /**
+     * @return bool
+     */
+    public function getIsProfessorAttribute(): bool
+    {
+        return $this->role->priority_level == 2;
+    }
+        /**
+     * @return bool
+     */
+    public function getIsStudentAttribute(): bool
+    {
+        return $this->role->priority_level == 1;
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -94,10 +107,5 @@ class User extends Authenticatable
     public function professor()
     {
         return $this->hasOne(Professor::class);
-    }
-
-    public function getIsAdminAttribute()
-    {
-        return $this->role->priority_level == 999;
     }
 }

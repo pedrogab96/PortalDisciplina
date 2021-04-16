@@ -26,7 +26,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'name' => RoleName::PROFESSOR,
-                'priority_level' => 1,
+                'priority_level' => 2,
             ],
         ];
 
