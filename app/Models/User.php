@@ -57,7 +57,7 @@ class User extends Authenticatable
             return false;
         }
 
-        if (is_int($discipline)) {
+        if (is_numeric($discipline)) {
             $discipline = Discipline::findOrFail($discipline);
         }
 
