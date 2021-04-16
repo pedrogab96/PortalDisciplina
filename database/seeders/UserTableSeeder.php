@@ -46,12 +46,14 @@ class UserTableSeeder extends Seeder
             'role_id' => $roleAdmin->id,
         ]);
 
-        User::create([
-            'name' => 'Álvaro',
-            'email' => 'alvarofepipa@gmail.com',
-            'password' => bcrypt('mudar@123'),
-            'role_id' => $roleAdmin->id,
-        ]);
+        if (app()->isLocal()) {
+            User::create([
+                'name' => 'Álvaro',
+                'email' => 'alvarofepipa@gmail.com',
+                'password' => bcrypt('mudar@123'),
+                'role_id' => $roleAdmin->id,
+            ]);
+        }
 
         /*
          * Professors
@@ -71,17 +73,19 @@ class UserTableSeeder extends Seeder
             'user_id' => $user->id,
         ]);
 
-        $user = User::create([
-            'name' => 'Victor Professor',
-            'email' => 'victor.professor@email.com',
-            'password' => '$2y$10$toyM29iTlElj.ShFuHu0KumYyhKXtSGXVhBHy.YzS9eSEg89sKQMW',
-            'role_id' => $roleProfessor->id,
-        ]);
-        Professor::create([
-            'name' => $user->name,
-            'public_email' => $user->email,
-            'profile_pic_link' => '',
-            'user_id' => $user->id,
-        ]);
+        if (app()->isLocal()) {
+            $user = User::create([
+                'name' => 'Professor Tester',
+                'email' => 'professor@gmail.com',
+                'password' => bcrypt('mudar@123'),
+                'role_id' => $roleProfessor->id,
+            ]);
+            Professor::create([
+                'name' => $user->name,
+                'public_email' => $user->email,
+                'profile_pic_link' => '',
+                'user_id' => $user->id,
+            ]);
+        }
     }
 }
