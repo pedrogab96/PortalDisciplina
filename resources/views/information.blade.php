@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Sobre nós - Portal das Disciplinas IMD
+@endsection
+
 @section('content')
 
 <div class="row info-portal">

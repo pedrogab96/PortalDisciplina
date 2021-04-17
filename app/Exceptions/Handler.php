@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -33,5 +34,22 @@ class Handler extends ExceptionHandler
     public function register()
     {
         //
+    }
+
+    /**
+     * Report or log an exception.
+     *
+     * @param \Throwable $exception
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    public function report(Throwable $exception)
+    {
+        if (app()->isProduction() && $this->shouldReport($exception) && app()->bound('sentry')) {
+            app('sentry')->captureException($exception);
+        }
+
+        parent::report($exception);
     }
 }

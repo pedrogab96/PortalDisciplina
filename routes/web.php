@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DisciplineController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfessorUserController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Chart\PassRateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,26 +27,54 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
 ]);
 
-
-Route::get('/', [DisciplineController::class,'index'] )->name('index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::post('/search', [DisciplineController::class,'search'])->name('search');
-//TODO adicionar dentro do grupo do middleware para apenas funcionar quando estiver logado
-Route::get('/disciplina/novo', [DisciplineController::class, 'create'])->name('createDisciplina');
-Route::post('/disciplina', [DisciplineController::class, 'store'])->name('storeDisciplina');
+
+Route::get('/', [DisciplineController::class, 'index'])
+    ->name('index');
+Route::post('/search', [DisciplineController::class, 'search'])->name('search');
 
 //--Desativada por enquanto
 // route::get('/minhasdisciplinas', [DisciplineController::class, 'mydisciplines'])->name('mydisciplines');
 
-Route::get('sobre', function () { return view ('information'); })->name('information');
-Route::get('colaborar', function () { return view ('collaborate'); })->name('collaborate');
-
-Route::get('/disciplina/{id}', [DisciplineController::class, 'show'])->name('showDiscipline');
-Route::delete('/remove/{id}',[DisciplineController::class,'destroy'])->name('deleteDiscipline');
-
-
+Route::get('sobre', function () {
+    return view('information');
+})->name('information');
+Route::get('colaborar', function () {
+    return view('collaborate');
+})->name('collaborate');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/perfil',[UsersController::class, 'index'])->name('profile');
-    Route::post('/perfil',[UsersController::class, 'update'])->name('updateUser');
+    Route::get('/perfil', [UsersController::class, 'index'])->name('profile');
+    Route::post('/perfil', [UsersController::class, 'update'])->name('updateUser');
+
+    Route::resource('disciplinas', DisciplineController::class)
+        ->except(['index', 'show',]);
+  
+    Route::resource('professores', ProfessorUserController::class)
+        ->except(['show','update']);
+  
+    Route::resource('disciplinas.faqs', FaqController::class)
+        ->except(['index']);
+});
+
+Route::get('/disciplinas/{id}', [DisciplineController::class, 'show'])
+    ->name('disciplinas.show');
+
+Route::group([
+    'prefix' => 'charts',
+    'as' => 'charts.',
+], function () {
+    Route::group([
+        'prefix' => 'pass_rate',
+        'as' => 'pass_rate.',
+    ], function () {
+        Route::get('/', [PassRateController::class, 'index'])
+            ->name('index');
+        Route::get('select/professors', [PassRateController::class, 'selectProfessors'])
+            ->name('professors');
+        Route::get('select/disciplines', [PassRateController::class, 'selectDisciplines'])
+            ->name('disciplines');
+        Route::get('tables', [PassRateController::class, 'getTableData'])
+            ->name('tables');
+    });
 });

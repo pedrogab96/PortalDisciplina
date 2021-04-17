@@ -17,13 +17,12 @@ class CreateDisciplines extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->string('teacher');
-            $table->string('email');
-            $table->longText('description')->nullable();
+            $table->longText('synopsis')->nullable();
             $table->longText('difficulties')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')
-                ->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('professor_id');
+            $table->foreign('professor_id')->references('id')
+                ->on('professors')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

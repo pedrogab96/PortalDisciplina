@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RoleName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role_id',
     ];
 
     /**
@@ -41,4 +42,70 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @param $discipline
+     * @return bool
+     */
+    public function canDiscipline($discipline): bool
+    {
+        if ($this->is_admin) {
+            return true;
+        }
+
+        if (is_null($this->professor)) {
+            return false;
+        }
+
+        if (is_numeric($discipline)) {
+            $discipline = Discipline::findOrFail($discipline);
+        }
+
+        return $this->professor->id == $discipline->professor_id;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->role->priority_level == 999;
+    }
+    /**
+     * @return bool
+     */
+    public function getIsProfessorAttribute(): bool
+    {
+        return $this->role->priority_level == 2;
+    }
+        /**
+     * @return bool
+     */
+    public function getIsStudentAttribute(): bool
+    {
+        return $this->role->priority_level == 1;
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function professor()
+    {
+        return $this->hasOne(Professor::class);
+    }
 }
