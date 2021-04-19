@@ -7,6 +7,14 @@
         </div>
     </div>
 
+    <div class="row justify-content-center">
+        <div class="col-md-11">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fh5QD_4mRQw" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     {{-- Modificar para apenas o user adm ou professor --}}
 
     @auth

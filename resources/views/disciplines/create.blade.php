@@ -77,12 +77,12 @@
                     <div class="row">
                         <div class="col-md-5 mt-1">
                             <label class="text-white">
-                                Apresentação de Trabalhos
+                                Metodologias Clássicas
                             </label>
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-apresentacao-trabalhos" name="classificacao-apresentacao-trabalhos" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -90,25 +90,12 @@
                     <div class="row">
                         <div class="col-md-5 mt-1">
                             <label class="text-white">
-                                Produção Textual
+                                Metodologias Ativas
                             </label>
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-producao-textual" name="classificacao-producao-textual" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5 mt-1">
-                            <label class="text-white">
-                                Lista de Exercícios
-                            </label>
-                        </div>
-                        <div class="col-md-6">
-                            <div>
-                                <input id="classificacao-lista-exercicios" name="classificacao-lista-exercicios" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
@@ -168,12 +155,12 @@
                     <div class="row">
                         <div class="col-md-5 mt-1">
                             <label class="text-white">
-                                Avaliação por Provas Escritas
+                                Avaliação por Provas
                             </label>
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-prova-escrita" name="classificacao-av-prova-escrita" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-av-provas" name="classificacao-av-provas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
                             </div>
                         </div>
                     </div>
