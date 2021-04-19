@@ -10,6 +10,13 @@ Painel de Administração
 
 @section('content')
 
+<div class="row">
+    <div class="col-12 col-sm-6 col-lg-3 mt-5 mb-2">
+        <a name="createProfessor" class="btn btn-outline-light btn-block"
+           href="{{ route("professores.create") }}" role="button">Cadastrar professor</a>
+    </div>
+</div>
+
 <div class="card">
     <h4 class="text-center m-4">Professores</h4>
     <div class="card-body">
@@ -38,11 +45,11 @@ Painel de Administração
                                     <input type="submit" value="Deletar" class="btn btn-danger btn-block">
                                 </form>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <form action="" method="POST">
                                     <input type="submit" value="Redefinir Senha" class="btn btn-primary btn-block">
                                 </form>
-                            </div>
+                            </div> --}}
                         </td>
                     </tr>
                 @endforeach
@@ -51,10 +58,5 @@ Painel de Administração
     </div>
 </div>
 
-<div class="row">
-    <div class="col-12 col-sm-6 col-lg-3 mt-5 mb-2">
-        <a name="createProfessor" class="btn btn-outline-light btn-block"
-           href="{{ route("professores.create") }}" role="button">Cadastrar professor</a>
-    </div>
-</div>
+
 @endsection
