@@ -109,22 +109,17 @@ class DisciplineController extends Controller
                     'discipline_id' => $discipline->id
                 ]);
             }
+
             ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::APRESENTACAO_TRABALHOS,
+                'classification_id' => ClassificationID::METODOLOGIAS_CLASSICAS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-apresentacao-trabalhos') == null ? 0 : $request->input('classificacao-apresentacao-trabalhos'),
+                'value' => $request->input('classificacao-metodologias-classicas') == null ? 0 : $request->input('classificacao-metodologias-classicas'),
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::PRODUCAO_TEXTUAL,
+                'classification_id' => ClassificationID::METODOLOGIAS_ATIVAS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-producao-textual') == null ? 0 : $request->input('classificacao-producao-textual'),
-            ]);
-
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::LISTA_EXERCICIOS,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-lista-exercicios') == null ? 0 : $request->input('classificacao-lista-exercicios'),
+                'value' => $request->input('classificacao-metodologias-ativas') == null ? 0 : $request->input('classificacao-metodologias-ativas'),
             ]);
 
             ClassificationDiscipline::create([
@@ -152,9 +147,9 @@ class DisciplineController extends Controller
             ]);
 
             ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::AVALIACAO_PROVAS_ESCRITAS,
+                'classification_id' => ClassificationID::AVALIACAO_PROVAS,
                 'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-av-prova-escrita') == null ? 0 : $request->input('classificacao-av-prova-escrita'),
+                'value' => $request->input('classificacao-av-provas') == null ? 0 : $request->input('classificacao-av-provas'),
             ]);
 
             ClassificationDiscipline::create([

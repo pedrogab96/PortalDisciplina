@@ -17,18 +17,13 @@ class ClassificationsSeeder extends Seeder
     public function run()
     {
         Classification::create([
-            'id' => ClassificationID::APRESENTACAO_TRABALHOS,
-            'name' => 'Apresentação de Trabalhos',
+            'id' => ClassificationID::METODOLOGIAS_CLASSICAS,
+            'name' => 'Metodologias Clássicas',
         ]);
 
         Classification::create([
-            'id' => ClassificationID::PRODUCAO_TEXTUAL,
-            'name' => 'Produção Textual',
-        ]);
-
-        Classification::create([
-            'id' => ClassificationID::LISTA_EXERCICIOS,
-            'name' => 'Lista de Exercícios',
+            'id' => ClassificationID::METODOLOGIAS_ATIVAS,
+            'name' => 'Metodologias Ativas',
         ]);
 
         Classification::create([
@@ -52,8 +47,8 @@ class ClassificationsSeeder extends Seeder
         ]);
 
         Classification::create([
-            'id' => ClassificationID::AVALIACAO_PROVAS_ESCRITAS,
-            'name' => 'Avaliação por Provas Escritas',
+            'id' => ClassificationID::AVALIACAO_PROVAS,
+            'name' => 'Avaliação por Provas',
         ]);
 
         Classification::create([
