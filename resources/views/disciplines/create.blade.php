@@ -10,11 +10,11 @@
 
 @section('scripts-head')
     {{-- RATING PLUGIN --}}
-    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/classification-system.js')}}" type="text/javascript"></script>
 @endsection
 @section('styles-head')
     {{-- RATING PLUGIN --}}
-    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" /> --}}
 @endsection
 
 @section('content')
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" min="0" max="6" onfocus="update()">
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" min="0" max="6" onfocus="update()">
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-discussao-social" name="classificacao-discussao-social" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" min="0" max="6" onfocus="update()">
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" min="0" max="6" onfocus="update()">
                             </div>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" min="0" max="6" onfocus="update()">
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" min="0" max="6" onfocus="update()">
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-provas" name="classificacao-av-provas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-av-provas" name="classificacao-av-provas" type="range" min="0" max="6" onfocus="update()">
                             </div>
                         </div>
                     </div>
@@ -173,11 +173,11 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-atividades" name="classificacao-av-atividades" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" min="0" max="6" onfocus="update()">
                             </div>
                         </div>
                     </div>
-
+                    <input type="text" id="aviso">
                     @error('classificacao')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
