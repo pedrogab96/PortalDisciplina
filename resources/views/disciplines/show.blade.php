@@ -10,11 +10,11 @@
 
 @section('scripts-head')
     {{-- RATING PLUGIN --}}
-    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+    {{-- <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script> --}}
 @endsection
 @section('styles-head')
     {{-- RATING PLUGIN --}}
-    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" /> --}}
 @endsection
 
 @section('content')
