@@ -67,7 +67,10 @@
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{$classification->classificationDiscipline($discipline->id)->first()->value}}" data-size="md" disabled data-showcaption=false>
+                    {{-- <div class="progress"> --}}
+                        {{-- <div class="progress-bar" role="progressbar" style="width: {{$classification->classificationDiscipline($discipline->id)->first()->value}}%" aria-valuenow="{{$classification->classificationDiscipline($discipline->id)->first()->value}}" aria-valuemin="0" aria-valuemax="6"></div> --}}
+                        <progress id="file" value="{{$classification->classificationDiscipline($discipline->id)->first()->value}}" max="6"></progress>
+                    {{-- </div> --}}
                 </div>
             </div>
             @endforeach

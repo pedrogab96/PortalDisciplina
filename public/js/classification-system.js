@@ -2,7 +2,7 @@ MAX_RATE = 20;
 
 function checkBalance()
 {
-    if(sum() > MAX_RATE)
+    if(this.sum() > 20)
     {
         return false;
     }
@@ -25,7 +25,7 @@ function sum()
 
 function update()
 {
-    if(!checkBalance())
+    if(!this.checkBalance())
     {
         document.getElementById("aviso").value = "passou do limite";
     }
