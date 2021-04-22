@@ -92,7 +92,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" min="0" max="6" onclick="update(this)" value="0">
+                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" min="0" max="6" oninput="update(this)" value="0">
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" min="0" max="6" onclick="update(this)" value="0">
+                                <input id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" min="0" max="6" oninput="update(this)" value="0">
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" min="0" max="6" onclick="update(this)" value="0">
+                                <input id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" min="0" max="6" oninput="update(this)" value="0">
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" min="0" max="6" onclick="update(this)" value="0">
+                                <input id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" min="0" max="6" oninput="update(this)" value="0">
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" min="0" max="6" onclick="update(this)" value="0">
+                                <input id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" min="0" max="6" oninput="update(this)" value="0">
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" min="0" max="6" onclick="update(this)" value="0">
+                                <input id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" min="0" max="6" oninput="update(this)" value="0">
                             </div>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-provas" name="classificacao-av-provas" type="range" min="0" max="6" onclick="update(this)" value="0">
+                                <input id="classificacao-av-provas" name="classificacao-av-provas" type="range" min="0" max="6" oninput="update(this)" value="0">
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" min="0" max="6" onclick="update(this)" value="0">
+                                <input id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" min="0" max="6" oninput="update(this)" value="0">
                             </div>
                         </div>
                     </div>
