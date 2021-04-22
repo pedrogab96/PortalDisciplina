@@ -9,12 +9,10 @@
 @endsection
 
 @section('scripts-head')
-    {{-- RATING PLUGIN --}}
-    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/classification_system.js')}}" type="text/javascript"></script>
 @endsection
 @section('styles-head')
-    {{-- RATING PLUGIN --}}
-    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/classification_system.css')}}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -67,7 +65,9 @@
                     </label>
                 </div>
                 <div class="col-md-6">
-                    <input class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="{{$classification->classificationDiscipline($discipline->id)->first()->value}}" data-size="md" disabled data-showcaption=false>
+                    <div class="progress">
+                        <div id="{{$classification->classificationDiscipline($discipline->id)->first()->classification_id}}" class="progress-bar progress-bar-striped" role="progressbar" style="width: {{($classification->classificationDiscipline($discipline->id)->first()->value/6)*100}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20"></div>
+                    </div>
                 </div>
             </div>
             @endforeach
