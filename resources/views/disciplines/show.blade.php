@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="progress">
-                        <div id="{{$classification->classificationDiscipline($discipline->id)->first()->classification_id}}" class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20" onmousemove="setWidth(this,{{$classification->classificationDiscipline($discipline->id)->first()->value}},6)"></div>
+                        <div id="{{$classification->classificationDiscipline($discipline->id)->first()->classification_id}}" class="progress-bar progress-bar-striped" role="progressbar" style="width: {{($classification->classificationDiscipline($discipline->id)->first()->value/6)*100}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20"></div>
                     </div>
                 </div>
             </div>

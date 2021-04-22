@@ -41,7 +41,8 @@ function update(input)
         document.getElementById(input.id).value -=1;
     }
 
-    switch(input.id){
+    switch(input.id)
+    {
         case 'classificacao-metodologias-classicas':
             remaing_points -= (input.value - met_classicas_previous);
             met_classicas_previous = input.value;
@@ -79,11 +80,8 @@ function update(input)
     console.log(calcPercentage(remaing_points,MAX_POINTS));
 }
 
-function calcPercentage(current,max){
+function calcPercentage(current,max)
+{
     percentage = (current/max)*100;
     return parseInt(percentage) + '%';
-}
-
-function setWidth(input,current,max){
-    document.getElementById(input.id).style.width = calcPercentage(current,max);
 }
