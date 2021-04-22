@@ -9,7 +9,7 @@
 @endsection
 
 @section('scripts-head')
-    <script src="{{asset('js/classification-system.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/classification_system.js')}}" type="text/javascript"></script>
 @endsection
 @section('styles-head')
     <link href="{{asset('css/classification_system.css')}}" media="all" rel="stylesheet" type="text/css" />
@@ -81,7 +81,7 @@
                         <div class="col-md-6">
                             <div class="progress">
                                 <div id="points" class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
-                              </div>
+                            </div>
                         </div>
                         <div class="col-md-5 mt-1">
                             <label class="text-white">

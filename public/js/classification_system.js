@@ -75,11 +75,15 @@ function update(input)
             av_atividades_previous = input.value;
             break;
     }
-    document.getElementById("points").style.width = calcPercentage(remaing_points);
-    console.log(calcPercentage(remaing_points));
+    document.getElementById("points").style.width = calcPercentage(remaing_points,MAX_POINTS);
+    console.log(calcPercentage(remaing_points,MAX_POINTS));
 }
 
-function calcPercentage(current){
-    percentage = (current/MAX_POINTS)*100;
+function calcPercentage(current,max){
+    percentage = (current/max)*100;
     return parseInt(percentage) + '%';
+}
+
+function setWidth(input,current,max){
+    document.getElementById(input.id).style.width = calcPercentage(current,max);
 }
