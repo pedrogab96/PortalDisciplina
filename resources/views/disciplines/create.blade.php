@@ -9,12 +9,10 @@
 @endsection
 
 @section('scripts-head')
-    {{-- RATING PLUGIN --}}
     <script src="{{asset('js/classification-system.js')}}" type="text/javascript"></script>
 @endsection
 @section('styles-head')
-    {{-- RATING PLUGIN --}}
-    {{-- <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" /> --}}
+    <link href="{{asset('css/classification_system.css')}}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -92,7 +90,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0">
+                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -105,7 +103,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0">
+                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -118,7 +116,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" oninput="update(this)" value="0">
+                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -131,7 +129,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0">
+                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -144,7 +142,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0">
+                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -157,7 +155,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0">
+                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -170,7 +168,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0">
+                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -183,10 +181,21 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" oninput="update(this)" value="0">
+                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
+                    {{-- TODO --}}
+                    {{-- tentar fazer texto aparecer abaixo do range --}}
+                    <datalist id="tickmarks" style="--list-length: 9;">
+                        <option value="0">1</option>
+                        <option value="1">2</option>
+                        <option value="2">A</option>
+                        <option value="3">B</option>
+                        <option value="4">C</option>
+                        <option value="5">C</option>
+                        <option value="6">C</option>
+                    </datalist>
                     @error('classificacao')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
