@@ -75,5 +75,11 @@ function update(input)
             av_atividades_previous = input.value;
             break;
     }
-    document.getElementById("points").value = remaing_points;
+    document.getElementById("points").style.width = calcPercentage(remaing_points);
+    console.log(calcPercentage(remaing_points));
+}
+
+function calcPercentage(current){
+    percentage = (current/MAX_POINTS)*100;
+    return parseInt(percentage) + '%';
 }
