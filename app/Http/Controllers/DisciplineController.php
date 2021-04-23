@@ -12,6 +12,7 @@ use App\Services\Urls\YoutubeService;
 use Illuminate\Http\Request;
 use \App\Models\Discipline;
 use \App\Models\Media;
+use App\Models\Professor;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,12 @@ class DisciplineController extends Controller
      */
     public function create(CreateRequest $request)
     {
-        return view(self::VIEW_PATH . 'create');
+        $professors = new Professor();
+        if(Auth::user()->isAdmin)
+        {
+            $professors = Professor::query()->orderBy('name','ASC')->get();
+        }
+        return view(self::VIEW_PATH . 'create',compact('professors'));
     }
 
     /**
@@ -54,16 +60,20 @@ class DisciplineController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $user = Auth::user();
-
         DB::beginTransaction();
         try {
+            $user = Auth::user();
+            $professor = new Professor();
+            if($user->isAdmin)
+            {
+                $professor = Professor::query()->find($request->input('professor'));
+            }
             $discipline = Discipline::create([
                 'name' => $request->input('name'),
                 'code' => $request->input('code'),
                 'synopsis' => $request->input('synopsis'),
                 'difficulties' => $request->input('difficulties'),
-                'professor_id' => $user->professor->id,
+                'professor_id' => $user->isAdmin ? $professor->id : $user->professor->id
             ]);
 
             if ($request->filled('media-trailer') && YoutubeService::match($request->input('media-trailer'))) {
