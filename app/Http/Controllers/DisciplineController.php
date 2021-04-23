@@ -172,9 +172,8 @@ class DisciplineController extends Controller
             return redirect()->route("disciplinas.show", $discipline->id);
         } catch (\Exception $exception) {
             DB::rollBack();
-            return dd($exception);
-            // return redirect()->route("disciplinas.create")
-            //     ->withInput();
+            return redirect()->route("disciplinas.create")
+                ->withInput();
         }
     }
 
