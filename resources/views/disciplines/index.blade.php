@@ -69,7 +69,7 @@
                                           method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" value="Apagar">Apagar</button>
+                                        <button type="submit" class="btn btn-danger mt-2" value="Apagar">Apagar</button>
                                     </form>
                                 @endauth
                             </div>
