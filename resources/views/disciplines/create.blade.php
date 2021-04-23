@@ -9,12 +9,10 @@
 @endsection
 
 @section('scripts-head')
-    {{-- RATING PLUGIN --}}
-    <script src="{{asset('js/star-rating.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/classification_system.js')}}" type="text/javascript"></script>
 @endsection
 @section('styles-head')
-    {{-- RATING PLUGIN --}}
-    <link href="{{asset('css/star-rating.css')}}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/classification_system.css')}}" media="all" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -54,7 +52,19 @@
                 @enderror
             </div>
         </div>
-
+        <div class="col-md-6 px-0">
+            <label for="professor" class="text-white">Professor</label>
+            @if (Auth::user()->isAdmin)
+                <div class="form-group"> 
+                    <select name="professor" id="professor" class="form-control" aria-label="Professor">
+                        <option selected>Selecione um professor</option>
+                        @foreach ($professors as $professor)
+                            <option value="{{$professor->id}}">{{$professor->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+        </div>
         <div class="form-row mt-3">
             <div class="col-md-6">
                 <div class="form-group">
@@ -77,12 +87,22 @@
                     <div class="row">
                         <div class="col-md-5 mt-1">
                             <label class="text-white">
+                                Pontos restantes
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="progress">
+                                <div id="points" class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 mt-1">
+                            <label class="text-white">
                                 Metodologias Clássicas
                             </label>
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -95,7 +115,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -108,7 +128,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-discussao-social" name="classificacao-discussao-social" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -121,7 +141,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -134,7 +154,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -147,7 +167,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -160,7 +180,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-provas" name="classificacao-av-provas" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -173,11 +193,21 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-av-atividades" name="classificacao-av-atividades" class="rating rating-loading" data-min="0" data-max="5" data-step="1" value="0" data-size="md" data-showcaption=false>
+                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
-
+                    {{-- TODO --}}
+                    {{-- tentar fazer texto aparecer abaixo do range --}}
+                    <datalist id="tickmarks" style="--list-length: 9;">
+                        <option value="0">1</option>
+                        <option value="1">2</option>
+                        <option value="2">A</option>
+                        <option value="3">B</option>
+                        <option value="4">C</option>
+                        <option value="5">C</option>
+                        <option value="6">C</option>
+                    </datalist>
                     @error('classificacao')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
