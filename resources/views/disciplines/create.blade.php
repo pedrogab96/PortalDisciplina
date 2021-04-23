@@ -52,16 +52,19 @@
                 @enderror
             </div>
         </div>
-        @if (Auth::user()->isAdmin)
-            <div class="form-row">
-                <select name="professor" id="professor" class="form-select form-select-sm" aria-label="Professor">
-                    <option selected>Selecione um professor</option>
-                    @foreach ($professors as $professor)
-                        <option value="{{$professor->id}}">{{$professor->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-        @endif
+        <div class="col-md-6 px-0">
+            <label for="professor" class="text-white">Professor</label>
+            @if (Auth::user()->isAdmin)
+                <div class="form-group"> 
+                    <select name="professor" id="professor" class="form-control" aria-label="Professor">
+                        <option selected>Selecione um professor</option>
+                        @foreach ($professors as $professor)
+                            <option value="{{$professor->id}}">{{$professor->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+        </div>
         <div class="form-row mt-3">
             <div class="col-md-6">
                 <div class="form-group">
