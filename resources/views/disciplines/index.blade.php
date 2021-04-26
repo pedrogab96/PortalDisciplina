@@ -71,10 +71,15 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger mt-2" value="Apagar">Apagar</button>
                                     </form>
+                                    <form action=" {{route('disciplinas.edit', $discipline->id)}}" class="d-inline"
+                                        method="put">
+                                      @csrf
+                                      @method('UPDATE')
+                                      <button type="submit" class="btn btn-danger mt-2" value="Editar">Editar</button>
+                                  </form>
                                 @endauth
                             </div>
-
-                            <div class="card-footer">{{ $discipline->professor->name }}</div>
+                            <div class="card-footer">{{ $discipline->professor->name}}</div>
                         </div>
                     </div>
                 @endforeach

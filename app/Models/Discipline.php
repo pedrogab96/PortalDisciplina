@@ -41,6 +41,17 @@ class Discipline extends Model
     }
 
     /**
+     * @return bool
+     */
+
+    public function hasTrailerMedia(): bool
+    {
+        return $this->medias
+                ->where('is_trailer', true)
+                ->count() > 0;
+    }
+
+    /**
      * Get all medias (trailer not included).
      *
      * @return Collection

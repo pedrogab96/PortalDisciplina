@@ -6,6 +6,7 @@ use App\Enums\ClassificationID;
 use App\Enums\MediaType;
 use App\Http\Requests\Discipline\CreateRequest;
 use App\Http\Requests\Discipline\StoreRequest;
+use App\Http\Requests\Discipline\UpdateRequest;
 use App\Models\ClassificationDiscipline;
 use App\Services\Urls\GoogleDriveService;
 use App\Services\Urls\YoutubeService;
@@ -209,7 +210,19 @@ class DisciplineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $professors = new Professor();
+        if(Auth::user()->isAdmin)
+        {
+            $professors = Professor::query()->orderBy('name','ASC')->get();
+        }
+        $discipline = Discipline::query()
+        ->with([
+            'professor',
+            'medias',
+            'faqs',
+        ])
+        ->findOrFail($id);
+        return view(self::VIEW_PATH . 'edit', compact('discipline'), compact('professors'));
     }
 
     /**
@@ -219,9 +232,95 @@ class DisciplineController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $user = Auth::user();
+            $professor = new Professor();
+
+            if($user->isAdmin)
+            {
+                $professor = Professor::query()->find($request->input('professor'));
+            }
+
+            $discipline = Discipline::query()->find($id);
+            $discipline->name = $request->input('name');
+            $discipline->code = $request->input('code');
+            $discipline->synopsis = $request->input('synopsis');
+            $discipline->difficulties = $request->input('difficulties');
+
+            if($user->isAdmin){
+                $discipline->professor_id = $professor->id;
+            }
+            $discipline->save();
+
+            if ($request->filled('media-trailer') && YoutubeService::match($request->input('media-trailer'))) {
+                $mediaId = YoutubeService::getIdFromUrl($request->input('media-trailer'));
+                $media = Media::query()->find($discipline->trailer->id);
+                $media->url = "https://www.youtube.com/embed/" . $mediaId;
+                $media->save();
+            }
+
+
+            if ($request->filled('media-podcast') && YoutubeService::match($request->input('media-podcast'))) {
+                $mediaId = YoutubeService::getIdFromUrl($request->input('media-podcast'));
+                $media = Media::query()->find($discipline->getMediaByType("podcast")->id);
+                $media->url = "https://www.youtube.com/embed/" . $mediaId;
+                $media->save();
+            }
+
+            if ($request->filled('media-video') && YoutubeService::match($request->input('media-video'))) {
+                $mediaId = YoutubeService::getIdFromUrl($request->input('media-video'));
+                $media = Media::query()->find($discipline->getMediaByType("video")->id);
+                $media->url = "https://www.youtube.com/embed/" . $mediaId;
+                $media->save();
+            }
+
+            if ($request->filled('media-material') && GoogleDriveService::match($request->input('media-material'))) {
+                $mediaId = GoogleDriveService::getIdFromUrl($request->input('media-material'));
+                $media = Media::query()->find($discipline->getMediaByType("material")->id);
+                $media->url = "https://www.youtube.com/embed/" . $mediaId;
+                $media->save();
+            }
+
+
+            $metAtivas = ClassificationDiscipline::where("discipline_id",$discipline->id,"classification_id",ClassificationID::METODOLOGIAS_ATIVAS)->get()->first();
+            $metAtivas->value = $request->input('classificacao-metodologias-ativas');
+            $metAtivas->save();
+
+            $discSocial = ClassificationDiscipline::where("discipline_id",$discipline->id,"classification_id",ClassificationID::DISCUSSAO_SOCIAL)->get()->first();
+            $discSocial->value = $request->input('classificacao-discussao-social');
+            $discSocial->save();
+
+            $discTecnica = ClassificationDiscipline::where("discipline_id",$discipline->id,"classification_id",ClassificationID::DISCUSSAO_TECNICA)->get()->first();
+            $discTecnica->value = $request->input('classificacao-discussao-tecnica');
+            $discTecnica->save();
+
+            $abTeorica = ClassificationDiscipline::where("discipline_id",$discipline->id,"classification_id",ClassificationID::ABORDAGEM_TEORICA)->get()->first();
+            $abTeorica->value = $request->input('classificacao-abordagem-teorica');
+            $abTeorica->save();
+
+            $abPratica = ClassificationDiscipline::where("discipline_id",$discipline->id,"classification_id",ClassificationID::ABORDAGEM_PRATICA)->get()->first();
+            $abPratica->value = $request->input('classificacao-abordagem-pratica');
+            $abPratica->save();
+
+            $avProvas = ClassificationDiscipline::where("discipline_id",$discipline->id,"classification_id",ClassificationID::AVALIACAO_PROVAS)->get()->first();
+            $avProvas->value = $request->input('classificacao-av-provas');
+            $avProvas->save();
+
+            $avAtividades = ClassificationDiscipline::where("discipline_id",$discipline->id,"classification_id",ClassificationID::AVALIACAO_ATIVIDADES)->get()->first();
+            $avAtividades->value = $request->input('classificacao-av-atividades');
+            $avAtividades->save();
+
+            DB::commit();
+            return redirect()->route("disciplinas.show", $discipline->id);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->route("disciplinas.edit")
+                ->withInput();
+        }
     }
 
     /**
