@@ -17,8 +17,9 @@
 
 @section('content')
     <h4 class="text-white">Editar disciplina</h4>
-    <form action="{{ route("disciplinas.update" , $discipline->id)}}" method="patch">
+    <form action="{{ route("disciplinas.update" , $discipline->id)}}" method="post">
         @csrf
+        @method('PUT')
         <div class="form-row">
             <div class="form-group col-md-10">
                 <label class="text-white" for="name">
@@ -54,7 +55,7 @@
         </div>
         <div class="col-md-6 px-0">
             <label for="professor" class="text-white">Professor</label>
-            @if (Auth::user()->isAdmin)
+            @if (Auth::user()->is_admin)
                 <div class="form-group">
                     <select name="professor" id="professor" class="form-control" aria-label="Professor">
                         @foreach ($professors as $professor)
@@ -95,7 +96,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress">
-                                <div id="points" class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
+                                <div id="points" class="progress-bar progress-bar-striped" role="progressbar" style="width: {{($discipline->getAllClassificationsValues() / 20) * 100}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
                             </div>
                         </div>
                         <div class="col-md-5 mt-1">
@@ -105,7 +106,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" oninput="update(this)" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::METODOLOGIAS_CLASSICAS)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -118,7 +119,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" oninput="update(this)" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::METODOLOGIAS_ATIVAS)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -131,7 +132,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" oninput="update(this)" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::DISCUSSAO_SOCIAL)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -144,7 +145,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" oninput="update(this)" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::DISCUSSAO_TECNICA)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -157,7 +158,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" oninput="update(this)" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::ABORDAGEM_TEORICA)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -170,7 +171,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" oninput="update(this)" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::ABORDAGEM_PRATICA)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -183,7 +184,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" oninput="update(this)" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::AVALIACAO_PROVAS)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -196,7 +197,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" oninput="update(this)" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::AVALIACAO_ATIVIDADES)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>

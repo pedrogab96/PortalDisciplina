@@ -57,16 +57,18 @@
 
         <div class="col-md-4">
             <h3 class="text-white">Classificação</h3>
-            @foreach ($discipline->classifications as $classification)
+            @foreach ($discipline->classificationsDisciplines as $classificationDiscipline)
             <div class="row">
                 <div class="col-md-5 mt-1">
                     <label class="text-white">
-                        {{$classification->name}}
+                        {{$classificationDiscipline->classification->name}}
                     </label>
                 </div>
                 <div class="col-md-6">
                     <div class="progress">
-                        <div id="{{$classification->classificationDiscipline($discipline->id)->first()->classification_id}}" class="progress-bar progress-bar-striped" role="progressbar" style="width: {{($classification->classificationDiscipline($discipline->id)->first()->value/6)*100}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20"></div>
+                        <div id="{{$classificationDiscipline->id}}" class="progress-bar progress-bar-striped" role="progressbar" 
+                            style="width: {{($classificationDiscipline->value/6)*100}}%" 
+                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="20"></div>
                     </div>
                 </div>
             </div>

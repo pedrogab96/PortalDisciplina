@@ -31,6 +31,27 @@ class Discipline extends Model
     ];
 
     /**
+     * @return int|null
+     */
+    public function getClassificationsValues($classification_id): ? int
+    {
+        return $this->classificationsDisciplines
+            ->where('classification_id', $classification_id)
+            ->first()->value;
+    }
+    /**
+     * @return int|null
+     */
+    public function getAllClassificationsValues(): ? int
+    {
+        $points = 0;
+        foreach ($this->classificationsDisciplines() as $classification)
+        {
+            $points += $classification->value;
+        }
+        return $points;
+    }
+    /**
      * @return Media|null
      */
     public function getTrailerAttribute(): ?Media
@@ -117,6 +138,14 @@ class Discipline extends Model
         return $this->hasManyThrough(Classification::class, ClassificationDiscipline::class,
             'discipline_id', 'id',
             'id', 'classification_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+     public function classificationsDisciplines()
+    {
+        return $this->hasMany(ClassificationDiscipline::class,"discipline_id","id");
     }
 
     /**

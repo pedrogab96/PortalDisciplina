@@ -75,7 +75,7 @@
                                         method="put">
                                       @csrf
                                       @method('UPDATE')
-                                      <button type="submit" class="btn btn-danger mt-2" value="Editar">Editar</button>
+                                      <button type="submit" class="btn btn-warning mt-2" value="Editar">Editar</button>
                                   </form>
                                 @endauth
                             </div>

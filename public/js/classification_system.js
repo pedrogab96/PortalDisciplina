@@ -1,5 +1,4 @@
 MAX_POINTS = 20;
-remaing_points = MAX_POINTS;
 
 met_classicas_previous = 0;
 met_ativas_previous = 0;
@@ -10,6 +9,16 @@ ab_pratica_previous = 0;
 av_provas_previous = 0;
 av_atividades_previous = 0;
 
+document.onload = function(){
+    met_classicas_previous = document.getElementById("classificacao-metodologias-classicas").value;
+    met_ativas_previous = document.getElementById("classificacao-metodologias-ativas").value;
+    disc_social_previous = document.getElementById("classificacao-discussao-social").value;
+    disc_tecnica_previous = document.getElementById("classificacao-discussao-tecnica").value;
+    ab_teorica_previous = document.getElementById("classificacao-abordagem-teorica").value;
+    ab_pratica_previous = document.getElementById("classificacao-abordagem-pratica").value;
+    av_provas_previous = document.getElementById("classificacao-av-provas").value;
+    av_atividades_previous = document.getElementById("classificacao-av-atividades").value;
+}
 function sum_inputs()
 {
     met_classicas = document.getElementById("classificacao-metodologias-classicas").value;
@@ -36,6 +45,7 @@ function checkBalance()
 
 function update(input)
 {
+    remaing_points = MAX_POINTS - sum_inputs();
     while(!checkBalance())
     {
         document.getElementById(input.id).value -=1;
@@ -77,7 +87,6 @@ function update(input)
             break;
     }
     document.getElementById("points").style.width = calcPercentage(remaing_points,MAX_POINTS);
-    console.log(calcPercentage(remaing_points,MAX_POINTS));
 }
 
 function calcPercentage(current,max)
