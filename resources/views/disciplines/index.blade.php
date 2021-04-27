@@ -72,7 +72,7 @@
                                         <button type="submit" class="btn btn-danger mt-2" value="Apagar">Apagar</button>
                                     </form>
                                     <form action=" {{route('disciplinas.edit', $discipline->id)}}" class="d-inline"
-                                        method="put">
+                                        method="get">
                                       @csrf
                                       @method('UPDATE')
                                       <button type="submit" class="btn btn-warning mt-2" value="Editar">Editar</button>

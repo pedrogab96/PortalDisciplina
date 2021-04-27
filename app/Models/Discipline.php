@@ -40,18 +40,6 @@ class Discipline extends Model
             ->first()->value;
     }
     /**
-     * @return int|null
-     */
-    public function getAllClassificationsValues(): ? int
-    {
-        $points = 0;
-        foreach ($this->classificationsDisciplines() as $classification)
-        {
-            $points += $classification->value;
-        }
-        return $points;
-    }
-    /**
      * @return Media|null
      */
     public function getTrailerAttribute(): ?Media
@@ -64,12 +52,11 @@ class Discipline extends Model
     /**
      * @return bool
      */
-
-    public function hasTrailerMedia(): bool
+    public function getHasTrailerMediaAttribute(): bool
     {
         return $this->medias
                 ->where('is_trailer', true)
-                ->count() > 0;
+                ->exists();
     }
 
     /**

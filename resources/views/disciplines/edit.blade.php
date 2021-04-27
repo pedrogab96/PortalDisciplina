@@ -96,7 +96,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="progress">
-                                <div id="points" class="progress-bar progress-bar-striped" role="progressbar" style="width: {{($discipline->getAllClassificationsValues() / 20) * 100}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
+                                <div id="points" class="progress-bar progress-bar-striped" role="progressbar" style="width: {{($discipline->classificationsDisciplines()->sum('value') / 20) * 100}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
                             </div>
                         </div>
                         <div class="col-md-5 mt-1">
@@ -228,7 +228,7 @@
                                class="form-control {{ $errors->has('media-trailer') ? 'is-invalid' : ''}}"
                                name="media-trailer"
                                id="media-trailer"
-                               @if ($discipline->hasTrailerMedia())
+                               @if ($discipline->has_trailer_media)
                                value="{{$discipline->trailer->url}}"
                                @endif
                                aria-describedby="basic-addon3"

@@ -121,53 +121,24 @@ class DisciplineController extends Controller
                 ]);
             }
 
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::METODOLOGIAS_CLASSICAS,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-metodologias-classicas') == null ? 0 : $request->input('classificacao-metodologias-classicas'),
-            ]);
+            $classificationsMap = [
+                ClassificationID::METODOLOGIAS_CLASSICAS => "classificacao-metodologias-classicas",
+                ClassificationID::METODOLOGIAS_ATIVAS => "classificacao-metodologias-ativas",
+                ClassificationID::DISCUSSAO_SOCIAL => "classificacao-discussao-social",
+                ClassificationID::DISCUSSAO_TECNICA => "classificacao-discussao-tecnica",
+                ClassificationID::ABORDAGEM_TEORICA => "classificacao-abordagem-teorica",
+                ClassificationID::ABORDAGEM_PRATICA => "classificacao-abordagem-pratica",
+                ClassificationID::AVALIACAO_PROVAS => "classificacao-av-provas",
+                ClassificationID::AVALIACAO_ATIVIDADES => "classificacao-av-atividades"
+            ];
 
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::METODOLOGIAS_ATIVAS,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-metodologias-ativas') == null ? 0 : $request->input('classificacao-metodologias-ativas'),
-            ]);
-
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::DISCUSSAO_SOCIAL,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-discussao-social') == null ? 0 : $request->input('classificacao-discussao-social'),
-            ]);
-
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::DISCUSSAO_TECNICA,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-discussao-tecnica') == null ? 0 : $request->input('classificacao-discussao-tecnica'),
-            ]);
-
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::ABORDAGEM_TEORICA,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-abordagem-teorica') == null ? 0 : $request->input('classificacao-abordagem-teorica'),
-            ]);
-
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::ABORDAGEM_PRATICA,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-abordagem-pratica') == null ? 0 : $request->input('classificacao-abordagem-pratica'),
-            ]);
-
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::AVALIACAO_PROVAS,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-av-provas') == null ? 0 : $request->input('classificacao-av-provas'),
-            ]);
-
-            ClassificationDiscipline::create([
-                'classification_id' => ClassificationID::AVALIACAO_ATIVIDADES,
-                'discipline_id' => $discipline->id,
-                'value' => $request->input('classificacao-av-atividades') == null ? 0 : $request->input('classificacao-av-atividades'),
-            ]);
+            foreach ($classificationsMap as $classificationId => $inputValue){
+                ClassificationDiscipline::create([
+                    'classification_id' => $classificationId,
+                    'discipline_id' => $discipline->id,
+                    'value' => $request->input($inputValue) == null ? 0 : $request->input($inputValue)
+                ]);
+            }
 
             DB::commit();
             return redirect()->route("disciplinas.show", $discipline->id);
@@ -283,45 +254,23 @@ class DisciplineController extends Controller
                 ]);
             }
 
-            ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-            ->where('classification_id',ClassificationID::METODOLOGIAS_CLASSICAS)->update([
-                'value' => $request->input("classificacao-metodologias-classicas")
-            ]);
+            $classificationsMap = [
+                ClassificationID::METODOLOGIAS_CLASSICAS => "classificacao-metodologias-classicas",
+                ClassificationID::METODOLOGIAS_ATIVAS => "classificacao-metodologias-ativas",
+                ClassificationID::DISCUSSAO_SOCIAL => "classificacao-discussao-social",
+                ClassificationID::DISCUSSAO_TECNICA => "classificacao-discussao-tecnica",
+                ClassificationID::ABORDAGEM_TEORICA => "classificacao-abordagem-teorica",
+                ClassificationID::ABORDAGEM_PRATICA => "classificacao-abordagem-pratica",
+                ClassificationID::AVALIACAO_PROVAS => "classificacao-av-provas",
+                ClassificationID::AVALIACAO_ATIVIDADES => "classificacao-av-atividades"
+            ];
 
-            ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-            ->where('classification_id',ClassificationID::METODOLOGIAS_ATIVAS)->update([
-                'value' => $request->input("classificacao-metodologias-ativas")
-            ]);
-
-            ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-            ->where('classification_id',ClassificationID::DISCUSSAO_SOCIAL)->update([
-                'value' => $request->input("classificacao-discussao-social")
-            ]);
-
-            ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-            ->where('classification_id',ClassificationID::DISCUSSAO_TECNICA)->update([
-                'value' => $request->input("classificacao-discussao-tecnica")
-            ]);
-
-            ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-            ->where('classification_id',ClassificationID::ABORDAGEM_TEORICA)->update([
-                'value' => $request->input("classificacao-abordagem-teorica")
-            ]);
-
-            ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-            ->where('classification_id',ClassificationID::ABORDAGEM_PRATICA)->update([
-                'value' => $request->input("classificacao-abordagem-pratica")
-            ]);
-
-            ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-            ->where('classification_id',ClassificationID::AVALIACAO_PROVAS)->update([
-                'value' => $request->input("classificacao-av-provas")
-            ]);
-
-            ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-            ->where('classification_id',ClassificationID::AVALIACAO_ATIVIDADES)->update([
-                'value' => $request->input("classificacao-av-atividades")
-            ]);
+            foreach ($classificationsMap as $classificationId => $inputValue){
+                ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
+                ->where('classification_id',$classificationId)->update([
+                    'value' => $request->input($inputValue)
+                ]);
+            }
 
             DB::commit();
             return redirect()->route("disciplinas.show", $discipline->id);

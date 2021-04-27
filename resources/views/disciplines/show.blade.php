@@ -46,7 +46,7 @@
     <div class="row mt-3">
         <div class="col-md-8">
             <h3 class="text-white">Trailer</h3>
-            @if(!is_null($discipline->trailer))
+            @if($discipline->has_trailer_media))
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="{{ $discipline->trailer->url}}" allowfullscreen></iframe>
                 </div>
@@ -66,8 +66,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="progress">
-                        <div id="{{$classificationDiscipline->id}}" class="progress-bar progress-bar-striped" role="progressbar" 
-                            style="width: {{($classificationDiscipline->value/6)*100}}%" 
+                        <div id="{{$classificationDiscipline->id}}" class="progress-bar progress-bar-striped" role="progressbar"
+                            style="width: {{($classificationDiscipline->value/6)*100}}%"
                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="20"></div>
                     </div>
                 </div>
