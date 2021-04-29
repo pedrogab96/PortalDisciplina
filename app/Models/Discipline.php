@@ -56,7 +56,7 @@ class Discipline extends Model
     {
         return $this->medias
                 ->where('is_trailer', true)
-                ->exists();
+                ->count() > 0;
     }
 
     /**
