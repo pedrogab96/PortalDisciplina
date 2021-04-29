@@ -14,7 +14,12 @@ class EditRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->is_admin || Auth::user()->is_professor;
+        $disciplineId = $this->route()->parameter('disciplina');
+        if (!is_numeric($disciplineId)) {
+            return false;
+        }
+
+        return Auth::user()->canDiscipline($disciplineId);
     }
 
     /**
