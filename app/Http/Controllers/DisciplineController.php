@@ -192,9 +192,10 @@ class DisciplineController extends Controller
                 'classificationsDisciplines.classification',
             ])
             ->findOrFail($id);
+        $user = Auth::user();
 
-        if (Auth::user() !== null) {
-            $can = Auth::user()->canDiscipline($discipline);
+        if (!is_null($user)) {
+            $can = $user->canDiscipline($discipline);
             return view(self::VIEW_PATH . 'show', compact('discipline', 'can'));
         }
 

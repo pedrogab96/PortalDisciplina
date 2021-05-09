@@ -18,18 +18,16 @@
 @section('content')
     <h2 class="container-fluid text-white text-center">{{ $discipline->name }} - {{ $discipline->code }}</h2>
 
-    @if (isset($can))
-        @if($can)
-            <div class="row">
-                <div class="col-12 col-sm-6 col-lg-3 mt-5">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-light btn-block"
-                            data-toggle="modal" data-target="#faqs-create">
-                        Registrar FAQ
-                    </button>
-                </div>
+    @if(isset($can) && $can)
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3 mt-5">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-light btn-block"
+                        data-toggle="modal" data-target="#faqs-create">
+                    Registrar FAQ
+                </button>
             </div>
-        @endif
+        </div>
     @endif
 
     <div class="row mt-3">
@@ -165,6 +163,15 @@
                                     aria-expanded="true" aria-controls="faq-header-{{$faq->id}}">
                                 {!! $faq->title !!}
                             </button>
+
+                            @if(isset($can) && $can)
+                                <form action=" {{route('disciplinas.faqs.destroy', [$discipline->id, $faq->id])}}"
+                                      class="d-inline float-right" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger mt-2" value="Apagar">Apagar</button>
+                                </form>
+                            @endif
                         </h5>
                     </div>
 
@@ -179,9 +186,7 @@
         </div>
     @endif
 
-    @if(isset($can))
-        @if ($can)
-            @include('faqs.create_modal', ['discipline' => $discipline])
-        @endif
+    @if(isset($can) && $can)
+        @include('faqs.create_modal', ['discipline' => $discipline])
     @endif
 @endsection
