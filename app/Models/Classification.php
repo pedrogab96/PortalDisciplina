@@ -31,11 +31,25 @@ class Classification extends Model
     public function disciplines()
     {
         return $this->hasManyThrough(Discipline::class, ClassificationDiscipline::class,
-        'classification_id', 'id',
-        'id', 'discipline_id');
+            'classification_id', 'id',
+            'id', 'discipline_id');
     }
+
+    /**
+     * @param $discipline_id
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function classificationDiscipline($discipline_id)
     {
-        return $this->hasMany(ClassificationDiscipline::class,"classification_id","id")->where('discipline_id',$discipline_id);
+        return $this->hasMany(ClassificationDiscipline::class, "classification_id", "id")
+            ->where('discipline_id', $discipline_id);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function classificationsDisciplines()
+    {
+        return $this->hasMany(ClassificationDiscipline::class);
     }
 }
