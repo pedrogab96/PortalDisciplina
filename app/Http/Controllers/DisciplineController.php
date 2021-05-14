@@ -17,6 +17,7 @@ use App\Models\Professor;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 class DisciplineController extends Controller
 {
     const VIEW_PATH = 'disciplines.';
@@ -32,7 +33,7 @@ class DisciplineController extends Controller
             ->with([
                 'professor',
                 'medias',
-            ])->orderBy('name','ASC')->get();
+            ])->orderBy('name', 'ASC')->get();
 
         return view(self::VIEW_PATH . 'index', compact('disciplines'));
     }
@@ -46,11 +47,10 @@ class DisciplineController extends Controller
     public function create(CreateRequest $request)
     {
         $professors = new Professor();
-        if(Auth::user()->isAdmin)
-        {
-            $professors = Professor::query()->orderBy('name','ASC')->get();
+        if (Auth::user()->isAdmin) {
+            $professors = Professor::query()->orderBy('name', 'ASC')->get();
         }
-        return view(self::VIEW_PATH . 'create',compact('professors'));
+        return view(self::VIEW_PATH . 'create', compact('professors'));
     }
 
     /**
@@ -65,8 +65,7 @@ class DisciplineController extends Controller
         try {
             $user = Auth::user();
             $professor = new Professor();
-            if($user->isAdmin)
-            {
+            if ($user->isAdmin) {
                 $professor = Professor::query()->find($request->input('professor'));
             }
             $discipline = Discipline::create([
@@ -162,11 +161,13 @@ class DisciplineController extends Controller
                 'professor',
                 'medias',
                 'faqs',
+                'classificationsDisciplines.classification',
             ])
             ->findOrFail($id);
+        $user = Auth::user();
 
-        if(Auth::user() !== null){
-            $can = Auth::user()->canDiscipline($discipline);
+        if (!is_null($user)) {
+            $can = $user->canDiscipline($discipline);
             return view(self::VIEW_PATH . 'show', compact('discipline', 'can'));
         }
 
