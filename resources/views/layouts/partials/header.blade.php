@@ -20,11 +20,21 @@
         @endguest
         <nav class="nav-menu d-none d-lg-block mr-auto">
             <ul>
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="about.html">Sobre</a></li>
-                <li><a href="courses.html">Como colaborar</a></li>
+                <li class="active"><a href="{{ route('index') }}">Home</a></li>
+                <li><a href="{{ route('information') }}">Sobre</a></li>
+                <li><a href="{{ route('collaborate') }}">Como colaborar</a></li>
 
-                <!-- <li class="drop-down"><a href="">Drop Down</a>
+                @auth
+                    <li><a href="{{ route('profile') }}">Meu perfil</a></li>
+                    @if(auth()->user()->is_admin)
+                        <li>
+                            <a href="{{ route("professores.index") }}" role="button">
+                                Painel de Administração
+                            </a>
+                        </li>
+                @endif
+            @endauth
+            <!-- <li class="drop-down"><a href="">Drop Down</a>
                   <ul>
                     <li><a href="#">Drop Down 1</a></li>
                     <li class="drop-down"><a href="#">Deep Drop Down</a>
@@ -44,6 +54,8 @@
 
             </ul>
         </nav><!-- .nav-menu -->
-        <a href="{{ route('login') }}" class="get-started-btn">Entrar</a>
+        @guest
+            <a href="{{ route('login') }}" class="get-started-btn">Entrar</a>
+        @endguest
     </div>
 </header>

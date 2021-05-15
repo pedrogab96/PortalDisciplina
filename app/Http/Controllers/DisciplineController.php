@@ -32,7 +32,8 @@ class DisciplineController extends Controller
             ->with([
                 'professor',
                 'medias',
-            ])->orderBy('name', 'ASC')->get();
+            ])->orderBy('name', 'ASC')
+            ->get();
 
         return view(self::VIEW_PATH . 'index', compact('disciplines'));
     }

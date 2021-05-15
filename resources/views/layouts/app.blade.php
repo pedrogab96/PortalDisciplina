@@ -34,27 +34,23 @@
     @yield('scripts-head')
 </head>
 
-<body class="content-body d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
 @include('layouts.partials.header')
+@include('layouts.partials.system-alerts')
 
-{{-- Sidebar desativado por enquanto --}}
-@isset($success)
-    <div class="alert alert-success border-left-success" role="alert">
-        <span>{{ $success }}</span>
-    </div>
-@endisset
-
-@include('components.sidebar')
-
+<main id="main">
 <div class="container mb-5">
     @yield('content')
 </div>
+</main>
 
-@include('components.footer')
+@include('layouts.partials.footer')
+
 {{-- bootstrap JS --}}
 <script src="{{asset('js/app.js')}}" type="text/javascript"></script>
 {{-- Sidebar JS --}}
 <script src="{{asset('js/sidebar.js')}}" type="text/javascript"></script>
+
 @yield('scripts-bottom')
 
 </body>
