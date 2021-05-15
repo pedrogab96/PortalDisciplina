@@ -99,6 +99,14 @@ class Discipline extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function classificationsDisciplines()
+    {
+        return $this->hasMany(ClassificationDiscipline::class);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function classifications()
