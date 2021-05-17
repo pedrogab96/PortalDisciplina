@@ -237,7 +237,7 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id,
                     ]);
                 }else{
-                    if($request->input('media-trailer') == null){
+                    if($request->input('media-trailer') == ""){
                         Media::query()->find($discipline->trailer->id)->delete();
                     }else{
                         Media::query()->find($discipline->trailer->id)->update([
@@ -259,7 +259,7 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id,
                     ]);
                 }else{
-                    if($request->input('media-podcast') == null){
+                    if($request->input('media-podcast') == ""){
                         Media::query()->find($discipline->getMediaByType("podcast")->id)->delete();
                     }else{
                         Media::query()->find($discipline->getMediaByType("podcast")->id)->update([
@@ -280,7 +280,7 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id,
                     ]);
                 }else{
-                    if($request->input('media-video') == null){
+                    if($request->input('media-video') == ""){
                         Media::query()->find($discipline->getMediaByType("video")->id)->delete();
                     }else{
                         Media::query()->find($discipline->getMediaByType("video")->id)->update([
@@ -301,7 +301,7 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id,
                     ]);
                 }else{
-                    if($request->input('media-material') == null){
+                    if($request->input('media-material') == ""){
                         Media::query()->find($discipline->getMediasByType("material")->id)->delete();
                     }else{
                         Media::query()->find($discipline->getMediasByType("material")->id)->update([
