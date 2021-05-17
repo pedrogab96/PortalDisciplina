@@ -8,13 +8,6 @@
     noindex, follow
 @endsection
 
-@section('scripts-head')
-    <script src="{{asset('js/classification_system.js')}}" type="text/javascript"></script>
-@endsection
-@section('styles-head')
-    <link href="{{asset('css/classification_system.css')}}" media="all" rel="stylesheet" type="text/css" />
-@endsection
-
 @section('content')
     <h4 class="text-white">Registrar nova disciplina</h4>
     <form action="{{ route("disciplinas.store") }}" method="post">
@@ -55,7 +48,7 @@
         <div class="col-md-6 px-0">
             <label for="professor" class="text-white">Professor</label>
             @if (Auth::user()->isAdmin)
-                <div class="form-group"> 
+                <div class="form-group">
                     <select name="professor" id="professor" class="form-control" aria-label="Professor">
                         <option selected>Selecione um professor</option>
                         @foreach ($professors as $professor)
@@ -87,22 +80,12 @@
                     <div class="row">
                         <div class="col-md-5 mt-1">
                             <label class="text-white">
-                                Pontos restantes
-                            </label>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="progress">
-                                <div id="points" class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-5 mt-1">
-                            <label class="text-white">
                                 Metodologias Clássicas
                             </label>
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -115,7 +98,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -128,7 +111,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -141,7 +124,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -154,7 +137,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -167,7 +150,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -180,7 +163,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -193,7 +176,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" oninput="update(this)" value="0" list="tickmarks">
+                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
                             </div>
                         </div>
                     </div>
