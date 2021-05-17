@@ -47,9 +47,8 @@
         </div>
 
         <div class="col-md-4">
-            <h3 class="text-white">Classificação</h3>
+            <h3 class="text-white">Classificações</h3>
             @foreach ($discipline->classificationsDisciplines as $classificationDiscipline)
-            <div class="row">
                 <div class="row">
                     <div class="col-md-5 mt-1">
                         <label class="text-white">
@@ -65,7 +64,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>
