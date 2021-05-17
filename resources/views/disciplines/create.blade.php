@@ -46,8 +46,8 @@
             </div>
         </div>
         <div class="col-md-6 px-0">
-            <label for="professor" class="text-white">Professor</label>
             @if (Auth::user()->isAdmin)
+            <label for="professor" class="text-white">Professor</label>
                 <div class="form-group">
                     <select name="professor" id="professor" class="form-control" aria-label="Professor">
                         <option selected>Selecione um professor</option>
