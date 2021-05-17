@@ -8,13 +8,6 @@
     {{ $discipline->name }} - {{ $discipline->code }}, tutorado por {{ $discipline->professor->name }}. Clique para saiber mais.
 @endsection
 
-@section('scripts-head')
-    <script src="{{asset('js/classification_system.js')}}" type="text/javascript"></script>
-@endsection
-@section('styles-head')
-    <link href="{{asset('css/classification_system.css')}}" media="all" rel="stylesheet" type="text/css"/>
-@endsection
-
 @section('content')
     <h2 class="container-fluid text-white text-center">{{ $discipline->name }} - {{ $discipline->code }}</h2>
 
