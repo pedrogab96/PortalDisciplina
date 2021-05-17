@@ -200,7 +200,8 @@
                     @enderror
                 </div>
             </div>
-
+            TODO 
+            Card de midias com "x" para excluir
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="text-white" for="media-trailer">
@@ -217,7 +218,7 @@
                                aria-describedby="basic-addon3"
                                placeholder="Link para vídeo no Youtube">
                         @error('media-trailer')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
