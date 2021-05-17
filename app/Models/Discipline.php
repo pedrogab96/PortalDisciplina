@@ -81,6 +81,14 @@ class Discipline extends Model
             ->where('type', $type);
     }
 
+    public function getMediaByType(string $type)
+    {
+        return $this->medias
+            ->where('is_trailer', false)
+            ->where('type', $type)
+            ->first();
+    }
+
     /**
      * @param string $type
      * @return bool
