@@ -37,7 +37,7 @@
     <div class="row mt-3">
         <div class="col-md-8">
             <h3 class="text-white">Trailer</h3>
-            @if($discipline->has_trailer_media))
+            @if($discipline->has_trailer_media)
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="{{ $discipline->trailer->url}}" allowfullscreen></iframe>
                 </div>
