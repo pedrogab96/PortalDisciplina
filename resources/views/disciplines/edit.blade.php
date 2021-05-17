@@ -200,8 +200,8 @@
                     @enderror
                 </div>
             </div>
-            TODO 
-            Card de midias com "x" para excluir
+            {{-- TODO
+            Card de midias com "x" para excluir --}}
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="text-white" for="media-trailer">
