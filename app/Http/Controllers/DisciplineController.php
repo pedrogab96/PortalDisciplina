@@ -237,13 +237,9 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id,
                     ]);
                 }else{
-                    if($request->input('media-trailer') == ""){
-                        Media::query()->find($discipline->trailer->id)->delete();
-                    }else{
-                        Media::query()->find($discipline->trailer->id)->update([
-                            'url' => "https://www.youtube.com/embed/" . $mediaId
-                        ]);
-                    }
+                    Media::query()->find($discipline->trailer->id)->update([
+                        'url' => "https://www.youtube.com/embed/" . $mediaId
+                    ]);
                 }
             }
 
@@ -259,13 +255,9 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id,
                     ]);
                 }else{
-                    if($request->input('media-podcast') == ""){
-                        Media::query()->find($discipline->getMediaByType("podcast")->id)->delete();
-                    }else{
-                        Media::query()->find($discipline->getMediaByType("podcast")->id)->update([
-                            'url' => "https://www.youtube.com/embed/" . $mediaId
-                        ]);
-                    }
+                    Media::query()->find($discipline->getMediaByType("podcast")->id)->update([
+                        'url' => "https://www.youtube.com/embed/" . $mediaId
+                    ]);
                 }
             }
 
@@ -280,13 +272,9 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id,
                     ]);
                 }else{
-                    if($request->input('media-video') == ""){
-                        Media::query()->find($discipline->getMediaByType("video")->id)->delete();
-                    }else{
-                        Media::query()->find($discipline->getMediaByType("video")->id)->update([
-                            'url' => "https://www.youtube.com/embed/" . $mediaId
-                        ]);
-                    }
+                    Media::query()->find($discipline->getMediaByType("video")->id)->update([
+                        'url' => "https://www.youtube.com/embed/" . $mediaId
+                    ]);
                 }
             }
 
@@ -301,13 +289,9 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id,
                     ]);
                 }else{
-                    if($request->input('media-material') == ""){
-                        Media::query()->find($discipline->getMediasByType("material")->id)->delete();
-                    }else{
-                        Media::query()->find($discipline->getMediasByType("material")->id)->update([
-                            'url' => "https://www.youtube.com/embed/" . $mediaId
-                        ]);
-                    }
+                    Media::query()->find($discipline->getMediaByType("material")->id)->update([
+                        'url' => "https://www.youtube.com/embed/" . $mediaId
+                    ]);
                 }
             }
 
