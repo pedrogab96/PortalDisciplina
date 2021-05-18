@@ -8,28 +8,19 @@
     {{ $discipline->name }} - {{ $discipline->code }}, tutorado por {{ $discipline->professor->name }}. Clique para saiber mais.
 @endsection
 
-@section('scripts-head')
-    <script src="{{asset('js/classification_system.js')}}" type="text/javascript"></script>
-@endsection
-@section('styles-head')
-    <link href="{{asset('css/classification_system.css')}}" media="all" rel="stylesheet" type="text/css" />
-@endsection
-
 @section('content')
     <h2 class="container-fluid text-white text-center">{{ $discipline->name }} - {{ $discipline->code }}</h2>
 
-    @if (isset($can))
-        @if($can)
-            <div class="row">
-                <div class="col-12 col-sm-6 col-lg-3 mt-5">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-light btn-block"
-                            data-toggle="modal" data-target="#faqs-create">
-                        Registrar FAQ
-                    </button>
-                </div>
+    @if(isset($can) && $can)
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3 mt-5">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-light btn-block"
+                        data-toggle="modal" data-target="#faqs-create">
+                    Registrar FAQ
+                </button>
             </div>
-        @endif
+        </div>
     @endif
 
     <div class="row mt-3">
@@ -46,7 +37,7 @@
     <div class="row mt-3">
         <div class="col-md-8">
             <h3 class="text-white">Trailer</h3>
-            @if(!is_null($discipline->trailer))
+            @if($discipline->has_trailer_media)
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="{{ $discipline->trailer->url}}" allowfullscreen></iframe>
                 </div>
@@ -56,20 +47,23 @@
         </div>
 
         <div class="col-md-4">
-            <h3 class="text-white">Classificação</h3>
-            @foreach ($discipline->classifications as $classification)
-            <div class="row">
-                <div class="col-md-5 mt-1">
-                    <label class="text-white">
-                        {{$classification->name}}
-                    </label>
-                </div>
-                <div class="col-md-6">
-                    <div class="progress">
-                        <div id="{{$classification->classificationDiscipline($discipline->id)->first()->classification_id}}" class="progress-bar progress-bar-striped" role="progressbar" style="width: {{($classification->classificationDiscipline($discipline->id)->first()->value/6)*100}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="20"></div>
+            <h3 class="text-white">Classificações</h3>
+            @foreach ($discipline->classificationsDisciplines as $classificationDiscipline)
+                <div class="row">
+                    <div class="col-md-5 mt-1">
+                        <label class="text-white">
+                            {{$classificationDiscipline->classification->name}}
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="progress">
+                            <div id="{{$classificationDiscipline->classification_id}}"
+                                 class="progress-bar progress-bar-striped" role="progressbar"
+                                 style="width: {{($classificationDiscipline->value/6)*100}}%"
+                                 aria-valuenow="0" aria-valuemin="0" aria-valuemax="20"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>
@@ -157,14 +151,25 @@
                 <div class="col-md-12 card">
                     <div class="card-header" id="faq-header-{{$faq->id}}">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq-content-{{$faq->id}}"
+                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                    data-target="#faq-content-{{$faq->id}}"
                                     aria-expanded="true" aria-controls="faq-header-{{$faq->id}}">
                                 {!! $faq->title !!}
                             </button>
+
+                            @if(isset($can) && $can)
+                                <form action=" {{route('disciplinas.faqs.destroy', [$discipline->id, $faq->id])}}"
+                                      class="d-inline float-right" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger mt-2" value="Apagar">Apagar</button>
+                                </form>
+                            @endif
                         </h5>
                     </div>
 
-                    <div id="faq-content-{{$faq->id}}" class="collapse" aria-labelledby="faq-header-{{$faq->id}}" data-parent="#faqs">
+                    <div id="faq-content-{{$faq->id}}" class="collapse" aria-labelledby="faq-header-{{$faq->id}}"
+                         data-parent="#faqs">
                         <div class="card-body">
                             {!! $faq->content !!}
                         </div>
@@ -174,9 +179,7 @@
         </div>
     @endif
 
-    @if(isset($can))
-        @if ($can)
-            @include('faqs.create_modal', ['discipline' => $discipline])
-        @endif
+    @if(isset($can) && $can)
+        @include('faqs.create_modal', ['discipline' => $discipline])
     @endif
 @endsection

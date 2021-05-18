@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Cadastrar disciplina - Portal das Disciplinas IMD
+    Editar disciplina - Portal das Disciplinas IMD
 @endsection
 
 @section('robots')
@@ -9,9 +9,10 @@
 @endsection
 
 @section('content')
-    <h4 class="text-white">Registrar nova disciplina</h4>
-    <form action="{{ route("disciplinas.store") }}" method="post">
+    <h4 class="text-white">Editar disciplina</h4>
+    <form action="{{ route("disciplinas.update" , $discipline->id)}}" method="post">
         @csrf
+        @method('PUT')
         <div class="form-row">
             <div class="form-group col-md-10">
                 <label class="text-white" for="name">
@@ -22,7 +23,7 @@
                        class="form-control {{ $errors->has('name') ? 'is-invalid' : ''}}"
                        id="name"
                        name="name"
-                       value="{{old('name')}}"
+                       value="{{$discipline->name}}"
                        placeholder="Estrutura de dados básica I">
                 @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -38,7 +39,7 @@
                        class="form-control {{ $errors->has('code') ? 'is-invalid' : ''}}"
                        id="code"
                        name="code"
-                       value="{{old('code')}}"
+                       value="{{$discipline->code}}"
                        placeholder="IMD0000">
                 @error('code')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -46,13 +47,16 @@
             </div>
         </div>
         <div class="col-md-6 px-0">
-            @if (Auth::user()->isAdmin)
             <label for="professor" class="text-white">Professor</label>
+            @if (Auth::user()->is_admin)
                 <div class="form-group">
                     <select name="professor" id="professor" class="form-control" aria-label="Professor">
-                        <option selected>Selecione um professor</option>
                         @foreach ($professors as $professor)
-                            <option value="{{$professor->id}}">{{$professor->name}}</option>
+                            @if ($professor->id == $discipline->professor_id)
+                                <option selected="selected" value="{{$professor->id}}">{{$professor->name}}</option>
+                            @else
+                                <option value="{{$professor->id}}">{{$professor->name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -69,7 +73,7 @@
                         id="synopsis"
                         name="synopsis"
                         rows="8"
-                        placeholder="Explique aqui como funciona a disciplina">{{old('synopsis')}}</textarea>
+                        placeholder="Explique aqui como funciona a disciplina">{{$discipline->synopsis}}</textarea>
                     @error('synopsis')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -85,7 +89,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
+                                <input id="classificacao-metodologias-classicas" name="classificacao-metodologias-classicas" type="range" step="1" min="0" max="6" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::METODOLOGIAS_CLASSICAS)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -98,7 +102,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-metodologias-ativas" name="classificacao-metodologias-ativas" type="range" step="1" min="0" max="6" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::METODOLOGIAS_ATIVAS)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -111,7 +115,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-discussao-social" name="classificacao-discussao-social" type="range" step="1" min="0" max="6" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::DISCUSSAO_SOCIAL)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -124,7 +128,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-discussao-tecnica" name="classificacao-discussao-tecnica" type="range" step="1" min="0" max="6" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::DISCUSSAO_TECNICA)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -137,7 +141,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-abordagem-teorica" name="classificacao-abordagem-teorica" type="range" step="1" min="0" max="6" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::ABORDAGEM_TEORICA)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -150,7 +154,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-abordagem-pratica" name="classificacao-abordagem-pratica" type="range" step="1" min="0" max="6" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::ABORDAGEM_PRATICA)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -163,7 +167,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
+                                <input class="form-range" id="classificacao-av-provas" name="classificacao-av-provas" type="range" step="1" min="0" max="6" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::AVALIACAO_PROVAS)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -176,7 +180,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" value="0" list="tickmarks">
+                                <input class="form-range form-group" id="classificacao-av-atividades" name="classificacao-av-atividades" type="range" step="1" min="0" max="6" value="{{$discipline->getClassificationsValues(\App\Enums\ClassificationID::AVALIACAO_ATIVIDADES)}}" list="tickmarks">
                             </div>
                         </div>
                     </div>
@@ -196,7 +200,8 @@
                     @enderror
                 </div>
             </div>
-
+            {{-- TODO
+            Card de midias com "x" para excluir --}}
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="text-white" for="media-trailer">
@@ -207,11 +212,13 @@
                                class="form-control {{ $errors->has('media-trailer') ? 'is-invalid' : ''}}"
                                name="media-trailer"
                                id="media-trailer"
-                               value="{{old('media-trailer')}}"
+                               @if ($discipline->has_trailer_media)
+                               value="{{$discipline->trailer->url}}"
+                               @endif
                                aria-describedby="basic-addon3"
                                placeholder="Link para vídeo no Youtube">
                         @error('media-trailer')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -225,7 +232,9 @@
                                class="form-control {{ $errors->has('media-video') ? 'is-invalid' : ''}}"
                                name="media-video"
                                id="media-video"
-                               value="{{old('media-video')}}"
+                               @if ($discipline->hasMediaOfType(\App\Enums\MediaType::VIDEO))
+                                    value="{{$discipline->getMediasByType(\App\Enums\MediaType::VIDEO)->first()->url}}"
+                               @endif
                                aria-describedby="basic-addon3"
                                placeholder="Link para vídeo no Youtube">
                         @error('media-video')
@@ -242,7 +251,9 @@
                                class="form-control {{ $errors->has('media-podcast') ? 'is-invalid' : ''}}"
                                name="media-podcast"
                                id="media-podcast"
-                               value="{{old('media-podcast')}}"
+                               @if ($discipline->hasMediaOfType(\App\Enums\MediaType::PODCAST))
+                                    value="{{$discipline->getMediasByType(\App\Enums\MediaType::PODCAST)->first()->url}}"
+                               @endif
                                aria-describedby="basic-addon3"
                                placeholder="Link para podcast no Youtube">
                         @error('media-podcast')
@@ -259,7 +270,9 @@
                                class="form-control {{ $errors->has('media-material') ? 'is-invalid' : ''}}"
                                name="media-material"
                                id="media-material"
-                               value="{{old('media-material')}}"
+                               @if ($discipline->hasMediaOfType(\App\Enums\MediaType::MATERIAIS))
+                                    value="{{$discipline->getMediasByType(\App\Enums\MediaType::MATERIAIS)->first()->url}}"
+                               @endif
                                aria-describedby="basic-addon3"
                                placeholder="Link para arquivo no Google Drive">
                         @error('media-material')
@@ -282,7 +295,7 @@
                                   id="difficulties"
                                   name="difficulties"
                                   rows="4"
-                                  placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente.">{{old('difficulties')}}</textarea>
+                                  placeholder="Coloque aqui problemas que alunos costumam relatar ao cursar esse componente.">{{$discipline->difficulties}}</textarea>
                         @error('difficulties')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -295,7 +308,7 @@
             <a href="{{ route('home') }}" class="btn btn-danger btn-sm">
                 Cancelar
             </a>
-            <button type="submit" class="btn btn-primary btn-sm ml-5">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-sm ml-5">Editar</button>
         </div>
     </form>
 

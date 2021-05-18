@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Faq\DestroyRequest;
 use App\Http\Requests\Faq\StoreRequest;
 use App\Models\Faq;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class FaqController extends Controller
         ]);
 
         return redirect()->route('disciplinas.show', $disciplineId)
-            ->with('success', 'FAQ registrada com sucesso');
+            ->with('success', 'FAQ registrada com sucesso!');
     }
 
     /**
@@ -42,11 +43,16 @@ class FaqController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param DestroyRequest $request
+     * @param $disciplineId
+     * @param $faqId
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(DestroyRequest $request, $disciplineId, $faqId)
     {
-        //
+        Faq::destroy($faqId);
+
+        return redirect()->route('disciplinas.show', $disciplineId)
+            ->with('success', 'FAQ apagada com sucesso!');
     }
 }
