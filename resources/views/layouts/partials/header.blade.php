@@ -4,7 +4,7 @@
         <!-- Uncomment below if you prefer to use an image logo -->
         @guest
             <a href="{{route('index')}}" class="logo mr-auto">
-                <img src="{{ asset('img/imdLogo.png') }}" alt="" class="img-fluid">
+                <img src="{{ asset('img/imdLogo1.png') }}" alt="" class="img-fluid">
             </a>
         @else
             <li class="nav-item">
