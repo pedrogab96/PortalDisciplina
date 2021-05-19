@@ -124,15 +124,6 @@ class Discipline extends Model
     {
         return $this->hasMany(Faq::class)->orderBy('title');
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function classificationsDisciplines()
-    {
-        return $this->hasMany(ClassificationDiscipline::class);
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */

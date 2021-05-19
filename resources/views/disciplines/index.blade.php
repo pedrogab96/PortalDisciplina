@@ -63,7 +63,7 @@
                                         </p>
 
                             @auth
-                                 @if (Auth::user()->canDiscipline($discipline->id))
+                                @if (Auth::user()->canDiscipline($discipline->id))
                                     <form action=" {{route('disciplinas.destroy', $discipline->id)}}" class="d-inline"
                                           method="post">
                                         @csrf
@@ -80,10 +80,11 @@
                             @endauth
                             </div>
                             <div class="card-footer">{{ $discipline->professor->name}}</div>
+                            @endforeach
                         </div>
                     </div>
                 @endforeach
-            @endif
         </div>
+        @endif
     </section><!-- End Disciplinas Cadastradas Section -->
 @endsection
