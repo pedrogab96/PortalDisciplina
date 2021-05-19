@@ -39,10 +39,9 @@
             @if($disciplines->count() == 0)
                 <p class="response-search mt-4">Nenhuma disciplina encontrada</p>
             @else
-                <div class="row mb-4">
-                    @foreach($disciplines->chunk(3) as $block)
+                @foreach($disciplines->chunk(3) as $block)
+                    <div class="row mb-4">
                         @foreach($block as $discipline)
-                        {{-- @foreach ($disciplines as $discipline) --}}
                             <div class="col-lg-4 col-md-6 h-100 align-items-stretch">
                                 <div class="course-item">
                                     @if (!is_null($discipline->trailer))
@@ -90,8 +89,8 @@
                                 </div>
                             </div>
                         @endforeach
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             @endif
         </div>
     </section><!-- End Disciplinas Cadastradas Section -->
