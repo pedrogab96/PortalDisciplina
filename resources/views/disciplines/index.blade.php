@@ -35,13 +35,14 @@
                 </div>
             @endauth
 
+
             @if($disciplines->count() == 0)
                 <p class="response-search mt-4">Nenhuma disciplina encontrada</p>
             @else
-                {{-- @foreach($disciplines->chunk(3) as $block) --}}
-                    {{-- @foreach($block as $discipline) --}}
-                    <div class="row mb-4">
-                        @foreach ($disciplines as $discipline)
+                <div class="row mb-4">
+                    @foreach($disciplines->chunk(3) as $block)
+                        @foreach($block as $discipline)
+                        {{-- @foreach ($disciplines as $discipline) --}}
                             <div class="col-lg-4 col-md-6 h-100 align-items-stretch">
                                 <div class="course-item">
                                     @if (!is_null($discipline->trailer))
@@ -67,26 +68,31 @@
                                     @auth
                                         @if (Auth::user()->canDiscipline($discipline->id))
                                             <form action=" {{route('disciplinas.destroy', $discipline->id)}}" class="d-inline"
-                                                  method="post">
+                                                method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger mt-2" value="Apagar">Apagar</button>
                                             </form>
                                             <form action=" {{route('disciplinas.edit', $discipline->id)}}" class="d-inline"
                                                 method="get">
-                                              @csrf
-                                              @method('UPDATE')
-                                              <button type="submit" class="btn btn-warning mt-2" value="Editar">Editar</button>
+                                            @csrf
+                                            @method('UPDATE')
+                                            <button type="submit" class="btn btn-warning mt-2" value="Editar">Editar</button>
                                             </form>
                                         @endif
                                     @endauth
 
-                                    <div class="card-footer">{{ $discipline->professor->name}}</div>
+                                    <div class="trainer d-flex justify-content-between align-items-center">
+                                        <div class="trainer-profile d-flex align-items-center">
+                                            <span>{{ $discipline->professor->name }}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                {{-- @endforeach --}}
-        @endif
+                    @endforeach
+                </div>
+            @endif
+        </div>
     </section><!-- End Disciplinas Cadastradas Section -->
 @endsection
