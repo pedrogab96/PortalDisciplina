@@ -1562,6 +1562,12 @@ section {
   color: var(--main-hover-color);
 }
 
+#footer .credits-imd {
+    padding-top: 3px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
 #footer .social-links a {
   font-size: 18px;
   display: inline-block;

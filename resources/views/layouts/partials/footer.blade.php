@@ -14,16 +14,16 @@
           </div>
 
           <!-- TODO footer IMD 1 -->
-          <div class="credits">
+          {{-- <div class="credits">
               <a href="https://www.imd.ufrn.br/portal/">IMD - Instituto Metrópole Digital</a>
               © 2021
-          </div>
+          </div> --}}
         </div>
 
          <!-- TODO footer IMD 2 -->
-         {{-- <div class="text-center py-3">
+         <div class="credits-imd text-center p-3 flex-grow-1 mr-lg-4">
             <a href="https://www.imd.ufrn.br/portal/">IMD - Instituto Metrópole Digital</a>
             © 2021
-        </div> --}}
+        </div>
     </div>
 </footer>
