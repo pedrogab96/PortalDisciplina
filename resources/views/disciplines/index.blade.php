@@ -62,6 +62,12 @@
                                         <p>
                                             {{ \Str::limit($discipline->synopsis, 70,'...') }}
                                         </p>
+
+                                        <div class="trainer d-flex justify-content-between align-items-center">
+                                            <div class="trainer-profile d-flex align-items-center">
+                                                <span>{{ $discipline->professor->name }}</span>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     @auth
@@ -80,12 +86,6 @@
                                             </form>
                                         @endif
                                     @endauth
-
-                                    <div class="trainer d-flex justify-content-between align-items-center">
-                                        <div class="trainer-profile d-flex align-items-center">
-                                            <span>{{ $discipline->professor->name }}</span>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         @endforeach
