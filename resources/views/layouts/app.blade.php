@@ -44,7 +44,9 @@
 </div>
 </main>
 
+{{-- TODO experimentação no footer --}}
 @include('layouts.partials.footer')
+{{-- @include('layouts.partials.footer-bk') --}}
 
 {{-- bootstrap JS --}}
 <script src="{{asset('js/app.js')}}" type="text/javascript"></script>
