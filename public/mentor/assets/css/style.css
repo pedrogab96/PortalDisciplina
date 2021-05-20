@@ -23,11 +23,11 @@ body {
 }
 
 a {
-  color: #5fcf80;
+  color: var(--main-bg-color);
 }
 
 a:hover {
-  color: #86db9f;
+  color: var(--main-hover-color);
   text-decoration: none;
 }
 
