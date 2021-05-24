@@ -2,8 +2,8 @@
 
 @section('content')
     <section id="intro">
-        <div class="row mt-3">
-            <div class="section-title col-12 text-center mt-3">
+        <div class="row">
+            <div class="section-title col-12 text-center">
                 <h1 class="title-subject">Portal das Disciplinas - IMD/UFRN</h1>
             </div>
         </div>
