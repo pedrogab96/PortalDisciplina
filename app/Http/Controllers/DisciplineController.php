@@ -29,13 +29,11 @@ class DisciplineController extends Controller
      */
     public function index()
     {
-        $disciplines = Discipline::query()
+        return Discipline::query()
             ->with([
                 'professor',
                 'medias',
             ])->orderBy('name', 'ASC')->get();
-
-        return view(self::VIEW_PATH . 'index', compact('disciplines'));
     }
 
     /**
@@ -140,11 +138,10 @@ class DisciplineController extends Controller
             }
 
             DB::commit();
-            return redirect()->route("disciplinas.show", $discipline->id);
+            return true;
         } catch (\Exception $exception) {
             DB::rollBack();
-            return redirect()->route("disciplinas.create")
-                ->withInput();
+            return false;
         }
     }
 
@@ -168,10 +165,10 @@ class DisciplineController extends Controller
 
         if (!is_null($user)) {
             $can = $user->canDiscipline($discipline);
-            return view(self::VIEW_PATH . 'show', compact('discipline', 'can'));
+            return $discipline;
         }
 
-        return view(self::VIEW_PATH . 'show', compact('discipline'));
+        return $discipline;
     }
 
     /**
