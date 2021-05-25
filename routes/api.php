@@ -1,9 +1,12 @@
 <?php
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\DisciplineController;
+use App\Http\Controllers\Chart\PassRateController;
+
 use App\Models\Discipline;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

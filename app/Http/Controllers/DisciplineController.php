@@ -162,13 +162,14 @@ class DisciplineController extends Controller
             ])
             ->findOrFail($id);
         $user = Auth::user();
-
+        //TODO
+        //Verificar necessidade desse if
         if (!is_null($user)) {
             $can = $user->canDiscipline($discipline);
-            return $discipline;
+            dd($can);
+            return compact('discipline','can');
         }
-
-        return $discipline;
+        return compact('discipline');
     }
 
     /**
@@ -191,7 +192,7 @@ class DisciplineController extends Controller
             'faqs',
         ])
         ->findOrFail($id);
-        return view(self::VIEW_PATH . 'edit', compact('discipline'), compact('professors'));
+        return compact('discipline', 'professors');
     }
 
     /**
@@ -311,12 +312,10 @@ class DisciplineController extends Controller
             }
 
             DB::commit();
-            return redirect()->route("disciplinas.show", $discipline->id);
+            return true;
         } catch (\Exception $exception) {
             DB::rollBack();
-            return dd($discipline->has_trailer_media);
-            // return redirect()->route("disciplinas.edit", $discipline->id)
-            //     ->withInput();
+            return false;
         }
     }
 
@@ -332,8 +331,7 @@ class DisciplineController extends Controller
             ->where('id', $id)
             ->delete();
 
-        return redirect()->route('index');
-
+        return true;
     }
 
     public function search(Request $request)
