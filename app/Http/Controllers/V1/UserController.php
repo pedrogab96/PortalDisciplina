@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Requests\V1\User\IndexRequest;
+use App\Http\Requests\V1\User\ShowRequest;
 use App\Http\Requests\V1\User\StoreRequest;
 use App\Http\Resources\V1\UserCollection;
 use App\Http\Resources\V1\UserResource;
@@ -56,5 +57,20 @@ class UserController extends Controller
             'message' => 'Cadastro realizado com sucesso!',
             'data' => new UserResource($user),
         ], Response::HTTP_CREATED);
+    }
+
+    /**
+     * Show
+     *
+     * @param ShowRequest $request
+     * @param $id
+     * @return UserResource
+     * @responseFile storage/responses/users.show.json
+     */
+    public function show(ShowRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        return new UserResource($user);
     }
 }
