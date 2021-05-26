@@ -1,0 +1,11 @@
+{
+  "data": {
+    "token": "1|Tfp72QbBAYlwpxkFoqEqw7B8eADSN7ThJ5mR1Ffl",
+    "user": {
+      "id": 6,
+      "name": "Professor Tester",
+      "email": "professor@gmail.com",
+      "role_id": 3
+    }
+  }
+}
