@@ -1,0 +1,917 @@
+openapi: 3.0.3
+info:
+    title: 'Portal da Disciplina'
+    description: ''
+    version: 1.0.0
+servers:
+    -
+        url: 'http://localhost'
+paths:
+    /api/login:
+        get:
+            summary: 'Show the application''s login form.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                500:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Undefined variable: errors (View: /var/www/app/resources/views/auth/login.blade.php)'
+                                    exception: Facade\Ignition\Exceptions\ViewException
+                                    file: /var/www/app/resources/views/auth/login.blade.php
+                                    line: 30
+                                    trace: [{ file: /var/www/app/resources/views/auth/login.blade.php, line: 30, function: handleError, class: Illuminate\Foundation\Bootstrap\HandleExceptions, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php, line: 107, function: require }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php, line: 108, function: 'Illuminate\Filesystem\{closure}', class: Illuminate\Filesystem\Filesystem, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php, line: 58, function: getRequire, class: Illuminate\Filesystem\Filesystem, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php, line: 61, function: evaluatePath, class: Illuminate\View\Engines\PhpEngine, type: '->' }, { file: /var/www/app/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php, line: 37, function: get, class: Illuminate\View\Engines\CompilerEngine, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/View.php, line: 139, function: get, class: Facade\Ignition\Views\Engines\CompilerEngine, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/View.php, line: 122, function: getContents, class: Illuminate\View\View, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/View.php, line: 91, function: renderContents, class: Illuminate\View\View, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Http/Response.php, line: 69, function: render, class: Illuminate\View\View, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Http/Response.php, line: 35, function: setContent, class: Illuminate\Http\Response, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 791, function: __construct, class: Illuminate\Http\Response, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 761, function: toResponse, class: Illuminate\Routing\Router, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 695, function: prepareResponse, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Routing\{closure}', class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/app/Http/Middleware/RedirectIfAuthenticated.php, line: 30, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: App\Http\Middleware\RedirectIfAuthenticated, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php, line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 697, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 672, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php, line: 60, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Barryvdh\Debugbar\Middleware\InjectDebugbar, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php, line: 31, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php, line: 40, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TrimStrings, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php, line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php, line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: /var/www/app/vendor/fruitcake/laravel-cors/src/HandleCors.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: /var/www/app/vendor/fideloper/proxy/src/TrustProxies.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/Util.php, line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/Container.php, line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: /var/www/app/vendor/symfony/console/Command/Command.php, line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Application.php, line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php, line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: /var/www/app/artisan, line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: 'Undefined variable: errors (View: /var/www/app/resources/views/auth/login.blade.php)' }
+                                    exception: { type: string, example: Facade\Ignition\Exceptions\ViewException }
+                                    file: { type: string, example: /var/www/app/resources/views/auth/login.blade.php }
+                                    line: { type: integer, example: 30 }
+                                    trace: { type: array, example: [{ file: /var/www/app/resources/views/auth/login.blade.php, line: 30, function: handleError, class: Illuminate\Foundation\Bootstrap\HandleExceptions, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php, line: 107, function: require }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php, line: 108, function: 'Illuminate\Filesystem\{closure}', class: Illuminate\Filesystem\Filesystem, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php, line: 58, function: getRequire, class: Illuminate\Filesystem\Filesystem, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php, line: 61, function: evaluatePath, class: Illuminate\View\Engines\PhpEngine, type: '->' }, { file: /var/www/app/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php, line: 37, function: get, class: Illuminate\View\Engines\CompilerEngine, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/View.php, line: 139, function: get, class: Facade\Ignition\Views\Engines\CompilerEngine, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/View.php, line: 122, function: getContents, class: Illuminate\View\View, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/View/View.php, line: 91, function: renderContents, class: Illuminate\View\View, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Http/Response.php, line: 69, function: render, class: Illuminate\View\View, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Http/Response.php, line: 35, function: setContent, class: Illuminate\Http\Response, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 791, function: __construct, class: Illuminate\Http\Response, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 761, function: toResponse, class: Illuminate\Routing\Router, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 695, function: prepareResponse, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Routing\{closure}', class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/app/Http/Middleware/RedirectIfAuthenticated.php, line: 30, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: App\Http\Middleware\RedirectIfAuthenticated, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php, line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 697, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 672, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php, line: 60, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Barryvdh\Debugbar\Middleware\InjectDebugbar, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php, line: 31, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php, line: 40, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TrimStrings, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php, line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php, line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: /var/www/app/vendor/fruitcake/laravel-cors/src/HandleCors.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: /var/www/app/vendor/fideloper/proxy/src/TrustProxies.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/Util.php, line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/Container.php, line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: /var/www/app/vendor/symfony/console/Command/Command.php, line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Application.php, line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php, line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: /var/www/app/artisan, line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Handle a login request to the application.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/logout:
+        post:
+            summary: 'Log the user out of the application.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/password/confirm:
+        get:
+            summary: 'Display the password confirmation view.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: 'Confirm the given user''s password.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/perfil:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+    /api/disciplinas/create:
+        get:
+            summary: 'Show the form for creating a new resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    /api/disciplinas:
+        post:
+            summary: 'Store a newly created resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: ''
+                                    example: sequi
+                                code:
+                                    type: string
+                                    description: ''
+                                    example: soluta
+                                synopsis:
+                                    type: string
+                                    description: ''
+                                    example: {  }
+                                difficulties:
+                                    type: string
+                                    description: ''
+                                    example: {  }
+                                media-trailer:
+                                    type: string
+                                    description: ''
+                                    example: {  }
+                                media-video:
+                                    type: string
+                                    description: ''
+                                    example: {  }
+                                media-podcast:
+                                    type: string
+                                    description: ''
+                                    example: {  }
+                                media-material:
+                                    type: string
+                                    description: ''
+                                    example: {  }
+                            required:
+                                - name
+                                - code
+            security: []
+    '/api/disciplinas/{disciplina}/edit':
+        get:
+            summary: 'Show the form for editing the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: disciplina
+                description: ''
+                example: et
+                required: true
+                schema:
+                    type: string
+    '/api/disciplinas/{disciplina}':
+        put:
+            summary: 'Update the specified resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        delete:
+            summary: 'Remove the specified resource from storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: disciplina
+                description: ''
+                example: eius
+                required: true
+                schema:
+                    type: string
+    /api/professores:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+        post:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: ''
+                                    example: voluptatem
+                                email:
+                                    type: string
+                                    description: ''
+                                    example: occaecati
+                                public_email:
+                                    type: string
+                                    description: ''
+                                    example: {  }
+                                password:
+                                    type: string
+                                    description: ''
+                                    example: illo
+                            required:
+                                - name
+                                - email
+                                - password
+            security: []
+    /api/professores/create:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
+    '/api/professores/{professore}':
+        delete:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: professore
+                description: ''
+                example: sapiente
+                required: true
+                schema:
+                    type: string
+    '/api/disciplinas/{disciplina}/faqs':
+        post:
+            summary: 'Store a newly created resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                title:
+                                    type: string
+                                    description: ''
+                                    example: laborum
+                                content:
+                                    type: string
+                                    description: ''
+                                    example: pariatur
+                            required:
+                                - title
+                                - content
+            security: []
+        parameters:
+            -
+                in: path
+                name: disciplina
+                description: ''
+                example: ut
+                required: true
+                schema:
+                    type: string
+    '/api/disciplinas/{disciplina}/faqs/{faq}':
+        put:
+            summary: 'Update the specified resource in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        delete:
+            summary: 'Remove the specified resource from storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: disciplina
+                description: ''
+                example: voluptate
+                required: true
+                schema:
+                    type: string
+            -
+                in: path
+                name: faq
+                description: ''
+                example: maiores
+                required: true
+                schema:
+                    type: string
+    '/api/disciplinas/{id}':
+        get:
+            summary: 'Display the specified resource.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                500:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'SQLSTATE[42S02]: Base table or view not found: 1146 Table ''portal_disciplina.disciplines'' doesn''t exist (SQL: select * from `disciplines` where `disciplines`.`id` = aut limit 1)'
+                                    exception: Illuminate\Database\QueryException
+                                    file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Connection.php
+                                    line: 678
+                                    trace: [{ file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Connection.php, line: 638, function: runQueryCallback, class: Illuminate\Database\Connection, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Connection.php, line: 346, function: run, class: Illuminate\Database\Connection, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php, line: 2313, function: select, class: Illuminate\Database\Connection, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php, line: 2301, function: runSelect, class: Illuminate\Database\Query\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php, line: 2796, function: 'Illuminate\Database\Query\{closure}', class: Illuminate\Database\Query\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php, line: 2302, function: onceWithColumns, class: Illuminate\Database\Query\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php, line: 588, function: get, class: Illuminate\Database\Query\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php, line: 572, function: getModels, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php, line: 242, function: get, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php, line: 376, function: first, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php, line: 408, function: find, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/app/Http/Controllers/DisciplineController.php, line: 163, function: findOrFail, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Controller.php, line: 54, function: show, class: App\Http\Controllers\DisciplineController, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php, line: 45, function: callAction, class: Illuminate\Routing\Controller, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php, line: 254, function: dispatch, class: Illuminate\Routing\ControllerDispatcher, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php, line: 197, function: runController, class: Illuminate\Routing\Route, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 695, function: run, class: Illuminate\Routing\Route, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Routing\{closure}', class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php, line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 697, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 672, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php, line: 60, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Barryvdh\Debugbar\Middleware\InjectDebugbar, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php, line: 31, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php, line: 40, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TrimStrings, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php, line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php, line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: /var/www/app/vendor/fruitcake/laravel-cors/src/HandleCors.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: /var/www/app/vendor/fideloper/proxy/src/TrustProxies.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/Util.php, line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/Container.php, line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: /var/www/app/vendor/symfony/console/Command/Command.php, line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Application.php, line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php, line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: /var/www/app/artisan, line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }]
+                                properties:
+                                    message: { type: string, example: 'SQLSTATE[42S02]: Base table or view not found: 1146 Table ''portal_disciplina.disciplines'' doesn''t exist (SQL: select * from `disciplines` where `disciplines`.`id` = aut limit 1)' }
+                                    exception: { type: string, example: Illuminate\Database\QueryException }
+                                    file: { type: string, example: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Connection.php }
+                                    line: { type: integer, example: 678 }
+                                    trace: { type: array, example: [{ file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Connection.php, line: 638, function: runQueryCallback, class: Illuminate\Database\Connection, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Connection.php, line: 346, function: run, class: Illuminate\Database\Connection, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php, line: 2313, function: select, class: Illuminate\Database\Connection, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php, line: 2301, function: runSelect, class: Illuminate\Database\Query\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php, line: 2796, function: 'Illuminate\Database\Query\{closure}', class: Illuminate\Database\Query\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php, line: 2302, function: onceWithColumns, class: Illuminate\Database\Query\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php, line: 588, function: get, class: Illuminate\Database\Query\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php, line: 572, function: getModels, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php, line: 242, function: get, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php, line: 376, function: first, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php, line: 408, function: find, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/app/Http/Controllers/DisciplineController.php, line: 163, function: findOrFail, class: Illuminate\Database\Eloquent\Builder, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Controller.php, line: 54, function: show, class: App\Http\Controllers\DisciplineController, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php, line: 45, function: callAction, class: Illuminate\Routing\Controller, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php, line: 254, function: dispatch, class: Illuminate\Routing\ControllerDispatcher, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php, line: 197, function: runController, class: Illuminate\Routing\Route, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 695, function: run, class: Illuminate\Routing\Route, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Routing\{closure}', class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php, line: 50, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\SubstituteBindings, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 127, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 103, function: handleRequest, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php, line: 55, function: handleRequestUsingNamedLimiter, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Routing\Middleware\ThrottleRequests, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 697, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 672, function: runRouteWithinStack, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 636, function: runRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php, line: 625, function: dispatchToRoute, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 166, function: dispatch, class: Illuminate\Routing\Router, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 128, function: 'Illuminate\Foundation\Http\{closure}', class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php, line: 60, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Barryvdh\Debugbar\Middleware\InjectDebugbar, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php, line: 31, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php, line: 21, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php, line: 40, function: handle, class: Illuminate\Foundation\Http\Middleware\TransformsRequest, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\TrimStrings, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php, line: 27, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\ValidatePostSize, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php, line: 86, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance, type: '->' }, { file: /var/www/app/vendor/fruitcake/laravel-cors/src/HandleCors.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fruitcake\Cors\HandleCors, type: '->' }, { file: /var/www/app/vendor/fideloper/proxy/src/TrustProxies.php, line: 57, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 167, function: handle, class: Fideloper\Proxy\TrustProxies, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php, line: 103, function: 'Illuminate\Pipeline\{closure}', class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 141, function: then, class: Illuminate\Pipeline\Pipeline, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php, line: 110, function: sendRequestThroughRouter, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 324, function: handle, class: Illuminate\Foundation\Http\Kernel, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 305, function: callLaravelOrLumenRoute, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 76, function: makeApiCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 51, function: makeResponseCall, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php, line: 41, function: makeResponseCallIfEnabledAndNoSuccessResponses, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 236, function: __invoke, class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 172, function: iterateThroughStrategies, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Extracting/Generator.php, line: 127, function: fetchResponses, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 119, function: processRoute, class: Knuckles\Scribe\Extracting\Generator, type: '->' }, { file: /var/www/app/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php, line: 73, function: processRoutes, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 36, function: handle, class: Knuckles\Scribe\Commands\GenerateDocumentation, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/Util.php, line: 40, function: 'Illuminate\Container\{closure}', class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 93, function: unwrapIfClosure, class: Illuminate\Container\Util, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php, line: 37, function: callBoundMethod, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Container/Container.php, line: 611, function: call, class: Illuminate\Container\BoundMethod, type: '::' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 136, function: call, class: Illuminate\Container\Container, type: '->' }, { file: /var/www/app/vendor/symfony/console/Command/Command.php, line: 256, function: execute, class: Illuminate\Console\Command, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Command.php, line: 121, function: run, class: Symfony\Component\Console\Command\Command, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 971, function: run, class: Illuminate\Console\Command, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 290, function: doRunCommand, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/symfony/console/Application.php, line: 166, function: doRun, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Console/Application.php, line: 92, function: run, class: Symfony\Component\Console\Application, type: '->' }, { file: /var/www/app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php, line: 129, function: run, class: Illuminate\Console\Application, type: '->' }, { file: /var/www/app/artisan, line: 37, function: handle, class: Illuminate\Foundation\Console\Kernel, type: '->' }], items: { type: object } }
+            tags:
+                - Endpoints
+            security: []
+        parameters:
+            -
+                in: path
+                name: id
+                description: ''
+                example: aut
+                required: true
+                schema:
+                    type: string
+    /api/charts/pass_rate:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        text/plain:
+                            schema:
+                                type: string
+                                example: "<!DOCTYPE html>\n<html lang=\"pt_BR\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"google-site-verification\" content=\"CaID-sWQ4oro51-MUzVaQlu5v5a4XqK2Xpg9uVmONKI\" />\n    <meta name=\"lang\" content=\"pt-BR\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <meta name=\"keywords\" content=\"portal das disciplinas, imd\">\n    <meta name=\"robots\" content=\"all\">\n    <title>    Taxa de Aprovação das Disciplinas - Portal das Disciplinas IMD\n</title>\n    <meta name=\"description\" content=\"    Aqui você conseguirá ver a taxa de aprovação das disciplinas.\n    Foram disponibilizados dois tipos de visualizações: por docente e por componente curricular.\n\">\n    \n    <link rel=\"stylesheet\" href=\"http://localhost/css/app.css\">\n    \n    <link rel=\"stylesheet\" href=\"http://localhost/css/index.css\">\n    <link rel=\"stylesheet\" href=\"http://localhost/css/sidebar.css\">\n    <link rel=\"stylesheet\" href=\"http://localhost/css/discipline.css\">\n    \n        <!-- Select2 -->\n    <link rel=\"stylesheet\" href=\"http://localhost/libs/select2/dist/css/select2.min.css\">\n    \n    <meta name=\"csrf-token\" content=\"\">\n    \n    <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n    </head>\n\n<body class=\"content-body d-flex flex-column min-vh-100\">\n    <header>\n    <nav class=\"navbar  navbar-light bg-light\">\n\n      \n      <label class=\"label-btn\">\n        <i class=\"fas fa-bars\" id='navbar_btn' onclick=\"move(true)\"></i>\n      </label>\n\n        <a class=\"navbar-brand mr-0\" href=\"http://localhost\">\n            <img src=\"http://localhost/img/imdLogo.png\"  class='logo-navbar'alt=\"Logo do IMD\">\n        </a>\n\n        <div class=\"\" id=\"navbarNav\">\n          \n\n          <ul class=\"navbar-nav ml-auto\">\n\n                                                <li class=\"nav-item\">\n                        <a class=\"btn btn-outline-primary\" href=\"http://localhost/login\">Entrar</a>\n                    </li>\n                                      </ul>\n        </div>\n\n\n\n\n    </nav>\n</header>\n\n    \n    \n    <div id=\"sidebar\">\n\n    <div class=\"d-flex align-items-center\">\n        <label class=\"\">\n            <i class=\"fas fa-bars navbar-icon\" id='sidebar_btn-active' onclick=\"move(false)\"></i>\n        </label>\n    </div>\n\n    <div class=\"text-center\">\n        \n        <ul class=\"sidebar-list\">\n\n            <li class=\"sidebar-item\">\n                <a class=\"list-links\" href=\"http://localhost\">Inicio</a>\n            </li>\n\n            \n            <li class=\"sidebar-item\">\n                <a class=\"list-links\" href=\"http://localhost/sobre\">Sobre</a>\n            </li>\n            <li class=\"sidebar-item\">\n                <a class=\"list-links\" href=\"http://localhost/colaborar\">Como colaborar</a>\n            </li>\n\n            \n        </ul>\n    </div>\n</div>\n\n    <div class=\"container mb-5\">\n            <div class=\"row info-portal\">\n        <div class=\"col-md-12 mb-3\">\n            <h3>Taxa de Aprovação das Disciplinas</h3>\n            <p class=\"mt-4 span-info text-justify\">\n                Aqui você conseguirá ver a taxa de aprovação das disciplinas.\n                Foram disponibilizados dois tipos de visualizações: por docente e por componente curricular.\n                <br/>\n                <br/>\n                Para saber mais sobre o algoritmo que gerou essas taxas,\n                <a href=\"https://github.com/alvarofpp/analysis-ufrn\">clique aqui</a>.\n            </p>\n        </div>\n        <div class=\"col-md-12 mb-3\">\n            <h4>Visualização por Docente</h4>\n            <p class=\"mt-4 span-info text-justify\">\n                Aqui você pode buscar por um docente e visualizar a sua taxa de aprovação para cada disciplina lecionada por ele.\n            </p>\n            <div class=\"row\">\n                <div class=\"col-md-12 form-group mb-2\">\n                    <label for=\"select_professor\">\n                        Docente\n                    </label>\n                    <select class=\"form-control select2\"\n                            id=\"select_professor\" name=\"select_professor\"></select>\n                </div>\n                <div class=\"col-md-12\">\n                    <table class=\"table text-white\">\n                        <thead>\n                        <tr>\n                            <th scope=\"col\">Nome do componente curricular</th>\n                            <th scope=\"col\">Taxa de aprovação (%)</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"tbody_professor\">\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-12 mb-3\">\n            <h4>Visualização por Componente Curricular</h4>\n            <p class=\"mt-4 span-info text-justify\">\n                Aqui você pode buscar pelo componente curricular e visualizar a taxa de aprovação por docente que já lecionou esse componente.\n            </p>\n            <div class=\"row\">\n                <div class=\"col-md-12 form-group mb-3\">\n                    <label for=\"select_discipline\">\n                        Componente Curricular\n                    </label>\n                    <select class=\"form-control select2\"\n                            id=\"select_discipline\" name=\"select_discipline\"></select>\n                </div>\n                <div class=\"col-md-12\">\n                    <table class=\"table text-white\">\n                        <thead>\n                        <tr>\n                            <th scope=\"col\">Nome do docente</th>\n                            <th scope=\"col\">Taxa de aprovação (%)</th>\n                        </tr>\n                        </thead>\n                        <tbody id=\"tbody_discipline\">\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n    </div>\n    </div>\n\n    <footer class=\"mt-auto bg-dark text-center text-lg-start\">\n    <!-- Copyright -->\n    <div class=\"text-center text-light p-3\" style=\"background-color: rgba(0, 0, 0, 0.2)\">\n        \n        \n        <a class=\"text-light\" href=\"https://www.imd.ufrn.br/portal/\">IMD - Instituto Metrópole Digital</a>\n        © 2021\n\n        \n        \n    </div>\n    <!-- Copyright -->\n</footer>\n    \n    <script src=\"http://localhost/js/app.js\" type=\"text/javascript\"></script>\n    \n    <script src=\"http://localhost/js/sidebar.js\" type=\"text/javascript\"></script>\n        <!-- Select2 -->\n    <script src=\"http://localhost/libs/select2/dist/js/select2.full.min.js\"></script>\n\n    <script>\n        $('#select_professor').select2({\n            placeholder: 'Selecione',\n            ajax: {\n                url: 'http://localhost/charts/pass_rate/select/professors',\n                dataType: 'json',\n                delay: 250,\n                data: function (params) {\n                    return {\n                        q: params.term,\n                        page: params.page\n                    };\n                },\n                processResults: function (data, params) {\n                    params.page = params.page || 1;\n                    return {\n                        results: $.map(data.data, function (item, key) {\n                            return {\n                                text: item,\n                                id: key\n                            }\n                        }),\n                        pagination: {\n                            more: (params.page * 30) < data.total\n                        }\n                    };\n                },\n                cache: true,\n                minimumInputLength: 1,\n            }\n        }).on('select2:select', function (e) {\n            var data = e.params.data;\n            const tbody = $('#tbody_professor');\n            tbody.html('');\n\n            $.get('http://localhost/charts/pass_rate/tables', {\n                type: 'professor',\n                id: data.id\n            }, function (rows) {\n                rows.forEach((element, index, array) => {\n                    let rowHtml = '<tr><td>' + element.nome_componente + '</td><td>' + Number(element.taxa_aprovacao).toFixed(2) + '</td></tr>';\n                    tbody.append(rowHtml);\n                });\n            }).fail(function (data) {\n                console.log(data);\n            });\n        });\n\n        $('#select_discipline').select2({\n            placeholder: 'Selecione',\n            ajax: {\n                url: 'http://localhost/charts/pass_rate/select/disciplines',\n                dataType: 'json',\n                delay: 250,\n                data: function (params) {\n                    return {\n                        q: params.term,\n                        page: params.page\n                    };\n                },\n                processResults: function (data, params) {\n                    params.page = params.page || 1;\n                    return {\n                        results: $.map(data.data, function (item, key) {\n                            return {\n                                text: item,\n                                id: key\n                            }\n                        }),\n                        pagination: {\n                            more: (params.page * 30) < data.total\n                        }\n                    };\n                },\n                cache: true,\n                minimumInputLength: 1,\n            }\n        }).on('select2:select', function (e) {\n            var data = e.params.data;\n            const tbody = $('#tbody_discipline');\n            tbody.html('');\n\n            $.get('http://localhost/charts/pass_rate/tables', {\n                type: 'discipline',\n                id: data.id\n            }, function (rows) {\n                rows.forEach((element, index, array) => {\n                    let rowHtml = '<tr><td>' + element.nome_docente + '</td><td>' + Number(element.taxa_aprovacao).toFixed(2) + '</td></tr>';\n                    tbody.append(rowHtml);\n                });\n            }).fail(function (data) {\n                console.log(data);\n            });\n        });\n    </script>\n\n</body>\n</html>\n"
+            tags:
+                - Endpoints
+            security: []
+    /api/charts/pass_rate/select/professors:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    current_page: 1
+                                    data: { '345783.0': 'ABMAEL BEZERRA DE OLIVEIRA', '1668850.0': 'ABRAHAO SANDERSON NUNES FERNANDES DA SILVA', '1222082.0': 'ADA CRISTINA SCUDELARI', '6345784.0': 'ADAILDO GOMES D ASSUNCAO', '2166798.0': 'ADALA NAYANA DE SOUSA MATA', '1267934.0': 'ADALTO SOARES', '350751.0': 'ADELARDO ADELINO DANTAS DE MEDEIROS', '1759777.0': 'ADELENA GONCALVES MAIA', '1451214.0': 'ADERSON FARIAS DO NASCIMENTO', '1561014.0': 'ADILSON DE LIMA TAVARES', '926826.0': 'ADIR LUIZ FERREIRA', '2451906.0': 'ADJA FERREIRA DE ANDRADE', '1789788.0': 'ADLEY ANTONINI NEVES DE LIMA', '1678338.0': 'ADRIAN ANTONIO GARDA', '2323511.0': 'ADRIANA AUGUSTO DE REZENDE', '1459400.0': 'ADRIANA DA FONTE PORTO CARREIRO', '1549705.0': 'ADRIANA FERREIRA UCHOA', '3322329.0': 'ADRIANA ISABEL BACKES STEPPAN', '1549043.0': 'ADRIANA MONTEIRO DE ALMEIDA', '1803589.0': 'ADRIANA ROSA CARVALHO', '1296000.0': 'ADRIANE CENCI', '1100806.0': 'ADRIANNE PAULA VIEIRA DE ANDRADE', '1714892.0': 'ADRIANO CALIMAN FERREIRA DA SILVA', '3490575.0': 'ADRIANO CHARLES DA SILVA CRUZ', '1897523.0': 'ADRIANO DE ARAÚJO LIMA LIGUORI', '1223716.0': 'ADRIANO DE OLIVEIRA SOUSA', '1288120.0': 'ADRIANO DOS SANTOS', '2313454.0': 'ADRIANO HENRIQUE DO NASCIMENTO RANGEL', '1803535.0': 'ADRIANO LIMA TROLEIS', '1350248.0': 'ADRIANO LOPES GOMES' }
+                                    first_page_url: 'http://localhost/api/charts/pass_rate/select/professors?page=1'
+                                    from: 1
+                                    last_page: 59
+                                    last_page_url: 'http://localhost/api/charts/pass_rate/select/professors?page=59'
+                                    links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=1', label: '1', active: true }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=2', label: '2', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=3', label: '3', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=4', label: '4', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=5', label: '5', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=6', label: '6', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=7', label: '7', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=8', label: '8', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=9', label: '9', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=10', label: '10', active: false }, { url: null, label: ..., active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=58', label: '58', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=59', label: '59', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=2', label: 'Próximo &raquo;', active: false }]
+                                    next_page_url: 'http://localhost/api/charts/pass_rate/select/professors?page=2'
+                                    path: 'http://localhost/api/charts/pass_rate/select/professors'
+                                    per_page: 30
+                                    prev_page_url: null
+                                    to: 30
+                                    total: 1742
+                                properties:
+                                    current_page: { type: integer, example: 1 }
+                                    data: { type: object, example: { '345783.0': 'ABMAEL BEZERRA DE OLIVEIRA', '1668850.0': 'ABRAHAO SANDERSON NUNES FERNANDES DA SILVA', '1222082.0': 'ADA CRISTINA SCUDELARI', '6345784.0': 'ADAILDO GOMES D ASSUNCAO', '2166798.0': 'ADALA NAYANA DE SOUSA MATA', '1267934.0': 'ADALTO SOARES', '350751.0': 'ADELARDO ADELINO DANTAS DE MEDEIROS', '1759777.0': 'ADELENA GONCALVES MAIA', '1451214.0': 'ADERSON FARIAS DO NASCIMENTO', '1561014.0': 'ADILSON DE LIMA TAVARES', '926826.0': 'ADIR LUIZ FERREIRA', '2451906.0': 'ADJA FERREIRA DE ANDRADE', '1789788.0': 'ADLEY ANTONINI NEVES DE LIMA', '1678338.0': 'ADRIAN ANTONIO GARDA', '2323511.0': 'ADRIANA AUGUSTO DE REZENDE', '1459400.0': 'ADRIANA DA FONTE PORTO CARREIRO', '1549705.0': 'ADRIANA FERREIRA UCHOA', '3322329.0': 'ADRIANA ISABEL BACKES STEPPAN', '1549043.0': 'ADRIANA MONTEIRO DE ALMEIDA', '1803589.0': 'ADRIANA ROSA CARVALHO', '1296000.0': 'ADRIANE CENCI', '1100806.0': 'ADRIANNE PAULA VIEIRA DE ANDRADE', '1714892.0': 'ADRIANO CALIMAN FERREIRA DA SILVA', '3490575.0': 'ADRIANO CHARLES DA SILVA CRUZ', '1897523.0': 'ADRIANO DE ARAÚJO LIMA LIGUORI', '1223716.0': 'ADRIANO DE OLIVEIRA SOUSA', '1288120.0': 'ADRIANO DOS SANTOS', '2313454.0': 'ADRIANO HENRIQUE DO NASCIMENTO RANGEL', '1803535.0': 'ADRIANO LIMA TROLEIS', '1350248.0': 'ADRIANO LOPES GOMES' } }
+                                    first_page_url: { type: string, example: 'http://localhost/api/charts/pass_rate/select/professors?page=1' }
+                                    from: { type: integer, example: 1 }
+                                    last_page: { type: integer, example: 59 }
+                                    last_page_url: { type: string, example: 'http://localhost/api/charts/pass_rate/select/professors?page=59' }
+                                    links: { type: array, example: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=1', label: '1', active: true }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=2', label: '2', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=3', label: '3', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=4', label: '4', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=5', label: '5', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=6', label: '6', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=7', label: '7', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=8', label: '8', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=9', label: '9', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=10', label: '10', active: false }, { url: null, label: ..., active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=58', label: '58', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=59', label: '59', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/professors?page=2', label: 'Próximo &raquo;', active: false }], items: { type: object } }
+                                    next_page_url: { type: string, example: 'http://localhost/api/charts/pass_rate/select/professors?page=2' }
+                                    path: { type: string, example: 'http://localhost/api/charts/pass_rate/select/professors' }
+                                    per_page: { type: integer, example: 30 }
+                                    prev_page_url: { type: string, example: null }
+                                    to: { type: integer, example: 30 }
+                                    total: { type: integer, example: 1742 }
+            tags:
+                - Endpoints
+            security: []
+    /api/charts/pass_rate/select/disciplines:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    current_page: 1
+                                    data: { '22810': 'ACT0032 - TOXICOLOGIA', '25964': 'ACT0033 - BIOQUIMICA CLINICA', '21812': 'ACT0034 - IMUNOLOGIA CLINICA', '21810': 'ACT0037 - PARASITOLOGIA CLINICA', '21808': 'ACT0039 - MICROBIOLOGIA CLINICA', '21811': 'ACT0043 - IMUNOHEMATOLOGIA', '25965': 'ACT0044 - MICOLOGIA CLINICA', '20045': 'ACT0045 - UROANALISE', '2048750': 'ACT0049 - TOXICOLOGIA', '2048751': 'ACT0051 - FUNDAMENTOS DE PARASITOLOGIA, MICROBIOLOGIA E IMUNOLOGIA', '57635': 'ACT0058.0 - BIOQUÍMICA CLÍNICA - TEÓRICA', '57636': 'ACT0058.1 - BIOQUÍMICA CLÍNICA - PRÁTICA', '57693': 'ACT0062.0 - IMUNOLOGIA CLÍNICA - TEÓRICA', '57694': 'ACT0062.1 - IMUNOLOGIA CLÍNICA - PRÁTICA', '57696': 'ACT0063.0 - MICROBIOLOGIA CLÍNICA - TEÓRICA', '57697': 'ACT0063.1 - MICROBIOLOGIA CLÍNICA - PRÁTICA', '57699': 'ACT0064.0 - PARASITOLOGIA CLÍNICA - TEÓRICA', '57700': 'ACT0064.1 - PARASITOLOGIA CLÍNICA - PRÁTICA', '62064': 'ACT0065 - TECNOLOGIAS OMICAS APLICADAS A BIOENSAIOS', '57702': 'ACT0065.0 - TOXICOLOGIA - TEÓRICA', '57703': 'ACT0065.1 - TOXICOLOGIA - PRÁTICA', '62066': 'ACT0067 - BIOLOGIA MOLECULAR APLICADA A INVESTIGAÇAO DE DOENÇAS CRONICAS NÃO TRANSMISSIVEIS', '65100': 'ACT0067 - FLUIDOS BIOLÓGICOS EXTRAVASCULARES', '2049855': 'ACT1000 - ESTÁGIO FARMACÊUTICO II', '53454': 'ACT1990 - DIABETES E DISLIPIDEMIA', '53456': 'ACT1992 - IMUNOLOGIA APLICADA AS ANÁLISES CLÍNICAS', '53457': 'ACT1993 - BACTERIOLOGIA APLICADA AS ANÁLISES CLÍNICAS', '57632': 'ACT1999 - FLUIDOS E ESPERMOGRAMA', '36958': 'ACT2010 - TOPICOS AVANCADOS EM BIOANALISES', '36961': 'ACT2014 - BASES BIOQUIMICAS DO DIABETES MELLITUS' }
+                                    first_page_url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=1'
+                                    from: 1
+                                    last_page: 151
+                                    last_page_url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=151'
+                                    links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=1', label: '1', active: true }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=2', label: '2', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=3', label: '3', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=4', label: '4', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=5', label: '5', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=6', label: '6', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=7', label: '7', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=8', label: '8', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=9', label: '9', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=10', label: '10', active: false }, { url: null, label: ..., active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=150', label: '150', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=151', label: '151', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=2', label: 'Próximo &raquo;', active: false }]
+                                    next_page_url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=2'
+                                    path: 'http://localhost/api/charts/pass_rate/select/disciplines'
+                                    per_page: 30
+                                    prev_page_url: null
+                                    to: 30
+                                    total: 4519
+                                properties:
+                                    current_page: { type: integer, example: 1 }
+                                    data: { type: object, example: { '22810': 'ACT0032 - TOXICOLOGIA', '25964': 'ACT0033 - BIOQUIMICA CLINICA', '21812': 'ACT0034 - IMUNOLOGIA CLINICA', '21810': 'ACT0037 - PARASITOLOGIA CLINICA', '21808': 'ACT0039 - MICROBIOLOGIA CLINICA', '21811': 'ACT0043 - IMUNOHEMATOLOGIA', '25965': 'ACT0044 - MICOLOGIA CLINICA', '20045': 'ACT0045 - UROANALISE', '2048750': 'ACT0049 - TOXICOLOGIA', '2048751': 'ACT0051 - FUNDAMENTOS DE PARASITOLOGIA, MICROBIOLOGIA E IMUNOLOGIA', '57635': 'ACT0058.0 - BIOQUÍMICA CLÍNICA - TEÓRICA', '57636': 'ACT0058.1 - BIOQUÍMICA CLÍNICA - PRÁTICA', '57693': 'ACT0062.0 - IMUNOLOGIA CLÍNICA - TEÓRICA', '57694': 'ACT0062.1 - IMUNOLOGIA CLÍNICA - PRÁTICA', '57696': 'ACT0063.0 - MICROBIOLOGIA CLÍNICA - TEÓRICA', '57697': 'ACT0063.1 - MICROBIOLOGIA CLÍNICA - PRÁTICA', '57699': 'ACT0064.0 - PARASITOLOGIA CLÍNICA - TEÓRICA', '57700': 'ACT0064.1 - PARASITOLOGIA CLÍNICA - PRÁTICA', '62064': 'ACT0065 - TECNOLOGIAS OMICAS APLICADAS A BIOENSAIOS', '57702': 'ACT0065.0 - TOXICOLOGIA - TEÓRICA', '57703': 'ACT0065.1 - TOXICOLOGIA - PRÁTICA', '62066': 'ACT0067 - BIOLOGIA MOLECULAR APLICADA A INVESTIGAÇAO DE DOENÇAS CRONICAS NÃO TRANSMISSIVEIS', '65100': 'ACT0067 - FLUIDOS BIOLÓGICOS EXTRAVASCULARES', '2049855': 'ACT1000 - ESTÁGIO FARMACÊUTICO II', '53454': 'ACT1990 - DIABETES E DISLIPIDEMIA', '53456': 'ACT1992 - IMUNOLOGIA APLICADA AS ANÁLISES CLÍNICAS', '53457': 'ACT1993 - BACTERIOLOGIA APLICADA AS ANÁLISES CLÍNICAS', '57632': 'ACT1999 - FLUIDOS E ESPERMOGRAMA', '36958': 'ACT2010 - TOPICOS AVANCADOS EM BIOANALISES', '36961': 'ACT2014 - BASES BIOQUIMICAS DO DIABETES MELLITUS' } }
+                                    first_page_url: { type: string, example: 'http://localhost/api/charts/pass_rate/select/disciplines?page=1' }
+                                    from: { type: integer, example: 1 }
+                                    last_page: { type: integer, example: 151 }
+                                    last_page_url: { type: string, example: 'http://localhost/api/charts/pass_rate/select/disciplines?page=151' }
+                                    links: { type: array, example: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=1', label: '1', active: true }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=2', label: '2', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=3', label: '3', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=4', label: '4', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=5', label: '5', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=6', label: '6', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=7', label: '7', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=8', label: '8', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=9', label: '9', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=10', label: '10', active: false }, { url: null, label: ..., active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=150', label: '150', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=151', label: '151', active: false }, { url: 'http://localhost/api/charts/pass_rate/select/disciplines?page=2', label: 'Próximo &raquo;', active: false }], items: { type: object } }
+                                    next_page_url: { type: string, example: 'http://localhost/api/charts/pass_rate/select/disciplines?page=2' }
+                                    path: { type: string, example: 'http://localhost/api/charts/pass_rate/select/disciplines' }
+                                    per_page: { type: integer, example: 30 }
+                                    prev_page_url: { type: string, example: null }
+                                    to: { type: integer, example: 30 }
+                                    total: { type: integer, example: 4519 }
+            tags:
+                - Endpoints
+            security: []
+    /api/charts/pass_rate/tables:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                example: []
+            tags:
+                - Endpoints
+            security: []
+    /api/user:
+        get:
+            summary: ''
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
+            tags:
+                - Endpoints
+            security: []
