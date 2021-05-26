@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Portal das Disciplinas - IMD",
-        "_postman_id": "59aec6c8-8d64-4a92-b349-cfcdb4ac5a0b",
+        "_postman_id": "ba034d61-0e3a-439b-b142-c29407191d2b",
         "description": "Projeto portal das disciplinas yay",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -172,6 +172,391 @@
                             "header": null,
                             "cookie": [],
                             "body": "{\n    \"message\": \"Volte sempre!\"\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "V1 User",
+            "description": "",
+            "item": [
+                {
+                    "name": "Store",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users",
+                            "query": [],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"patient@gmail.com\",\n    \"password\": \"mudar@123\",\n    \"role_id\": 1,\n    \"password_confirmation\": \"mudar@123\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Store Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/users",
+                                    "query": [],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users"
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"patient@gmail.com\",\n    \"password\": \"mudar@123\",\n    \"role_id\": 1,\n    \"password_confirmation\": \"mudar@123\"\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Cadastro realizado com sucesso!\",\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"Fulano da Silva\",\n        \"email\": \"fulano@gmail.com\",\n        \"role_id\": 1\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Index",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "10",
+                                    "description": "Quantidade de entidades por p\u00e1gina.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "P\u00e1gina da pagina\u00e7\u00e3o das entidades.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "Fulano",
+                                    "description": "Termo de busca, pode ser o nome ou e-mail do usu\u00e1rio.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users?per_page=10&page=1&search=Fulano"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "name": "Index Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/users",
+                                    "query": [
+                                        {
+                                            "key": "per_page",
+                                            "value": "10",
+                                            "description": "Quantidade de entidades por p\u00e1gina.",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "page",
+                                            "value": "1",
+                                            "description": "P\u00e1gina da pagina\u00e7\u00e3o das entidades.",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "search",
+                                            "value": "Fulano",
+                                            "description": "Termo de busca, pode ser o nome ou e-mail do usu\u00e1rio.",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users?per_page=10&page=1&search=Fulano"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": ""
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Victor\",\n            \"email\": \"victor_brandao@outlook.com\",\n            \"role_id\": 1\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Pedro Gabriel\",\n            \"email\": \"pedrogab96@gmail.com\",\n            \"role_id\": 1\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Arthur S\\u00e9rvulo\",\n            \"email\": \"arthurservulo7@gmail.com\",\n            \"role_id\": 1\n        }\n    ],\n    \"links\": {\n        \"first\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=1\",\n        \"last\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=3\",\n        \"prev\": null,\n        \"next\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=2\"\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 3,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Anterior\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=2\",\n                \"label\": \"2\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=3\",\n                \"label\": \"3\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=2\",\n                \"label\": \"Pr\\u00f3ximo &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users\",\n        \"per_page\": \"3\",\n        \"to\": 3,\n        \"total\": 9\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Show",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users\/:user",
+                            "query": [],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users\/:user",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "1",
+                                    "description": "O identificador do usu\u00e1rio."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "name": "Show Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/users\/:user",
+                                    "query": [],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users\/:user",
+                                    "variable": [
+                                        {
+                                            "id": "user",
+                                            "key": "user",
+                                            "value": "1",
+                                            "description": "O identificador do usu\u00e1rio."
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": ""
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"Fulano da Silva\",\n        \"email\": \"fulano@gmail.com\",\n        \"role_id\": 1\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users\/:user",
+                            "query": [],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users\/:user",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "1",
+                                    "description": "O identificador do usu\u00e1rio."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"patient@gmail.com\"\n}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "name": "Update Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/users\/:user",
+                                    "query": [],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users\/:user",
+                                    "variable": [
+                                        {
+                                            "id": "user",
+                                            "key": "user",
+                                            "value": "1",
+                                            "description": "O identificador do usu\u00e1rio."
+                                        }
+                                    ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"patient@gmail.com\"\n}"
+                                },
+                                "description": ""
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Seus dados foram atualizados com sucesso!\",\n    \"data\": {\n        \"id\": 6,\n        \"name\": \"Fulano da Silva Updated\",\n        \"email\": \"fulano@gmail.com\",\n        \"role_id\": 3\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Destroy",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/users\/:user",
+                            "query": [],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users\/:user",
+                            "variable": [
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "1",
+                                    "description": "O identificador do usu\u00e1rio."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "name": "Destroy Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/users\/:user",
+                                    "query": [],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/users\/:user",
+                                    "variable": [
+                                        {
+                                            "id": "user",
+                                            "key": "user",
+                                            "value": "1",
+                                            "description": "O identificador do usu\u00e1rio."
+                                        }
+                                    ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": ""
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Sua conta foi apagada com sucesso!\"\n}"
                         }
                     ]
                 }

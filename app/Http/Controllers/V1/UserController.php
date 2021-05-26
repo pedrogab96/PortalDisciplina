@@ -12,6 +12,12 @@ use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Response;
 
+/**
+ * Class UserController
+ * @package App\Http\Controllers\V1
+ *
+ * @group V1 User
+ */
 class UserController extends Controller
 {
     /**
@@ -41,6 +47,7 @@ class UserController extends Controller
      *
      * @param StoreRequest $request
      * @return \Illuminate\Http\JsonResponse
+     * @unauthenticated
      * @responseFile 201 storage/responses/users.store.json
      */
     public function store(StoreRequest $request)

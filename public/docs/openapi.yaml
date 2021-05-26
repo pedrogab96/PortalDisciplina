@@ -109,6 +109,289 @@ paths:
                                     message: { type: string, example: 'Volte sempre!' }
             tags:
                 - 'V1 Auth'
+    /api/v1/users:
+        post:
+            summary: Store
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                201:
+                    description: '201'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Cadastro realizado com sucesso!'
+                                    data: { id: 10, name: 'Fulano da Silva', email: fulano@gmail.com, role_id: 1 }
+                                properties:
+                                    message: { type: string, example: 'Cadastro realizado com sucesso!' }
+                                    data: { type: object, example: { id: 10, name: 'Fulano da Silva', email: fulano@gmail.com, role_id: 1 } }
+            tags:
+                - 'V1 User'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: 'Nome completo do usuário.'
+                                    example: 'Fulano da Silva'
+                                email:
+                                    type: string
+                                    description: E-mail.
+                                    example: patient@gmail.com
+                                password:
+                                    type: string
+                                    description: Senha.
+                                    example: mudar@123
+                                role_id:
+                                    type: integer
+                                    description: 'Papel do usuário.'
+                                    example: 1
+                                password_confirmation:
+                                    type: string
+                                    description: 'Deve ser igual ao campo `password`.'
+                                    example: mudar@123
+                            required:
+                                - name
+                                - email
+                                - password
+                                - password_confirmation
+            security: []
+        get:
+            summary: Index
+            description: ''
+            parameters:
+                -
+                    in: query
+                    name: per_page
+                    description: 'Quantidade de entidades por página.'
+                    example: 10
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Quantidade de entidades por página.'
+                        example: 10
+                -
+                    in: query
+                    name: page
+                    description: 'Página da paginação das entidades.'
+                    example: 1
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Página da paginação das entidades.'
+                        example: 1
+                -
+                    in: query
+                    name: search
+                    description: 'Termo de busca, pode ser o nome ou e-mail do usuário.'
+                    example: Fulano
+                    required: false
+                    schema:
+                        type: string
+                        description: 'Termo de busca, pode ser o nome ou e-mail do usuário.'
+                        example: Fulano
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: [{ id: 1, name: Victor, email: victor_brandao@outlook.com, role_id: 1 }, { id: 2, name: 'Pedro Gabriel', email: pedrogab96@gmail.com, role_id: 1 }, { id: 3, name: 'Arthur Sérvulo', email: arthurservulo7@gmail.com, role_id: 1 }]
+                                    links: { first: 'http://localhost:8000/api/v1/users?page=1', last: 'http://localhost:8000/api/v1/users?page=3', prev: null, next: 'http://localhost:8000/api/v1/users?page=2' }
+                                    meta: { current_page: 1, from: 1, last_page: 3, links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost:8000/api/v1/users?page=1', label: '1', active: true }, { url: 'http://localhost:8000/api/v1/users?page=2', label: '2', active: false }, { url: 'http://localhost:8000/api/v1/users?page=3', label: '3', active: false }, { url: 'http://localhost:8000/api/v1/users?page=2', label: 'Próximo &raquo;', active: false }], path: 'http://localhost:8000/api/v1/users', per_page: '3', to: 3, total: 9 }
+                                properties:
+                                    data: { type: array, example: [{ id: 1, name: Victor, email: victor_brandao@outlook.com, role_id: 1 }, { id: 2, name: 'Pedro Gabriel', email: pedrogab96@gmail.com, role_id: 1 }, { id: 3, name: 'Arthur Sérvulo', email: arthurservulo7@gmail.com, role_id: 1 }], items: { type: object } }
+                                    links: { type: object, example: { first: 'http://localhost:8000/api/v1/users?page=1', last: 'http://localhost:8000/api/v1/users?page=3', prev: null, next: 'http://localhost:8000/api/v1/users?page=2' } }
+                                    meta: { type: object, example: { current_page: 1, from: 1, last_page: 3, links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost:8000/api/v1/users?page=1', label: '1', active: true }, { url: 'http://localhost:8000/api/v1/users?page=2', label: '2', active: false }, { url: 'http://localhost:8000/api/v1/users?page=3', label: '3', active: false }, { url: 'http://localhost:8000/api/v1/users?page=2', label: 'Próximo &raquo;', active: false }], path: 'http://localhost:8000/api/v1/users', per_page: '3', to: 3, total: 9 } }
+            tags:
+                - 'V1 User'
+    '/api/v1/users/{user}':
+        get:
+            summary: Show
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: { id: 10, name: 'Fulano da Silva', email: fulano@gmail.com, role_id: 1 }
+                                properties:
+                                    data: { type: object, example: { id: 10, name: 'Fulano da Silva', email: fulano@gmail.com, role_id: 1 } }
+            tags:
+                - 'V1 User'
+        put:
+            summary: Update
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Seus dados foram atualizados com sucesso!'
+                                    data: { id: 6, name: 'Fulano da Silva Updated', email: fulano@gmail.com, role_id: 3 }
+                                properties:
+                                    message: { type: string, example: 'Seus dados foram atualizados com sucesso!' }
+                                    data: { type: object, example: { id: 6, name: 'Fulano da Silva Updated', email: fulano@gmail.com, role_id: 3 } }
+            tags:
+                - 'V1 User'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: 'Nome completo do usuário.'
+                                    example: 'Fulano da Silva'
+                                email:
+                                    type: string
+                                    description: E-mail.
+                                    example: patient@gmail.com
+                            required:
+                                - name
+                                - email
+        delete:
+            summary: Destroy
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Sua conta foi apagada com sucesso!'
+                                properties:
+                                    message: { type: string, example: 'Sua conta foi apagada com sucesso!' }
+            tags:
+                - 'V1 User'
+        parameters:
+            -
+                in: path
+                name: user
+                description: 'O identificador do usuário.'
+                example: 1
+                required: true
+                schema:
+                    type: integer
 components:
     securitySchemes:
         default:

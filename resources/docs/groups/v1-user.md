@@ -1,252 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Portal das Disciplinas - IMD</title>
+# V1 User
 
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="css/style.css" media="screen" />
-        <link rel="stylesheet" href="css/print.css" media="print" />
-        <script src="js/all.js"></script>
+## Store
 
-        <link rel="stylesheet" href="css/highlight-darcula.css" media="" />
-        <script src="js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
 
-</head>
 
-<body class="" data-languages="[&quot;bash&quot;,&quot;javascript&quot;,&quot;php&quot;]">
-<a href="#" id="nav-button">
-      <span>
-        NAV
-            <img src="images/navbar.png" alt="-image" class=""/>
-      </span>
-</a>
-<div class="tocify-wrapper">
-                <div class="lang-selector">
-                            <a href="#" data-language-name="bash">bash</a>
-                            <a href="#" data-language-name="javascript">javascript</a>
-                            <a href="#" data-language-name="php">php</a>
-                    </div>
-        <div class="search">
-        <input type="text" class="search" id="input-search" placeholder="Search">
-    </div>
-    <ul class="search-results"></ul>
 
-    <ul id="toc">
-    </ul>
+> Example request:
 
-            <ul class="toc-footer" id="toc-footer">
-                            <li><a href="./collection.json">View Postman collection</a></li>
-                            <li><a href="./openapi.yaml">View OpenAPI (Swagger) spec</a></li>
-                            <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
-                    </ul>
-            <ul class="toc-footer" id="last-updated">
-            <li>Last updated: May 26 2021</li>
-        </ul>
-</div>
-<div class="page-wrapper">
-    <div class="dark-box"></div>
-    <div class="content">
-        <h1>Introduction</h1>
-<p>Projeto portal das disciplinas yay</p>
-<p>This documentation aims to provide all the information you need to work with our API.</p>
-<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
-You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
-<script>
-    var baseUrl = "https://portaldasdisciplinas.imd.ufrn.br/";
-</script>
-<script src="js/tryitout-2.7.3.js"></script>
-<blockquote>
-<p>Base URL</p>
-</blockquote>
-<pre><code class="language-yaml">https://portaldasdisciplinas.imd.ufrn.br/</code></pre><h1>Authenticating requests</h1>
-<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
-<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
-<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>V1 Auth</h1>
-<h2>Login</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X POST \
-    "https://portaldasdisciplinas.imd.ufrn.br/api/v1/login" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json" \
-    -d '{"email":"professor@gmail.com","password":"mudar@123"}'
-</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "https://portaldasdisciplinas.imd.ufrn.br/api/v1/login"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "email": "professor@gmail.com",
-    "password": "mudar@123"
-}
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre>
-<pre><code class="language-php">
-$client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
-    'https://portaldasdisciplinas.imd.ufrn.br/api/v1/login',
-    [
-        'headers' =&gt; [
-            'Accept' =&gt; 'application/json',
-        ],
-        'json' =&gt; [
-            'email' =&gt; 'professor@gmail.com',
-            'password' =&gt; 'mudar@123',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "data": {
-        "token": "1|Tfp72QbBAYlwpxkFoqEqw7B8eADSN7ThJ5mR1Ffl",
-        "user": {
-            "id": 6,
-            "name": "Professor Tester",
-            "email": "professor@gmail.com",
-            "role_id": 3
-        }
-    }
-}</code></pre>
-<blockquote>
-<p>Example response (401):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Credenciais incorretas!",
-    "errors": {
-        "general": "Não autorizado."
-    }
-}</code></pre>
-<div id="execution-results-POSTapi-v1-login" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-v1-login"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-login"></code></pre>
-</div>
-<div id="execution-error-POSTapi-v1-login" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-login"></code></pre>
-</div>
-<form id="form-POSTapi-v1-login" data-method="POST" data-path="api/v1/login" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-login', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-v1-login" onclick="tryItOut('POSTapi-v1-login');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-v1-login" onclick="cancelTryOut('POSTapi-v1-login');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-v1-login" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-black">POST</small>
- <b><code>api/v1/login</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-<p>
-<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="email" data-endpoint="POSTapi-v1-login" data-component="body" required  hidden>
-<br>
-E-mail de acesso do usuário.
-</p>
-<p>
-<b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="password" name="password" data-endpoint="POSTapi-v1-login" data-component="body" required  hidden>
-<br>
-Senha de acesso do usuário.
-</p>
-
-</form>
-<h2>Logout</h2>
-<p><small class="badge badge-darkred">requires authentication</small></p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "https://portaldasdisciplinas.imd.ufrn.br/api/v1/logout" \
-    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "https://portaldasdisciplinas.imd.ufrn.br/api/v1/logout"
-);
-
-let headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<pre><code class="language-php">
-$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'https://portaldasdisciplinas.imd.ufrn.br/api/v1/logout',
-    [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
-            'Accept' =&gt; 'application/json',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "message": "Volte sempre!"
-}</code></pre>
-<div id="execution-results-GETapi-v1-logout" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-v1-logout"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-logout"></code></pre>
-</div>
-<div id="execution-error-GETapi-v1-logout" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-logout"></code></pre>
-</div>
-<form id="form-GETapi-v1-logout" data-method="GET" data-path="api/v1/logout" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-logout', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-v1-logout" onclick="tryItOut('GETapi-v1-logout');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-v1-logout" onclick="cancelTryOut('GETapi-v1-logout');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-v1-logout" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/v1/logout</code></b>
-</p>
-<p>
-<label id="auth-GETapi-v1-logout" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-v1-logout" data-component="header"></label>
-</p>
-</form><h1>V1 User</h1>
-<h2>Store</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X POST \
+```bash
+curl -X POST \
     "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -d '{"name":"Fulano da Silva","email":"patient@gmail.com","password":"mudar@123","role_id":1,"password_confirmation":"mudar@123"}'
-</code></pre>
-<pre><code class="language-javascript">const url = new URL(
+
+```
+
+```javascript
+const url = new URL(
     "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users"
 );
 
@@ -267,30 +39,36 @@ fetch(url, {
     method: "POST",
     headers,
     body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre>
-<pre><code class="language-php">
+}).then(response => response.json());
+```
+
+```php
+
 $client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
+$response = $client->post(
     'https://portaldasdisciplinas.imd.ufrn.br/api/v1/users',
     [
-        'headers' =&gt; [
-            'Accept' =&gt; 'application/json',
+        'headers' => [
+            'Accept' => 'application/json',
         ],
-        'json' =&gt; [
-            'name' =&gt; 'Fulano da Silva',
-            'email' =&gt; 'patient@gmail.com',
-            'password' =&gt; 'mudar@123',
-            'role_id' =&gt; 1,
-            'password_confirmation' =&gt; 'mudar@123',
+        'json' => [
+            'name' => 'Fulano da Silva',
+            'email' => 'patient@gmail.com',
+            'password' => 'mudar@123',
+            'role_id' => 1,
+            'password_confirmation' => 'mudar@123',
         ],
     ]
 );
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (201):</p>
-</blockquote>
-<pre><code class="language-json">{
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+
+> Example response (201):
+
+```json
+{
     "message": "Cadastro realizado com sucesso!",
     "data": {
         "id": 10,
@@ -298,7 +76,8 @@ print_r(json_decode((string) $body));</code></pre>
         "email": "fulano@gmail.com",
         "role_id": 1
     }
-}</code></pre>
+}
+```
 <div id="execution-results-POSTapi-v1-users" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-users"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-users"></code></pre>
@@ -351,17 +130,26 @@ Deve ser igual ao campo `password`.
 </p>
 
 </form>
-<h2>Index</h2>
-<p><small class="badge badge-darkred">requires authentication</small></p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users?per_page=10&amp;page=1&amp;search=Fulano" \
+
+
+## Index
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users?per_page=10&page=1&search=Fulano" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
     "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users"
 );
 
@@ -371,7 +159,7 @@ let params = {
     "search": "Fulano",
 };
 Object.keys(params)
-    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+    .forEach(key => url.searchParams.append(key, params[key]));
 
 let headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -379,32 +167,39 @@ let headers = {
     "Accept": "application/json",
 };
 
+
 fetch(url, {
     method: "GET",
     headers,
-}).then(response =&gt; response.json());</code></pre>
-<pre><code class="language-php">
+}).then(response => response.json());
+```
+
+```php
+
 $client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
+$response = $client->get(
     'https://portaldasdisciplinas.imd.ufrn.br/api/v1/users',
     [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
-            'Accept' =&gt; 'application/json',
+        'headers' => [
+            'Authorization' => 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' => 'application/json',
         ],
-        'query' =&gt; [
-            'per_page'=&gt; '10',
-            'page'=&gt; '1',
-            'search'=&gt; 'Fulano',
+        'query' => [
+            'per_page'=> '10',
+            'page'=> '1',
+            'search'=> 'Fulano',
         ],
     ]
 );
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+
+> Example response (200):
+
+```json
+{
     "data": [
         {
             "id": 1,
@@ -438,7 +233,7 @@ print_r(json_decode((string) $body));</code></pre>
         "links": [
             {
                 "url": null,
-                "label": "&amp;laquo; Anterior",
+                "label": "&laquo; Anterior",
                 "active": false
             },
             {
@@ -458,7 +253,7 @@ print_r(json_decode((string) $body));</code></pre>
             },
             {
                 "url": "http:\/\/localhost:8000\/api\/v1\/users?page=2",
-                "label": "Próximo &amp;raquo;",
+                "label": "Próximo &raquo;",
                 "active": false
             }
         ],
@@ -467,7 +262,8 @@ print_r(json_decode((string) $body));</code></pre>
         "to": 3,
         "total": 9
     }
-}</code></pre>
+}
+```
 <div id="execution-results-GETapi-v1-users" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-users"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-users"></code></pre>
@@ -510,17 +306,26 @@ Página da paginação das entidades.
 Termo de busca, pode ser o nome ou e-mail do usuário.
 </p>
 </form>
-<h2>Show</h2>
-<p><small class="badge badge-darkred">requires authentication</small></p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
+
+
+## Show
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```bash
+curl -X GET \
     -G "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
     "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1"
 );
 
@@ -530,34 +335,42 @@ let headers = {
     "Accept": "application/json",
 };
 
+
 fetch(url, {
     method: "GET",
     headers,
-}).then(response =&gt; response.json());</code></pre>
-<pre><code class="language-php">
+}).then(response => response.json());
+```
+
+```php
+
 $client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
+$response = $client->get(
     'https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1',
     [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
-            'Accept' =&gt; 'application/json',
+        'headers' => [
+            'Authorization' => 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' => 'application/json',
         ],
     ]
 );
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+
+> Example response (200):
+
+```json
+{
     "data": {
         "id": 10,
         "name": "Fulano da Silva",
         "email": "fulano@gmail.com",
         "role_id": 1
     }
-}</code></pre>
+}
+```
 <div id="execution-results-GETapi-v1-users--user-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-users--user-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-users--user-"></code></pre>
@@ -588,19 +401,28 @@ print_r(json_decode((string) $body));</code></pre>
 O identificador do usuário.
 </p>
 </form>
-<h2>Update</h2>
-<p><small class="badge badge-darkred">requires authentication</small></p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X PUT \
+
+
+## Update
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```bash
+curl -X PUT \
     "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -d '{"name":"Fulano da Silva","email":"patient@gmail.com"}'
-</code></pre>
-<pre><code class="language-javascript">const url = new URL(
+
+```
+
+```javascript
+const url = new URL(
     "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1"
 );
 
@@ -619,28 +441,34 @@ fetch(url, {
     method: "PUT",
     headers,
     body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre>
-<pre><code class="language-php">
+}).then(response => response.json());
+```
+
+```php
+
 $client = new \GuzzleHttp\Client();
-$response = $client-&gt;put(
+$response = $client->put(
     'https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1',
     [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
-            'Accept' =&gt; 'application/json',
+        'headers' => [
+            'Authorization' => 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' => 'application/json',
         ],
-        'json' =&gt; [
-            'name' =&gt; 'Fulano da Silva',
-            'email' =&gt; 'patient@gmail.com',
+        'json' => [
+            'name' => 'Fulano da Silva',
+            'email' => 'patient@gmail.com',
         ],
     ]
 );
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+
+> Example response (200):
+
+```json
+{
     "message": "Seus dados foram atualizados com sucesso!",
     "data": {
         "id": 6,
@@ -648,7 +476,8 @@ print_r(json_decode((string) $body));</code></pre>
         "email": "fulano@gmail.com",
         "role_id": 3
     }
-}</code></pre>
+}
+```
 <div id="execution-results-PUTapi-v1-users--user-" hidden>
     <blockquote>Received response<span id="execution-response-status-PUTapi-v1-users--user-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-PUTapi-v1-users--user-"></code></pre>
@@ -697,17 +526,26 @@ E-mail.
 </p>
 
 </form>
-<h2>Destroy</h2>
-<p><small class="badge badge-darkred">requires authentication</small></p>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X DELETE \
+
+
+## Destroy
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```bash
+curl -X DELETE \
     "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
     "https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1"
 );
 
@@ -717,29 +555,37 @@ let headers = {
     "Accept": "application/json",
 };
 
+
 fetch(url, {
     method: "DELETE",
     headers,
-}).then(response =&gt; response.json());</code></pre>
-<pre><code class="language-php">
+}).then(response => response.json());
+```
+
+```php
+
 $client = new \GuzzleHttp\Client();
-$response = $client-&gt;delete(
+$response = $client->delete(
     'https://portaldasdisciplinas.imd.ufrn.br/api/v1/users/1',
     [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
-            'Accept' =&gt; 'application/json',
+        'headers' => [
+            'Authorization' => 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' => 'application/json',
         ],
     ]
 );
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre>
-<blockquote>
-<p>Example response (200):</p>
-</blockquote>
-<pre><code class="language-json">{
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+
+> Example response (200):
+
+```json
+{
     "message": "Sua conta foi apagada com sucesso!"
-}</code></pre>
+}
+```
 <div id="execution-results-DELETEapi-v1-users--user-" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEapi-v1-users--user-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEapi-v1-users--user-"></code></pre>
@@ -770,20 +616,6 @@ print_r(json_decode((string) $body));</code></pre>
 O identificador do usuário.
 </p>
 </form>
-    </div>
-    <div class="dark-box">
-                    <div class="lang-selector">
-                                    <a href="#" data-language-name="bash">bash</a>
-                                    <a href="#" data-language-name="javascript">javascript</a>
-                                    <a href="#" data-language-name="php">php</a>
-                            </div>
-            </div>
-</div>
-<script>
-    $(function () {
-        var languages = ["bash","javascript","php"];
-        setupLanguages(languages);
-    });
-</script>
-</body>
-</html>
+
+
+
