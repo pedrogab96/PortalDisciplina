@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\V1;
 
+use App\Http\Requests\V1\User\DestroyRequest;
 use App\Http\Requests\V1\User\IndexRequest;
 use App\Http\Requests\V1\User\ShowRequest;
 use App\Http\Requests\V1\User\StoreRequest;
@@ -97,5 +98,23 @@ class UserController extends Controller
             'message' => 'Seus dados foram atualizados com sucesso!',
             'data' => new UserResource($user),
         ], Response::HTTP_CREATED);
+    }
+
+    /**
+     * Destroy
+     *
+     * @param DestroyRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @responseFile storage/responses/users.destroy.json
+     */
+    public function destroy(DestroyRequest $request, $id)
+    {
+        $user = $request->user();
+        $user->forceDelete();
+
+        return $this->responseSuccess([
+            'message' => 'Sua conta foi apagada com sucesso!',
+        ]);
     }
 }
