@@ -24,6 +24,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @unauthenticated
      * @responseFile storage/responses/auth.login.json
+     * @responseFile 401 storage/responses/auth.login_401.json
      */
     public function login(LoginRequest $request)
     {
@@ -60,7 +61,6 @@ class AuthController extends Controller
      * @param LogoutRequest $request
      * @return \Illuminate\Http\JsonResponse
      * @responseFile storage/responses/auth.logout.json
-     * @responseFile 401 storage/responses/auth.logout_401.json
      */
     public function logout(LogoutRequest $request)
     {

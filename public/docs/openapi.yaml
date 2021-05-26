@@ -1,0 +1,120 @@
+openapi: 3.0.3
+info:
+    title: 'Portal das Disciplinas - IMD'
+    description: 'Projeto portal das disciplinas yay'
+    version: 1.0.0
+servers:
+    -
+        url: 'https://portaldasdisciplinas.imd.ufrn.br'
+paths:
+    /api/v1/login:
+        post:
+            summary: Login
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: { token: 1|Tfp72QbBAYlwpxkFoqEqw7B8eADSN7ThJ5mR1Ffl, user: { id: 6, name: 'Professor Tester', email: professor@gmail.com, role_id: 3 } }
+                                properties:
+                                    data: { type: object, example: { token: 1|Tfp72QbBAYlwpxkFoqEqw7B8eADSN7ThJ5mR1Ffl, user: { id: 6, name: 'Professor Tester', email: professor@gmail.com, role_id: 3 } } }
+                401:
+                    description: '401'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Credenciais incorretas!'
+                                    errors: { general: 'Não autorizado.' }
+                                properties:
+                                    message: { type: string, example: 'Credenciais incorretas!' }
+                                    errors: { type: object, example: { general: 'Não autorizado.' } }
+            tags:
+                - 'V1 Auth'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    description: 'E-mail de acesso do usuário.'
+                                    example: professor@gmail.com
+                                password:
+                                    type: string
+                                    description: 'Senha de acesso do usuário.'
+                                    example: mudar@123
+                            required:
+                                - email
+                                - password
+            security: []
+    /api/v1/logout:
+        get:
+            summary: Logout
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Volte sempre!'
+                                properties:
+                                    message: { type: string, example: 'Volte sempre!' }
+            tags:
+                - 'V1 Auth'
+components:
+    securitySchemes:
+        default:
+            type: http
+            scheme: bearer
+            description: ''
+security:
+    -
+        default: []

@@ -12,7 +12,6 @@ return [
      */
     'description' => 'Projeto portal das disciplinas yay',
 
-
     /*
      * Tell Scribe what routes to generate documentation for.
      * Each group contains rules defining which routes should be included ('match', 'include' and 'exclude' sections)
@@ -178,13 +177,13 @@ return [
         /*
          * Set this to true if any endpoints in your API use authentication.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
          * You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
          */
-        'default' => false,
+        'default' => true,
 
         /*
          * Where is the auth value meant to be sent in a request?
@@ -237,12 +236,13 @@ INTRO
     'example_languages' => [
         'bash',
         'javascript',
+        'php',
     ],
 
     /*
      * The base URL to be used in examples. If this is empty, Scribe will use the value of config('app.url').
      */
-    'base_url' => null,
+    'base_url' => 'https://portaldasdisciplinas.imd.ufrn.br/',
 
     /*
      * Generate a Postman collection (v2.1.0) in addition to HTML docs.
