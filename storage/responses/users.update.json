@@ -1,0 +1,9 @@
+{
+  "message": "Seus dados foram atualizados com sucesso!",
+  "data": {
+    "id": 6,
+    "name": "Fulano da Silva Updated",
+    "email": "fulano@gmail.com",
+    "role_id": 3
+  }
+}

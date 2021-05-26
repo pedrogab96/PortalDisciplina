@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V1;
 use App\Http\Requests\V1\User\IndexRequest;
 use App\Http\Requests\V1\User\ShowRequest;
 use App\Http\Requests\V1\User\StoreRequest;
+use App\Http\Requests\V1\User\UpdateRequest;
 use App\Http\Resources\V1\UserCollection;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
@@ -72,5 +73,29 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         return new UserResource($user);
+    }
+
+    /**
+     * Update
+     *
+     * @param UpdateRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @responseFile storage/responses/users.update.json
+     */
+    public function update(UpdateRequest $request, $id)
+    {
+        $user = $request->user();
+        $data = $request->only([
+            'name',
+            'email',
+        ]);
+
+        $user->update($data);
+
+        return $this->responseSuccess([
+            'message' => 'Seus dados foram atualizados com sucesso!',
+            'data' => new UserResource($user),
+        ], Response::HTTP_CREATED);
     }
 }
