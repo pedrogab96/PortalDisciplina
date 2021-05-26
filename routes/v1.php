@@ -22,6 +22,12 @@ Route::group([
     Route::post('login', [AuthController::class, 'login']);
 });
 
+/*
+ * User
+ */
+Route::apiResource('users', 'UserController')
+    ->only(['store',]);
+
 Route::group([
     'middleware' => 'auth:sanctum',
 ], function () {
@@ -30,5 +36,6 @@ Route::group([
     /*
      * User
      */
-    Route::apiResource('users', 'UserController');
+    Route::apiResource('users', 'UserController')
+        ->except(['store',]);
 });

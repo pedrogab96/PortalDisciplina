@@ -22,7 +22,7 @@ class IndexRequest extends FormRequest
      */
     public function authorize()
     {
-        return true || $this->user()->is_admin;
+        return $this->user()->is_admin;
     }
 
     /**
