@@ -29,10 +29,11 @@ Route::apiResource('users', 'UserController')
     ->only(['store',]);
 
 /*
- * User
+ * Discipline
  */
 Route::apiResource('disciplines', 'DisciplineController')
-    ->only(['index','show']);
+    ->only(['index', 'show']);
+
 Route::group([
     'middleware' => 'auth:sanctum',
 ], function () {
@@ -43,9 +44,10 @@ Route::group([
      */
     Route::apiResource('users', 'UserController')
         ->except(['store',]);
+
     /*
-     * Disciplines
+     * Discipline
     */
-    Route::apiResource('disciplines ', 'DisciplineController')
-    ->except(['index','show']);
+    Route::apiResource('disciplines', 'DisciplineController')
+        ->except(['index', 'show']);
 });
