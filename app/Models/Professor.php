@@ -35,4 +35,12 @@ class Professor extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function disciplines()
+    {
+        return $this->hasMany(Discipline::class);
+    }
 }

@@ -15,6 +15,7 @@ use App\Http\Resources\V1\DisciplineResource;
 use App\Models\ClassificationDiscipline;
 use App\Services\Urls\GoogleDriveService;
 use App\Services\Urls\YoutubeService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use \App\Models\Discipline;
 use \App\Models\Media;
@@ -23,49 +24,43 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
+
 /**
  * Class DisciplineController
  * @package App\Http\Controllers\V1
  *
  * @group V1 Discipline
  */
-
 class DisciplineController extends Controller
 {
-    const VIEW_PATH = 'disciplines.';
-
     /**
      * Index
      *
      * @param IndexRequest $request
      * @return DisciplineCollection
-     * @responseFile storage/responses/users.index.json
+     * @responseFile storage/responses/disciplines.index.json
      */
     public function index(IndexRequest $request)
     {
-        $queryBuilder = Discipline::query()
-            ->with([
-                'professor',
-                'medias',
-            ])->orderBy('name', 'ASC')->get();
+        $queryBuilder = Discipline::query();
 
         if ($request->has('search')) {
             $search = '%' . $request->get('search') . '%';
-            $queryBuilder->where('discipline.name', 'LIKE', $search)
-                ->orWhere('discipline.code', 'LIKE', $search)->orWhere('professor.name', 'LIKE', $search);
+            $queryBuilder->where('name', 'LIKE', $search)
+                ->orWhere('code', 'LIKE', $search)
+                ->orWhereHas('professor', function (Builder $subquery) use ($search) {
+                    $subquery->where('name', 'LIKE', $search);
+                });
         }
-        $disciplines = $queryBuilder->paginate($request->get('per_page'));
+
+        $disciplines = $queryBuilder->with([
+            'professor',
+        ])->orderBy('name')
+            ->paginate($request->get('per_page'));
+
         return new DisciplineCollection($disciplines);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param CreateRequest $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-
-    //modificar
     /**
      * Store
      *
@@ -93,7 +88,7 @@ class DisciplineController extends Controller
             if ($request->filled('media-trailer') && YoutubeService::match($request->input('media-trailer'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-trailer'));
                 $media_data = [
-                    'title' => 'Trailer de '. $discipline->name,
+                    'title' => 'Trailer de ' . $discipline->name,
                     'type' => MediaType::VIDEO,
                     'is_trailer' => true,
                     'url' => 'https://www.youtube.com/embed/' . $mediaId,
@@ -105,7 +100,7 @@ class DisciplineController extends Controller
             if ($request->filled('media-podcast') && YoutubeService::match($request->input('media-podcast'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-podcast'));
                 $media_data = [
-                    'title' => 'Podcast de '. $discipline->name,
+                    'title' => 'Podcast de ' . $discipline->name,
                     'type' => MediaType::PODCAST,
                     'is_trailer' => false,
                     'url' => 'https://www.youtube.com/embed/' . $mediaId,
@@ -117,7 +112,7 @@ class DisciplineController extends Controller
             if ($request->filled('media-video') && YoutubeService::match($request->input('media-video'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-video'));
                 $media_data = [
-                    'title' => 'Vídeo de '. $discipline->name,
+                    'title' => 'Vídeo de ' . $discipline->name,
                     'type' => MediaType::VIDEO,
                     'is_trailer' => false,
                     'url' => 'https://www.youtube.com/embed/' . $mediaId,
@@ -149,7 +144,7 @@ class DisciplineController extends Controller
                 ClassificationID::AVALIACAO_ATIVIDADES => "classificacao-av-atividades"
             ];
 
-            foreach ($classificationsMap as $classificationId => $inputValue){
+            foreach ($classificationsMap as $classificationId => $inputValue) {
                 $classification_data = [
                     'classification_id' => $classificationId,
                     'discipline_id' => $discipline->id,
@@ -201,7 +196,7 @@ class DisciplineController extends Controller
      * @param UpdateRequest $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
-     * @responseFile storage/responses/users.update.json
+     * @responseFile storage/responses/disciplines.update.json
      */
     public function update(UpdateRequest $request, $id)
     {
@@ -219,7 +214,7 @@ class DisciplineController extends Controller
 
             if ($request->filled('media-trailer') && YoutubeService::match($request->input('media-trailer'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-trailer'));
-                if(!$discipline->has_trailer_media){
+                if (!$discipline->has_trailer_media) {
                     $media_data = [
                         'title' => 'Trailer de ' . $discipline->name,
                         'type' => MediaType::VIDEO,
@@ -228,7 +223,7 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id
                     ];
                     Media::create($media_data);
-                }else{
+                } else {
                     $media_new_data = ['url' => "https://www.youtube.com/embed/" . $mediaId];
                     Media::query()->find($discipline->trailer->id)->update($media_new_data);
                 }
@@ -237,7 +232,7 @@ class DisciplineController extends Controller
 
             if ($request->filled('media-podcast') && YoutubeService::match($request->input('media-podcast'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-podcast'));
-                if(!$discipline->hasMediaOfType(\App\Enums\MediaType::PODCAST)){
+                if (!$discipline->hasMediaOfType(\App\Enums\MediaType::PODCAST)) {
                     $media_data = [
                         'title' => 'Podcast de ' . $discipline->name,
                         'type' => MediaType::PODCAST,
@@ -246,7 +241,7 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id
                     ];
                     Media::create($media_data);
-                }else{
+                } else {
                     $media_new_data = ['url' => "https://www.youtube.com/embed/" . $mediaId];
                     Media::query()->find($discipline->getMediaByType("podcast")->id)->update($media_new_data);
                 }
@@ -254,7 +249,7 @@ class DisciplineController extends Controller
 
             if ($request->filled('media-video') && YoutubeService::match($request->input('media-video'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-video'));
-                if(!$discipline->hasMediaOfType(\App\Enums\MediaType::VIDEO)){
+                if (!$discipline->hasMediaOfType(\App\Enums\MediaType::VIDEO)) {
                     $media_data = [
                         'title' => 'Podcast de ' . $discipline->name,
                         'type' => MediaType::VIDEO,
@@ -263,7 +258,7 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id
                     ];
                     Media::create($media_data);
-                }else{
+                } else {
                     $media_new_data = ['url' => "https://www.youtube.com/embed/" . $mediaId];
                     Media::query()->find($discipline->getMediaByType("video")->id)->update($media_new_data);
                 }
@@ -271,7 +266,7 @@ class DisciplineController extends Controller
 
             if ($request->filled('media-material') && GoogleDriveService::match($request->input('media-material'))) {
                 $mediaId = GoogleDriveService::getIdFromUrl($request->input('media-material'));
-                if(!$discipline->hasMediaOfType(\App\Enums\MediaType::MATERIAIS)){
+                if (!$discipline->hasMediaOfType(\App\Enums\MediaType::MATERIAIS)) {
                     $media_data = [
                         'title' => 'Materiais de ' . $discipline->name,
                         'type' => MediaType::MATERIAIS,
@@ -280,7 +275,7 @@ class DisciplineController extends Controller
                         'discipline_id' => $discipline->id
                     ];
                     Media::create($media_data);
-                }else{
+                } else {
                     $media_new_data = ['url' => "https://drive.google.com/uc?export=download&id=" . $mediaId];
                     Media::query()->find($discipline->getMediaByType("material")->id)->update($media_new_data);
                 }
@@ -297,10 +292,10 @@ class DisciplineController extends Controller
                 ClassificationID::AVALIACAO_ATIVIDADES => "classificacao-av-atividades"
             ];
 
-            foreach ($classificationsMap as $classificationId => $inputValue){
+            foreach ($classificationsMap as $classificationId => $inputValue) {
                 $classification_new_data = ['value' => $request->input($inputValue)];
-                ClassificationDiscipline::query()->where('discipline_id',$discipline->id)
-                ->where('classification_id',$classificationId)->update($classification_new_data);
+                ClassificationDiscipline::query()->where('discipline_id', $discipline->id)
+                    ->where('classification_id', $classificationId)->update($classification_new_data);
             }
             DB::commit();
             //que codigo colocar?
@@ -318,7 +313,7 @@ class DisciplineController extends Controller
         }
     }
 
-     /**
+    /**
      * Destroy
      *
      * @param DestroyRequest $request
@@ -326,7 +321,7 @@ class DisciplineController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @responseFile storage/responses/disciplines.destroy.json
      */
-    public function destroy(DestroyRequest $request,$id)
+    public function destroy(DestroyRequest $request, $id)
     {
         Discipline::query()
             ->where('id', $id)

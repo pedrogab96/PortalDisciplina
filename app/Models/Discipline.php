@@ -31,14 +31,16 @@ class Discipline extends Model
     ];
 
     /**
+     * @param $classification_id
      * @return int|null
      */
-    public function getClassificationsValues($classification_id): ? int
+    public function getClassificationsValues($classification_id): ?int
     {
         return $this->classificationsDisciplines
             ->where('classification_id', $classification_id)
             ->first()->value;
     }
+
     /**
      * @return Media|null
      */
@@ -138,9 +140,9 @@ class Discipline extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-     public function classificationsDisciplines()
+    public function classificationsDisciplines()
     {
-        return $this->hasMany(ClassificationDiscipline::class,"discipline_id","id");
+        return $this->hasMany(ClassificationDiscipline::class, "discipline_id", "id");
     }
 
     /**

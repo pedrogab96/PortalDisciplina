@@ -10,8 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *
  * @queryParam per_page integer Quantidade de entidades por página. Example: 10
  * @queryParam page integer Página da paginação das entidades. Example: 1
- * @queryParam search string Termo de busca, pode ser o nome do professor,
- * nome da disciplina ou código da disciplina. Example: FMC I, Fundamentos Matematicos da Computação
+ * @queryParam search string Termo de busca (nome do professor, nome da disciplina, código da disciplina). Example: IMD1101
  */
 class IndexRequest extends FormRequest
 {
