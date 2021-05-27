@@ -20,7 +20,11 @@ class DisciplineResource extends JsonResource
             'name' => $this->name,
             'synopsis' => $this->synopsis,
             'difficulties' => $this->difficulties,
-            'professor_id' => (int)$this->professor_id
+            'professor_id' => (int)$this->professor_id,
+            'professor' => new ProfessorResource($this->whenLoaded('professor')),
+            'medias' => new MediaCollection($this->whenLoaded('medias')),
+            'faqs' => new FaqCollection($this->whenLoaded('faqs')),
+            'classifications' => new FaqCollection($this->whenLoaded('classifications')),
         ];
     }
 }
