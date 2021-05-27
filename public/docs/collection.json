@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Portal das Disciplinas - IMD",
-        "_postman_id": "ba034d61-0e3a-439b-b142-c29407191d2b",
+        "_postman_id": "68c2b519-59f8-4bb7-98ff-2ec7b20c3421",
         "description": "Projeto portal das disciplinas yay",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -172,6 +172,366 @@
                             "header": null,
                             "cookie": [],
                             "body": "{\n    \"message\": \"Volte sempre!\"\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "V1 Discipline",
+            "description": "",
+            "item": [
+                {
+                    "name": "Index",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/disciplines",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "10",
+                                    "description": "Quantidade de entidades por p\u00e1gina.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "P\u00e1gina da pagina\u00e7\u00e3o das entidades.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "FMC+I%2C+Fundamentos+Matematicos+da+Computa%C3%A7%C3%A3o",
+                                    "description": "Termo de busca, pode ser o nome do professor,\nnome da disciplina ou c\u00f3digo da disciplina.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines?per_page=10&page=1&search=FMC+I%2C+Fundamentos+Matematicos+da+Computa%C3%A7%C3%A3o"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "name": "Index Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/disciplines",
+                                    "query": [
+                                        {
+                                            "key": "per_page",
+                                            "value": "10",
+                                            "description": "Quantidade de entidades por p\u00e1gina.",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "page",
+                                            "value": "1",
+                                            "description": "P\u00e1gina da pagina\u00e7\u00e3o das entidades.",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "search",
+                                            "value": "FMC+I%2C+Fundamentos+Matematicos+da+Computa%C3%A7%C3%A3o",
+                                            "description": "Termo de busca, pode ser o nome do professor,\nnome da disciplina ou c\u00f3digo da disciplina.",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines?per_page=10&page=1&search=FMC+I%2C+Fundamentos+Matematicos+da+Computa%C3%A7%C3%A3o"
+                                },
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": ""
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Victor\",\n            \"email\": \"victor_brandao@outlook.com\",\n            \"role_id\": 1\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Pedro Gabriel\",\n            \"email\": \"pedrogab96@gmail.com\",\n            \"role_id\": 1\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Arthur S\\u00e9rvulo\",\n            \"email\": \"arthurservulo7@gmail.com\",\n            \"role_id\": 1\n        }\n    ],\n    \"links\": {\n        \"first\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=1\",\n        \"last\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=3\",\n        \"prev\": null,\n        \"next\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=2\"\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 3,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Anterior\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=1\",\n                \"label\": \"1\",\n                \"active\": true\n            },\n            {\n                \"url\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=2\",\n                \"label\": \"2\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=3\",\n                \"label\": \"3\",\n                \"active\": false\n            },\n            {\n                \"url\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users?page=2\",\n                \"label\": \"Pr\\u00f3ximo &raquo;\",\n                \"active\": false\n            }\n        ],\n        \"path\": \"http:\\\/\\\/localhost:8000\\\/api\\\/v1\\\/users\",\n        \"per_page\": \"3\",\n        \"to\": 3,\n        \"total\": 9\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Show",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/disciplines\/:discipline",
+                            "query": [],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines\/:discipline",
+                            "variable": [
+                                {
+                                    "id": "discipline",
+                                    "key": "discipline",
+                                    "value": "omnis",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "1",
+                                    "description": "O identificador da disciplina."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/disciplines ",
+                            "query": [],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines "
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Exemplo II\",\n    \"code\": \"EXII\",\n    \"synopsis\": \"Esta disciplina \u00e9 um exemplo\",\n    \"difficulties\": \"mudar@123\",\n    \"media-trailer\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n    \"media-video\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n    \"media-podcast\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n    \"media-material\": \"https:\\\/\\\/drive.google.com\\\/file\\\/d\\\/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes\\\/view?usp=sharing\",\n    \"professor_id\": 1,\n    \"classificacao-metodologias-classicas\": 1,\n    \"classificacao-metodologias-ativas\": 1,\n    \"classificacao-discussao-social\": 1,\n    \"classificacao-discussao-tecnica\": 1,\n    \"classificacao-abordagem-teorica\": 1,\n    \"classificacao-abordagem-pratica\": 1,\n    \"classificacao-av-provas\": 1,\n    \"classificacao-av-atividades\": 1\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Store Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/disciplines ",
+                                    "query": [],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines "
+                                },
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Exemplo II\",\n    \"code\": \"EXII\",\n    \"synopsis\": \"Esta disciplina \u00e9 um exemplo\",\n    \"difficulties\": \"mudar@123\",\n    \"media-trailer\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n    \"media-video\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n    \"media-podcast\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n    \"media-material\": \"https:\\\/\\\/drive.google.com\\\/file\\\/d\\\/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes\\\/view?usp=sharing\",\n    \"professor_id\": 1,\n    \"classificacao-metodologias-classicas\": 1,\n    \"classificacao-metodologias-ativas\": 1,\n    \"classificacao-discussao-social\": 1,\n    \"classificacao-discussao-tecnica\": 1,\n    \"classificacao-abordagem-teorica\": 1,\n    \"classificacao-abordagem-pratica\": 1,\n    \"classificacao-av-provas\": 1,\n    \"classificacao-av-atividades\": 1\n}"
+                                },
+                                "description": "",
+                                "auth": {
+                                    "type": "noauth"
+                                }
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Disciplina cadastrada com sucesso!\",\n    \"data\": {\n        \"id\": 10,\n        \"name\": \"Fundamentos do Exemplo I\",\n        \"code\": \"FME I\",\n        \"synopsis\": \"Este \\u00e9 um exemplo\",\n        \"difficulties\": \"Exemplo\",\n        \"professor_id\": 5,\n        \"media-trailer\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n        \"media-video\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n        \"media-podcast\": \"https:\\\/\\\/www.youtube.com\\\/watch?v=dQw4w9WgXcQ\",\n        \"media-material\": \"https:\\\/\\\/drive.google.com\\\/file\\\/d\\\/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes\\\/view?usp=sharing\",\n        \"classificacao-metodologias-classicas\": 1,\n        \"classificacao-metodologias-ativas\": 1,\n        \"classificacao-discussao-social\": 1,\n        \"classificacao-discussao-tecnica\": 1,\n        \"classificacao-abordagem-teorica\": 1,\n        \"classificacao-abordagem-pratica\": 1,\n        \"classificacao-av-provas\": 1,\n        \"classificacao-av-atividades\": 1\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/disciplines \/{disciplines }",
+                            "query": [],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines \/{disciplines }",
+                            "variable": [
+                                {
+                                    "id": "disciplines ",
+                                    "key": "disciplines ",
+                                    "value": "fugiat",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "name": "Update Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/disciplines \/{disciplines }",
+                                    "query": [],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines \/{disciplines }",
+                                    "variable": [
+                                        {
+                                            "id": "disciplines ",
+                                            "key": "disciplines ",
+                                            "value": "fugiat",
+                                            "description": ""
+                                        }
+                                    ]
+                                },
+                                "method": "PUT",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": ""
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Seus dados foram atualizados com sucesso!\",\n    \"data\": {\n        \"id\": 6,\n        \"name\": \"Fulano da Silva Updated\",\n        \"email\": \"fulano@gmail.com\",\n        \"role_id\": 3\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Destroy",
+                    "request": {
+                        "url": {
+                            "protocol": "https",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/disciplines \/{disciplines }",
+                            "query": [],
+                            "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines \/{disciplines }",
+                            "variable": [
+                                {
+                                    "id": "disciplines ",
+                                    "key": "disciplines ",
+                                    "value": "quia",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "user",
+                                    "key": "user",
+                                    "value": "1",
+                                    "description": "O identificador da disciplina."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "name": "Destroy Response #1",
+                            "originalRequest": {
+                                "url": {
+                                    "protocol": "https",
+                                    "host": "{{baseUrl}}",
+                                    "path": "api\/v1\/disciplines \/{disciplines }",
+                                    "query": [],
+                                    "raw": "https:\/\/{{baseUrl}}\/api\/v1\/disciplines \/{disciplines }",
+                                    "variable": [
+                                        {
+                                            "id": "disciplines ",
+                                            "key": "disciplines ",
+                                            "value": "quia",
+                                            "description": ""
+                                        },
+                                        {
+                                            "id": "user",
+                                            "key": "user",
+                                            "value": "1",
+                                            "description": "O identificador da disciplina."
+                                        }
+                                    ]
+                                },
+                                "method": "DELETE",
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application\/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application\/json"
+                                    }
+                                ],
+                                "body": null,
+                                "description": ""
+                            },
+                            "header": null,
+                            "cookie": [],
+                            "body": "{\n    \"message\": \"Disciplina apagada com sucesso!\"\n}"
                         }
                     ]
                 }

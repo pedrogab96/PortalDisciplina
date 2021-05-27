@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 use App\Enums\ClassificationID;
 use App\Enums\MediaType;
@@ -64,15 +64,7 @@ class DisciplineController extends Controller
      * @param CreateRequest $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create(CreateRequest $request)
-    {
-        //Necessário???
-        $professors = new Professor();
-        if (Auth::user()->isAdmin) {
-            $professors = Professor::query()->orderBy('name', 'ASC')->get();
-        }
-        return view(self::VIEW_PATH . 'create', compact('professors'));
-    }
+
     //modificar
     /**
      * Store
@@ -201,32 +193,6 @@ class DisciplineController extends Controller
             ])
             ->findOrFail($id);
         return new DisciplineResource($discipline);
-    }
-
-
-
-    //necessário???
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $professors = new Professor();
-        if(Auth::user()->isAdmin)
-        {
-            $professors = Professor::query()->orderBy('name','ASC')->get();
-        }
-        $discipline = Discipline::query()
-        ->with([
-            'professor',
-            'medias',
-            'faqs',
-        ])
-        ->findOrFail($id);
-        return compact('discipline', 'professors');
     }
 
     /**

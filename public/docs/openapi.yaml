@@ -109,6 +109,328 @@ paths:
                                     message: { type: string, example: 'Volte sempre!' }
             tags:
                 - 'V1 Auth'
+    /api/v1/disciplines:
+        get:
+            summary: Index
+            description: ''
+            parameters:
+                -
+                    in: query
+                    name: per_page
+                    description: 'Quantidade de entidades por página.'
+                    example: 10
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Quantidade de entidades por página.'
+                        example: 10
+                -
+                    in: query
+                    name: page
+                    description: 'Página da paginação das entidades.'
+                    example: 1
+                    required: false
+                    schema:
+                        type: integer
+                        description: 'Página da paginação das entidades.'
+                        example: 1
+                -
+                    in: query
+                    name: search
+                    description: "Termo de busca, pode ser o nome do professor,\nnome da disciplina ou código da disciplina."
+                    example: 'FMC I, Fundamentos Matematicos da Computação'
+                    required: false
+                    schema:
+                        type: string
+                        description: "Termo de busca, pode ser o nome do professor,\nnome da disciplina ou código da disciplina."
+                        example: 'FMC I, Fundamentos Matematicos da Computação'
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: [{ id: 1, name: Victor, email: victor_brandao@outlook.com, role_id: 1 }, { id: 2, name: 'Pedro Gabriel', email: pedrogab96@gmail.com, role_id: 1 }, { id: 3, name: 'Arthur Sérvulo', email: arthurservulo7@gmail.com, role_id: 1 }]
+                                    links: { first: 'http://localhost:8000/api/v1/users?page=1', last: 'http://localhost:8000/api/v1/users?page=3', prev: null, next: 'http://localhost:8000/api/v1/users?page=2' }
+                                    meta: { current_page: 1, from: 1, last_page: 3, links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost:8000/api/v1/users?page=1', label: '1', active: true }, { url: 'http://localhost:8000/api/v1/users?page=2', label: '2', active: false }, { url: 'http://localhost:8000/api/v1/users?page=3', label: '3', active: false }, { url: 'http://localhost:8000/api/v1/users?page=2', label: 'Próximo &raquo;', active: false }], path: 'http://localhost:8000/api/v1/users', per_page: '3', to: 3, total: 9 }
+                                properties:
+                                    data: { type: array, example: [{ id: 1, name: Victor, email: victor_brandao@outlook.com, role_id: 1 }, { id: 2, name: 'Pedro Gabriel', email: pedrogab96@gmail.com, role_id: 1 }, { id: 3, name: 'Arthur Sérvulo', email: arthurservulo7@gmail.com, role_id: 1 }], items: { type: object } }
+                                    links: { type: object, example: { first: 'http://localhost:8000/api/v1/users?page=1', last: 'http://localhost:8000/api/v1/users?page=3', prev: null, next: 'http://localhost:8000/api/v1/users?page=2' } }
+                                    meta: { type: object, example: { current_page: 1, from: 1, last_page: 3, links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost:8000/api/v1/users?page=1', label: '1', active: true }, { url: 'http://localhost:8000/api/v1/users?page=2', label: '2', active: false }, { url: 'http://localhost:8000/api/v1/users?page=3', label: '3', active: false }, { url: 'http://localhost:8000/api/v1/users?page=2', label: 'Próximo &raquo;', active: false }], path: 'http://localhost:8000/api/v1/users', per_page: '3', to: 3, total: 9 } }
+            tags:
+                - 'V1 Discipline'
+    '/api/v1/disciplines/{discipline}':
+        get:
+            summary: Show
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - 'V1 Discipline'
+        parameters:
+            -
+                in: path
+                name: discipline
+                description: ''
+                example: omnis
+                required: true
+                schema:
+                    type: string
+            -
+                in: path
+                name: user
+                description: 'O identificador da disciplina.'
+                example: 1
+                required: true
+                schema:
+                    type: integer
+    '/api/v1/disciplines ':
+        post:
+            summary: Store
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                201:
+                    description: '201'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Disciplina cadastrada com sucesso!'
+                                    data: { id: 10, name: 'Fundamentos do Exemplo I', code: 'FME I', synopsis: 'Este é um exemplo', difficulties: Exemplo, professor_id: 5, media-trailer: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-podcast: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-material: 'https://drive.google.com/file/d/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes/view?usp=sharing', classificacao-metodologias-classicas: 1, classificacao-metodologias-ativas: 1, classificacao-discussao-social: 1, classificacao-discussao-tecnica: 1, classificacao-abordagem-teorica: 1, classificacao-abordagem-pratica: 1, classificacao-av-provas: 1, classificacao-av-atividades: 1 }
+                                properties:
+                                    message: { type: string, example: 'Disciplina cadastrada com sucesso!' }
+                                    data: { type: object, example: { id: 10, name: 'Fundamentos do Exemplo I', code: 'FME I', synopsis: 'Este é um exemplo', difficulties: Exemplo, professor_id: 5, media-trailer: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-podcast: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-material: 'https://drive.google.com/file/d/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes/view?usp=sharing', classificacao-metodologias-classicas: 1, classificacao-metodologias-ativas: 1, classificacao-discussao-social: 1, classificacao-discussao-tecnica: 1, classificacao-abordagem-teorica: 1, classificacao-abordagem-pratica: 1, classificacao-av-provas: 1, classificacao-av-atividades: 1 } }
+            tags:
+                - 'V1 Discipline'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: 'Nome da disciplina.'
+                                    example: 'Exemplo II'
+                                code:
+                                    type: string
+                                    description: 'Código da disciplina.'
+                                    example: EXII
+                                synopsis:
+                                    type: string
+                                    description: 'Sínopse da disciplina.'
+                                    example: 'Esta disciplina é um exemplo'
+                                difficulties:
+                                    type: string
+                                    description: 'Deve ser igual ao campo `password`.'
+                                    example: mudar@123
+                                media-trailer:
+                                    type: string
+                                    description: 'Link do Youtube.'
+                                    example: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                                media-video:
+                                    type: string
+                                    description: 'Link do Youtube.'
+                                    example: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                                media-podcast:
+                                    type: string
+                                    description: 'Link do Youtube.'
+                                    example: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                                media-material:
+                                    type: string
+                                    description: 'Link do Google Drive.'
+                                    example: 'https://drive.google.com/file/d/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes/view?usp=sharing'
+                                professor_id:
+                                    type: integer
+                                    description: 'Id do professor.'
+                                    example: 1
+                                classificacao-metodologias-classicas:
+                                    type: integer
+                                    description: 'Numero entre 0 e 6.'
+                                    example: 1
+                                classificacao-metodologias-ativas:
+                                    type: integer
+                                    description: 'Numero entre 0 e 6.'
+                                    example: 1
+                                classificacao-discussao-social:
+                                    type: integer
+                                    description: 'Numero entre 0 e 6.'
+                                    example: 1
+                                classificacao-discussao-tecnica:
+                                    type: integer
+                                    description: 'Numero entre 0 e 6.'
+                                    example: 1
+                                classificacao-abordagem-teorica:
+                                    type: integer
+                                    description: 'Numero entre 0 e 6.'
+                                    example: 1
+                                classificacao-abordagem-pratica:
+                                    type: integer
+                                    description: 'Numero entre 0 e 6.'
+                                    example: 1
+                                classificacao-av-provas:
+                                    type: integer
+                                    description: 'Numero entre 0 e 6.'
+                                    example: 1
+                                classificacao-av-atividades:
+                                    type: integer
+                                    description: 'Numero entre 0 e 6.'
+                                    example: 1
+                            required:
+                                - name
+                                - code
+                                - synopsis
+                                - difficulties
+            security: []
+    '/api/v1/disciplines /{disciplines }':
+        put:
+            summary: Update
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Seus dados foram atualizados com sucesso!'
+                                    data: { id: 6, name: 'Fulano da Silva Updated', email: fulano@gmail.com, role_id: 3 }
+                                properties:
+                                    message: { type: string, example: 'Seus dados foram atualizados com sucesso!' }
+                                    data: { type: object, example: { id: 6, name: 'Fulano da Silva Updated', email: fulano@gmail.com, role_id: 3 } }
+            tags:
+                - 'V1 Discipline'
+        delete:
+            summary: Destroy
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {YOUR_AUTH_KEY}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: 'Disciplina apagada com sucesso!'
+                                properties:
+                                    message: { type: string, example: 'Disciplina apagada com sucesso!' }
+            tags:
+                - 'V1 Discipline'
+        parameters:
+            -
+                in: path
+                name: 'disciplines '
+                description: ''
+                example: fugiat
+                required: true
+                schema:
+                    type: string
     /api/v1/users:
         post:
             summary: Store
