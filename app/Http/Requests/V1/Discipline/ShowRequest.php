@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\V1\Discipline;
 
-use App\Enums\RoleName;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**

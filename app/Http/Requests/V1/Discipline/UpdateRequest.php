@@ -5,6 +5,12 @@ namespace App\Http\Requests\V1\Discipline;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class UpdateRequest
+ * @package App\Http\Requests\V1\Discipline
+ *
+ * @urlParam discipline integer required O identificador da disciplina. Example: 1
+ */
 class UpdateRequest extends FormRequest
 {
     /**
@@ -14,12 +20,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        $disciplineId = $this->route()->parameter('disciplina');
-        if (!is_numeric($disciplineId)) {
-            return false;
-        }
-
-        return Auth::user()->canDiscipline($disciplineId);
+        return $this->canDiscipline();
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Requests\V1\Discipline;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+
 /**
  * Class StoreRequest
  * @package App\Http\Requests\V1\Discipline

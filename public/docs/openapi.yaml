@@ -137,20 +137,13 @@ paths:
                 -
                     in: query
                     name: search
-                    description: "Termo de busca, pode ser o nome do professor,\nnome da disciplina ou código da disciplina."
-                    example: 'FMC I, Fundamentos Matematicos da Computação'
+                    description: 'Termo de busca (nome do professor, nome da disciplina, código da disciplina).'
+                    example: IMD1101
                     required: false
                     schema:
                         type: string
-                        description: "Termo de busca, pode ser o nome do professor,\nnome da disciplina ou código da disciplina."
-                        example: 'FMC I, Fundamentos Matematicos da Computação'
-                -
-                    in: header
-                    name: Authorization
-                    description: ''
-                    example: 'Bearer {YOUR_AUTH_KEY}'
-                    schema:
-                        type: string
+                        description: 'Termo de busca (nome do professor, nome da disciplina, código da disciplina).'
+                        example: IMD1101
                 -
                     in: header
                     name: Content-Type
@@ -173,18 +166,18 @@ paths:
                             schema:
                                 type: object
                                 example:
-                                    data: [{ id: 1, name: Victor, email: victor_brandao@outlook.com, role_id: 1 }, { id: 2, name: 'Pedro Gabriel', email: pedrogab96@gmail.com, role_id: 1 }, { id: 3, name: 'Arthur Sérvulo', email: arthurservulo7@gmail.com, role_id: 1 }]
-                                    links: { first: 'http://localhost:8000/api/v1/users?page=1', last: 'http://localhost:8000/api/v1/users?page=3', prev: null, next: 'http://localhost:8000/api/v1/users?page=2' }
-                                    meta: { current_page: 1, from: 1, last_page: 3, links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost:8000/api/v1/users?page=1', label: '1', active: true }, { url: 'http://localhost:8000/api/v1/users?page=2', label: '2', active: false }, { url: 'http://localhost:8000/api/v1/users?page=3', label: '3', active: false }, { url: 'http://localhost:8000/api/v1/users?page=2', label: 'Próximo &raquo;', active: false }], path: 'http://localhost:8000/api/v1/users', per_page: '3', to: 3, total: 9 }
+                                    data: [{ id: 2, code: OQQKP4S, name: 'Aut est quos at ut.', synopsis: 'Ut eum officiis consequatur quia sint. Impedit ut quos sed sapiente et unde omnis. Et iusto dolor cum qui delectus et perferendis.', difficulties: 'Modi et soluta perferendis autem culpa est.', professor_id: 4, professor: { id: 4, name: 'Micheal Borer', profile_pic_link: 'https://lorempixel.com/640/480/?51467', public_email: schneider.adrienne@hotmail.com, user_id: 8 } }, { id: 3, code: OYPRDMV, name: 'Aut ut saepe optio modi.', synopsis: 'Autem ad officiis sit consequatur voluptatem. Sunt quas ut maxime eveniet. In numquam sapiente voluptatum eum. Esse ea quis sequi quibusdam provident.', difficulties: 'Est accusamus molestias earum possimus.', professor_id: 5, professor: { id: 5, name: 'Ernestine Sawayn', profile_pic_link: 'https://lorempixel.com/640/480/?62450', public_email: norris.schaden@roob.com, user_id: 9 } }, { id: 1, code: IADRCRW, name: 'Nulla quo enim eaque et.', synopsis: 'A aspernatur porro aut. Alias enim fugit totam numquam. Temporibus aut nobis sed culpa.', difficulties: 'Quis quis aut consectetur corrupti saepe.', professor_id: 3, professor: { id: 3, name: 'Yvette Schroeder', profile_pic_link: 'https://lorempixel.com/640/480/?34232', public_email: hkirlin@harris.com, user_id: 7 } }]
+                                    links: { first: 'http://localhost:8000/api/v1/disciplines?page=1', last: 'http://localhost:8000/api/v1/disciplines?page=1', prev: null, next: null }
+                                    meta: { current_page: 1, from: 1, last_page: 1, links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost:8000/api/v1/disciplines?page=1', label: '1', active: true }, { url: null, label: 'Próximo &raquo;', active: false }], path: 'http://localhost:8000/api/v1/disciplines', per_page: '3', to: 3, total: 3 }
                                 properties:
-                                    data: { type: array, example: [{ id: 1, name: Victor, email: victor_brandao@outlook.com, role_id: 1 }, { id: 2, name: 'Pedro Gabriel', email: pedrogab96@gmail.com, role_id: 1 }, { id: 3, name: 'Arthur Sérvulo', email: arthurservulo7@gmail.com, role_id: 1 }], items: { type: object } }
-                                    links: { type: object, example: { first: 'http://localhost:8000/api/v1/users?page=1', last: 'http://localhost:8000/api/v1/users?page=3', prev: null, next: 'http://localhost:8000/api/v1/users?page=2' } }
-                                    meta: { type: object, example: { current_page: 1, from: 1, last_page: 3, links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost:8000/api/v1/users?page=1', label: '1', active: true }, { url: 'http://localhost:8000/api/v1/users?page=2', label: '2', active: false }, { url: 'http://localhost:8000/api/v1/users?page=3', label: '3', active: false }, { url: 'http://localhost:8000/api/v1/users?page=2', label: 'Próximo &raquo;', active: false }], path: 'http://localhost:8000/api/v1/users', per_page: '3', to: 3, total: 9 } }
+                                    data: { type: array, example: [{ id: 2, code: OQQKP4S, name: 'Aut est quos at ut.', synopsis: 'Ut eum officiis consequatur quia sint. Impedit ut quos sed sapiente et unde omnis. Et iusto dolor cum qui delectus et perferendis.', difficulties: 'Modi et soluta perferendis autem culpa est.', professor_id: 4, professor: { id: 4, name: 'Micheal Borer', profile_pic_link: 'https://lorempixel.com/640/480/?51467', public_email: schneider.adrienne@hotmail.com, user_id: 8 } }, { id: 3, code: OYPRDMV, name: 'Aut ut saepe optio modi.', synopsis: 'Autem ad officiis sit consequatur voluptatem. Sunt quas ut maxime eveniet. In numquam sapiente voluptatum eum. Esse ea quis sequi quibusdam provident.', difficulties: 'Est accusamus molestias earum possimus.', professor_id: 5, professor: { id: 5, name: 'Ernestine Sawayn', profile_pic_link: 'https://lorempixel.com/640/480/?62450', public_email: norris.schaden@roob.com, user_id: 9 } }, { id: 1, code: IADRCRW, name: 'Nulla quo enim eaque et.', synopsis: 'A aspernatur porro aut. Alias enim fugit totam numquam. Temporibus aut nobis sed culpa.', difficulties: 'Quis quis aut consectetur corrupti saepe.', professor_id: 3, professor: { id: 3, name: 'Yvette Schroeder', profile_pic_link: 'https://lorempixel.com/640/480/?34232', public_email: hkirlin@harris.com, user_id: 7 } }], items: { type: object } }
+                                    links: { type: object, example: { first: 'http://localhost:8000/api/v1/disciplines?page=1', last: 'http://localhost:8000/api/v1/disciplines?page=1', prev: null, next: null } }
+                                    meta: { type: object, example: { current_page: 1, from: 1, last_page: 1, links: [{ url: null, label: '&laquo; Anterior', active: false }, { url: 'http://localhost:8000/api/v1/disciplines?page=1', label: '1', active: true }, { url: null, label: 'Próximo &raquo;', active: false }], path: 'http://localhost:8000/api/v1/disciplines', per_page: '3', to: 3, total: 3 } }
             tags:
                 - 'V1 Discipline'
-    '/api/v1/disciplines/{discipline}':
-        get:
-            summary: Show
+            security: []
+        post:
+            summary: Store
             description: ''
             parameters:
                 -
@@ -194,45 +187,6 @@ paths:
                     example: 'Bearer {YOUR_AUTH_KEY}'
                     schema:
                         type: string
-                -
-                    in: header
-                    name: Content-Type
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-                -
-                    in: header
-                    name: Accept
-                    description: ''
-                    example: application/json
-                    schema:
-                        type: string
-            responses: {  }
-            tags:
-                - 'V1 Discipline'
-        parameters:
-            -
-                in: path
-                name: discipline
-                description: ''
-                example: omnis
-                required: true
-                schema:
-                    type: string
-            -
-                in: path
-                name: user
-                description: 'O identificador da disciplina.'
-                example: 1
-                required: true
-                schema:
-                    type: integer
-    '/api/v1/disciplines ':
-        post:
-            summary: Store
-            description: ''
-            parameters:
                 -
                     in: header
                     name: Content-Type
@@ -342,8 +296,39 @@ paths:
                                 - code
                                 - synopsis
                                 - difficulties
+    '/api/v1/disciplines/{discipline}':
+        get:
+            summary: Show
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    data: { id: 1, code: IADRCRW, name: 'Nulla quo enim eaque et.', synopsis: 'A aspernatur porro aut. Alias enim fugit totam numquam. Temporibus aut nobis sed culpa.', difficulties: 'Quis quis aut consectetur corrupti saepe.', professor_id: 3, professor: { id: 3, name: 'Yvette Schroeder', profile_pic_link: 'https://lorempixel.com/640/480/?34232', public_email: hkirlin@harris.com, user_id: 7 }, medias: [{ id: 1, title: 'Totam quia omnis fugit.', type: materiais, url: 'Dolorem voluptatem qui voluptatem rem vel.', is_trailer: false, discipline_id: 1 }, { id: 2, title: 'Quis eius enim et.', type: video, url: 'Autem sint quo provident voluptates iure.', is_trailer: false, discipline_id: 1 }], faqs: [], classificationsDisciplines: [] }
+                                properties:
+                                    data: { type: object, example: { id: 1, code: IADRCRW, name: 'Nulla quo enim eaque et.', synopsis: 'A aspernatur porro aut. Alias enim fugit totam numquam. Temporibus aut nobis sed culpa.', difficulties: 'Quis quis aut consectetur corrupti saepe.', professor_id: 3, professor: { id: 3, name: 'Yvette Schroeder', profile_pic_link: 'https://lorempixel.com/640/480/?34232', public_email: hkirlin@harris.com, user_id: 7 }, medias: [{ id: 1, title: 'Totam quia omnis fugit.', type: materiais, url: 'Dolorem voluptatem qui voluptatem rem vel.', is_trailer: false, discipline_id: 1 }, { id: 2, title: 'Quis eius enim et.', type: video, url: 'Autem sint quo provident voluptates iure.', is_trailer: false, discipline_id: 1 }], faqs: [], classificationsDisciplines: [] } }
+            tags:
+                - 'V1 Discipline'
             security: []
-    '/api/v1/disciplines /{disciplines }':
         put:
             summary: Update
             description: ''
@@ -377,11 +362,11 @@ paths:
                             schema:
                                 type: object
                                 example:
-                                    message: 'Seus dados foram atualizados com sucesso!'
-                                    data: { id: 6, name: 'Fulano da Silva Updated', email: fulano@gmail.com, role_id: 3 }
+                                    message: 'Disciplina editada com sucesso!'
+                                    data: { id: 10, name: 'Fundamentos do Exemplo II', code: 'FME II', synopsis: 'Este é um exemplo editado', difficulties: 'Exemplo 2', professor_id: 3, media-trailer: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-podcast: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-material: 'https://drive.google.com/file/d/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes/view?usp=sharing', classificacao-metodologias-classicas: 1, classificacao-metodologias-ativas: 1, classificacao-discussao-social: 1, classificacao-discussao-tecnica: 1, classificacao-abordagem-teorica: 1, classificacao-abordagem-pratica: 1, classificacao-av-provas: 1, classificacao-av-atividades: 1 }
                                 properties:
-                                    message: { type: string, example: 'Seus dados foram atualizados com sucesso!' }
-                                    data: { type: object, example: { id: 6, name: 'Fulano da Silva Updated', email: fulano@gmail.com, role_id: 3 } }
+                                    message: { type: string, example: 'Disciplina editada com sucesso!' }
+                                    data: { type: object, example: { id: 10, name: 'Fundamentos do Exemplo II', code: 'FME II', synopsis: 'Este é um exemplo editado', difficulties: 'Exemplo 2', professor_id: 3, media-trailer: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-podcast: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', media-material: 'https://drive.google.com/file/d/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes/view?usp=sharing', classificacao-metodologias-classicas: 1, classificacao-metodologias-ativas: 1, classificacao-discussao-social: 1, classificacao-discussao-tecnica: 1, classificacao-abordagem-teorica: 1, classificacao-abordagem-pratica: 1, classificacao-av-provas: 1, classificacao-av-atividades: 1 } }
             tags:
                 - 'V1 Discipline'
         delete:
@@ -425,12 +410,12 @@ paths:
         parameters:
             -
                 in: path
-                name: 'disciplines '
-                description: ''
-                example: fugiat
+                name: discipline
+                description: 'O identificador da disciplina.'
+                example: 1
                 required: true
                 schema:
-                    type: string
+                    type: integer
     /api/v1/users:
         post:
             summary: Store
