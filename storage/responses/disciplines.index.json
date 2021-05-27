@@ -1,0 +1,125 @@
+[
+  {
+    "id": 3,
+    "code": "NPYUVXV",
+    "name": "Aut ipsum error ab eum.",
+    "synopsis": "Eum eum autem ea et nam. Voluptatem omnis eaque architecto pariatur rerum voluptatem. Repellendus minus est optio aut et deleniti est. Eum accusantium odit sed dolor.",
+    "difficulties": "Deserunt ad labore est qui cumque consequuntur.",
+    "professor_id": 5,
+    "created_at": "2021-05-27T19:34:11.000000Z",
+    "updated_at": "2021-05-27T19:34:11.000000Z",
+    "professor": {
+      "id": 5,
+      "name": "Graciela Botsford",
+      "profile_pic_link": "https://lorempixel.com/640/480/?63593",
+      "public_email": "wcrona@ward.com",
+      "user_id": 9,
+      "created_at": "2021-05-27T19:34:10.000000Z",
+      "updated_at": "2021-05-27T19:34:10.000000Z"
+    },
+    "medias": [
+      {
+        "id": 5,
+        "title": "Sint cum nihil debitis.",
+        "type": "video",
+        "url": "Perspiciatis et qui rerum.",
+        "is_trailer": true,
+        "discipline_id": 3,
+        "created_at": "2021-05-27T19:34:11.000000Z",
+        "updated_at": "2021-05-27T19:34:11.000000Z"
+      },
+      {
+        "id": 6,
+        "title": "Praesentium ad sit aut.",
+        "type": "materiais",
+        "url": "Accusamus fugiat voluptate assumenda sunt soluta.",
+        "is_trailer": true,
+        "discipline_id": 3,
+        "created_at": "2021-05-27T19:34:11.000000Z",
+        "updated_at": "2021-05-27T19:34:11.000000Z"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "code": "GAT2RFJ",
+    "name": "Ea et et ad.",
+    "synopsis": "Rerum est odit nesciunt et cupiditate reiciendis. Magnam dolor atque laudantium quod quisquam quia qui quibusdam. Rerum debitis autem quidem sit aliquam quas repellat.",
+    "difficulties": "Saepe ut iste repellendus sed et.",
+    "professor_id": 3,
+    "created_at": "2021-05-27T19:34:10.000000Z",
+    "updated_at": "2021-05-27T19:34:10.000000Z",
+    "professor": {
+      "id": 3,
+      "name": "Leanne Schumm Sr.",
+      "profile_pic_link": "https://lorempixel.com/640/480/?46066",
+      "public_email": "wcruickshank@hotmail.com",
+      "user_id": 7,
+      "created_at": "2021-05-27T19:34:09.000000Z",
+      "updated_at": "2021-05-27T19:34:09.000000Z"
+    },
+    "medias": [
+      {
+        "id": 1,
+        "title": "Eius qui esse et sed.",
+        "type": "video",
+        "url": "Maiores ipsum quia dignissimos modi.",
+        "is_trailer": true,
+        "discipline_id": 1,
+        "created_at": "2021-05-27T19:34:10.000000Z",
+        "updated_at": "2021-05-27T19:34:10.000000Z"
+      },
+      {
+        "id": 2,
+        "title": "Deserunt odio et qui.",
+        "type": "podcast",
+        "url": "Sed dignissimos animi harum quidem.",
+        "is_trailer": true,
+        "discipline_id": 1,
+        "created_at": "2021-05-27T19:34:10.000000Z",
+        "updated_at": "2021-05-27T19:34:10.000000Z"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "code": "BFINIPV",
+    "name": "Est aut illo fugiat et.",
+    "synopsis": "Ut et omnis ut et aperiam pariatur minima. Voluptates similique voluptatum corrupti officiis aut enim minus quibusdam. Eum possimus voluptatem distinctio temporibus.",
+    "difficulties": "Culpa a rerum est. Est voluptas porro iste.",
+    "professor_id": 4,
+    "created_at": "2021-05-27T19:34:10.000000Z",
+    "updated_at": "2021-05-27T19:34:10.000000Z",
+    "professor": {
+      "id": 4,
+      "name": "Prof. Alden Hayes I",
+      "profile_pic_link": "https://lorempixel.com/640/480/?84779",
+      "public_email": "loyce.bernier@hotmail.com",
+      "user_id": 8,
+      "created_at": "2021-05-27T19:34:09.000000Z",
+      "updated_at": "2021-05-27T19:34:09.000000Z"
+    },
+    "medias": [
+      {
+        "id": 3,
+        "title": "Modi iste vel ut porro.",
+        "type": "classificacao",
+        "url": "Autem quia vitae ex.",
+        "is_trailer": false,
+        "discipline_id": 2,
+        "created_at": "2021-05-27T19:34:10.000000Z",
+        "updated_at": "2021-05-27T19:34:10.000000Z"
+      },
+      {
+        "id": 4,
+        "title": "Enim iste totam sint in.",
+        "type": "podcast",
+        "url": "Natus et est quo et ipsam tenetur.",
+        "is_trailer": true,
+        "discipline_id": 2,
+        "created_at": "2021-05-27T19:34:11.000000Z",
+        "updated_at": "2021-05-27T19:34:11.000000Z"
+      }
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "message": "Disciplina editada com sucesso!",
+  "data": {
+    "id": 10,
+    "name": "Fundamentos do Exemplo II",
+    "code": "FME II",
+    "synopsis": "Este é um exemplo editado",
+    "difficulties": "Exemplo 2",
+    "professor_id": 3,
+    "media-trailer": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "media-video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "media-podcast": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "media-material": "https://drive.google.com/file/d/1Xaeu31fSQY3bNmg38uM3P9fRl8ml3zes/view?usp=sharing",
+    "classificacao-metodologias-classicas":1,
+    "classificacao-metodologias-ativas":1,
+    "classificacao-discussao-social":1,
+    "classificacao-discussao-tecnica":1,
+    "classificacao-abordagem-teorica":1,
+    "classificacao-abordagem-pratica":1,
+    "classificacao-av-provas":1,
+    "classificacao-av-atividades":1
+  }
+}

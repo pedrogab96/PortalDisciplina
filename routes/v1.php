@@ -28,6 +28,11 @@ Route::group([
 Route::apiResource('users', 'UserController')
     ->only(['store',]);
 
+/*
+ * User
+ */
+Route::apiResource('disciplines', 'DisciplineController')
+    ->only(['index','show']);
 Route::group([
     'middleware' => 'auth:sanctum',
 ], function () {
@@ -38,4 +43,9 @@ Route::group([
      */
     Route::apiResource('users', 'UserController')
         ->except(['store',]);
+    /*
+     * Disciplines
+    */
+    Route::apiResource('disciplines ', 'DisciplineController')
+    ->except(['index','show']);
 });

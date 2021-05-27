@@ -10,7 +10,9 @@ use App\Http\Requests\V1\User\UpdateRequest;
 use App\Http\Resources\V1\UserCollection;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class UserController
@@ -42,6 +44,7 @@ class UserController extends Controller
         return new UserCollection($users);
     }
 
+    //modificar
     /**
      * Store
      *
@@ -52,6 +55,8 @@ class UserController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        DB::beginTransaction();
+        try {
         $data = $request->only([
             'name',
             'email',
@@ -61,11 +66,20 @@ class UserController extends Controller
         $data['password'] = bcrypt($data['password']);
 
         $user = User::create($data);
-
+        DB::commit();
         return $this->responseSuccess([
             'message' => 'Cadastro realizado com sucesso!',
             'data' => new UserResource($user),
         ], Response::HTTP_CREATED);
+
+        }catch(Exception $exception){
+            DB::rollBack();
+            //Qual código colocar aqui?
+            return $this->responseError([
+                'message' => 'Usuário não pode ser cadastrado!',
+                'data' => new UserResource(null),
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -93,6 +107,7 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
+        //como isso funciona?
         $user = $request->user();
         $data = $request->only([
             'name',
