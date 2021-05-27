@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * Class ShowRequest
  * @package App\Http\Requests\V1\Discipline
  *
- * @urlParam user integer required O identificador da disciplina. Example: 1
+ * @urlParam discipline integer required O identificador da disciplina. Example: 1
  */
 class ShowRequest extends FormRequest
 {

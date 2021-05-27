@@ -38,6 +38,7 @@ class DisciplineController extends Controller
      *
      * @param IndexRequest $request
      * @return DisciplineCollection
+     * @unauthenticated
      * @responseFile storage/responses/disciplines.index.json
      */
     public function index(IndexRequest $request)
@@ -66,20 +67,18 @@ class DisciplineController extends Controller
      *
      * @param StoreRequest $request
      * @return \Illuminate\Http\JsonResponse
-     * @unauthenticated
      * @responseFile 201 storage/responses/disciplines.store.json
      */
     public function store(StoreRequest $request)
     {
         DB::beginTransaction();
         try {
-
             $discipline_data = $request->only([
                 'name',
                 'code',
                 'synopsis',
                 'difficulties',
-                'professor_id'
+                'professor_id',
             ]);
 
             $discipline = Discipline::create($discipline_data);
@@ -175,6 +174,7 @@ class DisciplineController extends Controller
      * @param ShowRequest $request
      * @param $id
      * @return DisciplineResource
+     * @unauthenticated
      * @responseFile storage/responses/disciplines.show.json
      */
     public function show(ShowRequest $request, $id)
@@ -187,6 +187,7 @@ class DisciplineController extends Controller
                 'classificationsDisciplines.classification',
             ])
             ->findOrFail($id);
+
         return new DisciplineResource($discipline);
     }
 

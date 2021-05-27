@@ -24,7 +24,8 @@ class DisciplineResource extends JsonResource
             'professor' => new ProfessorResource($this->whenLoaded('professor')),
             'medias' => new MediaCollection($this->whenLoaded('medias')),
             'faqs' => new FaqCollection($this->whenLoaded('faqs')),
-            'classifications' => new FaqCollection($this->whenLoaded('classifications')),
+            'classifications' => new ClassificationCollection($this->whenLoaded('classifications')),
+            'classificationsDisciplines' => new ClassificationDisciplineCollection($this->whenLoaded('classificationsDisciplines')),
         ];
     }
 }

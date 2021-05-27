@@ -1,0 +1,37 @@
+{
+  "data": {
+    "id": 1,
+    "code": "IADRCRW",
+    "name": "Nulla quo enim eaque et.",
+    "synopsis": "A aspernatur porro aut. Alias enim fugit totam numquam. Temporibus aut nobis sed culpa.",
+    "difficulties": "Quis quis aut consectetur corrupti saepe.",
+    "professor_id": 3,
+    "professor": {
+      "id": 3,
+      "name": "Yvette Schroeder",
+      "profile_pic_link": "https://lorempixel.com/640/480/?34232",
+      "public_email": "hkirlin@harris.com",
+      "user_id": 7
+    },
+    "medias": [
+      {
+        "id": 1,
+        "title": "Totam quia omnis fugit.",
+        "type": "materiais",
+        "url": "Dolorem voluptatem qui voluptatem rem vel.",
+        "is_trailer": false,
+        "discipline_id": 1
+      },
+      {
+        "id": 2,
+        "title": "Quis eius enim et.",
+        "type": "video",
+        "url": "Autem sint quo provident voluptates iure.",
+        "is_trailer": false,
+        "discipline_id": 1
+      }
+    ],
+    "faqs": [],
+    "classificationsDisciplines": []
+  }
+}
