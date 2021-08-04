@@ -96,7 +96,6 @@ class Controller extends BaseController
         return response()->json($response, $code);
     }
 
-
     /**
      * Response de erro padrão [message, data?, errors, exception?].
      *
@@ -107,32 +106,19 @@ class Controller extends BaseController
     public function responseErrorServer(array $jsonData, int $code = Response::HTTP_INTERNAL_SERVER_ERROR)
     {
         $response = $this->makeResponse([
-            'message' => $this->makeMessageError($jsonData),
+            'message' => $jsonData['message'] ?? null,
             'data' => $jsonData['data'] ?? null,
-            'exception' => env('APP_DEBUG') ? $jsonData['exception'] : null,
+            'exception' => config('app.debug') ? [
+                'message' => $jsonData['exception']->getMessage(),
+                'code' => $jsonData['exception']->getCode(),
+                'file' => $jsonData['exception']->getFile(),
+                'line' => $jsonData['exception']->getLine(),
+                'previous' => $jsonData['exception']->getPrevious(),
+                'trace_as_string' => $jsonData['exception']->getTraceAsString(),
+                'trace' => $jsonData['exception']->getTrace(),
+            ] : null,
         ]);
 
         return response()->json($response, $code);
-    }
-
-    /**
-     * Monta a mensagem de erro.
-     *
-     * @param array $jsonData
-     * @return string
-     */
-    private function makeMessageError(array $jsonData)
-    {
-        $messageEnd = ' ' . trans('global.server_error');
-
-        if (array_key_exists('sentence_ending', $jsonData)) {
-            if (is_bool($jsonData['sentence_ending']) && $jsonData['sentence_ending']) {
-                $messageEnd = $jsonData['sentence_ending'];
-            } else {
-                $messageEnd = '';
-            }
-        }
-
-        return $jsonData['message'] . $messageEnd;
     }
 }
