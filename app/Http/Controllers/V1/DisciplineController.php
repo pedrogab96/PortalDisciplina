@@ -73,63 +73,58 @@ class DisciplineController extends Controller
     {
         DB::beginTransaction();
         try {
-            $discipline_data = $request->only([
+            $disciplineData = $request->only([
                 'name',
                 'code',
                 'synopsis',
                 'difficulties',
                 'professor_id',
             ]);
+            $discipline = Discipline::create($disciplineData);
 
-            $discipline = Discipline::create($discipline_data);
-            //TODO
-            //Remodelação das mídias para usar API de download do youtube
+            // TODO Remodelação das mídias para usar API de download do youtube
             if ($request->filled('media-trailer') && YoutubeService::match($request->input('media-trailer'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-trailer'));
-                $media_data = [
+                Media::create([
                     'title' => 'Trailer de ' . $discipline->name,
                     'type' => MediaType::VIDEO,
                     'is_trailer' => true,
                     'url' => 'https://www.youtube.com/embed/' . $mediaId,
                     'discipline_id' => $discipline->id
-                ];
-                Media::create($media_data);
+                ]);
             }
 
             if ($request->filled('media-podcast') && YoutubeService::match($request->input('media-podcast'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-podcast'));
-                $media_data = [
+                Media::create([
                     'title' => 'Podcast de ' . $discipline->name,
                     'type' => MediaType::PODCAST,
                     'is_trailer' => false,
                     'url' => 'https://www.youtube.com/embed/' . $mediaId,
                     'discipline_id' => $discipline->id
-                ];
-                Media::create($media_data);
+                ]);
             }
 
             if ($request->filled('media-video') && YoutubeService::match($request->input('media-video'))) {
                 $mediaId = YoutubeService::getIdFromUrl($request->input('media-video'));
-                $media_data = [
+                Media::create([
                     'title' => 'Vídeo de ' . $discipline->name,
                     'type' => MediaType::VIDEO,
                     'is_trailer' => false,
                     'url' => 'https://www.youtube.com/embed/' . $mediaId,
                     'discipline_id' => $discipline->id
-                ];
-                Media::create($media_data);
+                ]);
             }
 
             if ($request->filled('media-material') && GoogleDriveService::match($request->input('media-material'))) {
                 $mediaId = GoogleDriveService::getIdFromUrl($request->input('media-material'));
-                $media_data = [
+                Media::create([
                     'title' => "Materiais de " . $discipline->name,
                     'type' => MediaType::MATERIAIS,
                     'is_trailer' => false,
                     'url' => "https://drive.google.com/uc?export=download&id=" . $mediaId,
                     'discipline_id' => $discipline->id
-                ];
-                Media::create($media_data);
+                ]);
             }
 
             $classificationsMap = [
@@ -144,12 +139,11 @@ class DisciplineController extends Controller
             ];
 
             foreach ($classificationsMap as $classificationId => $inputValue) {
-                $classification_data = [
+                ClassificationDiscipline::create([
                     'classification_id' => $classificationId,
                     'discipline_id' => $discipline->id,
                     'value' => $request->input($inputValue) == null ? 0 : $request->input($inputValue)
-                ];
-                ClassificationDiscipline::create($classification_data);
+                ]);
             }
 
             DB::commit();
@@ -157,14 +151,12 @@ class DisciplineController extends Controller
                 'message' => 'Disciplina cadastrada com sucesso!',
                 'data' => new DisciplineResource($discipline),
             ], Response::HTTP_CREATED);
-
         } catch (\Exception $exception) {
             DB::rollBack();
-            //Qual código colocar aqui?
-            return $this->responseError([
+            return $this->responseErrorServer([
                 'message' => 'Disciplina não pode ser cadastrada!',
-                'data' => new DisciplineResource(null),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+                'exception' => $exception,
+            ]);
         }
     }
 
